@@ -255,12 +255,12 @@ package com.unhurdle.spectrum
       }
     }
 
-    // protected var _input:HTMLInputElement;
+    protected var _input:HTMLInputElement;
 
-    // public function get input():HTMLInputElement
-    // {
-    // 	return _input;
-    // }
+    public function get input():HTMLInputElement
+    {
+    	return _input;
+    }
 
     COMPILE::JS
 		override protected function createElement():WrappedHTMLElement{
@@ -269,17 +269,17 @@ package com.unhurdle.spectrum
       // elem.appendChild(input);
       return elem;
     }
-    // private var _inputClass:String;
+    private var _inputClass:String;
 
-    // public function get inputClass():String
-    // {
-    // 	return _inputClass;
-    // }
+    public function get inputClass():String
+    {
+    	return _inputClass;
+    }
 
-    // public function set inputClass(value:String):void
-    // {
-    // 	_inputClass = value;
-    //   input.className = appendSelector("-input") + " " + value;
-    // }
+    public function set inputClass(value:String):void
+    {
+    	_inputClass = value;
+      input.className = appendSelector("-input") + " " + value;
+    }
   }
 }
