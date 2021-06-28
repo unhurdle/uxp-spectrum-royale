@@ -1,0 +1,55 @@
+<view:DemoPane xmlns:fx="http://ns.adobe.com/mxml/2009"
+  xmlns:view="view.*" xmlns:sp="library://ns.unhurdle.com/spectrum"
+  xmlns="library://ns.apache.org/royale/html" xmlns:comp="view.components.*"
+  title="Color Handle">
+  <!-- initComplete="initCompleteHandler(event)" -->
+  <fx:Script>
+    <![CDATA[
+      import com.unhurdle.spectrum.interfaces.IRGBA;
+      import com.unhurdle.spectrum.data.RGBColor;
+
+      private function getColor():IRGBA{
+        return new RGBColor([255, 0, 0, 0.5]);
+      }
+    ]]>
+  </fx:Script>
+  <comp:Variant>
+    <Div>
+      <sp:ColorHandle appliedColor="{getColor()}" style="top:38%;left:50%"/>
+    </Div>
+  </comp:Variant>
+  <comp:Markup>
+    <comp:StyledCode text='&lt;Div&gt;'/>
+    <Br/>
+    <comp:StyledCode text=' &lt;sp:ColorHandle appliedColor="{getColor()}" style="top:38%;left:50%"/&gt;'/>
+    <Br/>
+    <comp:StyledCode text='&lt;Div/&gt;'/>
+  </comp:Markup>
+
+  <comp:Variant header="Disabled">
+    <Div>
+      <sp:ColorHandle appliedColor="{getColor()}" disabled="true" style="top:66%;left:50%"/>
+    </Div>
+  <comp:Markup>
+    <comp:StyledCode text='&lt;Div&gt;'/>
+    <Br/>
+    <comp:StyledCode text=' &lt;sp:ColorHandle appliedColor="{getColor()}" disabled="true" style="top:66%;left:50%"/&gt;'/>
+    <Br/>
+    <comp:StyledCode text='&lt;Div/&gt;'/>
+  </comp:Markup>
+  </comp:Variant>
+
+  <comp:Variant header="Open">
+    <Div>
+      <sp:ColorHandle appliedColor="{getColor()}" open="true" style="top:100%;left:50%"/>
+    </Div>
+  <comp:Markup>
+    <comp:StyledCode text='&lt;Div&gt;'/>
+    <Br/>
+    <comp:StyledCode text=' &lt;sp:ColorHandle appliedColor="{getColor()}" open="true" style="top:100%;left:50%"/&gt;'/>
+    <Br/>
+    <comp:StyledCode text='&lt;Div/&gt;'/>
+  </comp:Markup>
+  </comp:Variant>
+
+</view:DemoPane>

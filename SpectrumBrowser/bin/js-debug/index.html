@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Spectrum Demo</title> 
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta name="Custom Template for injecting custom style CSS">
+  <meta name="viewport" content="width=device-width, user-scalable=no" />
+  <link rel="icon" type="image/png" href="assets/favicon.png">
+  <link rel="stylesheet" href="assets/css/defaults.css">
+  <link rel="stylesheet" href="SpectrumBrowser.css">
+	<link rel="stylesheet" href="assets/css/components/page/dist.css">
+	<link rel="stylesheet" href="assets/css/components/table/dist.css">
+	<!-- <link rel="stylesheet" href="assets/css/components/vars/components/spectrum-table.css"> -->
+	<link rel="stylesheet" href="assets/css/components/popover/dist.css">
+	<link rel="stylesheet" href="assets/css/components/actionbar/dist.css">
+	<link rel="stylesheet" href="assets/css/components/actiongroup/dist.css">
+	<link rel="stylesheet" href="assets/css/components/menu/dist.css">
+	<link rel="stylesheet" href="assets/css/components/sidenav/dist.css">
+	<link rel="stylesheet" href="assets/css/components/inputgroup/dist.css">
+	<link rel="stylesheet" href="assets/css/components/button/dist.css">
+	<link rel="stylesheet" href="assets/css/components/icon/dist.css">
+	<link rel="stylesheet" href="assets/css/components/textfield/dist.css">
+	<link rel="stylesheet" href="assets/css/components/checkbox/dist.css">
+	<link rel="stylesheet" href="assets/css/components/divider/dist.css">
+	<link rel="stylesheet" href="assets/css/components/typography/dist.css">
+	<link rel="stylesheet" href="assets/css/components/picker/dist.css">
+	<link rel="stylesheet" href="assets/css/components/asset/dist.css">
+	<link rel="stylesheet" href="assets/css/components/fieldgroup/dist.css">
+	<link rel="stylesheet" href="assets/css/components/fieldlabel/dist.css">
+	<link rel="stylesheet" href="assets/css/components/accordion/dist.css">
+	<link rel="stylesheet" href="assets/css/components/buttongroup/dist.css">
+	<link rel="stylesheet" href="assets/css/components/toast/dist.css">
+	<link rel="stylesheet" href="assets/css/components/alert/dist.css">
+	<link rel="stylesheet" href="assets/css/components/underlay/dist.css">
+	<link rel="stylesheet" href="assets/css/components/modal/dist.css">
+	<link rel="stylesheet" href="assets/css/components/assetlist/dist.css">
+	<link rel="stylesheet" href="assets/css/components/avatar/dist.css">
+	<link rel="stylesheet" href="assets/css/components/banner/dist.css">
+	<link rel="stylesheet" href="assets/css/components/barloader/dist.css">
+	<link rel="stylesheet" href="assets/css/components/breadcrumb/dist.css">
+	<link rel="stylesheet" href="assets/css/components/calendar/dist.css">
+	<link rel="stylesheet" href="assets/css/components/quickaction/dist.css">
+	<link rel="stylesheet" href="assets/css/components/card/dist.css">
+	<link rel="stylesheet" href="assets/css/components/circleloader/dist.css">
+	<link rel="stylesheet" href="assets/css/components/coachmark/dist.css">
+	<link rel="stylesheet" href="assets/css/components/colorarea/dist.css">
+	<link rel="stylesheet" href="assets/css/components/colorhandle/dist.css">
+	<link rel="stylesheet" href="assets/css/components/colorloupe/dist.css">
+	<link rel="stylesheet" href="assets/css/components/colorslider/dist.css">
+	<link rel="stylesheet" href="assets/css/components/colorwheel/dist.css">
+	<link rel="stylesheet" href="assets/css/components/cyclebutton/dist.css">
+	<link rel="stylesheet" href="assets/css/components/slider/dist.css">
+	<link rel="stylesheet" href="assets/css/components/dialog/dist.css">
+	<link rel="stylesheet" href="assets/css/components/dropindicator/dist.css">
+	<link rel="stylesheet" href="assets/css/components/dropzone/dist.css">
+	<link rel="stylesheet" href="assets/css/components/illustratedmessage/dist.css">
+	<link rel="stylesheet" href="assets/css/components/radio/dist.css">
+	<link rel="stylesheet" href="assets/css/components/stepper/dist.css">
+	<link rel="stylesheet" href="assets/css/components/label/dist.css">
+	<link rel="stylesheet" href="assets/css/components/link/dist.css">
+	<link rel="stylesheet" href="assets/css/components/miller/dist.css">
+	<link rel="stylesheet" href="assets/css/components/pagination/dist.css">
+	<link rel="stylesheet" href="assets/css/components/rating/dist.css">
+	<link rel="stylesheet" href="assets/css/components/search/dist.css">
+	<link rel="stylesheet" href="assets/css/components/searchwithin/dist.css">
+	<link rel="stylesheet" href="assets/css/components/splitbutton/dist.css">
+	<link rel="stylesheet" href="assets/css/components/splitview/dist.css">
+	<link rel="stylesheet" href="assets/css/components/statuslight/dist.css">
+	<link rel="stylesheet" href="assets/css/components/steplist/dist.css">
+	<link rel="stylesheet" href="assets/css/components/tooltip/dist.css">
+	<link rel="stylesheet" href="assets/css/components/toggle/dist.css">
+	<link rel="stylesheet" href="assets/css/components/tabs/dist.css">
+	<link rel="stylesheet" href="assets/css/components/tags/dist.css">
+	<link rel="stylesheet" href="assets/css/components/thumbnail/dist.css">
+	<link rel="stylesheet" href="assets/css/components/treeview/dist.css">
+	<!-- <link rel="stylesheet" href="assets/css/components/vars/dist.css"> -->
+	<link rel="stylesheet" href="assets/css/components/well/dist.css">
+	<script src="assets/icons/loadIcons.js"></script>
+  <script type="text/javascript">
+</script>
+	<script type="text/javascript" src="./library/closure/goog/base.js"></script>
+	<script type="text/javascript">
+// generated by Royale
+goog.addDependency('../../../SpectrumBrowser.js', ['SpectrumBrowser'], ['com.unhurdle.spectrum.Application', 'com.unhurdle.spectrum.ComboBoxController', 'com.unhurdle.spectrum.ComboBoxList', 'com.unhurdle.spectrum.ComboBoxModel', 'com.unhurdle.spectrum.ComboBoxView', 'com.unhurdle.spectrum.ListController', 'com.unhurdle.spectrum.ListController', 'com.unhurdle.spectrum.ListController', 'com.unhurdle.spectrum.ListModel', 'com.unhurdle.spectrum.ListModel', 'com.unhurdle.spectrum.ListModel', 'com.unhurdle.spectrum.ListModel', 'com.unhurdle.spectrum.ListView', 'com.unhurdle.spectrum.ListView', 'com.unhurdle.spectrum.ListView', 'com.unhurdle.spectrum.ListView', 'com.unhurdle.spectrum.ListView', 'com.unhurdle.spectrum.MenuController', 'com.unhurdle.spectrum.TreeController', 'com.unhurdle.spectrum.TreeModel', 'com.unhurdle.spectrum.beads.KeyboardNavigateableForTreeHandler', 'com.unhurdle.spectrum.beads.KeyboardNavigateableHandler', 'com.unhurdle.spectrum.beads.KeyboardNavigateableHandler', 'com.unhurdle.spectrum.controllers.TreeItemRendererInitializer', 'com.unhurdle.spectrum.model.DatePickerModel', 'com.unhurdle.spectrum.renderers.AssetListItemRenderer', 'com.unhurdle.spectrum.renderers.BreadcrumbsItemRenderer', 'com.unhurdle.spectrum.renderers.ListItemRenderer', 'com.unhurdle.spectrum.renderers.MenuItemRenderer', 'com.unhurdle.spectrum.renderers.SelectableItemRenderer', 'com.unhurdle.spectrum.renderers.SelectableItemRenderer', 'com.unhurdle.spectrum.renderers.SelectableItemRenderer', 'com.unhurdle.spectrum.renderers.SelectableItemRenderer', 'com.unhurdle.spectrum.renderers.SelectableItemRenderer', 'com.unhurdle.spectrum.renderers.TreeItemRenderer', 'models.Theme', 'org.apache.royale.core.ItemRendererClassFactory', 'org.apache.royale.core.OverridableSelectableItemRendererClassFactory', 'org.apache.royale.core.OverridableSelectableItemRendererClassFactory', 'org.apache.royale.core.OverridableSelectableItemRendererClassFactory', 'org.apache.royale.core.OverridableSelectableItemRendererClassFactory', 'org.apache.royale.core.OverridableSelectableItemRendererClassFactory', 'org.apache.royale.core.SelectableItemRendererClassFactory', 'org.apache.royale.core.SelectableItemRendererClassFactory', 'org.apache.royale.events.Event', 'org.apache.royale.file.beads.FileModel', 'org.apache.royale.html.accessories.DateFormatYYYYMMDD', 'org.apache.royale.html.beads.DataContainerView', 'org.apache.royale.html.beads.DataItemRendererFactoryForArrayData', 'org.apache.royale.html.beads.DataItemRendererFactoryForArrayData', 'org.apache.royale.html.beads.DataItemRendererFactoryForArrayData', 'org.apache.royale.html.beads.DataItemRendererFactoryForArrayData', 'org.apache.royale.html.beads.DataItemRendererFactoryForArrayData', 'org.apache.royale.html.beads.DataItemRendererFactoryForArrayData', 'org.apache.royale.html.beads.DataItemRendererFactoryForHierarchicalData', 'org.apache.royale.html.beads.DataItemRendererFactoryForHierarchicalData', 'org.apache.royale.html.beads.GroupView', 'org.apache.royale.html.beads.GroupView', 'org.apache.royale.html.beads.IndexedItemRendererInitializer', 'org.apache.royale.html.beads.IndexedItemRendererInitializer', 'org.apache.royale.html.beads.IndexedItemRendererInitializer', 'org.apache.royale.html.beads.IndexedItemRendererInitializer', 'org.apache.royale.html.beads.ListItemRendererInitializer', 'org.apache.royale.html.beads.ListItemRendererInitializer', 'org.apache.royale.html.beads.ListView', 'org.apache.royale.html.beads.ListView', 'org.apache.royale.html.beads.SolidBackgroundSelectableItemRendererBead', 'org.apache.royale.html.beads.SolidBackgroundSelectableItemRendererBead', 'org.apache.royale.html.beads.TreeItemRendererInitializer', 'org.apache.royale.html.beads.controllers.ItemRendererMouseController', 'org.apache.royale.html.beads.controllers.ItemRendererMouseController', 'org.apache.royale.html.beads.controllers.ItemRendererMouseController', 'org.apache.royale.html.beads.controllers.ListSingleSelectionMouseController', 'org.apache.royale.html.beads.controllers.TreeSingleSelectionMouseController', 'org.apache.royale.html.beads.layouts.BasicLayout', 'org.apache.royale.html.beads.layouts.NoLayout', 'org.apache.royale.html.beads.layouts.NoLayout', 'org.apache.royale.html.beads.layouts.NoLayout', 'org.apache.royale.html.beads.layouts.NoLayout', 'org.apache.royale.html.beads.layouts.NoLayout', 'org.apache.royale.html.beads.layouts.VerticalLayout', 'org.apache.royale.html.beads.layouts.VerticalLayout', 'org.apache.royale.html.beads.layouts.VerticalLayout', 'org.apache.royale.html.beads.models.ArraySelectionModel', 'org.apache.royale.html.beads.models.DataProviderModel', 'org.apache.royale.html.beads.models.TreeModel', 'org.apache.royale.html.beads.models.ViewportModel', 'org.apache.royale.html.beads.models.ViewportModel', 'org.apache.royale.html.beads.models.ViewportModel', 'org.apache.royale.html.beads.models.ViewportModel', 'org.apache.royale.html.beads.models.ViewportModel', 'org.apache.royale.html.beads.models.ViewportModel', 'org.apache.royale.html.beads.models.ViewportModel', 'org.apache.royale.html.beads.models.ViewportModel', 'org.apache.royale.html.supportClasses.NoViewport', 'org.apache.royale.html.supportClasses.ScrollingViewport', 'org.apache.royale.html.supportClasses.ScrollingViewport', 'org.apache.royale.html.supportClasses.ScrollingViewport', 'org.apache.royale.html.supportClasses.ScrollingViewport', 'org.apache.royale.html.supportClasses.ScrollingViewport', 'org.apache.royale.html.supportClasses.ScrollingViewport', 'org.apache.royale.html.supportClasses.StringItemRenderer', 'org.apache.royale.html.supportClasses.StringItemRenderer', 'org.apache.royale.html.supportClasses.TreeItemRenderer', 'org.apache.royale.html.supportClasses.Viewport', 'org.apache.royale.routing.PathRouteBead', 'org.apache.royale.routing.PathRouteBead', 'view.MainView', 'com.unhurdle.spectrum.Application', 'com.unhurdle.spectrum.FieldButton', 'view.panes.RatingPane', 'com.unhurdle.spectrum.typography.Display', 'com.unhurdle.spectrum.AccordionContent', 'view.panes.CheckboxPane', 'org.apache.royale.svg.elements.Path', 'com.unhurdle.spectrum.Accordion', 'org.apache.royale.routing.HashRouter', 'models.NavProvider', 'view.panes.CardPane', 'org.apache.royale.core.IStyleObject', 'org.apache.royale.utils.MXMLDataInterpreter', 'view.panes.SteplistPane', 'com.unhurdle.spectrum.Link', 'view.panes.ButtonGroupPane', 'com.unhurdle.spectrum.TabIndicator', 'view.panes.BarLoaderPane', 'com.unhurdle.spectrum.ActionBar', 'view.panes.TypographyInternationalizedPane', 'org.apache.royale.core.IStatesImpl', 'view.panes.ActionBarPane', 'org.apache.royale.core.IMeasurementBead', 'org.apache.royale.html.elements.A', 'org.apache.royale.utils.Endian', 'view.ThemePicker', 'view.panes.TypographyPane', 'com.unhurdle.spectrum.includes.SliderInclude', 'view.panes.TooltipPane', 'view.panes.BannerPane', 'com.unhurdle.spectrum.card.CardTitle', 'view.panes.RadioPane', 'org.apache.royale.html.util.addElementToWrapper', 'com.unhurdle.spectrum.ActionMenu', 'view.components.Markup', 'com.unhurdle.spectrum.SplitButton', 'com.unhurdle.spectrum.CheckBox', 'org.apache.royale.html.elements.P', 'view.panes.PagesPane', 'com.unhurdle.spectrum.card.CardSubtitle', 'org.apache.royale.html.TextNode', 'view.panes.WellPane', 'com.unhurdle.spectrum.FormLabel', 'view.panes.AssetPane', 'com.unhurdle.spectrum.Radio', 'org.apache.royale.utils.CSSUtils', 'org.apache.royale.binding.SimpleBinding', 'view.panes.CalendarPane', 'com.unhurdle.spectrum.Tree', 'view.panes.LogicButtonPane', 'org.apache.royale.binding.ConstantBinding', 'org.apache.royale.collections.FlattenedList', 'view.panes.LinkPane', 'com.unhurdle.spectrum.SplitButtonPagination', 'view.panes.CardGalleryPane', 'org.apache.royale.events.utils.EditingKeys', 'com.unhurdle.spectrum.SideNavItem', 'org.apache.royale.binding.ViewDataBinding', 'view.panes.TreeViewPane', 'com.unhurdle.spectrum.DropIndicator', 'com.unhurdle.spectrum.PagePagination', 'com.unhurdle.spectrum.QuickActions', 'com.unhurdle.spectrum.includes.SideNavInclude', 'com.unhurdle.spectrum.newElement', 'org.apache.royale.geom.Size', 'org.apache.royale.utils.sendStrandEvent', 'com.unhurdle.spectrum.utils.DateUtil', 'view.panes.TextareaPane', 'com.unhurdle.spectrum.SpacedTypography', 'com.unhurdle.spectrum.CoachMarkPopover', 'com.unhurdle.spectrum.Divider', 'com.unhurdle.spectrum.includes.ActionButtonInclude', 'org.apache.royale.core.IState', 'view.panes.PaginationExplicitPane', 'view.assets.CalendarIcon', 'com.unhurdle.spectrum.StepList', 'org.apache.royale.utils.BinaryData', 'com.unhurdle.spectrum.newSVGElement', 'org.apache.royale.utils.net.IDataOutput', 'com.unhurdle.spectrum.ImageAsset', 'org.apache.royale.geom.Matrix', 'org.apache.royale.binding.ContainerDataBinding', 'view.panes.ComboboxPane', 'com.unhurdle.spectrum.TextArea', 'com.unhurdle.spectrum.card.getCardSelector', 'view.panes.ToastPane', 'org.apache.royale.events.utils.NavigationKeys', 'com.unhurdle.spectrum.TabBar', 'org.apache.royale.debugging.assert', 'view.panes.SearchWithinPane', 'org.apache.royale.html.util.addSvgElementToWrapper', 'org.apache.royale.geom.Rectangle', 'org.apache.royale.core.AllCSSValuesImpl', 'com.unhurdle.spectrum.DivTableCell', 'com.unhurdle.spectrum.DialogTitle', 'com.unhurdle.spectrum.generateSVG', 'com.unhurdle.spectrum.RangeSlider', 'org.apache.royale.utils.number.getPercent', 'view.panes.QuickActionsPane', 'org.apache.royale.utils.css.addDynamicSelector', 'org.apache.royale.svg.elements.G', 'view.panes.FieldLabelPane', 'com.unhurdle.spectrum.data.MillerColumnsItem', 'com.unhurdle.spectrum.CycleButton', 'com.unhurdle.spectrum.Dial', 'com.unhurdle.spectrum.IDialog', 'com.unhurdle.spectrum.Slider', 'org.apache.royale.html.elements.Tr', 'org.apache.royale.binding.ApplicationDataBinding', 'view.panes.StepperPane', 'com.unhurdle.spectrum.BarLoader', 'view.panes.TextFieldPane', 'com.unhurdle.spectrum.AssetList', 'view.panes.MillerColumnsPane', 'com.unhurdle.spectrum.typography.PageTitle', 'com.unhurdle.spectrum.Tooltip', 'view.panes.StatusLightPane', 'org.apache.royale.utils.PointUtils', 'com.unhurdle.spectrum.typography.Detail', 'org.apache.royale.utils.html.getStyle', 'org.apache.royale.core.ContainerBaseStrandChildren', 'com.unhurdle.spectrum.Banner', 'org.apache.royale.utils.loadBeadFromValuesManager', 'view.panes.SwitchPane', 'org.apache.royale.file.FileProxy', 'org.apache.royale.html.elements.Td', 'com.unhurdle.spectrum.Breadcrumbs', 'com.unhurdle.spectrum.includes.IconInclude', 'com.unhurdle.spectrum.ExpandSearch', 'view.panes.SideNavPane', 'view.panes.SplitButtonPane', 'org.apache.royale.html.beads.plugin.ModalDisplay', 'com.unhurdle.spectrum.utils.getDataProviderItem', 'com.unhurdle.spectrum.NumberField', 'com.unhurdle.spectrum.Splitter', 'org.apache.royale.utils.DisplayUtils', 'view.panes.DropIndicatorPane', 'com.unhurdle.spectrum.newIconSVG', 'org.apache.royale.svg.elements.Polygon', 'com.unhurdle.spectrum.DatePicker', 'com.unhurdle.spectrum.FileAsset', 'com.unhurdle.spectrum.StatusLight', 'org.apache.royale.core.layout.LayoutData', 'org.apache.royale.utils.StringPadder', 'org.apache.royale.utils.Timer', 'com.unhurdle.spectrum.card.CoverPhoto', 'org.apache.royale.utils.getSelectionRenderBead', 'com.unhurdle.spectrum.RadioGroup', 'com.unhurdle.spectrum.card.Card', 'view.panes.DialPane', 'view.panes.IllustratedMessagePane', 'org.apache.royale.html.elements.Pre', 'org.apache.royale.utils.OSUtils', 'com.unhurdle.spectrum.SideNavHeading', 'com.unhurdle.spectrum.card.CardContent', 'org.apache.royale.html.util.createSVG', 'org.apache.royale.html.beads.models.ListPresentationModel', 'org.apache.royale.events.ItemClickedEvent', 'org.apache.royale.html.util.getLabelFromData', 'com.unhurdle.spectrum.data.AssetListItem', 'com.unhurdle.spectrum.card.CardActionMenu', 'org.apache.royale.events.MouseEvent', 'view.panes.ActionMenuPane', 'view.panes.CardPreviewPane', 'com.unhurdle.spectrum.AccordionSection', 'view.panes.PaginationPagePane', 'org.apache.royale.html.Spacer', 'org.apache.royale.routing.Router', 'org.apache.royale.core.styles.BorderStyles', 'com.unhurdle.spectrum.predefinedSVGElement', 'com.unhurdle.spectrum.card.CardBody', 'com.unhurdle.spectrum.card.CardDescription', 'view.panes.MenuPane', 'com.unhurdle.spectrum.FormItem', 'com.unhurdle.spectrum.TagGroup', 'com.unhurdle.spectrum.data.BreadcrumbsItem', 'view.panes.AvatarPane', 'com.unhurdle.spectrum.FormField', 'view.panes.SearchPane', 'com.unhurdle.spectrum.DivTableHeaderCell', 'view.panes.ActionButtonPane', 'com.unhurdle.spectrum.DivTBody', 'com.unhurdle.spectrum.utils.cloneNativeKeyboardEvent', 'com.unhurdle.spectrum.Switch', 'org.apache.royale.geom.Point', 'com.unhurdle.spectrum.Toast', 'com.unhurdle.spectrum.DialogContent', 'org.apache.royale.events.ItemAddedEvent', 'com.unhurdle.spectrum.VideoPlayerSlider', 'com.unhurdle.spectrum.ComboBox', 'view.panes.BreadcrumbsPane', 'view.panes.ButtonPane', 'com.unhurdle.spectrum.DivTHead', 'com.unhurdle.spectrum.typography.Body', 'org.apache.royale.events.getTargetWrapper', 'view.panes.CycleButtonPane', 'com.unhurdle.spectrum.HSplitView', 'com.unhurdle.spectrum.DialogFooter', 'com.unhurdle.spectrum.Calendar', 'org.apache.royale.utils.BrowserInfo', 'org.apache.royale.html.supportClasses.TreeListData', 'com.unhurdle.spectrum.getTabsSelector', 'com.unhurdle.spectrum.CoachMark', 'com.unhurdle.spectrum.FieldGroup', 'view.panes.SplitViewPane', 'view.panes.DropzonePane', 'org.apache.royale.core.ValuesManager', 'org.apache.royale.events.ValueChangeEvent', 'com.unhurdle.spectrum.Alert', 'view.panes.DatePickerPane', 'org.apache.royale.utils.number.pinValue', 'org.apache.royale.core.ClassFactory', 'com.unhurdle.spectrum.ClearButton', 'com.unhurdle.spectrum.const.IconPrefix', 'com.unhurdle.spectrum.DivTable', 'org.apache.royale.html.elements.H3', 'com.unhurdle.spectrum.DivTableRow', 'com.unhurdle.spectrum.SearchWithin', 'view.panes.MeterPane', 'org.apache.royale.events.CollectionEvent', 'org.apache.royale.collections.HierarchicalData', 'org.apache.royale.utils.string.trim', 'com.unhurdle.spectrum.DropZone', 'view.panes.AssetListPane', 'view.panes.LabelPane', 'org.apache.royale.utils.callLater', 'com.unhurdle.spectrum.Label', 'org.apache.royale.utils.UIUtils', 'com.unhurdle.spectrum.VSplitView', 'org.apache.royale.html.elements.Table', 'org.apache.royale.file.beads.FileLoader', 'org.apache.royale.collections.TreeData', 'com.unhurdle.spectrum.MillerColumns', 'com.unhurdle.spectrum.typography.Subtitle', 'org.apache.royale.core.layout.MarginData', 'com.unhurdle.spectrum.Menu', 'org.apache.royale.html.accessories.RestrictTextInputBead', 'org.apache.royale.core.SimpleCSSStyles', 'com.unhurdle.spectrum.ShowOnOverTooltip', 'org.apache.royale.file.beads.FileBrowser', 'view.panes.DialogPane', 'view.panes.ClearButtonPane', 'view.panes.FormPane', 'org.apache.royale.html.elements.Strong', 'org.apache.royale.html.elements.Em', 'view.panes.FieldGroupPane', 'com.unhurdle.spectrum.CalendarDay', 'com.unhurdle.spectrum.includes.FieldLabelInclude', 'org.apache.royale.html.elements.Tbody', 'com.unhurdle.spectrum.card.CardFooter', 'com.unhurdle.spectrum.ImageIcon', 'com.unhurdle.spectrum.CircleLoader', 'com.unhurdle.spectrum.IllustratedMessage', 'view.panes.CoachMarkPane', 'org.apache.royale.core.ITransformHost', 'com.unhurdle.spectrum.includes.InputGroupInclude', 'view.panes.AlertPane', 'org.apache.royale.html.elements.Br', 'com.unhurdle.spectrum.card.CardHeader', 'org.apache.royale.binding.GenericBinding', 'org.apache.royale.utils.net.IDataInput', 'org.apache.royale.binding.ChainBinding', 'view.panes.PaginationButtonStylePane', 'org.apache.royale.routing.RouteState', 'com.unhurdle.spectrum.LogicButton', 'view.panes.TagsPane', 'com.unhurdle.spectrum.TabOverflow', 'com.unhurdle.spectrum.ButtonGroup', 'view.panes.PopoverPane', 'org.apache.royale.core.CSSClassList', 'org.apache.royale.binding.PropertyWatcher', 'view.components.Variant', 'org.apache.royale.utils.sendEvent', 'com.unhurdle.spectrum.Tab', 'com.unhurdle.spectrum.Rating', 'view.panes.AccordionPane', 'com.unhurdle.spectrum.Tag', 'view.panes.ComingSoonPane', 'org.apache.royale.html.elements.Span', 'org.apache.royale.events.ItemRemovedEvent', 'com.unhurdle.spectrum.ExplicitPagination', 'org.apache.royale.events.ValueEvent', 'view.panes.CircleLoaderPane', 'com.unhurdle.spectrum.Stepper', 'org.apache.royale.conversions.createEventInit', 'com.unhurdle.spectrum.Background', 'com.unhurdle.spectrum.RampSlider', 'view.panes.TabsPane', 'com.unhurdle.spectrum.FolderAsset', 'com.unhurdle.spectrum.Avatar', 'com.unhurdle.spectrum.Well', 'org.apache.royale.utils.string.splitAndTrim', 'view.panes.SliderPane', 'com.unhurdle.spectrum.Picker', 'view.components.StyledCode', 'com.unhurdle.spectrum.Form']);
+goog.addDependency('../../../view/panes/AssetListPane.js', ['view.panes.AssetListPane'], ['view.DemoPane']);
+goog.addDependency('../../../com/unhurdle/spectrum/FormItem.js', ['com.unhurdle.spectrum.FormItem'], ['com.unhurdle.spectrum.Group']);
+goog.addDependency('../../../org/apache/royale/utils/string/trim.js', ['org.apache.royale.utils.string.trim'], []);
+goog.addDependency('../../../view/panes/FormPane.js', ['view.panes.FormPane'], ['view.DemoPane']);
+goog.addDependency('../../../com/unhurdle/spectrum/beads/KeyboardNavigateableForTreeHandler.js', ['com.unhurdle.spectrum.beads.KeyboardNavigateableForTreeHandler'], ['com.unhurdle.spectrum.beads.KeyboardNavigateableHandler', 'com.unhurdle.spectrum.interfaces.IKeyboardHandler']);
+goog.addDependency('../../../com/unhurdle/spectrum/card/Card.js', ['com.unhurdle.spectrum.card.Card'], ['com.unhurdle.spectrum.SpectrumBase']);
+goog.addDependency('../../../view/panes/LogicButtonPane.js', ['view.panes.LogicButtonPane'], ['view.DemoPane']);
+goog.addDependency('../../../com/unhurdle/spectrum/Well.js', ['com.unhurdle.spectrum.Well'], ['com.unhurdle.spectrum.Group']);
+goog.addDependency('../../../com/unhurdle/spectrum/Tree.js', ['com.unhurdle.spectrum.Tree'], ['org.apache.royale.html.Tree', 'com.unhurdle.spectrum.ISpectrumElement', 'com.unhurdle.spectrum.interfaces.IKeyboardNavigateable']);
+goog.addDependency('../../../com/unhurdle/spectrum/Menu.js', ['com.unhurdle.spectrum.Menu'], ['com.unhurdle.spectrum.List']);
+goog.addDependency('../../../com/unhurdle/spectrum/Link.js', ['com.unhurdle.spectrum.Link'], ['com.unhurdle.spectrum.TextGroup']);
+goog.addDependency('../../../com/unhurdle/spectrum/Form.js', ['com.unhurdle.spectrum.Form'], ['com.unhurdle.spectrum.Group']);
+goog.addDependency('../../../com/unhurdle/spectrum/Dial.js', ['com.unhurdle.spectrum.Dial'], ['com.unhurdle.spectrum.SpectrumBase']);
+goog.addDependency('../../../org/apache/royale/utils/sendEvent.js', ['org.apache.royale.utils.sendEvent'], []);
+goog.addDependency('../../../com/unhurdle/spectrum/DivTable.js', ['com.unhurdle.spectrum.DivTable'], ['com.unhurdle.spectrum.Table']);
+goog.addDependency('../../../com/unhurdle/spectrum/DivTHead.js', ['com.unhurdle.spectrum.DivTHead'], ['com.unhurdle.spectrum.THead']);
+goog.addDependency('../../../com/unhurdle/spectrum/DivTBody.js', ['com.unhurdle.spectrum.DivTBody'], ['com.unhurdle.spectrum.TBody']);
+goog.addDependency('../../../org/apache/royale/routing/RouteState.js', ['org.apache.royale.routing.RouteState'], []);
+goog.addDependency('../../../org/apache/royale/utils/PointUtils.js', ['org.apache.royale.utils.PointUtils'], []);
+goog.addDependency('../../../view/panes/ActionButtonPane.js', ['view.panes.ActionButtonPane'], ['view.DemoPane']);
+goog.addDependency('../../../org/apache/royale/core/IState.js', ['org.apache.royale.core.IState'], []);
+goog.addDependency('../../../com/unhurdle/spectrum/data/MillerColumnsItem.js', ['com.unhurdle.spectrum.data.MillerColumnsItem'], ['com.unhurdle.spectrum.SpectrumBase']);
+goog.addDependency('../../../com/unhurdle/spectrum/FormLabel.js', ['com.unhurdle.spectrum.FormLabel'], ['com.unhurdle.spectrum.FieldLabel']);
+goog.addDependency('../../../com/unhurdle/spectrum/FormField.js', ['com.unhurdle.spectrum.FormField'], ['com.unhurdle.spectrum.Group']);
+goog.addDependency('../../../com/unhurdle/spectrum/CircleLoader.js', ['com.unhurdle.spectrum.CircleLoader'], ['com.unhurdle.spectrum.SpectrumBase']);
+goog.addDependency('../../../com/unhurdle/spectrum/const/IconPrefix.js', ['com.unhurdle.spectrum.const.IconPrefix'], []);
+goog.addDependency('../../../view/panes/PopoverPane.js', ['view.panes.PopoverPane'], ['view.DemoPane']);
+goog.addDependency('../../../com/unhurdle/spectrum/typography/Display.js', ['com.unhurdle.spectrum.typography.Display'], ['com.unhurdle.spectrum.typography.Heading']);
+goog.addDependency('../../../com/unhurdle/spectrum/MenuController.js', ['com.unhurdle.spectrum.MenuController'], ['com.unhurdle.spectrum.ListController']);
+goog.addDependency('../../../org/apache/royale/utils/number/getPercent.js', ['org.apache.royale.utils.number.getPercent'], []);
+goog.addDependency('../../../org/apache/royale/html/elements/Span.js', ['org.apache.royale.html.elements.Span'], ['org.apache.royale.html.TextNodeContainerBase']);
+goog.addDependency('../../../org/apache/royale/core/ITransformHost.js', ['org.apache.royale.core.ITransformHost'], ['org.apache.royale.core.IStrand', 'org.apache.royale.events.IEventDispatcher']);
+goog.addDependency('../../../org/apache/royale/routing/HashRouter.js', ['org.apache.royale.routing.HashRouter'], ['org.apache.royale.core.Strand', 'org.apache.royale.routing.IRouter', 'org.apache.royale.core.IBead', 'org.apache.royale.core.IMXMLDocument']);
+goog.addDependency('../../../org/apache/royale/utils/MXMLDataInterpreter.js', ['org.apache.royale.utils.MXMLDataInterpreter'], []);
+goog.addDependency('../../../com/unhurdle/spectrum/NumberField.js', ['com.unhurdle.spectrum.NumberField'], ['com.unhurdle.spectrum.TextField']);
+goog.addDependency('../../../org/apache/royale/events/MouseEvent.js', ['org.apache.royale.events.MouseEvent'], ['org.apache.royale.events.Event', 'org.apache.royale.events.IRoyaleEvent', 'org.apache.royale.events.IBrowserEvent', 'org.apache.royale.core.ElementWrapper', 'org.apache.royale.events.utils.MouseEventConverter', 'org.apache.royale.utils.Language', 'org.apache.royale.core.IBead', 'org.apache.royale.core.IStrand', 'org.apache.royale.core.WrappedHTMLElement', 'org.apache.royale.events.BrowserEvent', 'org.apache.royale.events.ElementEvents', 'org.apache.royale.events.EventDispatcher', 'org.apache.royale.events.utils.EventUtils']);
+goog.addDependency('../../../org/apache/royale/events/utils/MouseEventConverter.js', ['org.apache.royale.events.utils.MouseEventConverter'], []);
+goog.addDependency('../../../org/apache/royale/utils/Timer.js', ['org.apache.royale.utils.Timer'], ['org.apache.royale.events.EventDispatcher']);
+goog.addDependency('../../../com/unhurdle/spectrum/HSplitView.js', ['com.unhurdle.spectrum.HSplitView'], ['com.unhurdle.spectrum.SplitView']);
+goog.addDependency('../../../com/unhurdle/spectrum/utils/cloneNativeKeyboardEvent.js', ['com.unhurdle.spectrum.utils.cloneNativeKeyboardEvent'], []);
+goog.addDependency('../../../com/unhurdle/spectrum/data/BreadcrumbsItem.js', ['com.unhurdle.spectrum.data.BreadcrumbsItem'], []);
+goog.addDependency('../../../org/apache/royale/core/AllCSSValuesImpl.js', ['org.apache.royale.core.AllCSSValuesImpl'], ['org.apache.royale.core.SimpleCSSValuesImpl']);
+goog.addDependency('../../../org/apache/royale/core/SimpleCSSValuesImpl.js', ['org.apache.royale.core.SimpleCSSValuesImpl'], ['org.apache.royale.events.EventDispatcher', 'org.apache.royale.core.IBorderPaddingMarginValuesImpl', 'org.apache.royale.core.ICSSImpl']);
+goog.addDependency('../../../view/panes/CheckboxPane.js', ['view.panes.CheckboxPane'], ['view.DemoPane']);
+goog.addDependency('../../../view/panes/CardPane.js', ['view.panes.CardPane'], ['view.DemoPane']);
+goog.addDependency('../../../view/components/Markup.js', ['view.components.Markup'], ['com.unhurdle.spectrum.TypographyGroup']);
+goog.addDependency('../../../view/panes/StatusLightPane.js', ['view.panes.StatusLightPane'], ['view.DemoPane']);
+goog.addDependency('../../../org/apache/royale/html/util/getLabelFromData.js', ['org.apache.royale.html.util.getLabelFromData'], []);
+goog.addDependency('../../../view/panes/RatingPane.js', ['view.panes.RatingPane'], ['view.DemoPane']);
+goog.addDependency('../../../view/panes/SplitButtonPane.js', ['view.panes.SplitButtonPane'], ['view.DemoPane']);
+goog.addDependency('../../../org/apache/royale/html/elements/Pre.js', ['org.apache.royale.html.elements.Pre'], ['org.apache.royale.html.TextNodeContainerBase']);
+goog.addDependency('../../../org/apache/royale/routing/PathRouteBead.js', ['org.apache.royale.routing.PathRouteBead'], ['org.apache.royale.core.Bead', 'org.apache.royale.routing.IPathRouteBead']);
+goog.addDependency('../../../view/panes/SearchWithinPane.js', ['view.panes.SearchWithinPane'], ['view.DemoPane']);
+goog.addDependency('../../../org/apache/royale/core/IBorderPaddingMarginValuesImpl.js', ['org.apache.royale.core.IBorderPaddingMarginValuesImpl'], ['org.apache.royale.core.IValuesImpl']);
+goog.addDependency('../../../com/unhurdle/spectrum/Calendar.js', ['com.unhurdle.spectrum.Calendar'], ['com.unhurdle.spectrum.Group']);
+goog.addDependency('../../../org/apache/royale/utils/string/splitAndTrim.js', ['org.apache.royale.utils.string.splitAndTrim'], []);
+goog.addDependency('../../../org/apache/royale/utils/sendStrandEvent.js', ['org.apache.royale.utils.sendStrandEvent'], []);
+goog.addDependency('../../../org/apache/royale/debugging/assert.js', ['org.apache.royale.debugging.assert'], []);
+goog.addDependency('../../../org/apache/royale/core/layout/MarginData.js', ['org.apache.royale.core.layout.MarginData'], ['org.apache.royale.core.layout.EdgeData']);
+goog.addDependency('../../../org/apache/royale/core/layout/EdgeData.js', ['org.apache.royale.core.layout.EdgeData'], []);
+goog.addDependency('../../../com/unhurdle/spectrum/ExplicitPagination.js', ['com.unhurdle.spectrum.ExplicitPagination'], ['com.unhurdle.spectrum.SpectrumBase']);
+goog.addDependency('../../../view/panes/DialPane.js', ['view.panes.DialPane'], ['view.DemoPane']);
+goog.addDependency('../../../com/unhurdle/spectrum/AssetList.js', ['com.unhurdle.spectrum.AssetList'], ['com.unhurdle.spectrum.List']);
+goog.addDependency('../../../view/panes/TypographyInternationalizedPane.js', ['view.panes.TypographyInternationalizedPane'], ['view.DemoPane']);
+goog.addDependency('../../../org/apache/royale/html/beads/layouts/VerticalLayout.js', ['org.apache.royale.html.beads.layouts.VerticalLayout'], ['org.apache.royale.core.LayoutBase', 'org.apache.royale.core.IBeadLayout']);
+goog.addDependency('../../../com/unhurdle/spectrum/CalendarDay.js', ['com.unhurdle.spectrum.CalendarDay'], ['com.unhurdle.spectrum.SpectrumBase']);
+goog.addDependency('../../../view/panes/TextareaPane.js', ['view.panes.TextareaPane'], ['view.DemoPane']);
+goog.addDependency('../../../org/apache/royale/binding/PropertyWatcher.js', ['org.apache.royale.binding.PropertyWatcher'], ['org.apache.royale.binding.WatcherBase']);
+goog.addDependency('../../../org/apache/royale/binding/WatcherBase.js', ['org.apache.royale.binding.WatcherBase'], []);
+goog.addDependency('../../../view/panes/ClearButtonPane.js', ['view.panes.ClearButtonPane'], ['view.DemoPane']);
+goog.addDependency('../../../org/apache/royale/geom/Size.js', ['org.apache.royale.geom.Size'], []);
+goog.addDependency('../../../com/unhurdle/spectrum/SideNavHeading.js', ['com.unhurdle.spectrum.SideNavHeading'], ['com.unhurdle.spectrum.SideNav']);
+goog.addDependency('../../../com/unhurdle/spectrum/renderers/MenuItemRenderer.js', ['com.unhurdle.spectrum.renderers.MenuItemRenderer'], ['com.unhurdle.spectrum.renderers.DataItemRenderer']);
+goog.addDependency('../../../org/apache/royale/file/FileProxy.js', ['org.apache.royale.file.FileProxy'], ['org.apache.royale.core.StrandWithModel', 'org.apache.royale.core.IDocument', 'org.apache.royale.file.IFileModel']);
+goog.addDependency('../../../com/unhurdle/spectrum/DropZone.js', ['com.unhurdle.spectrum.DropZone'], ['com.unhurdle.spectrum.SpectrumBase']);
+goog.addDependency('../../../view/panes/IllustratedMessagePane.js', ['view.panes.IllustratedMessagePane'], ['view.DemoPane']);
+goog.addDependency('../../../view/panes/WellPane.js', ['view.panes.WellPane'], ['view.DemoPane']);
+goog.addDependency('../../../org/apache/royale/html/beads/controllers/TreeSingleSelectionMouseController.js', ['org.apache.royale.html.beads.controllers.TreeSingleSelectionMouseController'], ['org.apache.royale.html.beads.controllers.ListSingleSelectionMouseController']);
+goog.addDependency('../../../org/apache/royale/file/beads/FileLoader.js', ['org.apache.royale.file.beads.FileLoader'], ['org.apache.royale.events.EventDispatcher', 'org.apache.royale.core.IBead']);
+goog.addDependency('../../../com/unhurdle/spectrum/Background.js', ['com.unhurdle.spectrum.Background'], ['org.apache.royale.html.elements.Div']);
+goog.addDependency('../../../com/unhurdle/spectrum/SpacedTypography.js', ['com.unhurdle.spectrum.SpacedTypography'], ['com.unhurdle.spectrum.TypographyGroup']);
+goog.addDependency('../../../org/apache/royale/utils/UIUtils.js', ['org.apache.royale.utils.UIUtils'], []);
+goog.addDependency('../../../org/apache/royale/core/IMeasurementBead.js', ['org.apache.royale.core.IMeasurementBead'], ['org.apache.royale.core.IBead']);
+goog.addDependency('../../../org/apache/royale/html/beads/DataItemRendererFactoryForArrayData.js', ['org.apache.royale.html.beads.DataItemRendererFactoryForArrayData'], ['org.apache.royale.html.beads.DataItemRendererFactoryBase', 'org.apache.royale.core.IBead', 'org.apache.royale.core.IDataProviderItemRendererMapper']);
+goog.addDependency('../../../view/panes/SteplistPane.js', ['view.panes.SteplistPane'], ['view.DemoPane']);
+goog.addDependency('../../../view/panes/TextFieldPane.js', ['view.panes.TextFieldPane'], ['view.DemoPane']);
+goog.addDependency('../../../com/unhurdle/spectrum/FolderAsset.js', ['com.unhurdle.spectrum.FolderAsset'], ['com.unhurdle.spectrum.Asset']);
+goog.addDependency('../../../com/unhurdle/spectrum/ImageAsset.js', ['com.unhurdle.spectrum.ImageAsset'], ['com.unhurdle.spectrum.Asset']);
+goog.addDependency('../../../com/unhurdle/spectrum/ComboBox.js', ['com.unhurdle.spectrum.ComboBox'], ['com.unhurdle.spectrum.SpectrumBase', 'com.unhurdle.spectrum.interfaces.IKeyboardFocusable']);
+goog.addDependency('../../../view/panes/MenuPane.js', ['view.panes.MenuPane'], ['view.DemoPane']);
+goog.addDependency('../../../org/apache/royale/core/ICSSImpl.js', ['org.apache.royale.core.ICSSImpl'], []);
+goog.addDependency('../../../com/unhurdle/spectrum/beads/KeyboardNavigateableHandler.js', ['com.unhurdle.spectrum.beads.KeyboardNavigateableHandler'], ['org.apache.royale.core.Bead', 'org.apache.royale.core.IBead', 'com.unhurdle.spectrum.interfaces.IKeyboardHandler']);
+goog.addDependency('../../../com/unhurdle/spectrum/interfaces/IKeyboardHandler.js', ['com.unhurdle.spectrum.interfaces.IKeyboardHandler'], []);
+goog.addDependency('../../../com/unhurdle/spectrum/DivTableHeaderCell.js', ['com.unhurdle.spectrum.DivTableHeaderCell'], ['com.unhurdle.spectrum.TableHeaderCell']);
+goog.addDependency('../../../com/unhurdle/spectrum/TableHeaderCell.js', ['com.unhurdle.spectrum.TableHeaderCell'], ['com.unhurdle.spectrum.TableCell']);
+goog.addDependency('../../../org/apache/royale/binding/SimpleBinding.js', ['org.apache.royale.binding.SimpleBinding'], ['org.apache.royale.core.IBead', 'org.apache.royale.core.IDocument', 'org.apache.royale.core.IBinding']);
+goog.addDependency('../../../com/unhurdle/spectrum/DialogTitle.js', ['com.unhurdle.spectrum.DialogTitle'], ['com.unhurdle.spectrum.TextGroup']);
+goog.addDependency('../../../view/panes/ButtonGroupPane.js', ['view.panes.ButtonGroupPane'], ['view.DemoPane']);
+goog.addDependency('../../../org/apache/royale/utils/callLater.js', ['org.apache.royale.utils.callLater'], []);
+goog.addDependency('../../../com/unhurdle/spectrum/BarLoader.js', ['com.unhurdle.spectrum.BarLoader'], ['com.unhurdle.spectrum.SpectrumBase']);
+goog.addDependency('../../../com/unhurdle/spectrum/SplitButtonPagination.js', ['com.unhurdle.spectrum.SplitButtonPagination'], ['com.unhurdle.spectrum.SpectrumBase']);
+goog.addDependency('../../../org/apache/royale/core/ValuesManager.js', ['org.apache.royale.core.ValuesManager'], []);
+goog.addDependency('../../../com/unhurdle/spectrum/Breadcrumbs.js', ['com.unhurdle.spectrum.Breadcrumbs'], ['com.unhurdle.spectrum.List']);
+goog.addDependency('../../../com/unhurdle/spectrum/List.js', ['com.unhurdle.spectrum.List'], ['org.apache.royale.html.List', 'com.unhurdle.spectrum.ISpectrumElement', 'com.unhurdle.spectrum.interfaces.IKeyboardNavigateable']);
+goog.addDependency('../../../org/apache/royale/conversions/createEventInit.js', ['org.apache.royale.conversions.createEventInit'], []);
+goog.addDependency('../../../com/unhurdle/spectrum/MillerColumns.js', ['com.unhurdle.spectrum.MillerColumns'], ['com.unhurdle.spectrum.SpectrumBase']);
+goog.addDependency('../../../view/panes/TagsPane.js', ['view.panes.TagsPane'], ['view.DemoPane']);
+goog.addDependency('../../../com/unhurdle/spectrum/TagGroup.js', ['com.unhurdle.spectrum.TagGroup'], ['com.unhurdle.spectrum.Group']);
+goog.addDependency('../../../org/apache/royale/events/ItemAddedEvent.js', ['org.apache.royale.events.ItemAddedEvent'], ['org.apache.royale.events.CustomEvent']);
+goog.addDependency('../../../org/apache/royale/events/utils/EditingKeys.js', ['org.apache.royale.events.utils.EditingKeys'], []);
+goog.addDependency('../../../view/panes/TypographyPane.js', ['view.panes.TypographyPane'], ['view.DemoPane']);
+goog.addDependency('../../../com/unhurdle/spectrum/Tooltip.js', ['com.unhurdle.spectrum.Tooltip'], ['com.unhurdle.spectrum.SpectrumBase']);
+goog.addDependency('../../../com/unhurdle/spectrum/FieldButton.js', ['com.unhurdle.spectrum.FieldButton'], ['com.unhurdle.spectrum.Button']);
+goog.addDependency('../../../org/apache/royale/collections/HierarchicalData.js', ['org.apache.royale.collections.HierarchicalData'], ['org.apache.royale.events.EventDispatcher', 'org.apache.royale.collections.IHierarchicalData']);
+goog.addDependency('../../../org/apache/royale/collections/IHierarchicalData.js', ['org.apache.royale.collections.IHierarchicalData'], ['org.apache.royale.events.IEventDispatcher']);
+goog.addDependency('../../../org/apache/royale/html/beads/models/ViewportModel.js', ['org.apache.royale.html.beads.models.ViewportModel'], ['org.apache.royale.core.DispatcherBead', 'org.apache.royale.core.IViewportModel']);
+goog.addDependency('../../../org/apache/royale/core/IViewportModel.js', ['org.apache.royale.core.IViewportModel'], ['org.apache.royale.core.IBead']);
+goog.addDependency('../../../org/apache/royale/routing/Router.js', ['org.apache.royale.routing.Router'], ['org.apache.royale.core.Strand', 'org.apache.royale.routing.IRouter', 'org.apache.royale.core.IBead', 'org.apache.royale.core.IMXMLDocument']);
+goog.addDependency('../../../org/apache/royale/html/util/addElementToWrapper.js', ['org.apache.royale.html.util.addElementToWrapper'], []);
+goog.addDependency('../../../view/panes/TabsPane.js', ['view.panes.TabsPane'], ['view.DemoPane']);
+goog.addDependency('../../../org/apache/royale/html/supportClasses/TreeItemRenderer.js', ['org.apache.royale.html.supportClasses.TreeItemRenderer'], ['org.apache.royale.html.supportClasses.StringItemRenderer', 'org.apache.royale.core.IListDataItemRenderer']);
+goog.addDependency('../../../view/panes/AssetPane.js', ['view.panes.AssetPane'], ['view.DemoPane']);
+goog.addDependency('../../../com/unhurdle/spectrum/renderers/TreeItemRenderer.js', ['com.unhurdle.spectrum.renderers.TreeItemRenderer'], ['com.unhurdle.spectrum.renderers.TreeItemRendererBase']);
+goog.addDependency('../../../view/panes/DropIndicatorPane.js', ['view.panes.DropIndicatorPane'], ['view.DemoPane']);
+goog.addDependency('../../../models/Theme.js', ['models.Theme'], []);
+goog.addDependency('../../../com/unhurdle/spectrum/card/CoverPhoto.js', ['com.unhurdle.spectrum.card.CoverPhoto'], ['com.unhurdle.spectrum.SpectrumBase']);
+goog.addDependency('../../../com/unhurdle/spectrum/card/CardSubtitle.js', ['com.unhurdle.spectrum.card.CardSubtitle'], ['com.unhurdle.spectrum.TextBase']);
+goog.addDependency('../../../org/apache/royale/geom/Point.js', ['org.apache.royale.geom.Point'], []);
+goog.addDependency('../../../com/unhurdle/spectrum/TextArea.js', ['com.unhurdle.spectrum.TextArea'], ['com.unhurdle.spectrum.TextFieldBase']);
+goog.addDependency('../../../com/unhurdle/spectrum/TabOverflow.js', ['com.unhurdle.spectrum.TabOverflow'], ['org.apache.royale.core.Bead']);
+goog.addDependency('../../../view/panes/SideNavPane.js', ['view.panes.SideNavPane'], ['view.DemoPane']);
+goog.addDependency('../../../com/unhurdle/spectrum/LogicButton.js', ['com.unhurdle.spectrum.LogicButton'], ['com.unhurdle.spectrum.SpectrumBase']);
+goog.addDependency('../../../com/unhurdle/spectrum/typography/Detail.js', ['com.unhurdle.spectrum.typography.Detail'], ['com.unhurdle.spectrum.typography.Typography']);
+goog.addDependency('../../../org/apache/royale/html/Spacer.js', ['org.apache.royale.html.Spacer'], ['org.apache.royale.core.UIBase']);
+goog.addDependency('../../../view/panes/SliderPane.js', ['view.panes.SliderPane'], ['view.DemoPane']);
+goog.addDependency('../../../com/unhurdle/spectrum/TreeController.js', ['com.unhurdle.spectrum.TreeController'], ['org.apache.royale.html.beads.controllers.ListSingleSelectionMouseController']);
+goog.addDependency('../../../org/apache/royale/file/beads/FileModel.js', ['org.apache.royale.file.beads.FileModel'], ['org.apache.royale.events.EventDispatcher', 'org.apache.royale.core.IBeadModel', 'org.apache.royale.file.IFileModel']);
+goog.addDependency('../../../org/apache/royale/html/beads/models/DataProviderModel.js', ['org.apache.royale.html.beads.models.DataProviderModel'], ['org.apache.royale.core.DispatcherBead', 'org.apache.royale.core.IDataProviderModel']);
+goog.addDependency('../../../view/panes/ActionBarPane.js', ['view.panes.ActionBarPane'], ['view.DemoPane']);
+goog.addDependency('../../../view/panes/ComboboxPane.js', ['view.panes.ComboboxPane'], ['view.DemoPane']);
+goog.addDependency('../../../org/apache/royale/collections/FlattenedList.js', ['org.apache.royale.collections.FlattenedList'], ['org.apache.royale.collections.ArrayList']);
+goog.addDependency('../../../org/apache/royale/core/SimpleCSSStyles.js', ['org.apache.royale.core.SimpleCSSStyles'], []);
+goog.addDependency('../../../com/unhurdle/spectrum/CoachMark.js', ['com.unhurdle.spectrum.CoachMark'], ['com.unhurdle.spectrum.SpectrumBase']);
+goog.addDependency('../../../org/apache/royale/html/supportClasses/NoViewport.js', ['org.apache.royale.html.supportClasses.NoViewport'], ['org.apache.royale.html.supportClasses.Viewport']);
+goog.addDependency('../../../org/apache/royale/binding/ChainBinding.js', ['org.apache.royale.binding.ChainBinding'], ['org.apache.royale.core.IBead', 'org.apache.royale.core.IDocument']);
+goog.addDependency('../../../view/panes/PaginationPagePane.js', ['view.panes.PaginationPagePane'], ['view.DemoPane']);
+goog.addDependency('../../../view/panes/MillerColumnsPane.js', ['view.panes.MillerColumnsPane'], ['view.DemoPane']);
+goog.addDependency('../../../org/apache/royale/html/elements/Tr.js', ['org.apache.royale.html.elements.Tr'], ['org.apache.royale.html.NodeElementBase']);
+goog.addDependency('../../../org/apache/royale/html/elements/Td.js', ['org.apache.royale.html.elements.Td'], ['org.apache.royale.html.TextNodeContainerBase']);
+goog.addDependency('../../../org/apache/royale/html/elements/H3.js', ['org.apache.royale.html.elements.H3'], ['org.apache.royale.html.TextNodeContainerBase']);
+goog.addDependency('../../../org/apache/royale/html/elements/Em.js', ['org.apache.royale.html.elements.Em'], ['org.apache.royale.html.TextNodeContainerBase']);
+goog.addDependency('../../../org/apache/royale/html/elements/Br.js', ['org.apache.royale.html.elements.Br'], ['org.apache.royale.html.NodeElementBase']);
+goog.addDependency('../../../com/unhurdle/spectrum/card/CardDescription.js', ['com.unhurdle.spectrum.card.CardDescription'], ['com.unhurdle.spectrum.TextBase']);
+goog.addDependency('../../../com/unhurdle/spectrum/includes/SliderInclude.js', ['com.unhurdle.spectrum.includes.SliderInclude'], []);
+goog.addDependency('../../../view/assets/CalendarIcon.js', ['view.assets.CalendarIcon'], ['com.unhurdle.spectrum.SVGIcon']);
+goog.addDependency('../../../com/unhurdle/spectrum/SearchWithin.js', ['com.unhurdle.spectrum.SearchWithin'], ['com.unhurdle.spectrum.SpectrumBase']);
+goog.addDependency('../../../org/apache/royale/utils/OSUtils.js', ['org.apache.royale.utils.OSUtils'], []);
+goog.addDependency('../../../com/unhurdle/spectrum/card/CardActionMenu.js', ['com.unhurdle.spectrum.card.CardActionMenu'], ['com.unhurdle.spectrum.Group']);
+goog.addDependency('../../../org/apache/royale/html/elements/Tbody.js', ['org.apache.royale.html.elements.Tbody'], ['org.apache.royale.html.NodeElementBase']);
+goog.addDependency('../../../org/apache/royale/html/elements/Table.js', ['org.apache.royale.html.elements.Table'], ['org.apache.royale.html.NodeElementBase']);
+goog.addDependency('../../../org/apache/royale/core/IValuesImpl.js', ['org.apache.royale.core.IValuesImpl'], []);
+goog.addDependency('../../../view/panes/FieldLabelPane.js', ['view.panes.FieldLabelPane'], ['view.DemoPane']);
+goog.addDependency('../../../com/unhurdle/spectrum/model/DatePickerModel.js', ['com.unhurdle.spectrum.model.DatePickerModel'], ['org.apache.royale.events.EventDispatcher', 'org.apache.royale.core.IDateChooserModel']);
+goog.addDependency('../../../view/panes/PagesPane.js', ['view.panes.PagesPane'], ['view.DemoPane']);
+goog.addDependency('../../../org/apache/royale/utils/BrowserInfo.js', ['org.apache.royale.utils.BrowserInfo'], []);
+goog.addDependency('../../../view/panes/DropzonePane.js', ['view.panes.DropzonePane'], ['view.DemoPane']);
+goog.addDependency('../../../com/unhurdle/spectrum/ActionBar.js', ['com.unhurdle.spectrum.ActionBar'], ['com.unhurdle.spectrum.Group']);
+goog.addDependency('../../../org/apache/royale/html/beads/SolidBackgroundSelectableItemRendererBead.js', ['org.apache.royale.html.beads.SolidBackgroundSelectableItemRendererBead'], ['org.apache.royale.html.beads.SelectableItemRendererBeadBase']);
+goog.addDependency('../../../org/apache/royale/core/CSSClassList.js', ['org.apache.royale.core.CSSClassList'], []);
+goog.addDependency('../../../org/apache/royale/utils/DisplayUtils.js', ['org.apache.royale.utils.DisplayUtils'], []);
+goog.addDependency('../../../com/unhurdle/spectrum/generateSVG.js', ['com.unhurdle.spectrum.generateSVG'], []);
+goog.addDependency('../../../com/unhurdle/spectrum/RangeSlider.js', ['com.unhurdle.spectrum.RangeSlider'], ['com.unhurdle.spectrum.SliderBase']);
+goog.addDependency('../../../com/unhurdle/spectrum/DialogFooter.js', ['com.unhurdle.spectrum.DialogFooter'], ['com.unhurdle.spectrum.Group']);
+goog.addDependency('../../../org/apache/royale/svg/elements/Path.js', ['org.apache.royale.svg.elements.Path'], ['org.apache.royale.svg.elements.SVGBase']);
+goog.addDependency('../../../org/apache/royale/events/ValueChangeEvent.js', ['org.apache.royale.events.ValueChangeEvent'], ['org.apache.royale.events.Event']);
+goog.addDependency('../../../org/apache/royale/collections/TreeData.js', ['org.apache.royale.collections.TreeData'], ['org.apache.royale.events.EventDispatcher', 'org.apache.royale.collections.ICollectionView', 'org.apache.royale.collections.ITreeData']);
+goog.addDependency('../../../org/apache/royale/collections/ITreeData.js', ['org.apache.royale.collections.ITreeData'], []);
+goog.addDependency('../../../com/unhurdle/spectrum/card/CardTitle.js', ['com.unhurdle.spectrum.card.CardTitle'], ['com.unhurdle.spectrum.TextBase']);
+goog.addDependency('../../../view/panes/CardPreviewPane.js', ['view.panes.CardPreviewPane'], ['view.DemoPane']);
+goog.addDependency('../../../org/apache/royale/binding/ContainerDataBinding.js', ['org.apache.royale.binding.ContainerDataBinding'], ['org.apache.royale.binding.DataBindingBase', 'org.apache.royale.core.IBead']);
+goog.addDependency('../../../org/apache/royale/html/beads/ListView.js', ['org.apache.royale.html.beads.ListView'], ['org.apache.royale.html.beads.DataContainerView']);
+goog.addDependency('../../../com/unhurdle/spectrum/Stepper.js', ['com.unhurdle.spectrum.Stepper'], ['com.unhurdle.spectrum.SpectrumBase', 'com.unhurdle.spectrum.interfaces.IKeyboardFocusable']);
+goog.addDependency('../../../com/unhurdle/spectrum/TreeModel.js', ['com.unhurdle.spectrum.TreeModel'], ['com.unhurdle.spectrum.ListModel']);
+goog.addDependency('../../../com/unhurdle/spectrum/ActionMenu.js', ['com.unhurdle.spectrum.ActionMenu'], ['com.unhurdle.spectrum.ActionButton']);
+goog.addDependency('../../../com/unhurdle/spectrum/StatusLight.js', ['com.unhurdle.spectrum.StatusLight'], ['com.unhurdle.spectrum.TextBase']);
+goog.addDependency('../../../org/apache/royale/utils/number/pinValue.js', ['org.apache.royale.utils.number.pinValue'], []);
+goog.addDependency('../../../org/apache/royale/utils/Endian.js', ['org.apache.royale.utils.Endian'], ['org.apache.royale.utils.Language']);
+goog.addDependency('../../../com/unhurdle/spectrum/SideNavItem.js', ['com.unhurdle.spectrum.SideNavItem'], ['com.unhurdle.spectrum.Group']);
+goog.addDependency('../../../org/apache/royale/utils/net/IDataInput.js', ['org.apache.royale.utils.net.IDataInput'], ['org.apache.royale.utils.IBinaryDataInput']);
+goog.addDependency('../../../org/apache/royale/utils/CSSUtils.js', ['org.apache.royale.utils.CSSUtils'], []);
+goog.addDependency('../../../org/apache/royale/html/beads/SelectableItemRendererBeadBase.js', ['org.apache.royale.html.beads.SelectableItemRendererBeadBase'], ['org.apache.royale.core.IBead', 'org.apache.royale.core.ISelectableItemRenderer']);
+goog.addDependency('../../../com/unhurdle/spectrum/PagePagination.js', ['com.unhurdle.spectrum.PagePagination'], ['com.unhurdle.spectrum.SpectrumBase']);
+goog.addDependency('../../../org/apache/royale/html/util/createSVG.js', ['org.apache.royale.html.util.createSVG'], []);
+goog.addDependency('../../../org/apache/royale/utils/net/IDataOutput.js', ['org.apache.royale.utils.net.IDataOutput'], ['org.apache.royale.utils.IBinaryDataOutput']);
+goog.addDependency('../../../com/unhurdle/spectrum/Tag.js', ['com.unhurdle.spectrum.Tag'], ['com.unhurdle.spectrum.SpectrumBase']);
+goog.addDependency('../../../com/unhurdle/spectrum/Tab.js', ['com.unhurdle.spectrum.Tab'], ['com.unhurdle.spectrum.SpectrumBase']);
+goog.addDependency('../../../view/panes/ButtonPane.js', ['view.panes.ButtonPane'], ['view.DemoPane']);
+goog.addDependency('../../../org/apache/royale/utils/BinaryData.js', ['org.apache.royale.utils.BinaryData'], ['org.apache.royale.utils.IBinaryDataInput', 'org.apache.royale.utils.IBinaryDataOutput']);
+goog.addDependency('../../../org/apache/royale/html/beads/controllers/ItemRendererMouseController.js', ['org.apache.royale.html.beads.controllers.ItemRendererMouseController'], ['org.apache.royale.core.IBeadController']);
+goog.addDependency('../../../org/apache/royale/binding/ConstantBinding.js', ['org.apache.royale.binding.ConstantBinding'], ['org.apache.royale.core.IBead', 'org.apache.royale.core.IDocument', 'org.apache.royale.core.IBinding']);
+goog.addDependency('../../../org/apache/royale/core/IBinding.js', ['org.apache.royale.core.IBinding'], []);
+goog.addDependency('../../../org/apache/royale/core/layout/LayoutData.js', ['org.apache.royale.core.layout.LayoutData'], []);
+goog.addDependency('../../../com/unhurdle/spectrum/VideoPlayerSlider.js', ['com.unhurdle.spectrum.VideoPlayerSlider'], ['com.unhurdle.spectrum.SliderBase']);
+goog.addDependency('../../../com/unhurdle/spectrum/card/CardHeader.js', ['com.unhurdle.spectrum.card.CardHeader'], ['com.unhurdle.spectrum.Group']);
+goog.addDependency('../../../view/panes/BarLoaderPane.js', ['view.panes.BarLoaderPane'], ['view.DemoPane']);
+goog.addDependency('../../../com/unhurdle/spectrum/SideNav.js', ['com.unhurdle.spectrum.SideNav'], ['com.unhurdle.spectrum.Group']);
+goog.addDependency('../../../view/ThemePicker.js', ['view.ThemePicker'], ['com.unhurdle.spectrum.FlexContainer']);
+goog.addDependency('../../../com/unhurdle/spectrum/card/CardFooter.js', ['com.unhurdle.spectrum.card.CardFooter'], ['com.unhurdle.spectrum.TextBase']);
+goog.addDependency('../../../com/unhurdle/spectrum/Splitter.js', ['com.unhurdle.spectrum.Splitter'], ['com.unhurdle.spectrum.SpectrumBase']);
+goog.addDependency('../../../org/apache/royale/core/OverridableSelectableItemRendererClassFactory.js', ['org.apache.royale.core.OverridableSelectableItemRendererClassFactory'], ['org.apache.royale.core.ItemRendererClassFactory']);
+goog.addDependency('../../../org/apache/royale/html/supportClasses/ScrollingViewport.js', ['org.apache.royale.html.supportClasses.ScrollingViewport'], ['org.apache.royale.html.supportClasses.Viewport', 'org.apache.royale.core.IBead', 'org.apache.royale.core.IScrollingViewport']);
+goog.addDependency('../../../org/apache/royale/core/IScrollingViewport.js', ['org.apache.royale.core.IScrollingViewport'], ['org.apache.royale.core.IViewport', 'org.apache.royale.events.IEventDispatcher']);
+goog.addDependency('../../../com/unhurdle/spectrum/includes/InputGroupInclude.js', ['com.unhurdle.spectrum.includes.InputGroupInclude'], []);
+goog.addDependency('../../../view/panes/ToastPane.js', ['view.panes.ToastPane'], ['view.DemoPane']);
+goog.addDependency('../../../org/apache/royale/events/ItemClickedEvent.js', ['org.apache.royale.events.ItemClickedEvent'], ['org.apache.royale.events.CustomEvent']);
+goog.addDependency('../../../org/apache/royale/utils/loadBeadFromValuesManager.js', ['org.apache.royale.utils.loadBeadFromValuesManager'], []);
+goog.addDependency('../../../org/apache/royale/html/supportClasses/StringItemRenderer.js', ['org.apache.royale.html.supportClasses.StringItemRenderer'], ['org.apache.royale.html.supportClasses.DataItemRenderer', 'org.apache.royale.html.beads.ITextItemRenderer']);
+goog.addDependency('../../../org/apache/royale/html/beads/ITextItemRenderer.js', ['org.apache.royale.html.beads.ITextItemRenderer'], ['org.apache.royale.core.IItemRenderer', 'org.apache.royale.core.ILabelFieldItemRenderer']);
+goog.addDependency('../../../org/apache/royale/utils/getSelectionRenderBead.js', ['org.apache.royale.utils.getSelectionRenderBead'], []);
+goog.addDependency('../../../org/apache/royale/binding/ViewDataBinding.js', ['org.apache.royale.binding.ViewDataBinding'], ['org.apache.royale.binding.DataBindingBase']);
+goog.addDependency('../../../com/unhurdle/spectrum/controllers/TreeItemRendererInitializer.js', ['com.unhurdle.spectrum.controllers.TreeItemRendererInitializer'], ['org.apache.royale.html.beads.IndexedItemRendererInitializer']);
+goog.addDependency('../../../org/apache/royale/collections/ArrayList.js', ['org.apache.royale.collections.ArrayList'], ['org.apache.royale.events.EventDispatcher', 'org.apache.royale.core.IBead', 'org.apache.royale.collections.ICollectionView', 'org.apache.royale.collections.IArrayList', 'org.apache.royale.utils.net.IExternalizable']);
+goog.addDependency('../../../org/apache/royale/collections/IArrayList.js', ['org.apache.royale.collections.IArrayList'], ['org.apache.royale.events.IEventDispatcher', 'org.apache.royale.collections.ICollection']);
+goog.addDependency('../../../org/apache/royale/collections/ICollectionView.js', ['org.apache.royale.collections.ICollectionView'], ['org.apache.royale.collections.ICollection']);
+goog.addDependency('../../../org/apache/royale/collections/ICollection.js', ['org.apache.royale.collections.ICollection'], []);
+goog.addDependency('../../../com/unhurdle/spectrum/typography/Body.js', ['com.unhurdle.spectrum.typography.Body'], ['com.unhurdle.spectrum.typography.Typography']);
+goog.addDependency('../../../com/unhurdle/spectrum/includes/ActionButtonInclude.js', ['com.unhurdle.spectrum.includes.ActionButtonInclude'], []);
+goog.addDependency('../../../view/panes/SplitViewPane.js', ['view.panes.SplitViewPane'], ['view.DemoPane']);
+goog.addDependency('../../../org/apache/royale/core/ClassFactory.js', ['org.apache.royale.core.ClassFactory'], ['org.apache.royale.core.IFactory']);
+goog.addDependency('../../../org/apache/royale/core/IFactory.js', ['org.apache.royale.core.IFactory'], []);
+goog.addDependency('../../../org/apache/royale/file/IFileModel.js', ['org.apache.royale.file.IFileModel'], []);
+goog.addDependency('../../../com/unhurdle/spectrum/newElement.js', ['com.unhurdle.spectrum.newElement'], []);
+goog.addDependency('../../../view/panes/FieldGroupPane.js', ['view.panes.FieldGroupPane'], ['view.DemoPane']);
+goog.addDependency('../../../view/panes/PaginationExplicitPane.js', ['view.panes.PaginationExplicitPane'], ['view.DemoPane']);
+goog.addDependency('../../../com/unhurdle/spectrum/Divider.js', ['com.unhurdle.spectrum.Divider'], ['com.unhurdle.spectrum.SpectrumBase']);
+goog.addDependency('../../../org/apache/royale/routing/IPathRouteBead.js', ['org.apache.royale.routing.IPathRouteBead'], []);
+goog.addDependency('../../../org/apache/royale/html/beads/models/ListPresentationModel.js', ['org.apache.royale.html.beads.models.ListPresentationModel'], ['org.apache.royale.core.DispatcherBead', 'org.apache.royale.html.IListPresentationModel']);
+goog.addDependency('../../../org/apache/royale/html/IListPresentationModel.js', ['org.apache.royale.html.IListPresentationModel'], ['org.apache.royale.core.IListPresentationModel']);
+goog.addDependency('../../../org/apache/royale/core/IListPresentationModel.js', ['org.apache.royale.core.IListPresentationModel'], ['org.apache.royale.core.IBead']);
+goog.addDependency('../../../com/unhurdle/spectrum/TabBar.js', ['com.unhurdle.spectrum.TabBar'], ['com.unhurdle.spectrum.Group']);
+goog.addDependency('../../../com/unhurdle/spectrum/includes/FieldLabelInclude.js', ['com.unhurdle.spectrum.includes.FieldLabelInclude'], []);
+goog.addDependency('../../../com/unhurdle/spectrum/ListController.js', ['com.unhurdle.spectrum.ListController'], ['org.apache.royale.core.IBeadController']);
+goog.addDependency('../../../com/unhurdle/spectrum/Switch.js', ['com.unhurdle.spectrum.Switch'], ['com.unhurdle.spectrum.SpectrumBase']);
+goog.addDependency('../../../com/unhurdle/spectrum/Slider.js', ['com.unhurdle.spectrum.Slider'], ['com.unhurdle.spectrum.SliderBase']);
+goog.addDependency('../../../view/panes/CardGalleryPane.js', ['view.panes.CardGalleryPane'], ['view.DemoPane']);
+goog.addDependency('../../../com/unhurdle/spectrum/Rating.js', ['com.unhurdle.spectrum.Rating'], ['com.unhurdle.spectrum.SpectrumBase']);
+goog.addDependency('../../../com/unhurdle/spectrum/Picker.js', ['com.unhurdle.spectrum.Picker'], ['com.unhurdle.spectrum.SpectrumBase', 'com.unhurdle.spectrum.interfaces.IKeyboardNavigateable']);
+goog.addDependency('../../../com/unhurdle/spectrum/SVGIcon.js', ['com.unhurdle.spectrum.SVGIcon'], ['com.unhurdle.spectrum.Icon']);
+goog.addDependency('../../../org/apache/royale/binding/ApplicationDataBinding.js', ['org.apache.royale.binding.ApplicationDataBinding'], ['org.apache.royale.binding.DataBindingBase']);
+goog.addDependency('../../../org/apache/royale/binding/DataBindingBase.js', ['org.apache.royale.binding.DataBindingBase'], ['org.apache.royale.core.IBead']);
+goog.addDependency('../../../com/unhurdle/spectrum/AccordionSection.js', ['com.unhurdle.spectrum.AccordionSection'], ['com.unhurdle.spectrum.Group']);
+goog.addDependency('../../../com/unhurdle/spectrum/ImageIcon.js', ['com.unhurdle.spectrum.ImageIcon'], ['com.unhurdle.spectrum.SpectrumBase']);
+goog.addDependency('../../../org/apache/royale/utils/net/IExternalizable.js', ['org.apache.royale.utils.net.IExternalizable'], []);
+goog.addDependency('../../../org/apache/royale/svg/elements/G.js', ['org.apache.royale.svg.elements.G'], ['org.apache.royale.svg.elements.SVGBase']);
+goog.addDependency('../../../com/unhurdle/spectrum/ButtonGroup.js', ['com.unhurdle.spectrum.ButtonGroup'], ['com.unhurdle.spectrum.Group']);
+goog.addDependency('../../../com/unhurdle/spectrum/ShowOnOverTooltip.js', ['com.unhurdle.spectrum.ShowOnOverTooltip'], ['com.unhurdle.spectrum.SpectrumBase']);
+goog.addDependency('../../../org/apache/royale/binding/GenericBinding.js', ['org.apache.royale.binding.GenericBinding'], ['org.apache.royale.core.IBead', 'org.apache.royale.core.IDocument']);
+goog.addDependency('../../../com/unhurdle/spectrum/getTabsSelector.js', ['com.unhurdle.spectrum.getTabsSelector'], []);
+goog.addDependency('../../../view/panes/AccordionPane.js', ['view.panes.AccordionPane'], ['view.DemoPane']);
+goog.addDependency('../../../view/panes/SwitchPane.js', ['view.panes.SwitchPane'], ['view.DemoPane']);
+goog.addDependency('../../../com/unhurdle/spectrum/ExpandSearch.js', ['com.unhurdle.spectrum.ExpandSearch'], ['com.unhurdle.spectrum.Search']);
+goog.addDependency('../../../com/unhurdle/spectrum/Search.js', ['com.unhurdle.spectrum.Search'], ['com.unhurdle.spectrum.SpectrumBase']);
+goog.addDependency('../../../com/unhurdle/spectrum/ComboBoxView.js', ['com.unhurdle.spectrum.ComboBoxView'], ['org.apache.royale.core.BeadViewBase', 'org.apache.royale.html.beads.IComboBoxView']);
+goog.addDependency('../../../com/unhurdle/spectrum/ComboBoxList.js', ['com.unhurdle.spectrum.ComboBoxList'], ['com.unhurdle.spectrum.Popover', 'org.apache.royale.core.IPopUp']);
+goog.addDependency('../../../com/unhurdle/spectrum/Popover.js', ['com.unhurdle.spectrum.Popover'], ['com.unhurdle.spectrum.Group', 'org.apache.royale.core.IPopUp']);
+goog.addDependency('../../../org/apache/royale/core/IPopUp.js', ['org.apache.royale.core.IPopUp'], []);
+goog.addDependency('../../../view/panes/AvatarPane.js', ['view.panes.AvatarPane'], ['view.DemoPane']);
+goog.addDependency('../../../org/apache/royale/core/styles/BorderStyles.js', ['org.apache.royale.core.styles.BorderStyles'], []);
+goog.addDependency('../../../com/unhurdle/spectrum/renderers/SelectableItemRenderer.js', ['com.unhurdle.spectrum.renderers.SelectableItemRenderer'], ['org.apache.royale.core.Bead', 'org.apache.royale.core.ISelectableItemRenderer']);
+goog.addDependency('../../../org/apache/royale/core/ISelectableItemRenderer.js', ['org.apache.royale.core.ISelectableItemRenderer'], ['org.apache.royale.core.IBead']);
+goog.addDependency('../../../com/unhurdle/spectrum/TextField.js', ['com.unhurdle.spectrum.TextField'], ['com.unhurdle.spectrum.TextFieldBase']);
+goog.addDependency('../../../view/panes/ComingSoonPane.js', ['view.panes.ComingSoonPane'], ['view.DemoPane']);
+goog.addDependency('../../../com/unhurdle/spectrum/CycleButton.js', ['com.unhurdle.spectrum.CycleButton'], ['com.unhurdle.spectrum.SpectrumBase']);
+goog.addDependency('../../../org/apache/royale/geom/Matrix.js', ['org.apache.royale.geom.Matrix'], []);
+goog.addDependency('../../../com/unhurdle/spectrum/TabIndicator.js', ['com.unhurdle.spectrum.TabIndicator'], ['com.unhurdle.spectrum.SpectrumBase']);
+goog.addDependency('../../../org/apache/royale/geom/Rectangle.js', ['org.apache.royale.geom.Rectangle'], []);
+goog.addDependency('../../../org/apache/royale/html/accessories/RestrictTextInputBead.js', ['org.apache.royale.html.accessories.RestrictTextInputBead'], ['org.apache.royale.core.Bead']);
+goog.addDependency('../../../com/unhurdle/spectrum/DialogContent.js', ['com.unhurdle.spectrum.DialogContent'], ['com.unhurdle.spectrum.TextGroup']);
+goog.addDependency('../../../com/unhurdle/spectrum/VSplitView.js', ['com.unhurdle.spectrum.VSplitView'], ['com.unhurdle.spectrum.SplitView']);
+goog.addDependency('../../../com/unhurdle/spectrum/SplitView.js', ['com.unhurdle.spectrum.SplitView'], ['com.unhurdle.spectrum.Group']);
+goog.addDependency('../../../com/unhurdle/spectrum/IllustratedMessage.js', ['com.unhurdle.spectrum.IllustratedMessage'], ['com.unhurdle.spectrum.SpectrumBase']);
+goog.addDependency('../../../com/unhurdle/spectrum/CheckBox.js', ['com.unhurdle.spectrum.CheckBox'], ['com.unhurdle.spectrum.SpectrumBase']);
+goog.addDependency('../../../org/apache/royale/html/elements/P.js', ['org.apache.royale.html.elements.P'], ['org.apache.royale.html.TextNodeContainerBase']);
+goog.addDependency('../../../org/apache/royale/html/elements/A.js', ['org.apache.royale.html.elements.A'], ['org.apache.royale.html.TextNodeContainerBase']);
+goog.addDependency('../../../com/unhurdle/spectrum/ClearButton.js', ['com.unhurdle.spectrum.ClearButton'], ['com.unhurdle.spectrum.SpectrumBase']);
+goog.addDependency('../../../view/panes/StepperPane.js', ['view.panes.StepperPane'], ['view.DemoPane']);
+goog.addDependency('../../../com/unhurdle/spectrum/Toast.js', ['com.unhurdle.spectrum.Toast'], ['com.unhurdle.spectrum.SpectrumBase']);
+goog.addDependency('../../../com/unhurdle/spectrum/Table.js', ['com.unhurdle.spectrum.Table'], ['com.unhurdle.spectrum.Group']);
+goog.addDependency('../../../com/unhurdle/spectrum/THead.js', ['com.unhurdle.spectrum.THead'], ['com.unhurdle.spectrum.Group']);
+goog.addDependency('../../../com/unhurdle/spectrum/TBody.js', ['com.unhurdle.spectrum.TBody'], ['com.unhurdle.spectrum.Group']);
+goog.addDependency('../../../com/unhurdle/spectrum/Radio.js', ['com.unhurdle.spectrum.Radio'], ['com.unhurdle.spectrum.SpectrumBase']);
+goog.addDependency('../../../com/unhurdle/spectrum/Label.js', ['com.unhurdle.spectrum.Label'], ['com.unhurdle.spectrum.TextBase']);
+goog.addDependency('../../../com/unhurdle/spectrum/DivTableRow.js', ['com.unhurdle.spectrum.DivTableRow'], ['com.unhurdle.spectrum.TableRow']);
+goog.addDependency('../../../com/unhurdle/spectrum/TableRow.js', ['com.unhurdle.spectrum.TableRow'], ['com.unhurdle.spectrum.Group']);
+goog.addDependency('../../../com/unhurdle/spectrum/Alert.js', ['com.unhurdle.spectrum.Alert'], ['com.unhurdle.spectrum.SpectrumBase']);
+goog.addDependency('../../../com/unhurdle/spectrum/ListModel.js', ['com.unhurdle.spectrum.ListModel'], ['org.apache.royale.core.DispatcherBead', 'org.apache.royale.core.ISelectionModel', 'org.apache.royale.core.IRollOverModel']);
+goog.addDependency('../../../view/panes/TreeViewPane.js', ['view.panes.TreeViewPane'], ['view.DemoPane']);
+goog.addDependency('../../../com/unhurdle/spectrum/typography/Subtitle.js', ['com.unhurdle.spectrum.typography.Subtitle'], ['com.unhurdle.spectrum.typography.Heading']);
+goog.addDependency('../../../com/unhurdle/spectrum/typography/Heading.js', ['com.unhurdle.spectrum.typography.Heading'], ['com.unhurdle.spectrum.typography.Typography']);
+goog.addDependency('../../../view/panes/LabelPane.js', ['view.panes.LabelPane'], ['view.DemoPane']);
+goog.addDependency('../../../com/unhurdle/spectrum/renderers/TreeItemRendererBase.js', ['com.unhurdle.spectrum.renderers.TreeItemRendererBase'], ['com.unhurdle.spectrum.renderers.ListItemRenderer']);
+goog.addDependency('../../../view/panes/BreadcrumbsPane.js', ['view.panes.BreadcrumbsPane'], ['view.DemoPane']);
+goog.addDependency('../../../com/unhurdle/spectrum/Banner.js', ['com.unhurdle.spectrum.Banner'], ['com.unhurdle.spectrum.SpectrumBase']);
+goog.addDependency('../../../com/unhurdle/spectrum/StepList.js', ['com.unhurdle.spectrum.StepList'], ['com.unhurdle.spectrum.SpectrumBase']);
+goog.addDependency('../../../com/unhurdle/spectrum/DivTableCell.js', ['com.unhurdle.spectrum.DivTableCell'], ['com.unhurdle.spectrum.TableCell']);
+goog.addDependency('../../../com/unhurdle/spectrum/Avatar.js', ['com.unhurdle.spectrum.Avatar'], ['com.unhurdle.spectrum.SpectrumBase']);
+goog.addDependency('../../../com/unhurdle/spectrum/FieldLabel.js', ['com.unhurdle.spectrum.FieldLabel'], ['com.unhurdle.spectrum.TextBase']);
+goog.addDependency('../../../com/unhurdle/spectrum/TextBase.js', ['com.unhurdle.spectrum.TextBase'], ['com.unhurdle.spectrum.SpectrumBase']);
+goog.addDependency('../../../view/panes/SearchPane.js', ['view.panes.SearchPane'], ['view.DemoPane']);
+goog.addDependency('../../../com/unhurdle/spectrum/FieldGroup.js', ['com.unhurdle.spectrum.FieldGroup'], ['com.unhurdle.spectrum.Group']);
+goog.addDependency('../../../view/components/StyledCode.js', ['view.components.StyledCode'], ['com.unhurdle.spectrum.typography.Code']);
+goog.addDependency('../../../com/unhurdle/spectrum/typography/Code.js', ['com.unhurdle.spectrum.typography.Code'], ['com.unhurdle.spectrum.typography.Typography']);
+goog.addDependency('../../../com/unhurdle/spectrum/typography/Typography.js', ['com.unhurdle.spectrum.typography.Typography'], ['com.unhurdle.spectrum.typography.TypographyBase']);
+goog.addDependency('../../../org/apache/royale/html/beads/TreeItemRendererInitializer.js', ['org.apache.royale.html.beads.TreeItemRendererInitializer'], ['org.apache.royale.html.beads.ListItemRendererInitializer']);
+goog.addDependency('../../../org/apache/royale/html/beads/ListItemRendererInitializer.js', ['org.apache.royale.html.beads.ListItemRendererInitializer'], ['org.apache.royale.html.beads.IndexedItemRendererInitializer', 'org.apache.royale.core.IIndexedItemRendererInitializer']);
+goog.addDependency('../../../org/apache/royale/html/beads/IndexedItemRendererInitializer.js', ['org.apache.royale.html.beads.IndexedItemRendererInitializer'], ['org.apache.royale.core.Bead', 'org.apache.royale.core.IIndexedItemRendererInitializer']);
+goog.addDependency('../../../org/apache/royale/core/IIndexedItemRendererInitializer.js', ['org.apache.royale.core.IIndexedItemRendererInitializer'], ['org.apache.royale.core.IItemRendererInitializer']);
+goog.addDependency('../../../org/apache/royale/core/IItemRendererInitializer.js', ['org.apache.royale.core.IItemRendererInitializer'], ['org.apache.royale.core.IBead']);
+goog.addDependency('../../../org/apache/royale/html/beads/IComboBoxView.js', ['org.apache.royale.html.beads.IComboBoxView'], ['org.apache.royale.html.beads.IViewWithPopUp']);
+goog.addDependency('../../../org/apache/royale/html/beads/IViewWithPopUp.js', ['org.apache.royale.html.beads.IViewWithPopUp'], ['org.apache.royale.core.IBeadView']);
+goog.addDependency('../../../org/apache/royale/core/StrandWithModel.js', ['org.apache.royale.core.StrandWithModel'], ['org.apache.royale.core.Strand']);
+goog.addDependency('../../../com/unhurdle/spectrum/FileAsset.js', ['com.unhurdle.spectrum.FileAsset'], ['com.unhurdle.spectrum.Asset']);
+goog.addDependency('../../../com/unhurdle/spectrum/Asset.js', ['com.unhurdle.spectrum.Asset'], ['com.unhurdle.spectrum.SpectrumBase', 'com.unhurdle.spectrum.IAsset']);
+goog.addDependency('../../../com/unhurdle/spectrum/ComboBoxController.js', ['com.unhurdle.spectrum.ComboBoxController'], ['org.apache.royale.core.IBeadController']);
+goog.addDependency('../../../org/apache/royale/core/ContainerBaseStrandChildren.js', ['org.apache.royale.core.ContainerBaseStrandChildren'], ['org.apache.royale.core.IPopUpHostParent']);
+goog.addDependency('../../../com/unhurdle/spectrum/ListView.js', ['com.unhurdle.spectrum.ListView'], ['org.apache.royale.html.beads.DataContainerView']);
+goog.addDependency('../../../org/apache/royale/html/beads/DataContainerView.js', ['org.apache.royale.html.beads.DataContainerView'], ['org.apache.royale.html.beads.ContainerView', 'org.apache.royale.html.beads.IListView', 'org.apache.royale.core.IItemRendererOwnerView']);
+goog.addDependency('../../../org/apache/royale/html/beads/IListView.js', ['org.apache.royale.html.beads.IListView'], ['org.apache.royale.core.IBeadView']);
+goog.addDependency('../../../org/apache/royale/core/IItemRendererOwnerView.js', ['org.apache.royale.core.IItemRendererOwnerView'], ['org.apache.royale.events.IEventDispatcher']);
+goog.addDependency('../../../org/apache/royale/core/IDateChooserModel.js', ['org.apache.royale.core.IDateChooserModel'], ['org.apache.royale.events.IEventDispatcher', 'org.apache.royale.core.IBeadModel']);
+goog.addDependency('../../../view/panes/QuickActionsPane.js', ['view.panes.QuickActionsPane'], ['view.DemoPane']);
+goog.addDependency('../../../org/apache/royale/html/elements/Strong.js', ['org.apache.royale.html.elements.Strong'], ['org.apache.royale.html.TextNodeContainerBase']);
+goog.addDependency('../../../org/apache/royale/html/beads/plugin/ModalDisplay.js', ['org.apache.royale.html.beads.plugin.ModalDisplay'], ['org.apache.royale.core.DispatcherBead', 'org.apache.royale.html.beads.plugin.IModalDisplay']);
+goog.addDependency('../../../org/apache/royale/html/beads/plugin/IModalDisplay.js', ['org.apache.royale.html.beads.plugin.IModalDisplay'], []);
+goog.addDependency('../../../com/unhurdle/spectrum/DatePicker.js', ['com.unhurdle.spectrum.DatePicker'], ['com.unhurdle.spectrum.SpectrumBase']);
+goog.addDependency('../../../view/panes/CalendarPane.js', ['view.panes.CalendarPane'], ['view.DemoPane']);
+goog.addDependency('../../../view/panes/PaginationButtonStylePane.js', ['view.panes.PaginationButtonStylePane'], ['view.DemoPane']);
+goog.addDependency('../../../org/apache/royale/utils/css/addDynamicSelector.js', ['org.apache.royale.utils.css.addDynamicSelector'], []);
+goog.addDependency('../../../view/panes/CycleButtonPane.js', ['view.panes.CycleButtonPane'], ['view.DemoPane']);
+goog.addDependency('../../../org/apache/royale/utils/StringPadder.js', ['org.apache.royale.utils.StringPadder'], []);
+goog.addDependency('../../../org/apache/royale/html/supportClasses/TreeListData.js', ['org.apache.royale.html.supportClasses.TreeListData'], []);
+goog.addDependency('../../../org/apache/royale/routing/IRouter.js', ['org.apache.royale.routing.IRouter'], []);
+goog.addDependency('../../../com/unhurdle/spectrum/includes/IconInclude.js', ['com.unhurdle.spectrum.includes.IconInclude'], []);
+goog.addDependency('../../../view/panes/LinkPane.js', ['view.panes.LinkPane'], ['view.DemoPane']);
+goog.addDependency('../../../com/unhurdle/spectrum/data/AssetListItem.js', ['com.unhurdle.spectrum.data.AssetListItem'], ['com.unhurdle.spectrum.data.ListItem']);
+goog.addDependency('../../../view/components/Variant.js', ['view.components.Variant'], ['com.unhurdle.spectrum.FlexContainer']);
+goog.addDependency('../../../com/unhurdle/spectrum/FlexContainer.js', ['com.unhurdle.spectrum.FlexContainer'], ['com.unhurdle.spectrum.Group']);
+goog.addDependency('../../../view/panes/CoachMarkPane.js', ['view.panes.CoachMarkPane'], ['view.DemoPane']);
+goog.addDependency('../../../org/apache/royale/html/beads/layouts/NoLayout.js', ['org.apache.royale.html.beads.layouts.NoLayout'], ['org.apache.royale.core.IBeadLayout']);
+goog.addDependency('../../../org/apache/royale/svg/elements/Polygon.js', ['org.apache.royale.svg.elements.Polygon'], ['org.apache.royale.svg.elements.SVGBase']);
+goog.addDependency('../../../org/apache/royale/svg/elements/SVGBase.js', ['org.apache.royale.svg.elements.SVGBase'], ['org.apache.royale.html.Group']);
+goog.addDependency('../../../org/apache/royale/file/beads/FileBrowser.js', ['org.apache.royale.file.beads.FileBrowser'], ['org.apache.royale.core.IBead']);
+goog.addDependency('../../../org/apache/royale/events/CollectionEvent.js', ['org.apache.royale.events.CollectionEvent'], ['org.apache.royale.events.Event']);
+goog.addDependency('../../../view/panes/MeterPane.js', ['view.panes.MeterPane'], ['view.DemoPane']);
+goog.addDependency('../../../com/unhurdle/spectrum/utils/getDataProviderItem.js', ['com.unhurdle.spectrum.utils.getDataProviderItem'], []);
+goog.addDependency('../../../com/unhurdle/spectrum/newIconSVG.js', ['com.unhurdle.spectrum.newIconSVG'], []);
+goog.addDependency('../../../org/apache/royale/html/supportClasses/Viewport.js', ['org.apache.royale.html.supportClasses.Viewport'], ['org.apache.royale.events.EventDispatcher', 'org.apache.royale.core.IBead', 'org.apache.royale.core.IViewport']);
+goog.addDependency('../../../org/apache/royale/core/IViewport.js', ['org.apache.royale.core.IViewport'], ['org.apache.royale.core.IBead']);
+goog.addDependency('../../../view/panes/BannerPane.js', ['view.panes.BannerPane'], ['view.DemoPane']);
+goog.addDependency('../../../com/unhurdle/spectrum/predefinedSVGElement.js', ['com.unhurdle.spectrum.predefinedSVGElement'], []);
+goog.addDependency('../../../view/panes/RadioPane.js', ['view.panes.RadioPane'], ['view.DemoPane']);
+goog.addDependency('../../../com/unhurdle/spectrum/IDialog.js', ['com.unhurdle.spectrum.IDialog'], []);
+goog.addDependency('../../../org/apache/royale/events/ValueEvent.js', ['org.apache.royale.events.ValueEvent'], ['org.apache.royale.events.Event']);
+goog.addDependency('../../../com/unhurdle/spectrum/renderers/BreadcrumbsItemRenderer.js', ['com.unhurdle.spectrum.renderers.BreadcrumbsItemRenderer'], ['com.unhurdle.spectrum.renderers.DataItemRenderer']);
+goog.addDependency('../../../com/unhurdle/spectrum/newSVGElement.js', ['com.unhurdle.spectrum.newSVGElement'], []);
+goog.addDependency('../../../view/panes/CircleLoaderPane.js', ['view.panes.CircleLoaderPane'], ['view.DemoPane']);
+goog.addDependency('../../../com/unhurdle/spectrum/card/CardContent.js', ['com.unhurdle.spectrum.card.CardContent'], ['com.unhurdle.spectrum.Group']);
+goog.addDependency('../../../org/apache/royale/html/beads/models/TreeModel.js', ['org.apache.royale.html.beads.models.TreeModel'], ['org.apache.royale.html.beads.models.SingleSelectionCollectionViewModel']);
+goog.addDependency('../../../org/apache/royale/html/beads/models/SingleSelectionCollectionViewModel.js', ['org.apache.royale.html.beads.models.SingleSelectionCollectionViewModel'], ['org.apache.royale.core.DispatcherBead', 'org.apache.royale.core.ISelectionModel', 'org.apache.royale.core.IRollOverModel']);
+goog.addDependency('../../../com/unhurdle/spectrum/typography/PageTitle.js', ['com.unhurdle.spectrum.typography.PageTitle'], ['com.unhurdle.spectrum.typography.TypographyBase']);
+goog.addDependency('../../../com/unhurdle/spectrum/typography/TypographyBase.js', ['com.unhurdle.spectrum.typography.TypographyBase'], ['com.unhurdle.spectrum.TypographyGroup']);
+goog.addDependency('../../../com/unhurdle/spectrum/TypographyGroup.js', ['com.unhurdle.spectrum.TypographyGroup'], ['com.unhurdle.spectrum.TextGroup']);
+goog.addDependency('../../../view/panes/DatePickerPane.js', ['view.panes.DatePickerPane'], ['view.DemoPane']);
+goog.addDependency('../../../com/unhurdle/spectrum/TextFieldBase.js', ['com.unhurdle.spectrum.TextFieldBase'], ['com.unhurdle.spectrum.SpectrumBase', 'com.unhurdle.spectrum.interfaces.IKeyboardFocusable']);
+goog.addDependency('../../../org/apache/royale/html/beads/controllers/ListSingleSelectionMouseController.js', ['org.apache.royale.html.beads.controllers.ListSingleSelectionMouseController'], ['org.apache.royale.core.Bead', 'org.apache.royale.core.IBeadController']);
+goog.addDependency('../../../org/apache/royale/core/IBeadController.js', ['org.apache.royale.core.IBeadController'], ['org.apache.royale.core.IBead']);
+goog.addDependency('../../../com/unhurdle/spectrum/card/CardBody.js', ['com.unhurdle.spectrum.card.CardBody'], ['com.unhurdle.spectrum.Group']);
+goog.addDependency('../../../com/unhurdle/spectrum/renderers/AssetListItemRenderer.js', ['com.unhurdle.spectrum.renderers.AssetListItemRenderer'], ['com.unhurdle.spectrum.renderers.ListItemRenderer']);
+goog.addDependency('../../../com/unhurdle/spectrum/renderers/ListItemRenderer.js', ['com.unhurdle.spectrum.renderers.ListItemRenderer'], ['com.unhurdle.spectrum.renderers.DataItemRenderer', 'org.apache.royale.core.IListDataItemRenderer']);
+goog.addDependency('../../../com/unhurdle/spectrum/renderers/DataItemRenderer.js', ['com.unhurdle.spectrum.renderers.DataItemRenderer'], ['org.apache.royale.html.supportClasses.DataItemRenderer', 'com.unhurdle.spectrum.interfaces.IKeyboardFocusable', 'com.unhurdle.spectrum.ISpectrumElement']);
+goog.addDependency('../../../org/apache/royale/html/supportClasses/DataItemRenderer.js', ['org.apache.royale.html.supportClasses.DataItemRenderer'], ['org.apache.royale.html.supportClasses.UIItemRendererBase']);
+goog.addDependency('../../../models/NavProvider.js', ['models.NavProvider'], ['com.unhurdle.spectrum.data.MenuItem']);
+goog.addDependency('../../../com/unhurdle/spectrum/data/MenuItem.js', ['com.unhurdle.spectrum.data.MenuItem'], ['com.unhurdle.spectrum.data.ListItem', 'com.unhurdle.spectrum.data.IMenuItem']);
+goog.addDependency('../../../com/unhurdle/spectrum/data/ListItem.js', ['com.unhurdle.spectrum.data.ListItem'], ['com.unhurdle.spectrum.data.DataItem', 'com.unhurdle.spectrum.data.IListItem']);
+goog.addDependency('../../../com/unhurdle/spectrum/data/DataItem.js', ['com.unhurdle.spectrum.data.DataItem'], ['com.unhurdle.spectrum.data.IDataItem']);
+goog.addDependency('../../../com/unhurdle/spectrum/data/IMenuItem.js', ['com.unhurdle.spectrum.data.IMenuItem'], ['com.unhurdle.spectrum.data.IListItem']);
+goog.addDependency('../../../com/unhurdle/spectrum/data/IListItem.js', ['com.unhurdle.spectrum.data.IListItem'], ['com.unhurdle.spectrum.data.IDataItem']);
+goog.addDependency('../../../org/apache/royale/utils/html/getStyle.js', ['org.apache.royale.utils.html.getStyle'], []);
+goog.addDependency('../../../org/apache/royale/utils/IBinaryDataInput.js', ['org.apache.royale.utils.IBinaryDataInput'], []);
+goog.addDependency('../../../com/unhurdle/spectrum/DropIndicator.js', ['com.unhurdle.spectrum.DropIndicator'], ['com.unhurdle.spectrum.SpectrumBase']);
+goog.addDependency('../../../com/unhurdle/spectrum/Accordion.js', ['com.unhurdle.spectrum.Accordion'], ['com.unhurdle.spectrum.Group']);
+goog.addDependency('../../../com/unhurdle/spectrum/RadioGroup.js', ['com.unhurdle.spectrum.RadioGroup'], ['com.unhurdle.spectrum.Group']);
+goog.addDependency('../../../com/unhurdle/spectrum/SplitButton.js', ['com.unhurdle.spectrum.SplitButton'], ['com.unhurdle.spectrum.SpectrumBase']);
+goog.addDependency('../../../org/apache/royale/html/beads/layouts/BasicLayout.js', ['org.apache.royale.html.beads.layouts.BasicLayout'], ['org.apache.royale.core.LayoutBase', 'org.apache.royale.core.IBeadLayout']);
+goog.addDependency('../../../org/apache/royale/core/LayoutBase.js', ['org.apache.royale.core.LayoutBase'], ['org.apache.royale.core.Bead', 'org.apache.royale.core.IBeadLayout']);
+goog.addDependency('../../../org/apache/royale/core/IBeadLayout.js', ['org.apache.royale.core.IBeadLayout'], ['org.apache.royale.core.IBead']);
+goog.addDependency('../../../org/apache/royale/events/utils/NavigationKeys.js', ['org.apache.royale.events.utils.NavigationKeys'], []);
+goog.addDependency('../../../org/apache/royale/core/IStyleObject.js', ['org.apache.royale.core.IStyleObject'], []);
+goog.addDependency('../../../com/unhurdle/spectrum/AccordionContent.js', ['com.unhurdle.spectrum.AccordionContent'], ['com.unhurdle.spectrum.Group']);
+goog.addDependency('../../../view/panes/TooltipPane.js', ['view.panes.TooltipPane'], ['view.DemoPane']);
+goog.addDependency('../../../com/unhurdle/spectrum/ComboBoxModel.js', ['com.unhurdle.spectrum.ComboBoxModel'], ['org.apache.royale.html.beads.models.ArraySelectionModel', 'org.apache.royale.core.IBead', 'com.unhurdle.spectrum.IComboBoxModel']);
+goog.addDependency('../../../com/unhurdle/spectrum/IComboBoxModel.js', ['com.unhurdle.spectrum.IComboBoxModel'], ['org.apache.royale.events.IEventDispatcher', 'org.apache.royale.core.IBeadModel']);
+goog.addDependency('../../../org/apache/royale/html/beads/models/ArraySelectionModel.js', ['org.apache.royale.html.beads.models.ArraySelectionModel'], ['org.apache.royale.core.DispatcherBead', 'org.apache.royale.core.ISelectionModel', 'org.apache.royale.core.IRollOverModel']);
+goog.addDependency('../../../org/apache/royale/core/ISelectionModel.js', ['org.apache.royale.core.ISelectionModel'], ['org.apache.royale.core.IDataProviderModel']);
+goog.addDependency('../../../org/apache/royale/html/TextNode.js', ['org.apache.royale.html.TextNode'], ['org.apache.royale.html.NodeElementBase']);
+goog.addDependency('../../../view/panes/DialogPane.js', ['view.panes.DialogPane'], ['view.DemoPane', 'com.unhurdle.spectrum.Button', 'com.unhurdle.spectrum.Dialog', 'com.unhurdle.spectrum.ActionButton', 'com.unhurdle.spectrum.Application', 'com.unhurdle.spectrum.DialogHeader', 'com.unhurdle.spectrum.Group', 'com.unhurdle.spectrum.ISpectrumElement', 'com.unhurdle.spectrum.Icon', 'com.unhurdle.spectrum.Underlay', 'com.unhurdle.spectrum.const.IconType', 'com.unhurdle.spectrum.utils.getFocusableElements', 'com.unhurdle.spectrum.utils.hasAutoFocus', 'org.apache.royale.core.IChild', 'org.apache.royale.events.Event', 'org.apache.royale.events.KeyboardEvent', 'org.apache.royale.events.utils.WhitespaceKeys', 'org.apache.royale.html.elements.Div', 'org.apache.royale.utils.Language', 'com.unhurdle.spectrum.SpectrumBase', 'com.unhurdle.spectrum.TextNode', 'com.unhurdle.spectrum.beads.KeyboardFocusHandler', 'com.unhurdle.spectrum.interfaces.IKeyboardFocusable', 'org.apache.royale.core.WrappedHTMLElement']);
+goog.addDependency('../../../com/unhurdle/spectrum/Icon.js', ['com.unhurdle.spectrum.Icon'], ['com.unhurdle.spectrum.SpectrumBase', 'com.unhurdle.spectrum.IAsset']);
+goog.addDependency('../../../com/unhurdle/spectrum/IAsset.js', ['com.unhurdle.spectrum.IAsset'], ['org.apache.royale.core.IChild']);
+goog.addDependency('../../../org/apache/royale/html/elements/Div.js', ['org.apache.royale.html.elements.Div'], ['org.apache.royale.html.TextNodeContainerBase']);
+goog.addDependency('../../../org/apache/royale/html/TextNodeContainerBase.js', ['org.apache.royale.html.TextNodeContainerBase'], ['org.apache.royale.html.NodeElementBase']);
+goog.addDependency('../../../org/apache/royale/html/NodeElementBase.js', ['org.apache.royale.html.NodeElementBase'], ['org.apache.royale.html.Group']);
+goog.addDependency('../../../com/unhurdle/spectrum/Underlay.js', ['com.unhurdle.spectrum.Underlay'], ['com.unhurdle.spectrum.SpectrumBase', 'org.apache.royale.core.IBead']);
+goog.addDependency('../../../com/unhurdle/spectrum/ActionButton.js', ['com.unhurdle.spectrum.ActionButton'], ['com.unhurdle.spectrum.Button', 'com.unhurdle.spectrum.interfaces.IKeyboardNavigateable']);
+goog.addDependency('../../../org/apache/royale/events/utils/WhitespaceKeys.js', ['org.apache.royale.events.utils.WhitespaceKeys'], []);
+goog.addDependency('../../../com/unhurdle/spectrum/TextNode.js', ['com.unhurdle.spectrum.TextNode'], []);
+goog.addDependency('../../../com/unhurdle/spectrum/utils/getFocusableElements.js', ['com.unhurdle.spectrum.utils.getFocusableElements'], []);
+goog.addDependency('../../../com/unhurdle/spectrum/DialogHeader.js', ['com.unhurdle.spectrum.DialogHeader'], ['com.unhurdle.spectrum.Group']);
+goog.addDependency('../../../com/unhurdle/spectrum/utils/hasAutoFocus.js', ['com.unhurdle.spectrum.utils.hasAutoFocus'], []);
+goog.addDependency('../../../com/unhurdle/spectrum/Dialog.js', ['com.unhurdle.spectrum.Dialog'], ['com.unhurdle.spectrum.Group']);
+goog.addDependency('../../../com/unhurdle/spectrum/Button.js', ['com.unhurdle.spectrum.Button'], ['com.unhurdle.spectrum.SpectrumBase', 'com.unhurdle.spectrum.interfaces.IKeyboardFocusable']);
+goog.addDependency('../../../com/unhurdle/spectrum/beads/KeyboardFocusHandler.js', ['com.unhurdle.spectrum.beads.KeyboardFocusHandler'], ['org.apache.royale.core.Bead']);
+goog.addDependency('../../../org/apache/royale/core/Bead.js', ['org.apache.royale.core.Bead'], ['org.apache.royale.core.IBead']);
+goog.addDependency('../../../com/unhurdle/spectrum/interfaces/IKeyboardFocusable.js', ['com.unhurdle.spectrum.interfaces.IKeyboardFocusable'], []);
+goog.addDependency('../../../org/apache/royale/events/KeyboardEvent.js', ['org.apache.royale.events.KeyboardEvent'], ['org.apache.royale.events.Event', 'org.apache.royale.events.IBrowserEvent', 'org.apache.royale.core.ElementWrapper', 'org.apache.royale.events.utils.KeyboardEventConverter', 'org.apache.royale.utils.Language', 'org.apache.royale.core.IBead', 'org.apache.royale.core.IStrand', 'org.apache.royale.core.WrappedHTMLElement', 'org.apache.royale.events.BrowserEvent', 'org.apache.royale.events.ElementEvents', 'org.apache.royale.events.EventDispatcher', 'org.apache.royale.events.utils.EventUtils', 'org.apache.royale.events.utils.KeyConverter']);
+goog.addDependency('../../../org/apache/royale/events/utils/KeyConverter.js', ['org.apache.royale.events.utils.KeyConverter'], []);
+goog.addDependency('../../../org/apache/royale/events/utils/KeyboardEventConverter.js', ['org.apache.royale.events.utils.KeyboardEventConverter'], []);
+goog.addDependency('../../../org/apache/royale/events/BrowserEvent.js', ['org.apache.royale.events.BrowserEvent'], ['org.apache.royale.events.IBrowserEvent']);
+goog.addDependency('../../../org/apache/royale/events/IBrowserEvent.js', ['org.apache.royale.events.IBrowserEvent'], []);
+goog.addDependency('../../../org/apache/royale/core/WrappedHTMLElement.js', ['org.apache.royale.core.WrappedHTMLElement'], ['HTMLElement', 'org.apache.royale.core.IRoyaleElement']);
+goog.addDependency('../../../org/apache/royale/events/utils/EventUtils.js', ['org.apache.royale.events.utils.EventUtils'], []);
+goog.addDependency('../../../org/apache/royale/events/ElementEvents.js', ['org.apache.royale.events.ElementEvents'], []);
+goog.addDependency('../../../com/unhurdle/spectrum/Application.js', ['com.unhurdle.spectrum.Application'], ['org.apache.royale.core.Application']);
+goog.addDependency('../../../org/apache/royale/core/Application.js', ['org.apache.royale.core.Application'], ['org.apache.royale.core.ApplicationBase', 'org.apache.royale.core.IStrand', 'org.apache.royale.core.IParent', 'org.apache.royale.events.IEventDispatcher', 'org.apache.royale.core.IInitialViewApplication', 'org.apache.royale.core.IPopUpHost', 'org.apache.royale.core.IPopUpHostParent', 'org.apache.royale.core.IRenderedObject']);
+goog.addDependency('../../../com/unhurdle/spectrum/card/getCardSelector.js', ['com.unhurdle.spectrum.card.getCardSelector'], []);
+goog.addDependency('../../../org/apache/royale/utils/IBinaryDataOutput.js', ['org.apache.royale.utils.IBinaryDataOutput'], []);
+goog.addDependency('../../../com/unhurdle/spectrum/const/IconType.js', ['com.unhurdle.spectrum.const.IconType'], []);
+goog.addDependency('../../../com/unhurdle/spectrum/TableCell.js', ['com.unhurdle.spectrum.TableCell'], ['com.unhurdle.spectrum.TextGroup']);
+goog.addDependency('../../../com/unhurdle/spectrum/TextGroup.js', ['com.unhurdle.spectrum.TextGroup'], ['com.unhurdle.spectrum.Group']);
+goog.addDependency('../../../org/apache/royale/html/supportClasses/UIItemRendererBase.js', ['org.apache.royale.html.supportClasses.UIItemRendererBase'], ['org.apache.royale.core.UIBase', 'org.apache.royale.core.ILabelFieldItemRenderer']);
+goog.addDependency('../../../org/apache/royale/core/ILabelFieldItemRenderer.js', ['org.apache.royale.core.ILabelFieldItemRenderer'], ['org.apache.royale.core.IIndexedItemRenderer']);
+goog.addDependency('../../../org/apache/royale/core/IIndexedItemRenderer.js', ['org.apache.royale.core.IIndexedItemRenderer'], ['org.apache.royale.core.IItemRenderer']);
+goog.addDependency('../../../com/unhurdle/spectrum/QuickActions.js', ['com.unhurdle.spectrum.QuickActions'], ['com.unhurdle.spectrum.Group']);
+goog.addDependency('../../../org/apache/royale/core/IStatesImpl.js', ['org.apache.royale.core.IStatesImpl'], ['org.apache.royale.events.IEventDispatcher', 'org.apache.royale.core.IBead']);
+goog.addDependency('../../../org/apache/royale/html/beads/ContainerView.js', ['org.apache.royale.html.beads.ContainerView'], ['org.apache.royale.html.beads.GroupView']);
+goog.addDependency('../../../org/apache/royale/html/beads/GroupView.js', ['org.apache.royale.html.beads.GroupView'], ['org.apache.royale.core.BeadViewBase', 'org.apache.royale.core.IBeadView', 'org.apache.royale.core.ILayoutHost']);
+goog.addDependency('../../../org/apache/royale/core/ILayoutHost.js', ['org.apache.royale.core.ILayoutHost'], []);
+goog.addDependency('../../../org/apache/royale/core/BeadViewBase.js', ['org.apache.royale.core.BeadViewBase'], ['org.apache.royale.core.DispatcherBead', 'org.apache.royale.core.IBeadView']);
+goog.addDependency('../../../org/apache/royale/core/IBeadView.js', ['org.apache.royale.core.IBeadView'], ['org.apache.royale.core.IBead']);
+goog.addDependency('../../../view/MainView.js', ['view.MainView'], ['com.unhurdle.spectrum.View']);
+goog.addDependency('../../../com/unhurdle/spectrum/View.js', ['com.unhurdle.spectrum.View'], ['org.apache.royale.core.View']);
+goog.addDependency('../../../org/apache/royale/core/View.js', ['org.apache.royale.core.View'], ['org.apache.royale.core.ViewBase', 'org.apache.royale.core.IMXMLDocument']);
+goog.addDependency('../../../org/apache/royale/core/ViewBase.js', ['org.apache.royale.core.ViewBase'], ['org.apache.royale.core.GroupBase', 'org.apache.royale.core.IPopUpHost', 'org.apache.royale.core.IPopUpHostParent', 'org.apache.royale.core.IApplicationView']);
+goog.addDependency('../../../org/apache/royale/core/IPopUpHostParent.js', ['org.apache.royale.core.IPopUpHostParent'], ['org.apache.royale.core.IParent']);
+goog.addDependency('../../../org/apache/royale/core/IPopUpHost.js', ['org.apache.royale.core.IPopUpHost'], []);
+goog.addDependency('../../../org/apache/royale/core/IApplicationView.js', ['org.apache.royale.core.IApplicationView'], ['org.apache.royale.core.IUIBase', 'org.apache.royale.core.IStatesObject']);
+goog.addDependency('../../../org/apache/royale/html/beads/DataItemRendererFactoryForHierarchicalData.js', ['org.apache.royale.html.beads.DataItemRendererFactoryForHierarchicalData'], ['org.apache.royale.html.beads.DataItemRendererFactoryForCollectionView']);
+goog.addDependency('../../../org/apache/royale/html/beads/DataItemRendererFactoryForCollectionView.js', ['org.apache.royale.html.beads.DataItemRendererFactoryForCollectionView'], ['org.apache.royale.html.beads.DataItemRendererFactoryBase']);
+goog.addDependency('../../../org/apache/royale/core/IListDataItemRenderer.js', ['org.apache.royale.core.IListDataItemRenderer'], ['org.apache.royale.core.IItemRenderer']);
+goog.addDependency('../../../org/apache/royale/core/IItemRenderer.js', ['org.apache.royale.core.IItemRenderer'], ['org.apache.royale.events.IEventDispatcher', 'org.apache.royale.core.IChild', 'org.apache.royale.core.IStrand']);
+goog.addDependency('../../../com/unhurdle/spectrum/includes/SideNavInclude.js', ['com.unhurdle.spectrum.includes.SideNavInclude'], []);
+goog.addDependency('../../../org/apache/royale/html/beads/DataItemRendererFactoryBase.js', ['org.apache.royale.html.beads.DataItemRendererFactoryBase'], ['org.apache.royale.html.beads.ItemRendererFactoryBase', 'org.apache.royale.core.IDataProviderItemRendererMapper']);
+goog.addDependency('../../../org/apache/royale/html/beads/ItemRendererFactoryBase.js', ['org.apache.royale.html.beads.ItemRendererFactoryBase'], ['org.apache.royale.core.DispatcherBead']);
+goog.addDependency('../../../org/apache/royale/core/DispatcherBead.js', ['org.apache.royale.core.DispatcherBead'], ['org.apache.royale.events.EventDispatcher', 'org.apache.royale.core.IBead']);
+goog.addDependency('../../../org/apache/royale/core/IDataProviderItemRendererMapper.js', ['org.apache.royale.core.IDataProviderItemRendererMapper'], ['org.apache.royale.core.IBead']);
+goog.addDependency('../../../org/apache/royale/html/Tree.js', ['org.apache.royale.html.Tree'], ['org.apache.royale.html.List']);
+goog.addDependency('../../../org/apache/royale/html/List.js', ['org.apache.royale.html.List'], ['org.apache.royale.html.DataContainer']);
+goog.addDependency('../../../org/apache/royale/html/DataContainer.js', ['org.apache.royale.html.DataContainer'], ['org.apache.royale.core.DataContainerBase', 'org.apache.royale.core.IStrandWithPresentationModel', 'org.apache.royale.core.IListWithPresentationModel']);
+goog.addDependency('../../../org/apache/royale/core/DataContainerBase.js', ['org.apache.royale.core.DataContainerBase'], ['org.apache.royale.core.ContainerBase', 'org.apache.royale.core.IItemRendererProvider']);
+goog.addDependency('../../../org/apache/royale/core/ContainerBase.js', ['org.apache.royale.core.ContainerBase'], ['org.apache.royale.core.GroupBase', 'org.apache.royale.core.IContainerBaseStrandChildrenHost']);
+goog.addDependency('../../../org/apache/royale/core/IContainerBaseStrandChildrenHost.js', ['org.apache.royale.core.IContainerBaseStrandChildrenHost'], []);
+goog.addDependency('../../../org/apache/royale/core/IStrandWithPresentationModel.js', ['org.apache.royale.core.IStrandWithPresentationModel'], []);
+goog.addDependency('../../../org/apache/royale/core/IListWithPresentationModel.js', ['org.apache.royale.core.IListWithPresentationModel'], ['org.apache.royale.core.IList']);
+goog.addDependency('../../../org/apache/royale/core/IList.js', ['org.apache.royale.core.IList'], ['org.apache.royale.core.IItemRendererProvider']);
+goog.addDependency('../../../org/apache/royale/core/IItemRendererProvider.js', ['org.apache.royale.core.IItemRendererProvider'], []);
+goog.addDependency('../../../org/apache/royale/html/accessories/DateFormatYYYYMMDD.js', ['org.apache.royale.html.accessories.DateFormatYYYYMMDD'], ['org.apache.royale.html.accessories.SimpleDateFormatter']);
+goog.addDependency('../../../org/apache/royale/html/accessories/SimpleDateFormatter.js', ['org.apache.royale.html.accessories.SimpleDateFormatter'], ['org.apache.royale.core.FormatBase', 'org.apache.royale.core.IDateFormatter']);
+goog.addDependency('../../../org/apache/royale/core/FormatBase.js', ['org.apache.royale.core.FormatBase'], ['org.apache.royale.core.IFormatter']);
+goog.addDependency('../../../org/apache/royale/core/IDateFormatter.js', ['org.apache.royale.core.IDateFormatter'], ['org.apache.royale.core.IFormatter']);
+goog.addDependency('../../../org/apache/royale/core/IFormatter.js', ['org.apache.royale.core.IFormatter'], ['org.apache.royale.core.IBead']);
+goog.addDependency('../../../view/panes/ActionMenuPane.js', ['view.panes.ActionMenuPane'], ['view.DemoPane']);
+goog.addDependency('../../../org/apache/royale/events/getTargetWrapper.js', ['org.apache.royale.events.getTargetWrapper'], []);
+goog.addDependency('../../../org/apache/royale/events/ItemRemovedEvent.js', ['org.apache.royale.events.ItemRemovedEvent'], ['org.apache.royale.events.CustomEvent']);
+goog.addDependency('../../../org/apache/royale/events/CustomEvent.js', ['org.apache.royale.events.CustomEvent'], ['org.apache.royale.events.Event']);
+goog.addDependency('../../../com/unhurdle/spectrum/data/IDataItem.js', ['com.unhurdle.spectrum.data.IDataItem'], []);
+goog.addDependency('../../../org/apache/royale/core/SelectableItemRendererClassFactory.js', ['org.apache.royale.core.SelectableItemRendererClassFactory'], ['org.apache.royale.core.ItemRendererClassFactory']);
+goog.addDependency('../../../org/apache/royale/core/ItemRendererClassFactory.js', ['org.apache.royale.core.ItemRendererClassFactory'], ['org.apache.royale.core.Strand', 'org.apache.royale.core.IItemRendererClassFactory', 'org.apache.royale.core.IDocument', 'org.apache.royale.core.IBead']);
+goog.addDependency('../../../org/apache/royale/core/IDocument.js', ['org.apache.royale.core.IDocument'], []);
+goog.addDependency('../../../org/apache/royale/core/IItemRendererClassFactory.js', ['org.apache.royale.core.IItemRendererClassFactory'], ['org.apache.royale.core.IBead']);
+goog.addDependency('../../../org/apache/royale/events/Event.js', ['org.apache.royale.events.Event'], ['goog.events.Event', 'org.apache.royale.events.IRoyaleEvent']);
+goog.addDependency('../../../org/apache/royale/events/IRoyaleEvent.js', ['org.apache.royale.events.IRoyaleEvent'], []);
+goog.addDependency('../../../view/panes/AlertPane.js', ['view.panes.AlertPane'], ['view.DemoPane']);
+goog.addDependency('../../../view/DemoPane.js', ['view.DemoPane'], ['com.unhurdle.spectrum.Container']);
+goog.addDependency('../../../com/unhurdle/spectrum/Container.js', ['com.unhurdle.spectrum.Container'], ['com.unhurdle.spectrum.Group']);
+goog.addDependency('../../../com/unhurdle/spectrum/Group.js', ['com.unhurdle.spectrum.Group'], ['org.apache.royale.html.Group', 'com.unhurdle.spectrum.ISpectrumElement']);
+goog.addDependency('../../../org/apache/royale/html/Group.js', ['org.apache.royale.html.Group'], ['org.apache.royale.core.GroupBase', 'org.apache.royale.core.IMXMLDocument']);
+goog.addDependency('../../../org/apache/royale/core/GroupBase.js', ['org.apache.royale.core.GroupBase'], ['org.apache.royale.core.UIBase', 'org.apache.royale.core.IStatesObject', 'org.apache.royale.core.IContainer', 'org.apache.royale.core.ILayoutParent', 'org.apache.royale.core.ILayoutView', 'org.apache.royale.core.IContentViewHost']);
+goog.addDependency('../../../org/apache/royale/core/ILayoutParent.js', ['org.apache.royale.core.ILayoutParent'], []);
+goog.addDependency('../../../org/apache/royale/core/IStatesObject.js', ['org.apache.royale.core.IStatesObject'], ['org.apache.royale.events.IEventDispatcher']);
+goog.addDependency('../../../org/apache/royale/core/IContainer.js', ['org.apache.royale.core.IContainer'], ['org.apache.royale.core.IParent']);
+goog.addDependency('../../../org/apache/royale/core/IContentViewHost.js', ['org.apache.royale.core.IContentViewHost'], ['org.apache.royale.core.IParent']);
+goog.addDependency('../../../org/apache/royale/core/ILayoutView.js', ['org.apache.royale.core.ILayoutView'], []);
+goog.addDependency('../../../org/apache/royale/core/IMXMLDocument.js', ['org.apache.royale.core.IMXMLDocument'], []);
+goog.addDependency('../../../org/apache/royale/core/IRollOverModel.js', ['org.apache.royale.core.IRollOverModel'], ['org.apache.royale.events.IEventDispatcher', 'org.apache.royale.core.IBeadModel']);
+goog.addDependency('../../../org/apache/royale/core/Strand.js', ['org.apache.royale.core.Strand'], ['org.apache.royale.events.EventDispatcher', 'org.apache.royale.core.IStrand']);
+goog.addDependency('../../../com/unhurdle/spectrum/interfaces/IKeyboardNavigateable.js', ['com.unhurdle.spectrum.interfaces.IKeyboardNavigateable'], []);
+goog.addDependency('../../../com/unhurdle/spectrum/utils/DateUtil.js', ['com.unhurdle.spectrum.utils.DateUtil'], []);
+goog.addDependency('../../../org/apache/royale/html/util/addSvgElementToWrapper.js', ['org.apache.royale.html.util.addSvgElementToWrapper'], []);
+goog.addDependency('../../../org/apache/royale/core/IInitialViewApplication.js', ['org.apache.royale.core.IInitialViewApplication'], ['org.apache.royale.events.IEventDispatcher']);
+goog.addDependency('../../../com/unhurdle/spectrum/CoachMarkPopover.js', ['com.unhurdle.spectrum.CoachMarkPopover'], ['com.unhurdle.spectrum.SpectrumBase']);
+goog.addDependency('../../../org/apache/royale/core/ApplicationBase.js', ['org.apache.royale.core.ApplicationBase'], ['org.apache.royale.core.HTMLElementWrapper', 'org.apache.royale.core.IFlexInfo']);
+goog.addDependency('../../../org/apache/royale/core/IFlexInfo.js', ['org.apache.royale.core.IFlexInfo'], []);
+goog.addDependency('../../../com/unhurdle/spectrum/RampSlider.js', ['com.unhurdle.spectrum.RampSlider'], ['com.unhurdle.spectrum.SliderBase']);
+goog.addDependency('../../../com/unhurdle/spectrum/SliderBase.js', ['com.unhurdle.spectrum.SliderBase'], ['com.unhurdle.spectrum.SpectrumBase']);
+goog.addDependency('../../../com/unhurdle/spectrum/SpectrumBase.js', ['com.unhurdle.spectrum.SpectrumBase'], ['org.apache.royale.core.UIBase', 'com.unhurdle.spectrum.ISpectrumElement']);
+goog.addDependency('../../../com/unhurdle/spectrum/ISpectrumElement.js', ['com.unhurdle.spectrum.ISpectrumElement'], ['org.apache.royale.core.IParentIUIBase']);
+goog.addDependency('../../../org/apache/royale/core/UIBase.js', ['org.apache.royale.core.UIBase'], ['org.apache.royale.core.HTMLElementWrapper', 'org.apache.royale.core.IStrandWithModelView', 'org.apache.royale.events.IEventDispatcher', 'org.apache.royale.core.IParentIUIBase', 'org.apache.royale.core.IStyleableObject', 'org.apache.royale.core.ILayoutChild', 'org.apache.royale.core.IRoyaleElement', 'org.apache.royale.core.IId']);
+goog.addDependency('../../../org/apache/royale/core/HTMLElementWrapper.js', ['org.apache.royale.core.HTMLElementWrapper'], ['org.apache.royale.core.ElementWrapper']);
+goog.addDependency('../../../org/apache/royale/core/ElementWrapper.js', ['org.apache.royale.core.ElementWrapper'], ['org.apache.royale.events.EventDispatcher', 'org.apache.royale.core.IStrand', 'org.apache.royale.utils.Language']);
+goog.addDependency('../../../org/apache/royale/events/EventDispatcher.js', ['org.apache.royale.events.EventDispatcher'], ['goog.events.EventTarget', 'org.apache.royale.events.IEventDispatcher']);
+goog.addDependency('../../../org/apache/royale/utils/Language.js', ['org.apache.royale.utils.Language'], ['org.apache.royale.utils.Language']);
+goog.addDependency('../../../org/apache/royale/core/IParentIUIBase.js', ['org.apache.royale.core.IParentIUIBase'], ['org.apache.royale.core.IParent', 'org.apache.royale.core.IUIBase']);
+goog.addDependency('../../../org/apache/royale/core/IParent.js', ['org.apache.royale.core.IParent'], []);
+goog.addDependency('../../../org/apache/royale/core/IId.js', ['org.apache.royale.core.IId'], []);
+goog.addDependency('../../../org/apache/royale/core/ILayoutChild.js', ['org.apache.royale.core.ILayoutChild'], ['org.apache.royale.core.IChild', 'org.apache.royale.core.IUIBase']);
+goog.addDependency('../../../org/apache/royale/core/IUIBase.js', ['org.apache.royale.core.IUIBase'], ['org.apache.royale.core.IStrand', 'org.apache.royale.events.IEventDispatcher', 'org.apache.royale.core.IChild']);
+goog.addDependency('../../../org/apache/royale/core/IChild.js', ['org.apache.royale.core.IChild'], ['org.apache.royale.core.IRenderedObject']);
+goog.addDependency('../../../org/apache/royale/core/IRenderedObject.js', ['org.apache.royale.core.IRenderedObject'], []);
+goog.addDependency('../../../org/apache/royale/core/IStrandWithModelView.js', ['org.apache.royale.core.IStrandWithModelView'], ['org.apache.royale.core.IStrandWithModel']);
+goog.addDependency('../../../org/apache/royale/core/IStrandWithModel.js', ['org.apache.royale.core.IStrandWithModel'], ['org.apache.royale.core.IStrand']);
+goog.addDependency('../../../org/apache/royale/core/IStrand.js', ['org.apache.royale.core.IStrand'], []);
+goog.addDependency('../../../org/apache/royale/core/IStyleableObject.js', ['org.apache.royale.core.IStyleableObject'], ['org.apache.royale.events.IEventDispatcher']);
+goog.addDependency('../../../org/apache/royale/core/IRoyaleElement.js', ['org.apache.royale.core.IRoyaleElement'], []);
+goog.addDependency('../../../org/apache/royale/core/IDataProviderModel.js', ['org.apache.royale.core.IDataProviderModel'], ['org.apache.royale.events.IEventDispatcher', 'org.apache.royale.core.IBeadModel']);
+goog.addDependency('../../../org/apache/royale/core/IBeadModel.js', ['org.apache.royale.core.IBeadModel'], ['org.apache.royale.core.IBead', 'org.apache.royale.events.IEventDispatcher']);
+goog.addDependency('../../../org/apache/royale/core/IBead.js', ['org.apache.royale.core.IBead'], []);
+goog.addDependency('../../../org/apache/royale/events/IEventDispatcher.js', ['org.apache.royale.events.IEventDispatcher'], []);
+		goog.require("SpectrumBrowser");
+	</script>
+
+</head>
+<body>
+  	<script type="text/javascript">
+		new SpectrumBrowser().start();
+	</script>
+
+</body>
+</html>

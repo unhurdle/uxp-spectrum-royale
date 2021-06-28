@@ -1,0 +1,229 @@
+<view:DemoPane xmlns:fx="http://ns.adobe.com/mxml/2009"
+  xmlns:view="view.*" xmlns:sp="library://ns.unhurdle.com/spectrum"
+  xmlns="library://ns.apache.org/royale/html" xmlns:comp="view.components.*"
+  title="Picker" initComplete="onComplete()">
+  <fx:Script>
+    <![CDATA[
+      import com.unhurdle.spectrum.data.MenuItem;
+      private function onComplete():void{
+        var arr:Array = [];
+        var item:MenuItem = new MenuItem("Ballard");
+        arr.push(item);
+        item = new MenuItem("Freemont");
+        arr.push(item);
+        item = new MenuItem("Greenwood");
+        arr.push(item);
+        item = new MenuItem();
+        item.isDivider = true;
+        arr.push(item);
+        item = new MenuItem("United States of America");
+        item.disabled = true;
+        arr.push(item);
+        arr[0].id = "Ballard";
+        provider = arr;
+      }
+      [Bindable]public var provider:Array;
+
+      [Bindable] public var standardMarkup:String = 
+        '<H4 text="Closed"/>\n'+
+        '<sp:Picker placeholder="Select a Country with a very long label, too long in fact" dataProvider="{provider}"/>\n\n'+        
+        '<H4 text="Selected Item"/>\n'+
+        '<sp:Picker selectedItem="{Ballard}">\n'+
+        '  <sp:dataProvider>\n'+
+        '  <fx:Array>\n'+
+        '    <sp:MenuItem id="Ballard" text="Ballard"/>\n'+
+        '    <sp:MenuItem text="Freemont"/>\n'+
+        '    <sp:MenuItem text="Greenwood"/>\n'+
+        '    <sp:MenuItem isDivider="true"/>\n'+
+        '    <sp:MenuItem text="United States of America" disabled="true"/>\n'+
+        '  </fx:Array>\n'+
+        '  </sp:dataProvider>\n'+
+        '</sp:Picker>\n\n'+
+        '<H4 text="With Thumbnails"/>\n'+
+        '<sp:Picker selectedItem="{Ba}">\n'+
+        '  <sp:dataProvider>\n'+
+        '  <fx:Array>\n'+
+        '    <sp:MenuItem id="Ba" imageIcon="https://opensource.adobe.com/spectrum-css/img/example-ava.jpg" text="Ballard"/>\n'+
+        '    <sp:MenuItem imageIcon="https://opensource.adobe.com/spectrum-css/img/example-ava.jpg" text="Freemont"/>\n'+
+        '    <sp:MenuItem imageIcon="https://opensource.adobe.com/spectrum-css/img/example-ava.jpg" text="Greenwood"/>\n'+
+        '    <sp:MenuItem isDivider="true"/>\n'+
+        '    <sp:MenuItem imageIcon="https://opensource.adobe.com/spectrum-css/img/example-ava.jpg" text="United States of America" disabled="true"/>\n'+
+        '  </fx:Array>\n'+
+        '  </sp:dataProvider>\n'+
+        '</sp:Picker>\n\n'+
+        '<H4 text="Disabled"/>\n'+
+        '<sp:Picker placeholder="Select a Country" dataProvider="{provider}" disabled="true"/>\n\n'+
+        '<H4 text="Closed"/>\n'+
+        '<sp:Picker invalid="true" placeholder="Select a Country with a very long label, too long in fact" dataProvider="{provider}"/>\n\n'+
+        '<H4 text="Selected Item"/>\n'+
+        '<sp:Picker invalid="true" selectedItem="{Bal}">\n'+
+        '  <sp:dataProvider>\n'+
+        '  <fx:Array>\n'+
+        '    <sp:MenuItem id="Bal" text="Ballard"/>\n'+
+        '    <sp:MenuItem text="Freemont"/>\n'+
+        '    <sp:MenuItem text="Greenwood"/>\n'+
+        '    <sp:MenuItem isDivider="true"/>\n'+
+        '    <sp:MenuItem text="United States of America" disabled="true"/>\n'+
+        '  </fx:Array>\n'+
+        '  </sp:dataProvider>\n'+
+        '</sp:Picker>\n\n'+
+        '<H4 text="Disabled"/>\n'+
+        '<sp:Picker invalid="true" placeholder="Select a Country" dataProvider="{provider}" disabled="true"/>';
+      [Bindable] public var quietMarkup:String = 
+        '<H4 text="Closed"/>\n'+
+        '<sp:Picker quiet="true" placeholder="Select a Country with a very long label, too long in fact" dataProvider="{provider}"/>\n\n'+        
+        '<H4 text="Selected Item"/>\n'+
+        '<sp:Picker quiet="true" selectedItem="{Ballard}">\n'+
+        '  <sp:dataProvider>\n'+
+        '  <fx:Array>\n'+
+        '    <sp:MenuItem id="Ballard" text="Ballard"/>\n'+
+        '    <sp:MenuItem text="Freemont"/>\n'+
+        '    <sp:MenuItem text="Greenwood"/>\n'+
+        '    <sp:MenuItem isDivider="true"/>\n'+
+        '    <sp:MenuItem text="United States of America" disabled="true"/>\n'+
+        '  </fx:Array>\n'+
+        '  </sp:dataProvider>\n'+
+        '</sp:Picker>\n\n'+
+        '<H4 text="With Thumbnails"/>\n'+
+        '<sp:Picker quiet="true" selectedItem="{selected1}">\n'+
+        '  <sp:dataProvider>\n'+
+        '  <fx:Array>\n'+
+        '    <sp:MenuItem id="selected1" imageIcon="https://opensource.adobe.com/spectrum-css/img/example-ava.jpg" text="Ballard"/>\n'+
+        '    <sp:MenuItem imageIcon="https://opensource.adobe.com/spectrum-css/img/example-ava.jpg" text="Freemont"/>\n'+
+        '    <sp:MenuItem imageIcon="https://opensource.adobe.com/spectrum-css/img/example-ava.jpg" text="Greenwood"/>\n'+
+        '    <sp:MenuItem isDivider="true"/>\n'+
+        '    <sp:MenuItem imageIcon="https://opensource.adobe.com/spectrum-css/img/example-ava.jpg" text="United States of America" disabled="true"/>\n'+
+        '  </fx:Array>\n'+
+        '  </sp:dataProvider>\n'+
+        '</sp:Picker>\n\n'+
+        '<H4 text="Disabled"/>\n'+
+        '<sp:Picker quiet="true" placeholder="Select a Country" dataProvider="{provider}" disabled="true"/>\n\n'+
+        '<H4 text="Closed"/>\n'+
+        '<sp:Picker quiet="true" invalid="true" placeholder="Select a Country with a very long label, too long in fact" dataProvider="{provider}"/>\n\n'+
+        '<H4 text="Selected Item"/>\n'+
+        '<sp:Picker quiet="true" invalid="true" selectedItem="{Bal}">\n'+
+        '  <sp:dataProvider>\n'+
+        '  <fx:Array>\n'+
+        '    <sp:MenuItem id="Bal" text="Ballard"/>\n'+
+        '    <sp:MenuItem text="Freemont"/>\n'+
+        '    <sp:MenuItem text="Greenwood"/>\n'+
+        '    <sp:MenuItem isDivider="true"/>\n'+
+        '    <sp:MenuItem text="United States of America" disabled="true"/>\n'+
+        '  </fx:Array>\n'+
+        '  </sp:dataProvider>\n'+
+        '</sp:Picker>\n\n'+
+        '<H4 text="Disabled"/>\n'+
+        '<sp:Picker quiet="true" invalid="true" placeholder="Select a Country" dataProvider="{provider}" disabled="true"/>';
+    ]]>
+  </fx:Script>
+  <comp:Variant>
+    <H4 text="Closed"/>
+    <sp:Picker placeholder="Select a Country with a very long label, too long in fact" dataProvider="{provider}"/>
+    <H4 text="Selected Item"/>
+    <sp:Picker selectedItem="{Ballard}">
+      <sp:dataProvider>
+      <fx:Array>
+        <sp:MenuItem id="Ballard" text="Ballard"/>
+        <sp:MenuItem text="Freemont"/>
+        <sp:MenuItem text="Greenwood"/>
+        <sp:MenuItem isDivider="true"/>
+        <sp:MenuItem text="United States of America" disabled="true"/>
+      </fx:Array>
+      </sp:dataProvider>
+     </sp:Picker>
+     
+    <H4 text="With Thumbnails"/>
+    <sp:Picker selectedItem="{Ba}">
+      <sp:dataProvider>
+      <fx:Array>
+        <sp:MenuItem id="Ba" imageIcon="https://opensource.adobe.com/spectrum-css/img/example-ava.jpg" text="Ballard"/>
+        <sp:MenuItem imageIcon="https://opensource.adobe.com/spectrum-css/img/example-ava.jpg" text="Freemont"/>
+        <sp:MenuItem imageIcon="https://opensource.adobe.com/spectrum-css/img/example-ava.jpg" text="Greenwood"/>
+        <sp:MenuItem isDivider="true"/>
+        <sp:MenuItem imageIcon="https://opensource.adobe.com/spectrum-css/img/example-ava.jpg" text="United States of America" disabled="true"/>
+      </fx:Array>
+      </sp:dataProvider>
+     </sp:Picker>
+
+    <H4 text="Disabled"/>
+    <sp:Picker placeholder="Select a Country" dataProvider="{provider}" disabled="true"/>
+
+    <H4 text="Closed"/>
+    <sp:Picker invalid="true" placeholder="Select a Country with a very long label, too long in fact" dataProvider="{provider}"/>
+
+    <H4 text="Selected Item"/>
+    <sp:Picker invalid="true" selectedItem="{Bal}">
+      <sp:dataProvider>
+      <fx:Array>
+        <sp:MenuItem id="Bal" text="Ballard"/>
+        <sp:MenuItem text="Freemont"/>
+        <sp:MenuItem text="Greenwood"/>
+        <sp:MenuItem isDivider="true"/>
+        <sp:MenuItem text="United States of America" disabled="true"/>
+      </fx:Array>
+      </sp:dataProvider>
+     </sp:Picker>
+     
+    <H4 text="Disabled"/>
+    <sp:Picker invalid="true" placeholder="Select a Country" dataProvider="{provider}" disabled="true"/>
+  </comp:Variant>
+  <comp:Markup>
+    <comp:StyledCode text='{standardMarkup}'/>
+  </comp:Markup>
+
+  <comp:Variant header="Quiet">
+    <H4 text="Closed"/>
+    <sp:Picker quiet="true" placeholder="Select a Country with a very long label, too long in fact" dataProvider="{provider}"/>
+    <H4 text="Selected Item"/>
+    <sp:Picker quiet="true" selectedItem="{item1}">
+      <sp:dataProvider>
+      <fx:Array>
+        <sp:MenuItem id="item1" text="Ballard"/>
+        <sp:MenuItem text="Freemont"/>
+        <sp:MenuItem text="Greenwood"/>
+        <sp:MenuItem isDivider="true"/>
+        <sp:MenuItem text="United States of America" disabled="true"/>
+      </fx:Array>
+      </sp:dataProvider>
+     </sp:Picker>
+     
+    <H4 text="With Thumbnails"/>
+    <sp:Picker quiet="true" selectedItem="{selected1}">
+      <sp:dataProvider>
+      <fx:Array>
+        <sp:MenuItem id="selected1" imageIcon="https://opensource.adobe.com/spectrum-css/img/example-ava.jpg" text="Ballard"/>
+        <sp:MenuItem imageIcon="https://opensource.adobe.com/spectrum-css/img/example-ava.jpg" text="Freemont"/>
+        <sp:MenuItem imageIcon="https://opensource.adobe.com/spectrum-css/img/example-ava.jpg" text="Greenwood"/>
+        <sp:MenuItem isDivider="true"/>
+        <sp:MenuItem imageIcon="https://opensource.adobe.com/spectrum-css/img/example-ava.jpg" text="United States of America" disabled="true"/>
+      </fx:Array>
+      </sp:dataProvider>
+     </sp:Picker>
+
+    <H4 text="Disabled"/>
+    <sp:Picker quiet="true" placeholder="Select a Country" dataProvider="{provider}" disabled="true"/>
+
+    <H4 text="Closed"/>
+    <sp:Picker quiet="true" invalid="true" placeholder="Select a Country with a very long label, too long in fact" dataProvider="{provider}"/>
+
+    <H4 text="Selected Item"/>
+    <sp:Picker quiet="true" invalid="true" selectedItem="{Bselected}">
+      <sp:dataProvider>
+      <fx:Array>
+        <sp:MenuItem id="Bselected" text="Ballard"/>
+        <sp:MenuItem text="Freemont"/>
+        <sp:MenuItem text="Greenwood"/>
+        <sp:MenuItem isDivider="true"/>
+        <sp:MenuItem text="United States of America" disabled="true"/>
+      </fx:Array>
+      </sp:dataProvider>
+     </sp:Picker>
+     
+    <H4 text="Disabled"/>
+    <sp:Picker quiet="true" invalid="true" placeholder="Select a Country" dataProvider="{provider}" disabled="true"/>
+  </comp:Variant>
+  <comp:Markup>
+    <comp:StyledCode text='{quietMarkup}'/>
+  </comp:Markup>
+
+</view:DemoPane>

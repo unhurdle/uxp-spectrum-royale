@@ -1,0 +1,61 @@
+<view:DemoPane xmlns="library://ns.apache.org/royale/html"
+  xmlns:fx="http://ns.adobe.com/mxml/2009"
+  xmlns:view="view.*" xmlns:sp="library://ns.unhurdle.com/spectrum"
+  xmlns:assets="view.assets.*" xmlns:comp="view.components.*"
+  title="Text Field" notes="A Spectrum text field">
+  <fx:Script>
+    <![CDATA[
+        [Bindable]public var codeString1:String =
+        '[Bindable]public var nameRegex:String = "^\\w+([\\.-]?\\w+)*@\\w+([\\.-]?\\w+)*(\\.\\w{2,3})+$";\n'+
+        '\n'+
+        '\n'+
+        '<sp:TextField placeholder="Enter your name"/>\n'+
+        '<sp:TextField placeholder="Enter your name" disabled="true"/>\n'+
+        '<sp:TextField placeholder="Enter your name" required="true"/>\n'+
+        '<sp:TextField placeholder="Enter your name" required="true" disabled="true"/>\n'+
+        '<sp:TextField placeholder="Enter your name" readonly="true" text="Read-only input"/>\n'+
+        '<sp:TextField placeholder="Enter your name" text="test@gmail.com" pattern="{nameRegex}"/>\n'+
+        '<sp:TextField placeholder="Enter your name" text="Invalid input" pattern="{nameRegex}"/>';
+        [Bindable]public var codeString2:String =
+        '[Bindable]public var nameRegex:String = "^\\w+([\\.-]?\\w+)*@\\w+([\\.-]?\\w+)*(\\.\\w{2,3})+$";\n'+
+        '\n'+
+        '\n'+
+        '<sp:TextField placeholder="Enter your name" quiet="true"/>\n'+ 
+        '<sp:TextField placeholder="Enter your name" quiet="true" disabled="true"/>\n'+
+        '<sp:TextField placeholder="Enter your name" quiet="true" required="true"/>\n'+
+        '<sp:TextField placeholder="Enter your name" quiet="true" required="true" disabled="true"/>\n'+
+        '<sp:TextField placeholder="Enter your name" quiet="true" readonly="true" text="Read-only input"/>\n'+
+        '<sp:TextField placeholder="Enter your name" quiet="true" text="test@gmail.com" pattern="{nameRegex}"/>\n'+
+        '<sp:TextField placeholder="Enter your name" quiet="true" text="Invalid input" pattern="{nameRegex}"/>';
+        [Bindable]public var nameRegex:String = "^\\w+([\\.-]?\\w+)*@\\w+([\\.-]?\\w+)*(\\.\\w{2,3})+$";
+    ]]>
+  </fx:Script>
+  <comp:Variant>
+    <Div>
+        <sp:TextField placeholder="Enter your name" style="margin-right: 5px;margin-top: 5px;"/>
+        <sp:TextField placeholder="Enter your name" disabled="true" style="margin-right: 5px;margin-top: 5px;"/>
+        <sp:TextField placeholder="Enter your name" required="true" style="margin-right: 5px;margin-top: 5px;"/>
+        <sp:TextField placeholder="Enter your name" required="true" disabled="true" style="margin-right: 5px;margin-top: 5px;"/>
+        <sp:TextField placeholder="Enter your name" readonly="true" text="Read-only input" style="margin-right: 5px;margin-top: 5px;"/>
+        <sp:TextField placeholder="Enter your name" text="test@gmail.com" pattern="{nameRegex}" style="margin-right: 5px;margin-top: 5px;"/>
+        <sp:TextField placeholder="Enter your name" text="Invalid input" pattern="{nameRegex}" style="margin-right: 5px;margin-top: 5px;"/>
+    </Div>
+  </comp:Variant>
+  <comp:Markup>
+    <comp:StyledCode text='{codeString1}'/>
+  </comp:Markup>
+  <comp:Variant header="Text Field - Quiet" notes="A Spectrum text field - quiet">
+    <Div>
+        <sp:TextField placeholder="Enter your name" quiet="true" style="margin-right: 5px;margin-top: 5px;"/>
+        <sp:TextField placeholder="Enter your name" quiet="true" disabled="true" style="margin-right: 5px;margin-top: 5px;"/>
+        <sp:TextField placeholder="Enter your name" quiet="true" required="true" style="margin-right: 5px;margin-top: 5px;"/>
+        <sp:TextField placeholder="Enter your name" quiet="true" required="true" disabled="true" style="margin-right: 5px;margin-top: 5px;"/>
+        <sp:TextField placeholder="Enter your name" quiet="true" readonly="true" text="Read-only input" style="margin-right: 5px;margin-top: 5px;"/>
+        <sp:TextField placeholder="Enter your name" quiet="true" text="test@gmail.com" pattern="{nameRegex}" style="margin-right: 5px;margin-top: 5px;"/>
+        <sp:TextField placeholder="Enter your name" quiet="true" text="Invalid input" pattern="{nameRegex}" style="margin-right: 5px;margin-top: 5px;"/>
+    </Div>
+  </comp:Variant>
+  <comp:Markup>
+    <comp:StyledCode text='{codeString2}'/>
+  </comp:Markup>
+</view:DemoPane>

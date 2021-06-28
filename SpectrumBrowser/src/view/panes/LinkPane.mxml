@@ -1,0 +1,76 @@
+<view:DemoPane xmlns="library://ns.apache.org/royale/html"
+  xmlns:fx="http://ns.adobe.com/mxml/2009"
+  xmlns:view="view.*" xmlns:sp="library://ns.unhurdle.com/spectrum"
+  xmlns:assets="view.assets.*" xmlns:comp="view.components.*"
+  title="Link">
+  <fx:Script>
+    <![CDATA[      
+      [Bindable] public var overBackgroundMarkup:String = 
+        '<Div style="background-color: rgb(15, 121, 125); padding: 15px 20px; display: inline-block;">\n'+
+        '  <sp:Body style="color: rgb(255, 255, 255);" text="Hello, this is my ">\n'+
+        '    <sp:Link href="#!logic_button" text="spectrum-Link--overBackground" overBackground="true"/>\n'+
+        '    <Span text=". This is just filler text, but if you keep reading maybe something good will happen."/>\n'+
+        '  </sp:Body>\n'+
+        '</Div>';
+        [Bindable] public var quietOverBackgroundMarkup:String = 
+        '<Div style="background-color: rgb(15, 121, 125); padding: 15px 20px; display: inline-block;">\n'+
+        '  <sp:Body style="color: rgb(255, 255, 255);" text="Hello, this is my ">\n'+
+        '    <sp:Link href="#!logic_button" text="spectrum-Link--overBackground" overBackground="true" quiet="true"/>\n'+
+        '    <Span text=". This is just filler text, but if you keep reading maybe something good will happen."/>\n'+
+        '  </sp:Body>\n'+
+        '</Div>';
+    ]]>
+  </fx:Script>
+  <comp:Variant header="Link (Primary)">
+    <sp:Link href="#!logic_button" text="Spectrum link"/>
+  </comp:Variant>
+  <comp:Markup>
+    <comp:StyledCode text='&lt;sp:Link href="#!logic_button" text="Spectrum link"/&gt;'/>
+  </comp:Markup>
+
+  <comp:Variant header="Link (Secondary)">
+    <sp:Link href="#!logic_button" text="This link is secondary" secondary="true"/>
+  </comp:Variant>
+  <comp:Markup>
+    <comp:StyledCode text='&lt;sp:Link href="#!logic_button" text="This link is secondary" secondary="true"/&gt;'/>
+  </comp:Markup>
+
+  <comp:Variant header="Link (Over Background)">
+    <Div style="background-color: rgb(15, 121, 125); padding: 15px 20px; display: inline-block;">
+      <sp:Body style="color: rgb(255, 255, 255);" text="Hello, this is my ">
+        <sp:Link href="#!logic_button" text="spectrum link over background" overBackground="true"/>
+        <Span text=". This is just filler text, but if you keep reading maybe something good will happen."/>
+      </sp:Body>
+    </Div>
+  </comp:Variant>
+  <comp:Markup>
+    <comp:StyledCode text='{overBackgroundMarkup}'/>
+  </comp:Markup>
+
+  <comp:Variant header="Link - Quiet (Primary)">
+    <P>This link is <sp:Link href="#!logic_button" text="quiet" quiet="true"/>.</P>
+  </comp:Variant>
+  <comp:Markup>
+    <comp:StyledCode text='&lt;P&gt;This link is &lt;sp:Link href="#!logic_button" text="quiet" quiet="true"/&gt;.&lt;/P&gt;'/>
+  </comp:Markup>
+
+  <comp:Variant header="Link - Quiet (Secondary)">
+    <P>This link is <sp:Link href="#!logic_button" text="quiet" quiet="true" secondary="true"/>.</P>
+  </comp:Variant>
+  <comp:Markup>
+    <comp:StyledCode text='&lt;P&gt;This link is &lt;sp:Link href="#!logic_button" text="quiet" quiet="true" secondary="true"/&gt;.&lt;/P&gt;'/>
+  </comp:Markup>
+
+  <comp:Variant header="Link - Quiet (Over Background)">
+    <Div style="background-color: rgb(15, 121, 125); padding: 15px 20px; display: inline-block;">
+      <sp:Body style="color: rgb(255, 255, 255);" text="Hello, this is my ">
+        <sp:Link href="#!logic_button" text="spectrum link over background" overBackground="true" quiet="true"/>
+        <Span text=". This is just filler text, but if you keep reading maybe something good will happen."/>
+      </sp:Body>
+    </Div>
+  </comp:Variant>
+  <comp:Markup>
+    <comp:StyledCode text='{quietOverBackgroundMarkup}'/>
+  </comp:Markup>
+
+</view:DemoPane>

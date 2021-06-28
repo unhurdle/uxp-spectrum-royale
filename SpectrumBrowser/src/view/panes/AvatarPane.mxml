@@ -1,0 +1,21 @@
+<view:DemoPane xmlns:fx="http://ns.adobe.com/mxml/2009"
+  xmlns:view="view.*" xmlns:sp="library://ns.unhurdle.com/spectrum"
+  xmlns="library://ns.apache.org/royale/html" xmlns:comp="view.components.*"
+  title="Avatar">
+  <fx:Script>
+    <![CDATA[
+    ]]>
+  </fx:Script>
+
+  <comp:Variant>
+    <sp:Avatar src="https://opensource.adobe.com/spectrum-css/img/example-ava.jpg" />
+    <Div height="17"/>
+    <sp:Avatar src="https://opensource.adobe.com/spectrum-css/img/example-ava.jpg" disabled="true"/>
+  </comp:Variant>
+  <comp:Markup>
+    <comp:StyledCode text='&lt;sp:Avatar src="https://opensource.adobe.com/spectrum-css/img/example-ava.jpg" /&gt;'/>
+    <Br/>
+    <comp:StyledCode text='&lt;sp:Avatar src="https://opensource.adobe.com/spectrum-css/img/example-ava.jpg" disabled="true"/&gt;\n'/>
+  </comp:Markup>
+
+</view:DemoPane>

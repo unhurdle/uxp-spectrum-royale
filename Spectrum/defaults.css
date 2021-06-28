@@ -1,0 +1,195 @@
+@namespace "library://ns.unhurdle.com/spectrum";
+@namespace js "library://ns.apache.org/royale/basic";
+
+Menu
+{
+	IBeadModel: ClassReference("com.unhurdle.spectrum.ListModel");
+	IBeadView:  ClassReference("com.unhurdle.spectrum.ListView");			
+	IBeadController: ClassReference("com.unhurdle.spectrum.MenuController");
+	IBeadLayout: ClassReference("org.apache.royale.html.beads.layouts.NoLayout");
+	IDataProviderItemRendererMapper: ClassReference("org.apache.royale.html.beads.DataItemRendererFactoryForArrayData");
+	IItemRendererClassFactory: ClassReference("org.apache.royale.core.OverridableSelectableItemRendererClassFactory");
+	IItemRendererInitializer: ClassReference("org.apache.royale.html.beads.IndexedItemRendererInitializer");
+	IItemRenderer: ClassReference("com.unhurdle.spectrum.renderers.MenuItemRenderer");
+	ISelectableItemRenderer: ClassReference("com.unhurdle.spectrum.renderers.SelectableItemRenderer");
+	IViewport: ClassReference("org.apache.royale.html.supportClasses.ScrollingViewport");
+	IViewportModel: ClassReference("org.apache.royale.html.beads.models.ViewportModel");
+	IKeyboardHandler: ClassReference("com.unhurdle.spectrum.beads.KeyboardNavigateableHandler");
+}
+
+List
+{
+	IBeadModel: ClassReference("com.unhurdle.spectrum.ListModel");
+	IBeadView:  ClassReference("com.unhurdle.spectrum.ListView");			
+	IBeadController: ClassReference("com.unhurdle.spectrum.ListController");
+	IBeadLayout: ClassReference("org.apache.royale.html.beads.layouts.NoLayout");
+	IDataProviderItemRendererMapper: ClassReference("org.apache.royale.html.beads.DataItemRendererFactoryForArrayData");
+	IItemRendererClassFactory: ClassReference("org.apache.royale.core.OverridableSelectableItemRendererClassFactory");
+	IItemRendererInitializer: ClassReference("org.apache.royale.html.beads.IndexedItemRendererInitializer");
+	IItemRenderer: ClassReference("com.unhurdle.spectrum.renderers.ListItemRenderer");
+	ISelectableItemRenderer: ClassReference("com.unhurdle.spectrum.renderers.SelectableItemRenderer");
+	IViewport: ClassReference("org.apache.royale.html.supportClasses.ScrollingViewport");
+	IViewportModel: ClassReference("org.apache.royale.html.beads.models.ViewportModel");
+	IKeyboardHandler: ClassReference("com.unhurdle.spectrum.beads.KeyboardNavigateableHandler");
+}
+Tree
+{
+	IBeadModel: ClassReference("com.unhurdle.spectrum.TreeModel");
+	IBeadView:  ClassReference("com.unhurdle.spectrum.ListView");			
+	IBeadController: ClassReference("com.unhurdle.spectrum.TreeController");
+	IBeadLayout: ClassReference("org.apache.royale.html.beads.layouts.NoLayout");
+	IDataProviderItemRendererMapper: ClassReference("org.apache.royale.html.beads.DataItemRendererFactoryForHierarchicalData");
+	IItemRendererClassFactory: ClassReference("org.apache.royale.core.OverridableSelectableItemRendererClassFactory");
+	IItemRendererInitializer: ClassReference("com.unhurdle.spectrum.controllers.TreeItemRendererInitializer");
+	IItemRenderer: ClassReference("com.unhurdle.spectrum.renderers.TreeItemRenderer");
+	ISelectableItemRenderer: ClassReference("com.unhurdle.spectrum.renderers.SelectableItemRenderer");
+	IViewport: ClassReference("org.apache.royale.html.supportClasses.ScrollingViewport");
+	IViewportModel: ClassReference("org.apache.royale.html.beads.models.ViewportModel");
+	IKeyboardHandler: ClassReference("com.unhurdle.spectrum.beads.KeyboardNavigateableForTreeHandler");
+	border: 1px solid #222222;
+}
+
+Breadcrumbs
+{
+	IBeadModel: ClassReference("com.unhurdle.spectrum.ListModel");
+	IBeadView:  ClassReference("com.unhurdle.spectrum.ListView");			
+	IBeadController: ClassReference("com.unhurdle.spectrum.ListController");
+	IBeadLayout: ClassReference("org.apache.royale.html.beads.layouts.NoLayout");
+	IDataProviderItemRendererMapper: ClassReference("org.apache.royale.html.beads.DataItemRendererFactoryForArrayData");
+	IItemRendererClassFactory: ClassReference("org.apache.royale.core.OverridableSelectableItemRendererClassFactory");
+	IItemRendererInitializer: ClassReference("org.apache.royale.html.beads.IndexedItemRendererInitializer");
+	IItemRenderer: ClassReference("com.unhurdle.spectrum.renderers.BreadcrumbsItemRenderer");
+	ISelectableItemRenderer: ClassReference("com.unhurdle.spectrum.renderers.SelectableItemRenderer");
+	IViewport: ClassReference("org.apache.royale.html.supportClasses.NoViewport");
+	IViewportModel: ClassReference("org.apache.royale.html.beads.models.ViewportModel");
+}
+AssetList
+{
+	IBeadModel: ClassReference("com.unhurdle.spectrum.ListModel");
+	IBeadView:  ClassReference("com.unhurdle.spectrum.ListView");			
+	IBeadController: ClassReference("com.unhurdle.spectrum.ListController");
+	IBeadLayout: ClassReference("org.apache.royale.html.beads.layouts.NoLayout");
+	IDataProviderItemRendererMapper: ClassReference("org.apache.royale.html.beads.DataItemRendererFactoryForArrayData");
+	IItemRendererClassFactory: ClassReference("org.apache.royale.core.OverridableSelectableItemRendererClassFactory");
+	IItemRendererInitializer: ClassReference("org.apache.royale.html.beads.IndexedItemRendererInitializer");
+	IItemRenderer: ClassReference("com.unhurdle.spectrum.renderers.AssetListItemRenderer");
+	ISelectableItemRenderer: ClassReference("com.unhurdle.spectrum.renderers.SelectableItemRenderer");
+	IViewport: ClassReference("org.apache.royale.html.supportClasses.ScrollingViewport");
+	IViewportModel: ClassReference("org.apache.royale.html.beads.models.ViewportModel");
+}
+
+/* Tabs
+{
+	IBeadModel: ClassReference("com.unhurdle.spectrum.ListModel");
+	IBeadView:  ClassReference("com.unhurdle.spectrum.ListView");			
+	IBeadController: ClassReference("com.unhurdle.spectrum.ListController");
+	IBeadLayout: ClassReference("org.apache.royale.html.beads.layouts.NoLayout");
+	IDataProviderItemRendererMapper: ClassReference("org.apache.royale.html.beads.DataItemRendererFactoryForArrayData");
+	IItemRendererClassFactory: ClassReference("org.apache.royale.core.ItemRendererClassFactory");
+	IItemRenderer: ClassReference("com.unhurdle.spectrum.renderers.AssetListItemRenderer");
+	IViewport: ClassReference("org.apache.royale.html.supportClasses.ScrollingViewport");
+	IViewportModel: ClassReference("org.apache.royale.html.beads.models.ViewportModel");
+} */
+/* MillerColumns
+{
+	IBeadModel: ClassReference("com.unhurdle.spectrum.ListModel");
+	IBeadView:  ClassReference("com.unhurdle.spectrum.ListView");			
+	IBeadController: ClassReference("com.unhurdle.spectrum.ListController");
+	IBeadLayout: ClassReference("org.apache.royale.html.beads.layouts.NoLayout");
+	IDataProviderItemRendererMapper: ClassReference("org.apache.royale.html.beads.DataItemRendererFactoryForArrayData");
+	IItemRendererClassFactory: ClassReference("org.apache.royale.core.ItemRendererClassFactory");
+	IItemRenderer: ClassReference("com.unhurdle.spectrum.renderers.MillerColumnsItemRenderer");
+	IViewport: ClassReference("org.apache.royale.html.supportClasses.ScrollingViewport");
+	IViewportModel: ClassReference("org.apache.royale.html.beads.models.ViewportModel");
+} */
+ComboBox
+{
+	IBeadModel: ClassReference("com.unhurdle.spectrum.ComboBoxModel");
+	IBeadView: ClassReference("com.unhurdle.spectrum.ComboBoxView");
+	IBeadController: ClassReference("com.unhurdle.spectrum.ComboBoxController");
+	IPopUp: ClassReference("com.unhurdle.spectrum.ComboBoxList");
+}
+DatePicker {
+	IBeadModel:  ClassReference("com.unhurdle.spectrum.model.DatePickerModel");
+	IFormatter: ClassReference("org.apache.royale.html.accessories.DateFormatYYYYMMDD");
+}
+ColorPicker {
+	IColorPopover: ClassReference("com.unhurdle.spectrum.colorpicker.ColorPickerPopUp");
+}
+
+ColorPickerPopUp {
+
+}
+
+SwatchList {
+	IBeadView:  ClassReference("com.unhurdle.spectrum.beads.SwatchListView");
+	IItemRenderer: ClassReference("com.unhurdle.spectrum.renderers.ColorSwatchRenderer");
+	IBeadLayout: ClassReference("com.unhurdle.spectrum.beads.TileLayout");
+}
+Table {
+
+	/* IBeadLayout: ClassReference("org.apache.royale.html.beads.layouts.NoLayout"); */
+  /* IBeadView: ClassReference("com.unhurdle.spectrum.TableView");
+  IBeadModel: ClassReference("com.unhurdle.spectrum.model.TableModel"); */
+  /* IBeadController: ClassReference("com.unhurdle.spectrum.controllers.TableCellSelectionMouseController"); */
+  /* IViewport: ClassReference("org.apache.royale.html.supportClasses.ScrollingViewport");  */
+	/* IViewportModel: ClassReference("org.apache.royale.html.beads.models.ViewportModel"); */
+}
+
+TableItemRenderer{
+  IBeadController: ClassReference("com.unhurdle.spectrum.controllers.ItemRendererMouseController");
+}
+
+
+/* .ColorSpectrum {
+	border-radius: 4px;
+} */
+
+/* Applying a square class can remove the rounded corners for the checkerboards */
+.square.spectrum-ColorSlider-checkerboard:before {
+	border-radius: 0px;
+}
+.square.spectrum-ColorSlider-checkerboard {
+	border-radius: 0px;
+}
+.square-right.spectrum-ColorSlider-checkerboard:before {
+	border-bottom-right-radius: 0px;
+	border-top-right-radius: 0px;
+}
+.square-right.spectrum-ColorSlider-checkerboard {
+	border-bottom-right-radius: 0px;
+	border-top-right-radius: 0px;
+}
+.square-left.spectrum-ColorSlider-checkerboard:before {
+	border-bottom-left-radius: 0px;
+	border-top-left-radius: 0px;
+}
+.square-left.spectrum-ColorSlider-checkerboard {
+	border-bottom-left-radius: 0px;
+	border-top-left-radius: 0px;
+}
+
+.spectrum--dark .spectrum-ColorSwatch.is-selected{
+	box-shadow: 0px 0px 0px 2px rgb(38, 128, 235);
+}
+.spectrum--darkest .spectrum-ColorSwatch.is-selected{
+	box-shadow: 0px 0px 0px 2px rgb(20, 115, 230);
+}
+.spectrum--light .spectrum-ColorSwatch.is-selected{
+	box-shadow: 0px 0px 0px 2px rgb(38, 128, 235);
+}
+.spectrum--lightest .spectrum-ColorSwatch.is-selected{
+	box-shadow: 0px 0px 0px 2px rgb(55, 142, 240);
+}
+
+.spectrum-ColorSwatch {
+	position: relative;
+	display: block;
+	width: 192px;
+	height: 24px;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	cursor: default;
+}

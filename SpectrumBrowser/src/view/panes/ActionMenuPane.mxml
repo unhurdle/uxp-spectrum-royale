@@ -1,0 +1,41 @@
+<view:DemoPane xmlns:fx="http://ns.adobe.com/mxml/2009"
+  xmlns:view="view.*" xmlns:sp="library://ns.unhurdle.com/spectrum"
+  xmlns="library://ns.apache.org/royale/html" xmlns:comp="view.components.*"
+  title="Action Menu">
+  <fx:Script>
+    <![CDATA[
+      import org.apache.royale.events.Event;
+      import com.unhurdle.spectrum.Toast;
+
+      [Bindable]public var codeString:String = 
+'<sp:FlexContainer vertical="true" alignItems="flex-start">\n'+
+'  <sp:ButtonGroup vertical="true" style="align-items:flex-start;">\n'+
+'    <sp:ActionMenu text="More Actions" dataProvider="[Action 1,Action 2,Action 3,Action 4]" change="handleSelection(event)"/>\n'+
+'    <sp:ActionMenu dataProvider="[Action 1,Action 2,Action 3,Action 4]" change="handleSelection(event)"/>\n'+
+'    <sp:ActionMenu quiet="true" text="More Actions" dataProvider="[Action 1,Action 2,Action 3,Action 4]" change="handleSelection(event)"/>\n'+
+'  </sp:ButtonGroup>\n'+
+'</sp:FlexContainer>';
+
+
+      private function handleSelection(ev:Event):void{
+        var item:String = ev.target.selectedItem.label;
+        if(item){
+          new Toast(item + " selected",1500).show();
+        }
+        // ev.target.selectedIndex = -1;
+      }
+    ]]>
+  </fx:Script>
+  <comp:Variant>
+    <sp:FlexContainer vertical="true" alignItems="flex-start">
+      <sp:ButtonGroup vertical="true" style="align-items:flex-start;">
+        <sp:ActionMenu text="More Actions" dataProvider="[Action 1,Action 2,Action 3,Action 4]" change="handleSelection(event)"/>
+        <sp:ActionMenu dataProvider="[Action 1,Action 2,Action 3,Action 4]" change="handleSelection(event)"/>
+        <sp:ActionMenu quiet="true" text="More Actions" dataProvider="[Action 1,Action 2,Action 3,Action 4]" change="handleSelection(event)"/>
+      </sp:ButtonGroup>
+    </sp:FlexContainer>
+    <comp:Markup>
+      <comp:StyledCode text="{codeString}"/>
+    </comp:Markup>
+  </comp:Variant>
+</view:DemoPane>

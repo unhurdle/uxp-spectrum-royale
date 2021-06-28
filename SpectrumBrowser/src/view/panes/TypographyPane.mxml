@@ -1,0 +1,34 @@
+<view:DemoPane xmlns="library://ns.apache.org/royale/html"
+  xmlns:fx="http://ns.adobe.com/mxml/2009"
+  xmlns:view="view.*" xmlns:sp="library://ns.unhurdle.com/spectrum"
+  xmlns:assets="view.assets.*" xmlns:comp="view.components.*"
+  title="Typography" notes="English typography examples.">
+  <fx:Script>
+    <![CDATA[
+    ]]>
+  </fx:Script>
+  <comp:Variant header="Heading" notes="Heading is used to create various levels of typographic hierarchies.">
+    <sp:Heading size="XXL" text="Hello world"/>
+  </comp:Variant>
+  <comp:Markup>
+    <comp:StyledCode text='&lt;sp:Heading size="XXL" text="Hello world"/&gt;'/>
+  </comp:Markup>
+  <comp:Variant header="Body" notes="Body is primarily used for Spectrum components and for blocks of text.">
+    <sp:Body size="M" text="Spectrum is based on real-world situations."/>
+  </comp:Variant>
+  <comp:Markup>
+    <comp:StyledCode text='&lt;sp:Body size="M" text="Spectrum is based on real-world situations."/&gt;'/>
+  </comp:Markup>
+  <comp:Variant header="Detail" notes="Detail is used for disclosing extra information or smaller items in hierarchical relationships of text.">
+    <sp:Detail size="XL" text="Our recommendations"/>
+  </comp:Variant>
+  <comp:Markup>
+    <comp:StyledCode text='&lt;sp:Detail size="XL" text="Our recommendations"/&gt;'/>
+  </comp:Markup>
+  <comp:Variant header="Code" notes="Code is used for text that represents code.">
+    <sp:Code size="S" text='alert("Hello world");'/>
+  </comp:Variant>
+  <comp:Markup>
+    <comp:StyledCode text='&lt;sp:Code size="S" text="alert("Hello world");"/&gt;'/>
+  </comp:Markup>
+</view:DemoPane>

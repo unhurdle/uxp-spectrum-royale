@@ -1,0 +1,47 @@
+<view:DemoPane xmlns:fx="http://ns.adobe.com/mxml/2009"
+  xmlns:view="view.*" xmlns:sp="library://ns.unhurdle.com/spectrum"
+  xmlns="library://ns.apache.org/royale/html" xmlns:comp="view.components.*"
+  title="Banner">
+  <fx:Script>
+    <![CDATA[
+      [Bindable]public var cornerString:String = 
+'  <html:Div style="width: 255px; height: 325px; background-color: #ccc; position: relative;">\n'+
+'    <sp:Banner header="Most Popular" content="Includes Illustrator CC" corner="true"/>\n'+
+'  </html:Div>';
+
+    ]]>
+  </fx:Script>
+  <comp:Variant header="Error">
+    <sp:Banner type="error" header="Purchase Soon" content="Trial Expires in 2 days"/>
+  </comp:Variant>
+  <comp:Markup>
+    <comp:StyledCode text='&lt;sp:Banner type="error" header="Purchase Soon" content="Trial Expires in 2 days"/&gt;'/>  </comp:Markup>
+
+  <comp:Variant header="Info">
+    <sp:Banner header="Most Popular" content="Includes Illustrator CC"/><Br/>
+    <sp:Banner type="info" header="Most Popular" content="Includes Illustrator CC"/>
+  </comp:Variant>
+  <comp:Markup>
+    <comp:StyledCode text='&lt;sp:Banner header="Most Popular" content="Includes Illustrator CC"/&gt;\n'/>
+    <Br/>
+    <comp:StyledCode text='&lt;sp:Banner type="info" header="Most Popular" content="Includes Illustrator CC"/&gt;'/>
+  </comp:Markup>
+
+  <comp:Variant header="Warning">
+    <sp:Banner type="warning" header="Purchase Soon" content="Your trial is about to expire"/>
+  </comp:Variant>
+  <comp:Markup>
+    <comp:StyledCode text='&lt;sp:Banner type="warning" header="Purchase Soon" content="Your trial is about to expire"/&gt;'/>
+  </comp:Markup>
+
+  <comp:Variant header="Corner Placement">
+    <Div style="width: 255px; height: 325px; background-color: #ccc; position: relative;">
+      <sp:Banner header="Most Popular" content="Includes Illustrator CC" corner="true"/>
+    </Div>
+  </comp:Variant>
+  <comp:Markup>
+    <comp:StyledCode text='{cornerString}'/>
+  </comp:Markup>
+
+
+</view:DemoPane>

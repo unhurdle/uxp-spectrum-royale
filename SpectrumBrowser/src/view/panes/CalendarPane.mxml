@@ -1,0 +1,74 @@
+<view:DemoPane xmlns:fx="http://ns.adobe.com/mxml/2009"
+  xmlns:view="view.*" xmlns:sp="library://ns.unhurdle.com/spectrum"
+  xmlns="library://ns.apache.org/royale/html" xmlns:comp="view.components.*"
+  title="Calendar" initComplete="onComplete()">
+  <fx:Script>
+    <![CDATA[
+        import org.apache.royale.events.Event;
+        import org.apache.royale.events.ValueEvent;
+        import com.unhurdle.spectrum.Toast;
+
+        [Bindable]public var firstDate:Date;
+        [Bindable]public var lastDate:Date;
+        [Bindable]public var rangeText:String = '<sp:Calendar startDate="{firstDate}" endDate="{lastDate}"/>';
+        [Bindable]public var startText:String = '<sp:Calendar startDate="{firstDate}"/>';
+        [Bindable]public var endText:String = '<sp:Calendar endDate="{lastDate}"/>';
+        private function onComplete():void{
+          var now:Date = new Date();
+          var first:Date = new Date();
+          first.setDate(now.getDate()-3);
+          firstDate = first;
+          var last:Date = new Date();
+          last.setDate(now.getDate()+3);
+          lastDate = last;
+        }
+        private function onDateChange(ev:ValueEvent):void
+        {
+          new Toast((ev.value as Date).toDateString(),1000).show()
+        }
+
+    ]]>
+  </fx:Script>
+  <comp:Variant>
+    <sp:Calendar id="calendar1" selectedDateChanged="onDateChange(event)"/>
+  </comp:Variant>
+  <comp:Markup>
+    <comp:StyledCode text='&lt;sp:Calendar selectedDateChanged="onDateChange(event)"/&gt;'/>
+  </comp:Markup>
+
+  <comp:Variant header="Narrow Headers">
+    <sp:Calendar useNarrowHeaders="true"/>
+  </comp:Variant>
+  <comp:Markup>
+    <comp:StyledCode text='&lt;sp:Calendar useNarrowHeaders="true"/&gt;'/>
+  </comp:Markup>
+
+  <comp:Variant header="Disabled">
+    <sp:Calendar disabled="true"/>
+  </comp:Variant>
+  <comp:Markup>
+    <comp:StyledCode text='&lt;sp:Calendar disabled="true"/&gt;'/>
+  </comp:Markup>
+
+  <comp:Variant header="Range">
+    <sp:Calendar startDate="{firstDate}" endDate="{lastDate}"/>
+  </comp:Variant>
+  <comp:Markup>
+    <comp:StyledCode text='{rangeText}'/>
+  </comp:Markup>
+
+  <comp:Variant header="Start Range">
+    <sp:Calendar startDate="{firstDate}"/>
+  </comp:Variant>
+  <comp:Markup>
+    <comp:StyledCode text='{startText}'/>
+  </comp:Markup>
+
+  <comp:Variant header="End Range">
+    <sp:Calendar endDate="{lastDate}"/>
+  </comp:Variant>
+  <comp:Markup>
+    <comp:StyledCode text='{endText}'/>
+  </comp:Markup>
+
+</view:DemoPane>

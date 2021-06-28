@@ -1,0 +1,52 @@
+<sp:FlexContainer xmlns:fx="http://ns.adobe.com/mxml/2009"
+  xmlns:sp="library://ns.unhurdle.com/spectrum" xmlns="library://ns.apache.org/royale/html"
+  initComplete="onComplete()" justifyContent="flex-end" wrap="true">
+  <fx:Script>
+    <![CDATA[
+      import models.Theme;
+      import com.unhurdle.spectrum.data.MenuItem;
+      import org.apache.royale.utils.callLater;
+      
+      private function onComplete():void{
+        callLater(setValues);
+      }
+      private function setValues():void{
+        themeDropdown.selectedIndex = menuToValues(themeDropdown.dataProvider as Array).indexOf(Theme.getTheme());
+        sizeDropdown.selectedIndex = menuToValues(sizeDropdown.dataProvider as Array).indexOf(Theme.getSize());
+      }
+      private function menuToValues(value:Array):Array{
+        return value.map(function(x:MenuItem):String{return x.label.toLowerCase()});
+      }
+      private function notifyThemeChange():void{
+
+        Theme.setTheme((themeDropdown.selectedItem as MenuItem).label.toLowerCase());
+      }
+      private function notifySizeChange():void{
+        Theme.setSize((sizeDropdown.selectedItem as MenuItem).label.toLowerCase());
+      }
+    ]]>
+  </fx:Script>
+  <sp:FieldGroup>
+    <sp:FieldLabel text="Theme" position="left"/>
+    <sp:Picker id="themeDropdown" quiet="true" change="notifyThemeChange()">
+      <sp:dataProvider>
+        <fx:Array id="themeArray">
+          <fx:String>Lightest</fx:String>
+          <fx:String>Light</fx:String>
+          <fx:String>Dark</fx:String>
+          <fx:String>Darkest</fx:String>
+        </fx:Array>
+      </sp:dataProvider>
+    </sp:Picker>
+    <Div width="32"/>
+    <sp:FieldLabel text="Theme" position="left"/>
+    <sp:Picker id="sizeDropdown" quiet="true" change="notifySizeChange()">
+      <sp:dataProvider>
+        <fx:Array id="sizeArray">
+          <fx:String>Medium</fx:String>
+          <fx:String>Large</fx:String>
+        </fx:Array>
+      </sp:dataProvider>
+    </sp:Picker>
+  </sp:FieldGroup>
+</sp:FlexContainer>

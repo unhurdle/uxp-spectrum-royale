@@ -1,0 +1,119 @@
+<view:DemoPane xmlns="library://ns.apache.org/royale/html"
+    xmlns:fx="http://ns.adobe.com/mxml/2009"
+    xmlns:view="view.*" xmlns:sp="library://ns.unhurdle.com/spectrum"
+    xmlns:comp="view.components.*"
+    title="Side Navigation">
+    <fx:Script>
+        <![CDATA[
+            import com.unhurdle.spectrum.SideNavItem;
+            import com.unhurdle.spectrum.SideNav;
+            import com.unhurdle.spectrum.const.IconType;
+            [Bindable]private var iconType:String = IconType.STAR;
+            [Bindable]private var standardMarkup:String = 
+            '<sp:SideNav>\n'+
+            '    <sp:SideNavItem text="Section Title 1" selected="true"/>\n'+
+            '    <sp:SideNavItem text="Section Title 2" disabled="true"/>\n'+
+            '    <sp:SideNavItem text="Section Title 3"/>\n'+
+            '    <sp:SideNavItem text="Section Title 4"/>\n'+
+            '</sp:SideNav>';
+            
+            [Bindable]private var multiLevelMarkup:String = 
+            '<sp:SideNav multiLevel="true">\n'+
+            '    <sp:SideNavItem text="Section Title 1"/>\n'+
+            '    <sp:SideNavItem text="Section Title 2"/>\n'+
+            '    <sp:SideNav>\n'+
+            '        <sp:SideNavItem text="Section Title 1"/>\n'+
+            '        <sp:SideNavItem text="Section Title 2"/>\n'+
+            '        <sp:SideNav>\n'+
+            '            <sp:SideNavItem text="Section Title 1"/>\n'+
+            '            <sp:SideNavItem text="Section Title 2"/>\n'+
+            '        </sp:SideNav>\n'+
+            '        <sp:SideNavItem text="Section Title 3"/>\n'+
+            '    </sp:SideNav>\n'+
+            '    <sp:SideNavItem text="Section Title 4"/>\n'+
+            '    <sp:SideNavItem text="Section Title 5"/>\n'+
+            '    <sp:SideNavItem text="Section Title 6"/>\n'+
+            '</sp:SideNav>';
+
+            [Bindable]private var iconMarkup:String = 
+            '[Bindable]private var iconType:String = IconType.STAR;\n\n'+
+            '<sp:SideNav>\n'+
+            '    <sp:SideNavItem icon="{iconType}" text="Section Title 1" selected="true"/>\n'+
+            '    <sp:SideNavItem icon="{iconType}" text="Section Title 2"/>\n'+
+            '    <sp:SideNavItem icon="{iconType}" text="Section Title 3"/>\n'+
+            '</sp:SideNav>';
+
+            [Bindable]private var headingMarkup:String = 
+            '<sp:SideNav>\n'+
+            '    <sp:SideNavItem text="Section Title 1" selected="true"/>\n'+
+            '    <sp:SideNavItem text="Section Title 2"/>\n'+
+            '    <sp:SideNavHeading text="CATEGORY 1"/>\n'+
+            '    <sp:SideNavItem text="Section Title 3"/>\n'+
+            '    <sp:SideNavItem text="Section Title 4"/>\n'+
+            '    <sp:SideNavHeading text="CATEGORY 2"/>\n'+
+            '    <sp:SideNavItem text="Section Title 5"/>\n'+
+            '    <sp:SideNavItem text="Section Title 6"/>\n'+
+            '    <sp:SideNavItem text="Section Title 7"/>\n'+
+            '</sp:SideNav>';
+
+        ]]>
+    </fx:Script>
+    <comp:Variant>
+        <sp:SideNav>
+            <sp:SideNavItem text="Section Title 1" selected="true"/>
+            <sp:SideNavItem text="Section Title 2" disabled="true"/>
+            <sp:SideNavItem text="Section Title 3"/>
+            <sp:SideNavItem text="Section Title 4"/>
+        </sp:SideNav>
+    </comp:Variant>
+    <comp:Markup>
+        <comp:StyledCode text='{standardMarkup}'/>
+    </comp:Markup>
+    <comp:Variant header="Multilevel">
+        <sp:SideNav multiLevel="true">
+            <sp:SideNavItem text="Section Title 1"/>
+            <sp:SideNavItem text="Section Title 2"/>
+            <sp:SideNav>
+                <sp:SideNavItem text="Section Title 1"/>
+                <sp:SideNavItem text="Section Title 2"/>
+                <sp:SideNav>
+                    <sp:SideNavItem text="Section Title 1"/>
+                    <sp:SideNavItem text="Section Title 2"/>
+                </sp:SideNav>
+                <sp:SideNavItem text="Section Title 3"/>
+            </sp:SideNav>
+            <sp:SideNavItem text="Section Title 4"/>
+            <sp:SideNavItem text="Section Title 5"/>
+            <sp:SideNavItem text="Section Title 6"/>
+        </sp:SideNav>
+    </comp:Variant>
+    <comp:Markup>
+        <comp:StyledCode text='{multiLevelMarkup}'/>
+    </comp:Markup>
+    <comp:Variant header="Icon">
+        <sp:SideNav>
+            <sp:SideNavItem icon="{iconType}" text="Section Title 1" selected="true"/>
+            <sp:SideNavItem icon="{iconType}" text="Section Title 2"/>
+            <sp:SideNavItem icon="{iconType}" text="Section Title 3"/>
+        </sp:SideNav>
+    </comp:Variant>
+    <comp:Markup>
+        <comp:StyledCode text='{iconMarkup}'/>
+    </comp:Markup>
+    <comp:Variant header="Heading">
+        <sp:SideNav>
+            <sp:SideNavItem text="Section Title 1" selected="true"/>
+            <sp:SideNavItem text="Section Title 2"/>
+            <sp:SideNavHeading text="CATEGORY 1"/>
+            <sp:SideNavItem text="Section Title 3"/>
+            <sp:SideNavItem text="Section Title 4"/>
+            <sp:SideNavHeading text="CATEGORY 2"/>
+            <sp:SideNavItem text="Section Title 5"/>
+            <sp:SideNavItem text="Section Title 6"/>
+            <sp:SideNavItem text="Section Title 7"/>
+        </sp:SideNav>
+    </comp:Variant>
+    <comp:Markup>
+        <comp:StyledCode text='{headingMarkup}'/>
+    </comp:Markup>
+</view:DemoPane>
