@@ -250,9 +250,9 @@ package com.unhurdle.spectrum
     override public function get focusElement():HTMLElement{
       COMPILE::JS
       {
-
-      return element;
+        return element;
       }
+      return null;
     }
 
     protected var _input:HTMLInputElement;
