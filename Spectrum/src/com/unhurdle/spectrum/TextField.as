@@ -16,7 +16,7 @@ package com.unhurdle.spectrum
     public function TextField()
     {
       super();
-      // _input.addEventListener("input",checkValidation);
+      _input.addEventListener("input",checkValidation);
     }
     override protected function getTag():String{
       return "sp-textfield";
@@ -83,26 +83,15 @@ package com.unhurdle.spectrum
 
     public function get text():String
     {
-      COMPILE::JS{
-
-      return element.innerHTML;
-      }
-      return "";
-      // return input.value;
+      return input.value;
     }
 
     public function set text(value:String):void
     {
       if(value){
-        COMPILE::JS{
-          element.innerHTML = value;
-        }
-      	// input.value = value;
+      	input.value = value;
       } else {
-        COMPILE::JS{
-          element.innerHTML = "";
-        }
-        // input.value = "";
+        input.value = "";
       }
       checkValidation();
     }
@@ -236,23 +225,16 @@ package com.unhurdle.spectrum
     {
       if(pattern){
         var patt:RegExp = new RegExp(pattern);
-        COMPILE::JS{
-          if(patt.test(element.innerHTML)){
-          // if(patt.test(_input.value)){
-            valid = true;
-          } else{
-            invalid = true;
-          }
+        if(patt.test(_input.value)){
+          valid = true;
+        } else{
+          invalid = true;
         }
       }
     }
     
     override public function get focusElement():HTMLElement{
-      COMPILE::JS
-      {
-        return element;
-      }
-      return null;
+      return input;
     }
 
     protected var _input:HTMLInputElement;
@@ -265,8 +247,7 @@ package com.unhurdle.spectrum
     COMPILE::JS
 		override protected function createElement():WrappedHTMLElement{
       var elem:WrappedHTMLElement = super.createElement();
-      // _input = newElement("input",appendSelector("-input")) as HTMLInputElement;
-      // elem.appendChild(input);
+      _input = elem as HTMLInputElement;
       return elem;
     }
     private var _inputClass:String;

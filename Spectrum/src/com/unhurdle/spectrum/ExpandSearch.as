@@ -1,7 +1,7 @@
 package com.unhurdle.spectrum
 {
 	import org.apache.royale.events.Event;
-
+	//TODO - this doesn't work!!!!!!
 	public class ExpandSearch extends Search
 	{
 		public function ExpandSearch()

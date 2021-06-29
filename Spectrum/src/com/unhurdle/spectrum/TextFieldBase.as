@@ -113,7 +113,6 @@ package com.unhurdle.spectrum
     public function set valid(value:Boolean):void
     {
       if(value != _valid){
-        // toggle("is-valid",value);
         if(value){
           setAttribute("valid",true);
         } else {
@@ -136,7 +135,6 @@ package com.unhurdle.spectrum
     public function set invalid(value:Boolean):void
     {
       if(value != _invalid){
-        // toggle("is-invalid",value);
         if(value){
           setAttribute("invalid",true);
         } else {
@@ -164,7 +162,6 @@ package com.unhurdle.spectrum
         } else {
           removeAttribute("disabled");
         }
-        // toggle("is-disabled",value);
       }
       _disabled = value;
     }
@@ -310,7 +307,7 @@ package com.unhurdle.spectrum
       }
       _iconElement.size = iconSize;
       _iconElement.type = iconType;
-      _iconElement.toggle(appendSelector("-icon"),true);
+      // _iconElement.toggle(appendSelector("-icon"),true);
     }
     override public function addedToParent():void{
       super.addedToParent();

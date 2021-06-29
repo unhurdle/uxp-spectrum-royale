@@ -4,7 +4,7 @@ package com.unhurdle.spectrum
 	{
 		import org.apache.royale.core.WrappedHTMLElement;
 	}
-	import com.unhurdle.spectrum.const.IconType;
+
 
 	public class TextArea extends TextFieldBase
 	{
@@ -14,29 +14,34 @@ package com.unhurdle.spectrum
 			toggle(valueToSelector("multiline"),true);
 			textarea.addEventListener("input",checkValidation);
 		}
+		override protected function getTag():String{
+			return "sp-textarea";
+		}
 
 		private var textarea:HTMLTextAreaElement;
 
 			
 		public function get readonly():Boolean
 		{
-			return textarea.readOnly;
+			//TODO
+			return false//textarea.readOnly;
 		}
 
 		public function set readonly(value:Boolean):void
 		{
-			textarea.readOnly = value;
+			//TODO
+			// textarea.readOnly = value;
 		}
 		
 		public function get placeholder():String
 		{
-			return textarea.placeholder;
+			return getAttribute("placeholder");
 		}
 
 		public function set placeholder(value:String):void
 		{
 			//set the content in the textArea
-			textarea.placeholder = value;
+			setAttribute("placeholder",value);
 		}
 		// private var _multiline:Boolean;
 		// public function get multiline():Boolean
@@ -143,59 +148,6 @@ package com.unhurdle.spectrum
 			_required = value;
 		}
 		
-		private var validIcon:Icon;
-		private var invalidIcon:Icon;
-		override public function get valid():Boolean
-		{
-			return super.valid;
-		}
-
-		override public function set valid(value:Boolean):void
-		{
-			super.valid = value;
-			if(value){
-				if(!validIcon){
-				var type:String = IconType.CHECKMARK_MEDIUM;
-				validIcon = new Icon(Icon.getCSSTypeSelector(type));
-				validIcon.className = appendSelector("-validationIcon");
-				validIcon.type = type;
-				}
-				//if icon doesn't exist
-				if(getElementIndex(validIcon) == -1){
-				addElementAt(validIcon,0);
-				}
-			} else{
-				if(validIcon && getElementIndex(validIcon) != -1){
-					removeElement(validIcon);
-				}
-			}
-		}
-
-		override public function get invalid():Boolean
-		{
-			return super.invalid;
-		}
-
-		override public function set invalid(value:Boolean):void
-		{
-			super.invalid = value;
-			if(value){
-				if(!invalidIcon){
-				var type:String = IconType.ALERT_MEDIUM;
-				invalidIcon = new Icon(Icon.getCSSTypeSelector(type));
-				invalidIcon.className = appendSelector("-validationIcon");
-				invalidIcon.type = type;
-				invalidIcon.style = {'box-sizing': 'content-box'};
-				}
-				if(getElementIndex(invalidIcon) == -1){
-				addElementAt(invalidIcon,0);
-				}
-			} else{
-				if(invalidIcon  && getElementIndex(invalidIcon) != -1){
-					removeElement(invalidIcon);
-				}
-			}
-		}
 		private function checkValidation():void
 		{
 			if(maxLength != Number.MAX_VALUE || minLength != Number.MIN_VALUE){
@@ -214,8 +166,7 @@ package com.unhurdle.spectrum
 		COMPILE::JS
 		override protected function createElement():WrappedHTMLElement{
 			var elem:WrappedHTMLElement = super.createElement();
-			textarea = newElement("textarea",appendSelector("-input")) as HTMLTextAreaElement;
-			elem.appendChild(textarea);
+			textarea = elem as HTMLTextAreaElement;
 			return elem;
 		}
 	}
