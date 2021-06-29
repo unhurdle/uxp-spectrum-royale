@@ -20,7 +20,7 @@ package com.unhurdle.spectrum
     public function Button()
     {
       super();
-      flavor = "primary";
+      variant = "primary";
       _text = "";
       _tabFocusable = true;
     }
@@ -32,7 +32,7 @@ package com.unhurdle.spectrum
     public static const OVER_BACKGROUND:String = "overBackground";
 
     override protected function getSelector():String{
-      return "spectrum-Button";
+      return "";//spectrum-Button
     }
 
 
@@ -46,7 +46,9 @@ package com.unhurdle.spectrum
     public function set text(value:String):void
     {
       if(value != _text){
-        textNode.text = value;
+        COMPILE::JS{
+          element.innerHTML = value;
+        }
       }
     	_text = value;
     }
@@ -147,51 +149,59 @@ package com.unhurdle.spectrum
       _iconElement.type = iconType;
     }
 
-    private var _flavor:String;
+    private var _variant:String;
 
-    public function get flavor():String
+    public function get variant():String
     {
-    	return _flavor;
+    	return getAttribute("variant");//_variant;
     }
 
-    [Inspectable(category="General", enumeration="cta,primary,secondary,warning,overBackground", defaultValue="primary")]
-    public function set flavor(value:String):void
+    [Inspectable(category="General", enumeration="cta,primary,secondary,warning,negative", defaultValue="primary")]
+    public function set variant(value:String):void
     {
       if(!value){
-        throw new Error("flavor must have a value!");
+        throw new Error("variant must have a value!");
       }
-      if(value != _flavor){
+      if(value != _variant){
         switch(value){
           case "cta":
           case "primary":
           case "secondary":
           case "warning":
-          case "overBackground":
+          case "negative":
+          // case "overBackground":
             break;
           default:
-            throw new Error("Unexpected flavor: " + value);
+            throw new Error("Unexpected variant: " + value);
         }
-        if(_flavor){
-          var oldSelector:String = valueToSelector(_flavor);
-          toggle(oldSelector,false);
-        }
-        var newSelector:String = valueToSelector(value);
-        toggle(newSelector,true);
+        // if(_variant){
+        //   var oldSelector:String = valueToSelector(_variant);
+				// 	removeAttribute("variant");
+        //   // toggle(oldSelector,false);
+        // }
+        // var newSelector:String = valueToSelector(value);
+        setAttribute("variant",value);
+        // toggle(newSelector,true);
       }
-    	_flavor = value;
+    	_variant = value;
     }
 
     private var _quiet:Boolean;
 
     public function get quiet():Boolean
     {
-    	return _quiet;
+     	return getAttribute('quiet');//_quiet;
     }
 
     public function set quiet(value:Boolean):void
     {
       if(_quiet != value){
-        toggle(valueToSelector("quiet"),value);
+        // toggle(valueToSelector("quiet"),value);
+				if(value){
+					setAttribute('quiet',true);
+				} else {
+					removeAttribute('quiet');
+				}
       }
     	_quiet = value;
     }
@@ -208,44 +218,56 @@ package com.unhurdle.spectrum
 
     private var _invalid:Boolean;
 
-    public function get invalid():Boolean
-    {
-    	return _invalid;
-    }
+    // public function get invalid():Boolean
+    // {
+    // 	return _invalid;
+    // }
 
-    public function set invalid(value:Boolean):void
-    {
-      if(value != !!_invalid){
-        toggle("is-invalid",value);
-      }
-    	_invalid = value;
-    }
+    // public function set invalid(value:Boolean):void
+    // {
+    //   if(value != !!_invalid){
+    //     toggle("is-invalid",value);
+    //   }
+    // 	_invalid = value;
+    // }
     
     private var _selected:Boolean;
 
     public function get selected():Boolean
     {
-    	return _selected;
+    	return getAttribute("selected");//_selected;
     }
 
+    // public function set selected(value:Boolean):void
+    // {
+    //   if(value != !!_selected){
+    //     toggle("is-selected",value);
+    //   }
+    // 	_selected = value;
+    // }
     public function set selected(value:Boolean):void
     {
       if(value != !!_selected){
-        toggle("is-selected",value);
+        if(value){
+          setAttribute('selected',true);
+        } else {
+          removeAttribute('selected');
+        }
       }
-    	_selected = value;
+      _selected = value;
     }
-    public var textNode:TextNode;
+    // public var textNode:TextNode;
 
     override protected function getTag():String{
-      return "button";
+      return "sp-button";
+      // return "button";
     }
     COMPILE::JS
     override protected function createElement():WrappedHTMLElement{
       super.createElement();
-      textNode = new TextNode("span");
-      textNode.className = appendSelector("-label");
-      element.appendChild(textNode.element);
+      // textNode = new TextNode("span");
+      // textNode.className = appendSelector("-label");
+      // element.appendChild(textNode.element);
       return element;
     }
 
@@ -263,13 +285,18 @@ package com.unhurdle.spectrum
 
     public function get keyboardFocused():Boolean
     {
-    	return _keyboardFocused;
+    	return getAttribute("focus-ring");//_keyboardFocused;
     }
 
     public function set keyboardFocused(value:Boolean):void
     {
       if(value != _keyboardFocused){
-        toggle("focus-ring",value);
+        // toggle("focus-ring",value);
+				if(value){
+					setAttribute('focus-ring',true);
+				} else {
+					removeAttribute('focus-ring');
+				}
       }
     	_keyboardFocused = value;
     }
