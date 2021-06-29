@@ -1,4 +1,4 @@
 Spectrum/target
-bin/
+**/bin/
 playerglobal.swc
 node_modules
