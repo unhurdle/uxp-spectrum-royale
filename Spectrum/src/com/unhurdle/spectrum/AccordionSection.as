@@ -8,6 +8,7 @@ package com.unhurdle.spectrum
   }
     import org.apache.royale.html.elements.H3;
     import org.apache.royale.core.IChild;
+    import com.unhurdle.spectrum.utils.generateIcon;
 
   public class AccordionSection extends Group
   {
@@ -104,7 +105,7 @@ package com.unhurdle.spectrum
       headerElem.element.appendChild(headerButton.element);
 
       var type:String = IconType.CHEVRON_RIGHT_MEDIUM;
-      headerIcon = new Icon(Icon.getCSSTypeSelector(type));
+      headerIcon = generateIcon(type);
       headerIcon.type = type;
       headerIcon.className = appendSelector("Indicator");
       headerElem.addElement(headerIcon);

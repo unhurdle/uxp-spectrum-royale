@@ -15,6 +15,7 @@ package com.unhurdle.spectrum
     import com.unhurdle.spectrum.model.DatePickerModel;
     import com.unhurdle.spectrum.utils.DateUtil;
     import org.apache.royale.events.ValueEvent;
+    import com.unhurdle.spectrum.utils.generateIcon;
  
     [Event(name="change", type="org.apache.royale.events.Event")]
 	[Event(name="selectedDateChanged", type="org.apache.royale.events.ValueEvent")]
@@ -283,7 +284,7 @@ package com.unhurdle.spectrum
             prev.element.title = "Previous";
             prev.addEventListener("click",prevMonthClickHandler);
             var type:String = "ChevronLeftLarge";
-            var prevIcon:Icon = new Icon(Icon.getCSSTypeSelector(type));
+            var prevIcon:Icon = generateIcon(type);
             prevIcon.type = type;
             prev.addElement(prevIcon);
             header.addElement(prev);
@@ -294,7 +295,7 @@ package com.unhurdle.spectrum
             next.element.title = "Next";
             next.addEventListener("click",nextMonthClickHandler);
             type = "ChevronRightLarge";
-            var nextIcon:Icon = new Icon(Icon.getCSSTypeSelector(type));
+            var nextIcon:Icon = generateIcon(type);
             nextIcon.type = type;
             next.addElement(nextIcon);
             header.addElement(next);

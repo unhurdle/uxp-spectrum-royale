@@ -3,6 +3,7 @@ package com.unhurdle.spectrum
   COMPILE::JS{
     import org.apache.royale.core.WrappedHTMLElement;
   }
+  import com.unhurdle.spectrum.utils.generateIcon;
 
   [Event(name="change", type="org.apache.royale.events.Event")]
   public class Tag extends SpectrumBase
@@ -97,7 +98,7 @@ package com.unhurdle.spectrum
         iconElement.selector = value;
         iconElement.size = 'XS';
       } else {
-        iconElement = new Icon(value);
+        iconElement = generateIcon(value);
         iconElement.size = 'XS';
         addElementAt(iconElement,0);
       }

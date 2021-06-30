@@ -119,7 +119,7 @@ package com.unhurdle.spectrum{
 			button = new FieldButton();
       button.className = appendSelector("-button");
 			var type:String = IconType.CHEVRON_DOWN_MEDIUM;
-      button.icon = Icon.getCSSTypeSelector(type);
+      button.icon = type;//Icon.getCSSTypeSelector(type);
 			button.iconType = type;
       button.iconClass = appendSelector("-icon");
 

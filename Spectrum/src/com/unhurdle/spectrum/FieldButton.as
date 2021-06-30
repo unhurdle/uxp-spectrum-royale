@@ -1,5 +1,7 @@
 package com.unhurdle.spectrum
 {
+  import com.unhurdle.spectrum.utils.generateIcon;
+
   public class FieldButton extends Button
   {
     public function FieldButton()
@@ -69,7 +71,7 @@ package com.unhurdle.spectrum
         iconElement.selector = selector;
         setIconProps();
       } else {
-        iconElement = new Icon(selector);
+        iconElement = generateIcon(selector);
         setIconProps();
         addElement(iconElement);
       }

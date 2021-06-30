@@ -14,6 +14,7 @@ package com.unhurdle.spectrum
   import com.unhurdle.spectrum.const.IconType;
   import com.unhurdle.spectrum.includes.ActionButtonInclude;
   import com.unhurdle.spectrum.interfaces.IKeyboardNavigateable;
+  import com.unhurdle.spectrum.utils.generateIcon;
 
 	[Event(name="change", type="org.apache.royale.events.Event")]
 	[Event(name="selectionChanged", type="org.apache.royale.events.Event")]
@@ -43,7 +44,7 @@ package com.unhurdle.spectrum
     protected function createFlyoutIcon():void{
       if(!flyOutIconHolder){
         var type:String = IconType.CORNER_TRIANGLE;
-        flyOutIconHolder = new Icon(Icon.getCSSTypeSelector(type));
+        flyOutIconHolder = generateIcon(type);
         flyOutIconHolder.type = type;
         flyOutIconHolder.className = appendSelector("-hold");
         addElement(flyOutIconHolder);

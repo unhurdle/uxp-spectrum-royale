@@ -91,7 +91,7 @@ package com.unhurdle.spectrum
       var button:FieldButton = new FieldButton();
       button.tabFocusable = false;
       button.className = appendSelector(selector);
-      button.icon = Icon.getCSSTypeSelector(type);
+      button.icon = type;//Icon.getCSSTypeSelector(type);
       button.iconType = type;
       return button;
     }

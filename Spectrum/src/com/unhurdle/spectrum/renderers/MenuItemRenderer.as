@@ -15,6 +15,7 @@ package com.unhurdle.spectrum.renderers
   import com.unhurdle.spectrum.ImageIcon;
   import com.unhurdle.spectrum.Menu;
   import org.apache.royale.events.Event;
+  import com.unhurdle.spectrum.utils.generateIcon;
 
   public class MenuItemRenderer extends DataItemRenderer
   {
@@ -65,7 +66,7 @@ package com.unhurdle.spectrum.renderers
       disabled = menuItem.disabled;
       if(menuItem.icon){
         if(!icon){
-          icon = new Icon(menuItem.icon);
+          icon = generateIcon(menuItem.icon);
           element.insertBefore(icon.element,element.childNodes[0] || null);
           icon.addedToParent();
         } else {
@@ -127,9 +128,9 @@ package com.unhurdle.spectrum.renderers
       if(menuItem.subMenu){
         type = (data as MenuItem).isOpen? IconType.CHEVRON_DOWN_MEDIUM:IconType.CHEVRON_RIGHT_MEDIUM;
         if(indicator){
-          indicator.selector = Icon.getCSSTypeSelector(type);
+          indicator.selector = type;//Icon.getCSSTypeSelector(type);
         } else {
-          indicator = new Icon(Icon.getCSSTypeSelector(type));
+          indicator = generateIcon(type);
           indicator.toggle(appendSelector("-chevron"),true);
           indicator.toggle(appendSelector("-itemIcon"),true);
           addElement(indicator);
@@ -141,7 +142,7 @@ package com.unhurdle.spectrum.renderers
         if(indicator){
           removeElement(indicator);
         }
-        indicator = new Icon(Icon.getCSSTypeSelector(type));
+        indicator = generateIcon(type);
         indicator.toggle(appendSelector("-itemIndicator"),true);
         indicator.type = type;
         // addElement(indicator);
@@ -224,7 +225,7 @@ package com.unhurdle.spectrum.renderers
       textNode.element.style.userSelect = "none";
       elem.appendChild(textNode.element);
       var type:String = IconType.CHECKMARK_MEDIUM;
-      checkIcon = new Icon(IconPrefix.SPECTRUM_CSS_ICON + type);
+      checkIcon = generateIcon(IconPrefix.SPECTRUM_CSS_ICON + type);
       checkIcon.type = type;
       checkIcon.className = appendSelector("-checkmark");
       checkIcon.setStyle("display","none");

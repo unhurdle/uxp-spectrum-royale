@@ -5,6 +5,7 @@ package com.unhurdle.spectrum
 	}
 	import com.unhurdle.spectrum.const.IconType;
 	import org.apache.royale.events.Event;
+	import com.unhurdle.spectrum.utils.generateIcon;
 
 	[Event(name="clear", type="org.apache.royale.events.Event")]
 	public class ClearButton extends SpectrumBase
@@ -27,7 +28,7 @@ package com.unhurdle.spectrum
 			button = super.createElement() as HTMLButtonElement;
 			button.type = "reset";
 			var type:String = IconType.CROSS_SMALL;
-			icon = new Icon(Icon.getCSSTypeSelector(type));
+			icon = generateIcon(type);
 			icon.type = type;
 			button.appendChild(icon.element);
 			button.onclick = function():void{

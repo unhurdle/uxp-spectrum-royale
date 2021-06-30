@@ -5,6 +5,7 @@ package com.unhurdle.spectrum
     import org.apache.royale.core.WrappedHTMLElement;
   }
   import org.apache.royale.events.ValueEvent;
+  import com.unhurdle.spectrum.utils.generateIcon;
   [Event(name="children", type="org.apache.royale.events.Event")]
   public class TabOverflowOld extends Group
   {
@@ -114,7 +115,7 @@ package com.unhurdle.spectrum
       dropPop.element.appendChild(dropList);
       }
     
-    var popIcon:Icon = new Icon("#spectrum-css-icon-CheckmarkMedium");
+    var popIcon:Icon = generateIcon("#spectrum-css-icon-CheckmarkMedium");
     popIcon.className = "spectrum-Icon spectrum-UIIcon-CheckmarkMedium spectrum-Menu-checkmark";
     addElement(popIcon); 
     popIcon.addedToParent(); //need this?
@@ -216,7 +217,7 @@ package com.unhurdle.spectrum
 
         dropDownDiv.appendChild(dropSpan.element);
 
-        var dropIcon:Icon = new Icon("#spectrum-css-icon-ChevronDownMedium");
+        var dropIcon:Icon = generateIcon("#spectrum-css-icon-ChevronDownMedium");
         dropIcon.className = "spectrum-Icon spectrum-UIIcon-ChevronDownMedium spectrum-Dropdown-icon";
         addElement(dropIcon); 
         dropIcon.addedToParent(); 

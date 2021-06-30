@@ -17,6 +17,7 @@ package com.unhurdle.spectrum.renderers
   import com.unhurdle.spectrum.ActionButton;
   import com.unhurdle.spectrum.const.IconPrefix;
   import com.unhurdle.spectrum.data.BreadcrumbsItem;
+  import com.unhurdle.spectrum.utils.generateIcon;
   
   public class BreadcrumbsItemRenderer extends DataItemRenderer
   {
@@ -66,7 +67,7 @@ package com.unhurdle.spectrum.renderers
           button.quiet = true;
           button.element.style.height = '100%';
           var type:String = IconType.FOLDER_BREADCRUMB;
-          button.icon = Icon.getCSSTypeSelector(type);
+          button.icon = type//Icon.getCSSTypeSelector(type);
           button.iconClass = appendSelector("-folder");
           button.iconElement = createFolderIcon();
           button.iconType = type;
@@ -89,7 +90,7 @@ package com.unhurdle.spectrum.renderers
 
     protected function createFolderIcon():Icon{
       var type:String = IconPrefix._18 + "Folder"
-      var folder:Icon = new Icon(type);
+      var folder:Icon = generateIcon(type);
       folder.type = type;
       return folder;
     }
@@ -114,9 +115,10 @@ package com.unhurdle.spectrum.renderers
       textNode.element.setAttribute('tabindex',"0");
       elem.appendChild(textNode.element);
       var type:String = IconType.CHEVRON_RIGHT_SMALL;
-      icon = new Icon(Icon.getCSSTypeSelector(type));
-      icon.type = type;
-      icon.className = appendSelector("-itemSeparator");
+      icon = generateIcon(type);
+      // icon.type = type;
+      icon.size = 'xxs';
+      // icon.className = appendSelector("-itemSeparator");
       addElement(icon);
       return elem;
     }

@@ -12,6 +12,7 @@ package com.unhurdle.spectrum.renderers
   import com.unhurdle.spectrum.ImageIcon;
   import com.unhurdle.spectrum.TextNode;
   import com.unhurdle.spectrum.data.IListItem;
+  import com.unhurdle.spectrum.utils.generateIcon;
 
   public class ListItemRenderer extends DataItemRenderer implements IListDataItemRenderer
   {
@@ -71,7 +72,7 @@ package com.unhurdle.spectrum.renderers
         var iconSelector:String = getIconSelector();
         if(iconSelector){
           if(!icon){
-            icon = new Icon(iconSelector);
+            icon = generateIcon(iconSelector);
             iconParent.addElementAt(icon,firstElementPosition);
           } else {
             icon.setStyle("display",null);

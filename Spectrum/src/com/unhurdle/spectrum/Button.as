@@ -6,6 +6,7 @@ package com.unhurdle.spectrum
   }
   import com.unhurdle.spectrum.beads.KeyboardFocusHandler;
   import com.unhurdle.spectrum.interfaces.IKeyboardFocusable;
+  import com.unhurdle.spectrum.utils.generateIcon;
 
 
   public class Button extends SpectrumBase implements IKeyboardFocusable
@@ -136,7 +137,7 @@ package com.unhurdle.spectrum
         _iconElement.selector = selector;
         setIconProps();
       } else {
-        _iconElement = new Icon(selector);
+        _iconElement = generateIcon(selector);
         setIconProps();
         addElementAt(_iconElement,0);
       }

@@ -17,6 +17,7 @@ package com.unhurdle.spectrum
 	import com.unhurdle.spectrum.const.IconPrefix;
 	import com.unhurdle.spectrum.data.IMenuItem;
 	import com.unhurdle.spectrum.interfaces.IKeyboardNavigateable;
+	import com.unhurdle.spectrum.utils.generateIcon;
 	/**
 	 * TODO maybe add flexible with styling of min-width: 0;width:auto;
 	 */
@@ -49,7 +50,7 @@ package com.unhurdle.spectrum
 			_button.className = appendSelector("-trigger");
 			_button.addEventListener("click",toggleDropdown);
 			var type:String = IconType.CHEVRON_DOWN_MEDIUM;
-			_button.icon = Icon.getCSSTypeSelector(type);
+			_button.icon = type;//Icon.getCSSTypeSelector(type);
 			_button.iconType = type;
 			_button.iconClass = appendSelector("-icon");
 			// _button.textNode.element.style.maxWidth = '85%';
@@ -205,7 +206,7 @@ package com.unhurdle.spectrum
 			}
 			if (icon)
 			{
-				var iconClone:Icon = new Icon(dataProvider[index].icon);
+				var iconClone:Icon = generateIcon(dataProvider[index].icon);
 				_button.addElementAt(iconClone, 0);
 			} else
 			{
@@ -311,7 +312,7 @@ package com.unhurdle.spectrum
 				toggle("is-invalid",value);
 				_button.invalid = value;
 				if(value){
-					var invalidIcon:Icon = new Icon(IconPrefix._18 + "Alert");
+					var invalidIcon:Icon = generateIcon(IconPrefix._18 + "Alert");
 					invalidIcon.size = "S";
 					_button.addElementAt(invalidIcon, _button.numElements - 1);
 				}else{

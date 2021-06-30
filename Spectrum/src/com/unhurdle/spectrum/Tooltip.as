@@ -4,6 +4,7 @@ package com.unhurdle.spectrum
     import org.apache.royale.core.WrappedHTMLElement;
   }
   import com.unhurdle.spectrum.const.IconType;
+  import com.unhurdle.spectrum.utils.generateIcon;
   public class Tooltip extends SpectrumBase
   {
     /**
@@ -135,10 +136,10 @@ package com.unhurdle.spectrum
         default:
           throw new Error("unknown type: " + value);
       }
-      var selector:String = Icon.getCSSTypeSelector(type);
+      var selector:String = type;//Icon.getCSSTypeSelector(type);
 
       if(!iconElem){
-        iconElem = new Icon(selector);
+        iconElem = generateIcon(selector);
         iconElem.type = type;
         iconElem.className = appendSelector("-typeIcon");
         addElementAt(iconElem,0);

@@ -7,6 +7,7 @@ package com.unhurdle.spectrum
   import com.unhurdle.spectrum.const.IconType;
   import org.apache.royale.html.elements.Span;
   import org.apache.royale.core.UIBase;
+  import com.unhurdle.spectrum.utils.generateIcon;
 
   public class Rating extends SpectrumBase
   {
@@ -83,13 +84,13 @@ package com.unhurdle.spectrum
         var span:Span = new Span();
         span.className = appendSelector("-icon");
         var type:String = IconType.STAR;
-        icon1 = new Icon(Icon.getCSSTypeSelector(type));
+        icon1 = generateIcon(type);
         icon1.type = type;
         icon1.className = appendSelector("-starActive");
         span.addElement(icon1);
 
         type = IconType.STAR_OUTLINE;
-        icon2 = new Icon(Icon.getCSSTypeSelector(type));
+        icon2 = generateIcon(type);
         icon2.type = type;
         icon2.className = appendSelector("-starInactive");
         span.addElement(icon2);

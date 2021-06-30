@@ -9,7 +9,7 @@ the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR REPRESENTA
 OF ANY KIND, either express or implied. See the License for the specific language
 governing permissions and limitations under the License.
 */
-
+// const { DOMParser } = require('./dom-parser');
 // UMD pattern via umdjs
 (function (root, factory) {
   if (typeof define === 'function' && define.amd) {
@@ -36,54 +36,37 @@ governing permissions and limitations under the License.
     }
   }
 
-  function injectSVG(svgURL, callback) {
-    var error;
-    // 200 for web servers, 0 for CEP panels
-    if (this.status !== 200 && this.status !== 0) {
-      handleError('Failed to fetch icons, server returned ' + this.status);
-      return;
-    }
-
-    // Parse the SVG
-    var parser = new DOMParser();
-    try {
-      var doc = parser.parseFromString(this.responseText, 'image/svg+xml');
-      var svg = doc.firstChild;
-    }
-    catch (err) {
-      handleError('Error parsing SVG: ' + err);
-      return;
-    }
-
-    // Make sure a real SVG was returned
-    if (svg && svg.tagName === 'svg') {
-      // Hide the element
-      svg.style.display = 'none';
-
-      svg.setAttribute('data-url', svgURL);
-
-      // Insert it into the head
-      document.head.insertBefore(svg, null);
-
-      // Pass the SVG to the callback
-      if (typeof callback === 'function') {
-        callback(null, svg);
-      }
-    }
-    else {
-      handleError('Parsed SVG document contained something other than an SVG');
-    }
-  }
+  
 
   function loadIcons(svgURL, callback) {
     // Request the SVG sprite
-    var req = new XMLHttpRequest();
-    req.open('GET', svgURL, true);
-    req.addEventListener('load', injectSVG.bind(req, svgURL, callback));
-    req.addEventListener('error', function(event) {
+    // var req = new XMLHttpRequest();
+    // req.open('GET', svgURL, true);
+    // req.addEventListener('load', injectSVG.bind(req, svgURL, callback));
+    // req.addEventListener('error', function(event) {
+    //   handleError('Request failed');
+    // });
+    // req.send();
+    var xhr = new XMLHttpRequest();
+
+    // xhr.open("GET",svgURL,false);
+    xhr.open("GET",svgURL,true);
+    // Following line is just to be on the safe side;
+    // not needed if your server delivers SVG with correct MIME type
+    xhr.overrideMimeType("image/svg+xml");
+    xhr.onload = function(e) {
+      // You might also want to check for xhr.readyState/xhr.status here
+      var svg = document.createElementNS('http://www.w3.org/2000/svg', "svg");
+      svg.innerHTML = xhr.responseText;
+
+      document.getElementById("svgContainer")
+        .appendChild(svg);
+    };
+    xhr.onerror = function (e) {
       handleError('Request failed');
-    });
-    req.send();
+    }
+    xhr.send("");
+
   }
 
   return loadIcons;

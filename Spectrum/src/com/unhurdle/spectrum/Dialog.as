@@ -111,7 +111,7 @@ package com.unhurdle.spectrum
         _closeButton.quiet = true;
         _closeButton.className = appendSelector("-closeButton");
         var type:String = IconType.CROSS_LARGE;
-        _closeButton.icon = Icon.getCSSTypeSelector(type);
+        _closeButton.icon = type//Icon.getCSSTypeSelector(type);
         _closeButton.iconType = type;
         _closeButton.addEventListener("click",hide);
       }

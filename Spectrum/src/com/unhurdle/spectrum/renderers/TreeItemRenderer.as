@@ -13,6 +13,7 @@ package com.unhurdle.spectrum.renderers
   import org.apache.royale.events.MouseEvent;
   import org.apache.royale.html.elements.A;
   import org.apache.royale.html.supportClasses.TreeListData;
+  import com.unhurdle.spectrum.utils.generateIcon;
 
   public class TreeItemRenderer extends TreeItemRendererBase
   {
@@ -35,7 +36,7 @@ package com.unhurdle.spectrum.renderers
         if(listData.hasChildren){
           var type:String = "ChevronRightMedium";
           if(!chevronRightIcon){
-            chevronRightIcon = new Icon(Icon.getCSSTypeSelector(type));
+            chevronRightIcon = generateIcon(type);
             chevronRightIcon.type = type;
             chevronRightIcon.toggle(appendSelector("-itemIndicator"),true);
             chevronRightIcon.setStyle("flex-shrink",0);

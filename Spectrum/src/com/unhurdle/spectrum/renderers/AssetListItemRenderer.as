@@ -11,6 +11,7 @@ package com.unhurdle.spectrum.renderers
   import com.unhurdle.spectrum.data.AssetListItem;
 
   import org.apache.royale.events.Event;
+  import com.unhurdle.spectrum.utils.generateIcon;
   
   public class AssetListItemRenderer extends ListItemRenderer
   {
@@ -39,7 +40,7 @@ package com.unhurdle.spectrum.renderers
       if(assetListItem.isBranch){
         toggle("is-branch",true);
         var type:String = IconType.CHEVRON_RIGHT_MEDIUM;
-        var branchIcon:Icon = new Icon(Icon.getCSSTypeSelector(type));
+        var branchIcon:Icon = generateIcon(type);
         branchIcon.type = type;
         branchIcon.className = appendSelector("-itemChildIndicator");
         addElement(branchIcon);

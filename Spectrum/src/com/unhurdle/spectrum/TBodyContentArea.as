@@ -7,7 +7,8 @@ package com.unhurdle.spectrum
 	import org.apache.royale.events.ItemRemovedEvent;
 	import org.apache.royale.html.supportClasses.ContainerContentArea;
 	import com.unhurdle.spectrum.renderers.TableItemRenderer;
-		import com.unhurdle.spectrum.renderers.DataItemRenderer;
+	import com.unhurdle.spectrum.renderers.DataItemRenderer;
+	import com.unhurdle.spectrum.utils.generateIcon;
 
 	COMPILE::JS
 	{
@@ -188,7 +189,7 @@ package com.unhurdle.spectrum
 			var span:HTMLElement = newElement('span');
 			span.className = "spectrum-Checkbox-box";
 			var type:String = "CheckmarkSmall";
-			var icon:Icon = new Icon(Icon.getCSSTypeSelector(type));
+			var icon:Icon = generateIcon(type);
 			icon.type = type;
 			icon.className = "spectrum-Checkbox-checkmark";
 			span.appendChild(icon.element); 

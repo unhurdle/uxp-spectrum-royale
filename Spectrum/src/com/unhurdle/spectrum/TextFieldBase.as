@@ -9,6 +9,7 @@ package com.unhurdle.spectrum
   import org.apache.royale.events.ValueEvent;
   import org.apache.royale.events.utils.EditingKeys;
   import org.apache.royale.events.utils.NavigationKeys;
+  import com.unhurdle.spectrum.utils.generateIcon;
 
   COMPILE::JS
   {}
@@ -181,11 +182,11 @@ package com.unhurdle.spectrum
     {
       if(value != _focused){
         //TOOD
-        toggle("is-focused",value);
+        // toggle("is-focused",value);
         if(value){
           focus();
           //TODO
-          toggle("is-keyboardFocused",false);
+          // toggle("is-keyboardFocused",false);
         }
       }
     	_focused = value;
@@ -202,11 +203,11 @@ package com.unhurdle.spectrum
     {
       if(value != _keyboardFocused){
         //TODO
-        toggle("is-keyboardFocused",value);
+        // toggle("is-keyboardFocused",value);
         if(value){
           focus();
           //TODO
-          toggle("is-focused",false);
+          // toggle("is-focused",false);
         }
       }
     	_keyboardFocused = value;
@@ -296,7 +297,7 @@ package com.unhurdle.spectrum
         _iconElement.selector = selector;
         setIconProps();
       } else {
-        _iconElement = new Icon(selector);
+        _iconElement = generateIcon(selector);
         setIconProps();
         addElementAt(_iconElement,0);
       }

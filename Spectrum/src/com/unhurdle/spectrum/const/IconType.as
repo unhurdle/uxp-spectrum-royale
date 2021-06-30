@@ -6,6 +6,7 @@ package com.unhurdle.spectrum.const
     public static const ALERT_SMALL:String = "AlertSmall"
     public static const ARROW_DOWN_SMALL:String = "ArrowDownSmall"
     public static const ARROW_LEFT_MEDIUM:String = "ArrowLeftMedium"
+    public static const ARROW_UP_SMALL:String = "ArrowUpSmall"
     public static const ASTERISK:String = "Asterisk"
     public static const CHECKMARK_MEDIUM:String = "CheckmarkMedium"
     public static const CHECKMARK_SMALL:String = "CheckmarkSmall"
@@ -29,18 +30,64 @@ package com.unhurdle.spectrum.const
     public static const INFO_MEDIUM:String = "InfoMedium"
     public static const INFO_SMALL:String = "InfoSmall"
     public static const MAGNIFIER:String = "Magnifier"
+    public static const MORE:String = "More"
     public static const SKIP_LEFT:String = "SkipLeft"
     public static const SKIP_RIGHT:String = "SkipRight"
     public static const STAR:String = "Star"
     public static const STAR_OUTLINE:String = "StarOutline"
     public static const SUCCESS_MEDIUM:String = "SuccessMedium"
     public static const SUCCESS_SMALL:String = "SuccessSmall"
-    public static const TRIPLE_GRIPPER:String = "TripleGripper"      
-    public static const VIEW_LIST:String = "viewList"      
-    public static const VIEW_GRID:String = "viewGrid"      
-    public static const VIEW_CARD:String = "viewCard"      
-    public static const EDIT:String = "viewCard"      
-    public static const COPY:String = "viewCard"      
-    public static const DELETE:String = "viewCard"      
+    public static const TRIPLE_GRIPPER:String = "TripleGripper"
+
+    public static function hasType(value:String):Boolean{
+      switch(value){
+        case "AlertMedium":
+        case "AlertSmall":
+        case "ArrowDownSmall":
+        case "ArrowLeftMedium":
+        case "ArrowUpSmall":
+        case "Asterisk":
+        case "CheckmarkMedium":
+        case "CheckmarkSmall":
+        case "ChevronDownMedium":
+        case "ChevronDownSmall":
+        case "ChevronLeftLarge":
+        case "ChevronLeftMedium":
+        case "ChevronRightLarge":
+        case "ChevronRightMedium":
+        case "ChevronRightSmall":
+        case "ChevronUpSmall":
+        case "CornerTriangle":
+        case "CrossLarge":
+        case "CrossMedium":
+        case "CrossSmall":
+        case "DashSmall":
+        case "DoubleGripper":
+        case "FolderBreadcrumb":
+        case "HelpMedium":
+        case "HelpSmall":
+        case "InfoMedium":
+        case "InfoSmall":
+        case "Magnifier":
+        case "More":
+        case "SkipLeft":
+        case "SkipRight":
+        case "Star":
+        case "StarOutline":
+        case "SuccessMedium":
+        case "SuccessSmall":
+        case "TripleGripper":
+          return true;
+        default:
+          return false;
+      }
+
+    }
+    // public static const VIEW_LIST:String = "viewList"
+    // public static const VIEW_GRID:String = "viewGrid"
+    // public static const VIEW_CARD:String = "viewCard"
+    // public static const EDIT:String = "viewCard"
+    // public static const COPY:String = "viewCard"
+    // public static const DELETE:String = "viewCard"
   }
 }

@@ -4,6 +4,7 @@ package com.unhurdle.spectrum
   import org.apache.royale.events.Event;
   import org.apache.royale.utils.css.addDynamicSelector;
   import com.unhurdle.spectrum.Button;
+  import com.unhurdle.spectrum.utils.generateIcon;
   
   COMPILE::JS
   {
@@ -222,13 +223,13 @@ package com.unhurdle.spectrum
       }
       var sizedType:String = type + "Medium";
       var iconClass:String = appendSelector("-typeIcon");
-      var useSelector:String = Icon.getCSSTypeSelector(sizedType);
+      var useSelector:String = sizedType;//Icon.getCSSTypeSelector(sizedType);
       if(icon){
         icon.type = sizedType;
         icon.toggle(iconClass,true);
         icon.selector = useSelector;
       } else {
-        icon = new Icon(useSelector);
+        icon = generateIcon(useSelector);
         icon.type = sizedType;
         icon.toggle(iconClass,true);
         COMPILE::JS{

@@ -6,6 +6,7 @@ package com.unhurdle.spectrum
 	import com.unhurdle.spectrum.const.IconPrefix;
 	import org.apache.royale.events.Event;
 	import com.unhurdle.spectrum.includes.ActionButtonInclude;
+	import com.unhurdle.spectrum.utils.generateIcon;
 
 	public class CycleButton extends SpectrumBase
 	{
@@ -36,12 +37,12 @@ package com.unhurdle.spectrum
 		override protected function createElement():WrappedHTMLElement{
 			var elem:WrappedHTMLElement = super.createElement();
 			// var type:String =
-			playIcon = new Icon(IconPrefix._18 + "PlayCircle");
+			playIcon = generateIcon(IconPrefix._18 + "PlayCircle");
 			playIcon.className = appendSelector("-item");
 			playIcon.toggle("is-selected",true);
 			_paused = false;
 			addElement(playIcon);
-			pauseIcon = new Icon(IconPrefix._18 + "PauseCircle");
+			pauseIcon = generateIcon(IconPrefix._18 + "PauseCircle");
 			pauseIcon.className = appendSelector("-item");
 			addElement(pauseIcon);
 			element.onclick = handleClick;

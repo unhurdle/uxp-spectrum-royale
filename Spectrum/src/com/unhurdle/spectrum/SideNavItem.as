@@ -3,6 +3,7 @@ package com.unhurdle.spectrum
   COMPILE::JS
   {}
   import com.unhurdle.spectrum.includes.SideNavInclude;
+  import com.unhurdle.spectrum.utils.generateIcon;
 
   public class SideNavItem extends Group
   {
@@ -103,7 +104,7 @@ package com.unhurdle.spectrum
     {
       if(value && !value != !_icon){
         var type:String = value;
-        var iconElement:Icon = new Icon(Icon.getCSSTypeSelector(type));
+        var iconElement:Icon = generateIcon(type);
         iconElement.type = type;
         iconElement.toggle(SideNavInclude.getSelector() + "-itemIcon",true);
         COMPILE::JS{

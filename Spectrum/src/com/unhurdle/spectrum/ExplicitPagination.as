@@ -6,6 +6,7 @@ package com.unhurdle.spectrum
 	import com.unhurdle.spectrum.const.IconType;
 	import com.unhurdle.spectrum.includes.ActionButtonInclude;
 	import com.unhurdle.spectrum.includes.ActionButtonInclude;
+	import com.unhurdle.spectrum.utils.generateIcon;
 	public class ExplicitPagination extends SpectrumBase
 	{
 		public function ExplicitPagination()
@@ -36,7 +37,7 @@ package com.unhurdle.spectrum
 			prev.classList.toggle(appendSelector("-prevButton"),true);
 			prev.classList.toggle(ActionButtonInclude.getSelector() + "--quiet",true);
 			var prevType:String = IconType.CHEVRON_LEFT_MEDIUM;
-			var prevCheckIcon:Icon = new Icon(Icon.getCSSTypeSelector(prevType));
+			var prevCheckIcon:Icon = generateIcon(prevType);
 			prevCheckIcon.type = prevType;
 			prev.appendChild(prevCheckIcon.element);
 			prev.addEventListener("click",prevPage);
@@ -53,7 +54,7 @@ package com.unhurdle.spectrum
 			next.classList.toggle(appendSelector("-nextButton"),true);
 			next.classList.toggle(ActionButtonInclude.getSelector() + "--quiet",true);
 			var nextType:String = IconType.CHEVRON_RIGHT_MEDIUM;
-			var nextCheckIcon:Icon = new Icon(Icon.getCSSTypeSelector(nextType));
+			var nextCheckIcon:Icon = generateIcon(nextType);
 			nextCheckIcon.type = nextType;
 			next.appendChild(nextCheckIcon.element);
 			next.addEventListener("click",nextPage);

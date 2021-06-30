@@ -7,6 +7,7 @@ package com.unhurdle.spectrum
   import org.apache.royale.events.KeyboardEvent;
   import org.apache.royale.html.beads.plugin.ModalDisplay;
   import com.unhurdle.spectrum.Icon;
+  import com.unhurdle.spectrum.utils.generateIcon;
   
   public class Alert extends SpectrumBase
   {
@@ -147,13 +148,13 @@ package com.unhurdle.spectrum
       }
       var sizedType:String = type + "Medium";
       var iconClass:String = appendSelector("-icon");
-      var selector:String = Icon.getCSSTypeSelector(sizedType);
+      var selector:String = sizedType//Icon.getCSSTypeSelector(sizedType);
       if(icon){
         icon.type = sizedType;
         icon.className = iconClass;
         icon.selector = selector;
       } else {
-        icon = new Icon(selector);
+        icon = generateIcon(selector);
         icon.type = sizedType;
         icon.className = iconClass;
         addElementAt(icon,0);

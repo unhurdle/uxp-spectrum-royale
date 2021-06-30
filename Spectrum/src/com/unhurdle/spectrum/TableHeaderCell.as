@@ -4,6 +4,7 @@ package com.unhurdle.spectrum
   {
     import org.apache.royale.core.WrappedHTMLElement;
   }
+  import com.unhurdle.spectrum.utils.generateIcon;
   public class TableHeaderCell extends TableCell
   {
    
@@ -32,7 +33,7 @@ package com.unhurdle.spectrum
       if(value != _sortable){
       if(value && !icon){
         var type:String = "ArrowDownSmall";
-        icon = new Icon(Icon.getCSSTypeSelector(type));
+        icon = generateIcon(type);
         icon.type = type;
         icon.className = "spectrum-Table-sortedIcon";
         addElement(icon);

@@ -5,6 +5,7 @@ package com.unhurdle.spectrum
     import org.apache.royale.core.WrappedHTMLElement;
   }
   import org.apache.royale.events.Event;
+  import com.unhurdle.spectrum.utils.generateIcon;
 
   public class Tab extends SpectrumBase
   {
@@ -50,7 +51,7 @@ package com.unhurdle.spectrum
         iconElement.selector = value;
         iconElement.size = 'S';
       } else {
-        iconElement = new Icon(value);
+        iconElement = generateIcon(value);
         iconElement.size = 'S';
         addElementAt(iconElement,0);
       }

@@ -68,7 +68,7 @@ package com.unhurdle.spectrum
       path = new Path();
       path.d = "M6 12h4v4H6zm6 0h4v4h-4zm6 0h4v4h-4zm6 0h4v4h-4zM6 18h4v4H6zm6 0h4v4h-4zm6 0h4v4h-4zm6 0h4v4h-4zM6 24h4v4H6zm6 0h4v4h-4zm6 0h4v4h-4zm6 0h4v4h-4z";
       svgElement.addElement(path);
-      button.iconElement = svgElement;
+      // button.iconElement = svgElement;
       addElement(input);
       addElement(button);
       element.appendChild(datePicker); 

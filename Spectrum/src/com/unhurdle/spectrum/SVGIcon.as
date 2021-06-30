@@ -9,7 +9,7 @@ package com.unhurdle.spectrum
   {
     public function SVGIcon()
     {
-      super();
+      super("");
     }
     /**
      * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement

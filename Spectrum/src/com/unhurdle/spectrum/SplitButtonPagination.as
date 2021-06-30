@@ -4,6 +4,7 @@ package com.unhurdle.spectrum
     import org.apache.royale.core.WrappedHTMLElement;
   }
   import com.unhurdle.spectrum.const.IconType;
+  import com.unhurdle.spectrum.utils.generateIcon;
   public class SplitButtonPagination extends SpectrumBase
   {
     //TODO this does not import the CSS
@@ -35,7 +36,7 @@ package com.unhurdle.spectrum
       var buttonBase:String = "spectrum-Button";
       trigger = newElement("a", buttonBase + " " + appendSelector("-trigger")) as HTMLLinkElement
       var triggerType:String = IconType.CHEVRON_LEFT_MEDIUM;
-      var triggerCheckIcon:Icon = new Icon(Icon.getCSSTypeSelector(triggerType));
+      var triggerCheckIcon:Icon = generateIcon(triggerType);
       triggerCheckIcon.type = triggerType;
       trigger.appendChild(triggerCheckIcon.element);
       trigger.addEventListener("click",prevPage);
@@ -46,7 +47,7 @@ package com.unhurdle.spectrum
       label.text ="Next";
       action.appendChild(label.element);
       var actionType:String = IconType.CHEVRON_RIGHT_MEDIUM;
-      var actionCheckIcon:Icon = new Icon(Icon.getCSSTypeSelector(actionType));
+      var actionCheckIcon:Icon = generateIcon(actionType);
       actionCheckIcon.type = actionType;
       actionCheckIcon.className = appendSelector("-ChevronRightMedium");
       action.appendChild(actionCheckIcon.element);

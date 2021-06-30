@@ -7,6 +7,7 @@ package com.unhurdle.spectrum.renderers
   import com.unhurdle.spectrum.Icon;
   import org.apache.royale.html.util.getLabelFromData;
   // import org.apache.royale.events.Event;
+  import com.unhurdle.spectrum.utils.generateIcon;
 
   COMPILE::JS
   {
@@ -36,7 +37,7 @@ package com.unhurdle.spectrum.renderers
       }
       if(dropdownItem.icon){
         if(!icon){
-          icon = new Icon(dropdownItem.icon);
+          icon = generateIcon(dropdownItem.icon);
           element.insertBefore(icon.element,element.childNodes[0] || null);
           icon.addedToParent();
         } else {
@@ -75,7 +76,7 @@ package com.unhurdle.spectrum.renderers
       elem.appendChild(textNode.element);
 
       var type:String = IconType.CHECKMARK_MEDIUM;
-      var checkIcon:Icon = new Icon(IconPrefix.SPECTRUM_CSS_ICON + type);
+      var checkIcon:Icon = generateIcon(IconPrefix.SPECTRUM_CSS_ICON + type);
       checkIcon.type = type;
       checkIcon.className = appendSelector("-checkmark");
       addElement(checkIcon);

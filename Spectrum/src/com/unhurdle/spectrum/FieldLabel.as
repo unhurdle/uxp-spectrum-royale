@@ -2,6 +2,7 @@ package com.unhurdle.spectrum
 {
   import com.unhurdle.spectrum.const.IconType;
   import com.unhurdle.spectrum.includes.FieldLabelInclude;
+  import com.unhurdle.spectrum.utils.generateIcon;
 
   public class FieldLabel extends TextBase
   {
@@ -57,7 +58,7 @@ package com.unhurdle.spectrum
           }
         }
         var type:String = IconType.ASTERISK;
-        requiredIcon = new Icon(Icon.getCSSTypeSelector(type));
+        requiredIcon = generateIcon(type);
         requiredIcon.type = type;
         requiredIcon.className = appendSelector("-requiredIcon");
         addElement(requiredIcon);
