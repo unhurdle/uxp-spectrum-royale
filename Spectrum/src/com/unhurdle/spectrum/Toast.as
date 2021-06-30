@@ -96,7 +96,7 @@ package com.unhurdle.spectrum
     {
       if(!actionButton){
         actionButton = new Button();
-        actionButton.flavor = Button.OVER_BACKGROUND;
+        actionButton.variant = Button.OVER_BACKGROUND;
         actionButton.quiet = true;
         actionButton.addEventListener("click",onAction);
         body.appendChild((actionButton.element as HTMLElement));

@@ -7,7 +7,7 @@ package com.unhurdle.spectrum
       super();
       setAttribute("type","button");
     }
-    override public function set flavor(value:String):void{
+    override public function set variant(value:String):void{
       // no flavors. do nothing...
     }
 
@@ -18,12 +18,14 @@ package com.unhurdle.spectrum
 
     public function get labelClass():String
     {
-    	return textNode.className;
+      //TODO
+    	return ""//textNode.className;
     }
 
     public function set labelClass(value:String):void
     {
-    	textNode.className = value;
+      //TODO
+    	// textNode.className = value;
     }
 
     private var _placeholderText:String;
@@ -40,9 +42,11 @@ package com.unhurdle.spectrum
     {
       if(value){
         text = value;
-        textNode.element.classList.add("is-placeholder");
+        //TODO
+        // textNode.element.classList.add("is-placeholder");
       } else {
-        textNode.element.classList.remove("is-placeholder");
+        //TODO
+        // textNode.element.classList.remove("is-placeholder");
         if(_placeholderText && _placeholderText == text){
           text = "";
         }

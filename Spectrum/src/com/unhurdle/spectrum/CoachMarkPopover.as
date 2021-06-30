@@ -176,20 +176,20 @@ package com.unhurdle.spectrum
 							if(isTwoButtons){
 								skipTourButton = new Button();
 								skipTourButton.text = "Skip Tour";
-								skipTourButton.flavor = "secondary";
+								skipTourButton.variant = "secondary";
 								skipTourButton.quiet = true;
 								skipTourButton.addEventListener("click",skipTourPage);
 								footer.appendChild(skipTourButton.element);
 								nextButton = new Button();
 								nextButton.text = "Next";
-								nextButton.flavor = "primary";
+								nextButton.variant = "primary";
 								nextButton.addEventListener("click",nextPage);
 								footer.appendChild(nextButton.element);
 							}
 							if(okButton){
 								if(!okButtonElement){
 									okButtonElement = new Button();
-									okButtonElement.flavor = "primary";
+									okButtonElement.variant = "primary";
 									footer.appendChild(okButtonElement.element);
 									okButtonElement.addedToParent();
 								}
