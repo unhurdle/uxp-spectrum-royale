@@ -7,7 +7,7 @@ package com.unhurdle.spectrum
       super();
       setAttribute("type","button");
     }
-    override public function set variant(value:String):void{
+    override public function set flavor(value:String):void{
       // no flavors. do nothing...
     }
 

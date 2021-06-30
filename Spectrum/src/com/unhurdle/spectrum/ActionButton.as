@@ -33,7 +33,7 @@ package com.unhurdle.spectrum
       return "sp-action-button";
     }
 
-    override public function set variant(value:String):void{
+    override public function set flavor(value:String):void{
       // do nothing
     }
 

@@ -62,8 +62,8 @@ package com.unhurdle.spectrum
           default:
               throw new Error("Invalid type: " + value);
         }
-        actionButton.variant = value;
-        triggerButton.variant = value;
+        actionButton.flavor = value;
+        triggerButton.flavor = value;
         _type = value;
       }
     }

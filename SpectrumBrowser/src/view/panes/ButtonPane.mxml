@@ -22,8 +22,8 @@
   <comp:Variant header="CTA"
     notes="The call to action button communicates strong emphasis and is reserved for encouraging critical actions.">
     <sp:ButtonGroup>
-      <sp:Button variant="cta" text="Button"/>
-      <sp:Button variant="cta" text="Button" disabled="true"/>
+      <sp:Button flavor="cta" text="Button"/>
+      <sp:Button flavor="cta" text="Button" disabled="true"/>
     </sp:ButtonGroup>
   </comp:Variant>
   <comp:Markup>
@@ -59,13 +59,13 @@
  
    <comp:Variant header="Primary" notes="The primary button is used for medium emphasis.">
     <sp:ButtonGroup>
-      <sp:Button variant="primary" text="Button"/>
-      <sp:Button variant="primary" text="Button" disabled="true"/>
+      <sp:Button flavor="primary" text="Button"/>
+      <sp:Button flavor="primary" text="Button" disabled="true"/>
     </sp:ButtonGroup>
     <Br/>
     <sp:ButtonGroup>
-      <sp:Button variant="primary" text="Edit" icon="{IconPrefix._18 + 'Edit'}"/>
-      <sp:Button variant="primary" text="Edit" icon="{IconPrefix._18 + 'Edit'}" disabled="true"/>
+      <sp:Button flavor="primary" text="Edit" icon="{IconPrefix._18 + 'Edit'}"/>
+      <sp:Button flavor="primary" text="Edit" icon="{IconPrefix._18 + 'Edit'}" disabled="true"/>
     </sp:ButtonGroup>
   </comp:Variant>
   <comp:Markup>
@@ -74,8 +74,8 @@
 
   <comp:Variant header="Primary (quiet)">
     <sp:ButtonGroup>
-      <sp:Button variant="primary" text="Button" quiet="true"/>
-      <sp:Button variant="primary" text="Button" quiet="true" disabled="true"/>
+      <sp:Button flavor="primary" text="Button" quiet="true"/>
+      <sp:Button flavor="primary" text="Button" quiet="true" disabled="true"/>
     </sp:ButtonGroup>
   </comp:Variant>
   <comp:Markup>
@@ -86,8 +86,8 @@
 
   <comp:Variant header="Secondary" notes="The secondary button is for low emphasis.">
   <sp:ButtonGroup>
-      <sp:Button variant="secondary" text="Button"/>
-      <sp:Button variant="secondary" text="Button" disabled="true"/>
+      <sp:Button flavor="secondary" text="Button"/>
+      <sp:Button flavor="secondary" text="Button" disabled="true"/>
     </sp:ButtonGroup>
   </comp:Variant>
   <comp:Markup>
@@ -98,8 +98,8 @@
 
   <comp:Variant header="Secondary (quiet)">
     <sp:ButtonGroup>
-      <sp:Button variant="secondary" text="Button" quiet="true"/>
-      <sp:Button variant="secondary" text="Button" quiet="true" disabled="true"/>
+      <sp:Button flavor="secondary" text="Button" quiet="true"/>
+      <sp:Button flavor="secondary" text="Button" quiet="true" disabled="true"/>
     </sp:ButtonGroup>
   </comp:Variant>
   <comp:Markup>
@@ -111,8 +111,8 @@
 
   <comp:Variant header="Warning" notes="The negative button is for high emphasis of negative or destructive actions.">
     <sp:ButtonGroup>
-      <sp:Button variant="warning" text="Button"/>
-      <sp:Button variant="warning" text="Button" disabled="true"/>
+      <sp:Button flavor="warning" text="Button"/>
+      <sp:Button flavor="warning" text="Button" disabled="true"/>
     </sp:ButtonGroup>
   </comp:Variant>
   <comp:Markup>
@@ -123,8 +123,8 @@
 
   <comp:Variant header="Warning (quiet)">
     <sp:ButtonGroup>
-      <sp:Button variant="warning" text="Button" quiet="true"/>
-      <sp:Button variant="warning" text="Button" quiet="true" disabled="true"/>
+      <sp:Button flavor="warning" text="Button" quiet="true"/>
+      <sp:Button flavor="warning" text="Button" quiet="true" disabled="true"/>
     </sp:ButtonGroup>
   </comp:Variant>
   <comp:Markup>

@@ -386,7 +386,7 @@ package com.unhurdle.spectrum.colorpicker
 				}
 				if(!applyButton){
 					applyButton = new Button();
-					applyButton.variant = "cta";
+					applyButton.flavor = "cta";
 					applyButton.addEventListener("click",applyClicked);
 					footerGroup.addElement(applyButton);
 				}

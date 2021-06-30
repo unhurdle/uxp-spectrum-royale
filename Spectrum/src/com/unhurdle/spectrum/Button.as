@@ -20,7 +20,7 @@ package com.unhurdle.spectrum
     public function Button()
     {
       super();
-      variant = "primary";
+      flavor = "primary";
       _text = "";
       _tabFocusable = true;
     }
@@ -149,20 +149,20 @@ package com.unhurdle.spectrum
       _iconElement.type = iconType;
     }
 
-    private var _variant:String;
+    private var _flavor:String;
 
-    public function get variant():String
+    public function get flavor():String
     {
     	return getAttribute("variant");//_variant;
     }
 
     [Inspectable(category="General", enumeration="cta,primary,secondary,warning,negative", defaultValue="primary")]
-    public function set variant(value:String):void
+    public function set flavor(value:String):void
     {
       if(!value){
         throw new Error("variant must have a value!");
       }
-      if(value != _variant){
+      if(value != _flavor){
         switch(value){
           case "cta":
           case "primary":
@@ -183,7 +183,7 @@ package com.unhurdle.spectrum
         setAttribute("variant",value);
         // toggle(newSelector,true);
       }
-    	_variant = value;
+    	_flavor = value;
     }
 
     private var _quiet:Boolean;
