@@ -1,5 +1,8 @@
 package com.unhurdle.spectrum
 {
+	//TODO
+	//*disabled
+	//*small
 	COMPILE::JS{
 		import org.apache.royale.core.WrappedHTMLElement;
 	}
@@ -14,14 +17,11 @@ package com.unhurdle.spectrum
 		{
 			super();
 		}
-		override protected function getSelector():String{
-			return "spectrum-ClearButton";
-		}
 
 		private var icon:Icon;
 		
 		override protected function getTag():String{
-			return "button";
+			return "sp-clearButton";
 		}
 		COMPILE::JS
 		override protected function createElement():WrappedHTMLElement{
@@ -48,6 +48,11 @@ package com.unhurdle.spectrum
 		{
 			if(value != !!_disabled){
 				button.disabled = value;
+				if(value){
+					setAttribute("disabled",true);
+				}else{
+					removeAttribute("disabled");
+				}
 			}
 			_disabled = value;
 		}
@@ -61,7 +66,14 @@ package com.unhurdle.spectrum
 		public function set small(value:Boolean):void
 		{
 			if(value != _small){
-				toggle(valueToSelector("small"),value);
+				// toggle(valueToSelector("small"),value);
+				if(value){
+					setAttribute("size","small");
+					// setAttribute("small",true);
+				}else{
+					removeAttribute("size");
+					// removeAttribute("small");
+				}
 				// it seems like both versions use the small x
 				// var type:String = value ? IconType.CROSS_SMALL : IconType.CROSS_MEDIUM;
 				// icon.selector = Icon.getCSSTypeSelector(type);
@@ -79,7 +91,12 @@ package com.unhurdle.spectrum
 
 		public function set overBackground(value:Boolean):void
 		{
-			toggle(valueToSelector("overBackground"),value);
+			// toggle(valueToSelector("overBackground"),value);
+			if(value){
+				setAttribute("overBackground",true);
+			}else{
+				removeAttribute("overBackground");
+			}
 			_overBackground = value;
 		}
 
