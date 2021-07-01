@@ -26,14 +26,17 @@
     <comp:StyledCode text='&lt;sp:Slider label="Slider Label - Disabled" value="14" max="20" min="10" step="2" displayValue="true" disabled="true" width="400"/&gt;'/>
   </comp:Markup>
 
-  <comp:Variant header="Filled" notes="With fill">
-    <sp:Slider filled="true" label="Slider Label" value="14" max="20" min="10" step="2" displayValue="true" width="400"/>
-    <sp:Slider filled="true" label="Slider Label - Disabled" value="14" max="20" min="10" step="2" disabled="true" displayValue="true" width="400"/>
+  <comp:Variant header="Filled" notes="Fills one side of the slider track.">
+    <sp:Slider filled="right" label="Slider Label" value="14" max="20" min="10" step="2" displayValue="true" width="400"/>
+    <sp:Slider filled="left" label="Slider Label" value="14" max="20" min="10" step="2" displayValue="true" width="400"/>
+    <sp:Slider filled="left" label="Slider Label - Disabled" value="14" max="20" min="10" step="2" disabled="true" displayValue="true" width="400"/>
   </comp:Variant>
   <comp:Markup>
-    <comp:StyledCode text='&lt;sp:Slider filled="true" label="Slider Label" value="14" max="20" min="10" step="2" displayValue="true" width="400"/&gt;'/>
+    <comp:StyledCode text='&lt;sp:Slider filled="right" label="Slider Label" value="14" max="20" min="10" step="2" displayValue="true" width="400"/&gt;'/>
     <Br/>
-    <comp:StyledCode text='&lt;sp:Slider filled="true" label="Slider Label - Disabled" value="14" max="20" min="10" step="2" disabled="true" displayValue="true" width="400"/&gt;'/>
+    <comp:StyledCode text='&lt;sp:Slider filled="left" label="Slider Label" value="14" max="20" min="10" step="2" displayValue="true" width="400"/&gt;'/>
+    <Br/>
+    <comp:StyledCode text='&lt;sp:Slider filled="left" label="Slider Label - Disabled" value="14" max="20" min="10" step="2" disabled="true" displayValue="true" width="400"/&gt;'/>
   </comp:Markup>
 
   <comp:Variant header="Filled-Offset" notes="With fill and offset">

@@ -1,5 +1,10 @@
 package com.unhurdle.spectrum
 {
+	//TODO
+	//* step
+	//* onMouseDown
+	//* onMouseUp
+
 	COMPILE::JS{}
 	import com.unhurdle.spectrum.includes.SliderInclude;
 	import org.apache.royale.events.MouseEvent;
@@ -13,16 +18,16 @@ package com.unhurdle.spectrum
 			super();
 		}
 		override protected function getSelector():String{
-			return SliderInclude.getSliderSelector();
+			return "";//SliderInclude.getSliderSelector();
 		}
 		override public function addedToParent():void{
 			super.addedToParent();
-			positionElements();
+			// positionElements();
 		}
 
-		protected function positionElements():void{
-			// override in sub-class
-		}
+		// protected function positionElements():void{
+		// 	// override in sub-class
+		// }
 
 		protected var input:HTMLInputElement;
 		protected var labelContainer:HTMLElement;
@@ -42,54 +47,60 @@ package com.unhurdle.spectrum
 		public function set disabled(value:Boolean):void
 		{
 			if(value != !!_disabled){
-				toggle("is-disabled",value);
-				enableDisableInput(value);
+				// toggle("is-disabled",value);
+				// enableDisableInput(value);
 				COMPILE::JS
 				{
 					if(value){
+						setAttribute("disabled",true);
 						element.addEventListener('mousedown', onMouseDown);
 					} else {
+						removeAttribute("disabled");
 						element.removeEventListener('mousedown', onMouseDown);
 					}
 				}
 			}
 			_disabled = value;
 		}
-		protected function enableDisableInput(value:Boolean):void{
+		// protected function enableDisableInput(value:Boolean):void{
 			// override in sub-class
-		}
+		// }
 
 		public function get step():Number
 		{
-			return Number(input.step);
+			return 0;//Number(input.step);
 		}
 
 		public function set step(value:Number):void
 		{
 			//TODO why is this a string?
-			input.step = "" + value;
+			// input.step = "" + value;
 		}
 		
 		public function get min():Number
 		{
-			return Number(input.min);
+			// return Number(input.min);
+			return getAttribute("min");
 		}
 
 		public function set min(value:Number):void
 		{
 			//TODO why is this a string?
-			input.min = "" + value;
+			// input.min = "" + value;
+			setAttribute("min",value);
 		}
 		
 		public function get max():Number
 		{
-			return Number(input.max);
+			// return Number(input.max);
+			return getAttribute("max");
 		}
 
 		public function set max(value:Number):void
 		{
 				//TODO why is this a string?
-				input.max = "" + value;
+				// input.max = "" + value;
+				setAttribute("max",value);
 		}
 
 		private var _displayValue:Boolean;
@@ -103,7 +114,12 @@ package com.unhurdle.spectrum
 		{
 			if(value != !!_displayValue){
 				_displayValue = value;
-				setLabel();
+				// setLabel();
+				if(value){
+					removeAttribute("show-value");
+				} else {
+					setAttribute("show-value",false);
+				}
 			}
 		}
 		private var _label:String;
@@ -122,32 +138,20 @@ package com.unhurdle.spectrum
 		private function setLabel():void{
 			COMPILE::JS
 			{
-				if(!labelContainer){
-					labelContainer = newElement("div",appendSelector("-labelContainer"));
-					element.insertBefore(labelContainer,controlsContainer || null);
-				}
 				if(_label && !labelNode){
-					labelNode = new TextNode("label");
-					labelNode.className = appendSelector("-label");
-					labelContainer.insertBefore(labelNode.element,labelContainer.childNodes[0] || null);
-				}
-				if(_displayValue && !valueNode){
-					valueNode = new TextNode("div");
-					valueNode.className = appendSelector("-value");
-					labelContainer.appendChild(valueNode.element);
+					labelNode = new TextNode("sp-label");
+					labelNode.setAttribute('slot','label');
+					element.appendChild(labelNode.element);
 				}
 			}
 			if(labelNode){
 				labelNode.text = _label;
-				if(valueNode){
-					valueNode.text = getValue();
-				}
 			}
 		}
-		protected function getValue():String{
-			// override in subclass
-			return "";
-		}		
+		// protected function getValue():String{
+		// 	// override in subclass
+		// 	return "";
+		// }
 
 		COMPILE::SWF
 		protected function onMouseDown():void {}
@@ -155,23 +159,25 @@ package com.unhurdle.spectrum
 		// Element interaction
 		COMPILE::JS
 		protected function onMouseDown(e:MouseEvent):void {
-			if(handle){
-				handle.classList.add("is-dragged");
-			}
-			onMouseMove(e);
-			window.addEventListener('mouseup', onMouseUp);
-			window.addEventListener('mousemove', onMouseMove);
+			//TODO
+			// if(handle){
+			// 	handle.classList.add("is-dragged");
+			// }
+			// onMouseMove(e);
+			// window.addEventListener('mouseup', onMouseUp);
+			// window.addEventListener('mousemove', onMouseMove);
 		}
 		COMPILE::SWF
 		protected function onMouseUp():void {}
 
 		COMPILE::JS
+		//TODO
 		protected function onMouseUp():void {
-			if(handle){
-				handle.classList.remove("is-dragged");
-			}
-			window.removeEventListener('mouseup', onMouseUp);
-			window.removeEventListener('mousemove', onMouseMove);
+			// if(handle){
+			// 	handle.classList.remove("is-dragged");
+			// }
+			// window.removeEventListener('mouseup', onMouseUp);
+			// window.removeEventListener('mousemove', onMouseMove);
 		}
 
 		protected function onMouseMove(e:MouseEvent):void {

@@ -1,5 +1,7 @@
 package com.unhurdle.spectrum
 {
+  //TODO
+  //didn't fix this at all
   COMPILE::JS{
     import org.apache.royale.core.WrappedHTMLElement;
   }
@@ -57,10 +59,10 @@ package com.unhurdle.spectrum
         secondInput.max = "" + value;
     }
     
-		override protected function enableDisableInput(value:Boolean):void{
-			input.disabled = value;
-      secondInput.disabled = value;
-		}
+		// override protected function enableDisableInput(value:Boolean):void{
+		// 	input.disabled = value;
+    //   secondInput.disabled = value;
+		// }
 
     COMPILE::JS
     override protected function createElement():WrappedHTMLElement{
@@ -108,27 +110,27 @@ package com.unhurdle.spectrum
     }
     override public function addedToParent():void{
 			super.addedToParent();
-			positionElements();
+			// positionElements();
     }
-     override protected function getValue():String{
-			// override in subclass
-      var startPercent:Number = parseFloat(leftHandle.style.left);
-      var endPercent:Number = parseFloat(rightHandle.style.left);
-			return "" + startPercent + " - " + endPercent;
-		}    
-    override protected function positionElements():void{
-				// var leftPercent:Number = this.leftValue / (max - min) * 100;
-				// leftHandle.style.left = leftPercent + "%";
+    //  override protected function getValue():String{
+		// 	// override in subclass
+    //   var startPercent:Number = parseFloat(leftHandle.style.left);
+    //   var endPercent:Number = parseFloat(rightHandle.style.left);
+		// 	return "" + startPercent + " - " + endPercent;
+		// }    
+    // override protected function positionElements():void{
+		// 		// var leftPercent:Number = this.leftValue / (max - min) * 100;
+		// 		// leftHandle.style.left = leftPercent + "%";
         
-				// var rightPercent:Number = this.rightValue / (secondMax - secondMin) * 100;
-				// rightHandle.style.left = rightPercent + "%";
-      var startPercent:Number = parseFloat(leftHandle.style.left);
-      var endPercent:Number = parseFloat(rightHandle.style.left);
-      leftTrack.style.width = startPercent + '%';
-      middleTrack.style.left = startPercent + '%';
-      middleTrack.style.right = (100 - endPercent) + '%';
-      rightTrack.style.width = (100 - endPercent) + '%';
-		}
+		// 		// var rightPercent:Number = this.rightValue / (secondMax - secondMin) * 100;
+		// 		// rightHandle.style.left = rightPercent + "%";
+    //   var startPercent:Number = parseFloat(leftHandle.style.left);
+    //   var endPercent:Number = parseFloat(rightHandle.style.left);
+    //   leftTrack.style.width = startPercent + '%';
+    //   middleTrack.style.left = startPercent + '%';
+    //   middleTrack.style.right = (100 - endPercent) + '%';
+    //   rightTrack.style.width = (100 - endPercent) + '%';
+		// }
 
     COMPILE::JS
     override protected function onMouseDown(e:MouseEvent):void{
@@ -167,12 +169,12 @@ package com.unhurdle.spectrum
         middleTrack.style.right = (100 - parseFloat(rightHandle.style.left)) + '%';
         input.value = middleTrack.style.left;
         secondInput.value = middleTrack.style.right;
-        if(parent){
-          positionElements();
-        }
-        if(valueNode){
-          valueNode.text = getValue();
-        }
+        // if(parent){
+          // positionElements();
+        // }
+        // if(valueNode){
+        //   valueNode.text = getValue();
+        // }
     }
   }
 }

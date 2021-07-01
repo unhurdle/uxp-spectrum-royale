@@ -1,5 +1,7 @@
 package com.unhurdle.spectrum
 {
+  //TODO
+  //didn't fix this at all
   COMPILE::JS{
     import org.apache.royale.core.WrappedHTMLElement;
   }
@@ -46,8 +48,8 @@ package com.unhurdle.spectrum
         return elem;
     }
     
-    override protected function positionElements():void{
-		}
+    // override protected function positionElements():void{
+		// }
 
     public function get value():Number
     {
@@ -58,18 +60,18 @@ package com.unhurdle.spectrum
     {      
 			input.value = "" + value;
 			if(parent){
-				positionElements();
+				// positionElements();
 			}
 			if(valueNode){
 				valueNode.text = "" + value;
 			}
     }
-    override protected function getValue():String{
-			return input.value;
-		}    
-		override protected function enableDisableInput(value:Boolean):void{
-			input.disabled = value;
-		}
+    // override protected function getValue():String{
+		// 	return input.value;
+		// }    
+		// override protected function enableDisableInput(value:Boolean):void{
+		// 	input.disabled = value;
+		// }
     COMPILE::JS
     override protected function onMouseMove(e:MouseEvent):void {
       if(disabled){

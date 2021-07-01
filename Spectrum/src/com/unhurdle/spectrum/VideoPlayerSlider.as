@@ -1,5 +1,7 @@
 package com.unhurdle.spectrum
 {
+  //TODO
+  //didn't fix this at all
   COMPILE::JS{
     import org.apache.royale.core.WrappedHTMLElement;
   }
@@ -69,23 +71,23 @@ package com.unhurdle.spectrum
 			//TODO why is this a string?
 			input.value = "" + value;
 			if(parent){
-				positionElements();
+				// positionElements();
 			}
 			if(valueNode){
 				valueNode.text = "" + value;
 			}
     }
-    override protected function getValue():String{
-			return input.value;
-		}
-    override protected function positionElements():void{
-        var percent:Number = this.value / (max - min) * 100;
-        handle.style.left = percent + "%";
-      if (leftTrack && rightTrack) {
-        leftTrack.style.width = percent + '%';
-        rightTrack.style.width = (100 - percent) + '%';
-      }
-    }
+    // override protected function getValue():String{
+		// 	return input.value;
+		// }
+    // override protected function positionElements():void{
+    //     var percent:Number = this.value / (max - min) * 100;
+    //     handle.style.left = percent + "%";
+    //   if (leftTrack && rightTrack) {
+    //     leftTrack.style.width = percent + '%';
+    //     rightTrack.style.width = (100 - percent) + '%';
+    //   }
+    // }
     COMPILE::JS
     override protected function onMouseMove(e:MouseEvent):void {
       var sliderOffsetWidth:Number = element.offsetWidth;
