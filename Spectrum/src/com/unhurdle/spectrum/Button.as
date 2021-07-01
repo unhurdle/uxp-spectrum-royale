@@ -32,11 +32,6 @@ package com.unhurdle.spectrum
     public static const WARNING:String = "warning";
     public static const OVER_BACKGROUND:String = "overBackground";
 
-    override protected function getSelector():String{
-      return "";//spectrum-Button
-    }
-
-
     private var _text:String;
 
     public function get text():String
@@ -157,7 +152,7 @@ package com.unhurdle.spectrum
     	return getAttribute("variant");//_variant;
     }
 
-    [Inspectable(category="General", enumeration="cta,primary,secondary,warning,negative", defaultValue="primary")]
+    [Inspectable(category="General", enumeration="cta,primary,secondary,warning,negative,overBackground", defaultValue="primary")]
     public function set flavor(value:String):void
     {
       if(!value){
@@ -170,7 +165,7 @@ package com.unhurdle.spectrum
           case "secondary":
           case "warning":
           case "negative":
-          // case "overBackground":
+          case "overBackground":
             break;
           default:
             throw new Error("Unexpected variant: " + value);

@@ -11,14 +11,11 @@ package com.unhurdle.spectrum
       super();
 			type = "and";
     }
-    override protected function getSelector():String{
-      return "spectrum-LogicButton";
-    }
     
 		private var textNode:TextNode;
 		
 		override protected function getTag():String{
-			return "button";
+			return "sp-button";
 		}
 		COMPILE::JS
     override protected function createElement():WrappedHTMLElement{
@@ -58,10 +55,12 @@ package com.unhurdle.spectrum
 							throw new Error("Invalid type: " + value);
 						}
 						if(_type){
-							toggle(valueToSelector(_type), false);
+							// toggle(valueToSelector(_type), false);
+							removeAttribute(_type);
 						}
 						if(value){
-							toggle(valueToSelector(value), true);
+							// toggle(valueToSelector(value), true);
+							setAttribute(value,true);
 						}
 						_type = value;
 				}
@@ -70,14 +69,19 @@ package com.unhurdle.spectrum
 
         public function get disabled():Boolean
         {
-        	return _disabled;
+        	return getAttribute("disabled");//_disabled;
         }
 
         public function set disabled(value:Boolean):void
         {
-            if(!!value != !!_disabled){
-              toggle("is-disabled",value);
-            }
+					if(!!value != !!_disabled){
+              // toggle("is-disabled",value);
+						if(value){
+							setAttribute("disabled",true);
+						}else{
+							removeAttribute("disabled");
+						}
+					}
         	_disabled = value;
         }
   }
