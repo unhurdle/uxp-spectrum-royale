@@ -4,7 +4,6 @@ package com.unhurdle.spectrum
   {
     import org.apache.royale.core.WrappedHTMLElement;
   }
-  import com.unhurdle.spectrum.const.IconPrefix;
   import com.unhurdle.spectrum.includes.IconInclude;
 
   public class Icon extends Group implements IAsset
@@ -14,6 +13,10 @@ package com.unhurdle.spectrum
       _selector = selector;
       super();
       size = "S";
+    }
+
+    override protected function getSelector():String{
+      return IconInclude.getSelector();
     }
 
     // public static function getCSSTypeSelector(type:String):String{
@@ -54,12 +57,12 @@ package com.unhurdle.spectrum
           throw new Error("invalid size: " + value);
       }
       if(_size){
-        // // toggle(valueToSelector("size" + _size),false);
+        toggle(valueToSelector("size" + _size),false);
         // removeAttribute("size"+_size);
       }
     	_size = value;
       //TODO
-      // // toggle(valueToSelector("size" + value),true);
+      toggle(valueToSelector("size" + value),true);
       // setAttribute("size"+_size,true);
     }
 
@@ -124,6 +127,7 @@ package com.unhurdle.spectrum
       elem.setAttribute('slot','icon');
       var svg:SVGElement = document.getElementById(selector.substring(1)) as SVGElement;
       var svgElem:SVGElement = newIconSVG("");
+      svgElem.className = IconInclude.getSelector();
       svgElem.setAttribute("viewBox",svg.getAttribute("viewBox"));
       for(var i:int=0;i<svg.children.length;i++){
         svgElem.appendChild(svg.children[i].cloneNode(true));
