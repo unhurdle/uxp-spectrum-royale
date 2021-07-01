@@ -1,5 +1,10 @@
 package com.unhurdle.spectrum
 {
+    //TODO
+    //* sideLabel
+    //* indeterminate
+    //* meter
+    //* valueSuffix
     
     COMPILE::JS{
         import org.apache.royale.core.WrappedHTMLElement;
@@ -20,7 +25,11 @@ package com.unhurdle.spectrum
         }
         
         override protected function getSelector():String{
-          return "spectrum-BarLoader";
+          return "";
+        }
+
+        override protected function getTag():String{
+            return "sp-progressbar";
         }
 
         private var _label:String;
@@ -104,30 +113,27 @@ package com.unhurdle.spectrum
             } else {
                 percent = 0;
             }
-            if(_meter){
-                if(percent < _warningThreshold){
-                    setColor("is-positive");
-                } else if(percent < _criticalThreshold){
-                    setColor("is-warning");
-                } else {
-                    setColor("is-critical");
-                }
-            } else {
-                // set it to the default
-                setColor("");
-            }
-            var percentStr:String = percent + "%";
-            valueNode.text = value + _valueSuffix;
-            fill.style.width = percentStr;
+            // if(_meter){
+            //     if(percent < _warningThreshold){
+            //         setColor("is-positive");
+            //     } else if(percent < _criticalThreshold){
+            //         setColor("is-warning");
+            //     } else {
+            //         setColor("is-critical");
+            //     }
+            // } else {
+            //     // set it to the default
+            //     setColor("");
+            // }
+            // var percentStr:String = percent + "%";
+            // valueNode.text = value + _valueSuffix;
+            // fill.style.width = percentStr;
             setAttribute("value",percent);
-            setAttribute("aria-valuenow",percent);
-            setAttribute("aria-valuemin",min);
-            setAttribute("aria-valuemax",max);
+            // setAttribute("aria-valuenow",percent);
+            setAttribute("min",min);
+            setAttribute("max",max);
         }
 
-        private var fill:HTMLElement;
-
-        private var valueNode:TextNode;
 
         private var labelNode:TextNode;
 
@@ -137,22 +143,10 @@ package com.unhurdle.spectrum
             elem.setAttribute("role","progressbar");
             
             var baseSelector:String = getSelector();
-            labelNode = new TextNode("div");
-            labelNode.className = baseSelector + "-label";
+            labelNode = new TextNode("sp-label");
+            labelNode.setAttribute('slot','label');
             labelNode.element.style.display = "none";
             elem.appendChild(labelNode.element);
-            valueNode = new TextNode("div");
-            valueNode.className = baseSelector + "-percentage";
-            elem.appendChild(valueNode.element);
-
-            var track:HTMLElement = newElement("div");
-            track.className = baseSelector + "-track";
-            track.style.flexGrow = 1;
-            fill = newElement("div");
-            fill.className = baseSelector + "-fill";
-            fill.style.width = value;
-            track.appendChild(fill);
-            elem.appendChild(track);
 
             return elem;
         }
@@ -193,21 +187,21 @@ package com.unhurdle.spectrum
         	_criticalThreshold = value;
         }
 
-        private var _color:String;
+        // private var _color:String;
 
 
-        private function setColor(value:String):void
-        {
-            if(value != _color){
-                if(_color){
-                    toggle(_color, false);
-                }
-                if(value){
-                    toggle(value, true);
-                }
-                _color = value;
-            }
-        }
+        // private function setColor(value:String):void
+        // {
+        //     if(value != _color){
+        //         if(_color){
+        //             toggle(_color, false);
+        //         }
+        //         if(value){
+        //             toggle(value, true);
+        //         }
+        //         _color = value;
+        //     }
+        // }
         private var _sideLabel:Boolean;
 
         public function get sideLabel():Boolean
@@ -218,7 +212,8 @@ package com.unhurdle.spectrum
         public function set sideLabel(value:Boolean):void
         {
             if(value != !!_sideLabel){
-                toggle(valueToSelector("sideLabel"),value);
+                //TODO
+                // toggle(valueToSelector("sideLabel"),value);
             }
             _sideLabel = value;
         }
@@ -232,7 +227,11 @@ package com.unhurdle.spectrum
         public function set small(value:Boolean):void
         {
             if(value != !!_small){
-                toggle(valueToSelector("small"),value);
+                if(value){
+                    setAttribute("size","small");
+                } else {
+                    removeAttribute("size");
+                }
             }
             _small = value;
         }
@@ -246,7 +245,11 @@ package com.unhurdle.spectrum
         public function set overBackground(value:Boolean):void
         {
             if(value != !!_overBackground){
-                toggle(valueToSelector("overBackground"),value);
+                if(value){
+                    setAttribute("variant","overBackground");
+                } else {
+                    removeAttribute("variant");
+                }
             }
             _overBackground = value;
         }
@@ -258,10 +261,10 @@ package com.unhurdle.spectrum
         public function set showPercentage(value:Boolean):void
         {
             if(value){
-                valueNode.element.style.display = "inherit";
+                removeAttribute("show-value");
             }
             else{
-                valueNode.element.style.display = "none";
+                setAttribute("show-value",false);
             }
         }
         private var _indeterminate:Boolean;
@@ -277,14 +280,39 @@ package com.unhurdle.spectrum
                 _indeterminate = value;
                 if(value){
                     // set the bar to defaults
-                    setColor("");
-                    valueNode.text = "";
-                    fill.style.width = "";
+                    // setColor("");
+                    // valueNode.text = "";
+                    // fill.style.width = "";
+                    setAttribute("indeterminate",true);
                 } else {
+                    removeAttribute("indeterminate");
                     calculatePosition();
                 }
-                toggle(valueToSelector("indeterminate"),value);
             }
         }
+//         <sp-detail>PROGRESS BAR</sp-detail>
+// <sp-progressbar max=100 value=50></sp-progressbar>
+// <br/><sp-detail>PROGRESS BAR W/ LABEL</sp-detail>
+// <sp-progressbar max=100 value=50>
+//     <sp-label slot="label">Uploading...</sp-label>
+// </sp-progressbar>
+// <br/><sp-detail>PROGRESS BAR W/ CUSTOM VALUE</sp-detail>
+// <sp-progressbar max=100 value=50 value-label="593KB">
+//     <sp-label slot="label">Uploading...</sp-label>
+// </sp-progressbar>
+// <br/><sp-detail>PROGRESS BAR W/O VALUE</sp-detail>
+// <sp-progressbar max=100 value=50 show-value="false">
+//     <sp-label slot="label">Uploading...</sp-label>
+// </sp-progressbar>
+// <br/><sp-detail>SMALL PROGRESS BAR</sp-detail>
+// <sp-progressbar max=100 value=50 size="small">
+//     <sp-label slot="label">Uploading...</sp-label>
+// </sp-progressbar>
+// <br/><sp-detail>OVER BACKGROUND</sp-detail>
+// <div style="background-color:#C08040; padding: 16px">
+//     <sp-progressbar variant="overBackground" max=100 value=50>
+//         <sp-label slot="label">Uploading...</sp-label>
+//     </sp-progressbar>
+// </div>
     }
 }
