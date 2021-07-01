@@ -7,12 +7,12 @@
       import com.unhurdle.spectrum.const.IconPrefix;
 [Bindable]public var primaryMarkup:String = 
 '<sp:ButtonGroup>\n'+
-'  <sp:Button variant="primary" text="Button"/>\n'+
-'  <sp:Button variant="primary" text="Button" disabled="true"/>\n'+
+'  <sp:Button flavor="primary" text="Button"/>\n'+
+'  <sp:Button flavor="primary" text="Button" disabled="true"/>\n'+
 '</sp:ButtonGroup>\n'+
 '<sp:ButtonGroup>\n'+
-'  <sp:Button variant="primary" text="Edit" icon="{IconPrefix._18 + \'Edit\'}"/>\n'+
-'  <sp:Button variant="primary" text="Edit" icon="{IconPrefix._18 + \'Edit\'}" disabled="true"/>\n'+
+'  <sp:Button flavor="primary" text="Edit" icon="{IconPrefix._18 + \'Edit\'}"/>\n'+
+'  <sp:Button flavor="primary" text="Edit" icon="{IconPrefix._18 + \'Edit\'}" disabled="true"/>\n'+
 '</sp:ButtonGroup>';
 
 
@@ -27,35 +27,35 @@
     </sp:ButtonGroup>
   </comp:Variant>
   <comp:Markup>
-    <comp:StyledCode text='&lt;sp:Button variant="cta" text="Button"/&gt;'/>
+    <comp:StyledCode text='&lt;sp:Button flavor="cta" text="Button"/&gt;'/>
     <Br/>
-    <comp:StyledCode text='&lt;sp:Button variant="cta" text="Button" disabled="true"/&gt;'/>
+    <comp:StyledCode text='&lt;sp:Button flavor="cta" text="Button" disabled="true"/&gt;'/>
   </comp:Markup>
 
-  <!-- <comp:Variant header="Over Background"
+  <comp:Variant header="Over Background"
     notes="When a button needs to be placed on top of a colored background or a visual, use the over background button. In order to implement this button, you must set the CSS color property of a parent element to the same value as the background the button is placed against. The Spectrum Royale components includes a 'Background' component which takes care of this.">
     <sp:Background color="rgb(15, 121, 125)" style="padding: 15px 20px; display: inline-block;">
-      <sp:Button variant="overBackground" text="Button"/>
-      <sp:Button variant="overBackground" text="Button" disabled="true"/>
+      <sp:Button flavor="overBackground" text="Button"/>
+      <sp:Button flavor="overBackground" text="Button" disabled="true"/>
     </sp:Background>
   </comp:Variant>
   <comp:Markup>
-    <comp:StyledCode text='&lt;sp:Button variant="overBackground" text="Button"/&gt;'/>
+    <comp:StyledCode text='&lt;sp:Button flavor="overBackground" text="Button"/&gt;'/>
     <Br/>
-    <comp:StyledCode text='&lt;sp:Button variant="overBackground" text="Button" disabled="true"/&gt;'/>
-  </comp:Markup> -->
+    <comp:StyledCode text='&lt;sp:Button flavor="overBackground" text="Button" disabled="true"/&gt;'/>
+  </comp:Markup>
 
-  <!-- <comp:Variant header="Over Background (quiet)">
+  <comp:Variant header="Over Background (quiet)">
     <sp:Background color="rgb(15, 121, 125)" style="padding: 15px 20px; display: inline-block;">
-      <sp:Button variant="overBackground" text="Button" quiet="true"/>
-      <sp:Button variant="overBackground" text="Button" quiet="true" disabled="true"/>
+      <sp:Button flavor="overBackground" text="Button" quiet="true"/>
+      <sp:Button flavor="overBackground" text="Button" quiet="true" disabled="true"/>
     </sp:Background>
   </comp:Variant>
   <comp:Markup>
-    <comp:StyledCode text='&lt;sp:Button variant="overBackground" text="Button" quiet="true"/&gt;'/>
+    <comp:StyledCode text='&lt;sp:Button flavor="overBackground" text="Button" quiet="true"/&gt;'/>
     <Br/>
-    <comp:StyledCode text='&lt;sp:Button variant="overBackground" text="Button" quiet="true" disabled="true"/&gt;'/>
-  </comp:Markup> -->
+    <comp:StyledCode text='&lt;sp:Button flavor="overBackground" text="Button" quiet="true" disabled="true"/&gt;'/>
+  </comp:Markup>
  
    <comp:Variant header="Primary" notes="The primary button is used for medium emphasis.">
     <sp:ButtonGroup>
@@ -79,9 +79,9 @@
     </sp:ButtonGroup>
   </comp:Variant>
   <comp:Markup>
-    <comp:StyledCode text='&lt;sp:Button variant="primary" text="Button" quiet="true"/&gt;'/>
+    <comp:StyledCode text='&lt;sp:Button flavor="primary" text="Button" quiet="true"/&gt;'/>
     <Br/>
-    <comp:StyledCode text='&lt;sp:Button variant="primary" text="Button" quiet="true" disabled="true"/&gt;'/>
+    <comp:StyledCode text='&lt;sp:Button flavor="primary" text="Button" quiet="true" disabled="true"/&gt;'/>
   </comp:Markup>
 
   <comp:Variant header="Secondary" notes="The secondary button is for low emphasis.">
@@ -91,9 +91,9 @@
     </sp:ButtonGroup>
   </comp:Variant>
   <comp:Markup>
-    <comp:StyledCode text='&lt;sp:Button variant="secondary" text="Button"/&gt;'/>
+    <comp:StyledCode text='&lt;sp:Button flavor="secondary" text="Button"/&gt;'/>
     <Br/>
-    <comp:StyledCode text='&lt;sp:Button variant="secondary" text="Button" disabled="true"/&gt;'/>
+    <comp:StyledCode text='&lt;sp:Button flavor="secondary" text="Button" disabled="true"/&gt;'/>
   </comp:Markup>
 
   <comp:Variant header="Secondary (quiet)">
@@ -103,9 +103,9 @@
     </sp:ButtonGroup>
   </comp:Variant>
   <comp:Markup>
-    <comp:StyledCode text='&lt;sp:Button variant="secondary" text="Button" quiet="true"/&gt;'/>
+    <comp:StyledCode text='&lt;sp:Button flavor="secondary" text="Button" quiet="true"/&gt;'/>
     <Br/>
-    <comp:StyledCode text='&lt;sp:Button variant="secondary" text="Button" quiet="true" disabled="true"/&gt;'/>
+    <comp:StyledCode text='&lt;sp:Button flavor="secondary" text="Button" quiet="true" disabled="true"/&gt;'/>
   </comp:Markup>
 
 
@@ -116,9 +116,9 @@
     </sp:ButtonGroup>
   </comp:Variant>
   <comp:Markup>
-    <comp:StyledCode text='&lt;sp:Button variant="warning" text="Button"/&gt;'/>
+    <comp:StyledCode text='&lt;sp:Button flavor="warning" text="Button"/&gt;'/>
     <Br/>
-    <comp:StyledCode text='&lt;sp:Button variant="warning" text="Button" disabled="true"/&gt;'/>
+    <comp:StyledCode text='&lt;sp:Button flavor="warning" text="Button" disabled="true"/&gt;'/>
   </comp:Markup>
 
   <comp:Variant header="Warning (quiet)">
@@ -128,9 +128,9 @@
     </sp:ButtonGroup>
   </comp:Variant>
   <comp:Markup>
-    <comp:StyledCode text='&lt;sp:Button variant="warning" text="Button" quiet="true"/&gt;'/>
+    <comp:StyledCode text='&lt;sp:Button flavor="warning" text="Button" quiet="true"/&gt;'/>
     <Br/>
-    <comp:StyledCode text='&lt;sp:Button variant="warning" text="Button" quiet="true" disabled="true"/&gt;'/>
+    <comp:StyledCode text='&lt;sp:Button flavor="warning" text="Button" quiet="true" disabled="true"/&gt;'/>
   </comp:Markup>
 
 </view:DemoPane>
