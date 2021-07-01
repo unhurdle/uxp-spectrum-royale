@@ -16,9 +16,6 @@ package com.unhurdle.spectrum
 		{
 			super();
 		}
-		override protected function getSelector():String{
-			return "";
-		}
 		override protected function getTag():String{
       return "sp-radio";
     }
@@ -124,17 +121,22 @@ package com.unhurdle.spectrum
 			}
 		}
 
-		private var _quiet:String;
-		public function get quiet():String
+		private var _quiet:Boolean;
+		public function get quiet():Boolean
 		{
 			return _quiet;
 		}
 
-		public function set quiet(value:String):void
+		public function set quiet(value:Boolean):void
 		{
-			if(_quiet != value){
 				//TODO
 				// toggle(valueToSelector("quiet"),value);
+			if(value != !!_quiet){
+				if(value){
+					setAttribute("quiet",true);
+				}else{
+					removeAttribute("quiet");
+				}
 			}
 			_quiet = value
 		}

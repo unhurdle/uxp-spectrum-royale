@@ -9,9 +9,6 @@ package com.unhurdle.spectrum
 		{
 			super();
 		}
-		override protected function getSelector():String{
-			return "";
-		}
 		override protected function getTag():String{
       return "sp-radio-group";
     }

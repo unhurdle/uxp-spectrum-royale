@@ -22,10 +22,6 @@ package com.unhurdle.spectrum
     // public static function getUIIconSelector(type:String):String{
     //   return IconPrefix.SPECTRUM_UI_ICON + type;
     // }
-    
-    override protected function getSelector():String{
-      return "";//IconInclude.getSelector();
-    }
 
     private var _size:String;
 
@@ -57,12 +53,14 @@ package com.unhurdle.spectrum
       if(!validateSize(value)){
           throw new Error("invalid size: " + value);
       }
-      // if(_size){
-      //   toggle(valueToSelector("size" + _size),false);
-      // }
+      if(_size){
+        // // toggle(valueToSelector("size" + _size),false);
+        // removeAttribute("size"+_size);
+      }
     	_size = value;
       //TODO
-      // toggle(valueToSelector("size" + value),true);
+      // // toggle(valueToSelector("size" + value),true);
+      // setAttribute("size"+_size,true);
     }
 
     private var _type:String;
