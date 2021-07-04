@@ -149,7 +149,7 @@ package com.unhurdle.spectrum
 
     public function get flavor():String
     {
-    	return getAttribute("variant");//_variant;
+    	return _flavor;
     }
 
     [Inspectable(category="General", enumeration="cta,primary,secondary,warning,negative,overBackground", defaultValue="primary")]
@@ -186,7 +186,7 @@ package com.unhurdle.spectrum
 
     public function get quiet():Boolean
     {
-     	return getAttribute('quiet');//_quiet;
+     	return _quiet;
     }
 
     public function set quiet(value:Boolean):void
@@ -232,7 +232,7 @@ package com.unhurdle.spectrum
 
     public function get selected():Boolean
     {
-    	return getAttribute("selected");//_selected;
+    	return _selected;
     }
 
     // public function set selected(value:Boolean):void
@@ -282,7 +282,7 @@ package com.unhurdle.spectrum
 
     public function get keyboardFocused():Boolean
     {
-    	return getAttribute("focus-ring");//_keyboardFocused;
+    	return _keyboardFocused;
     }
 
     public function set keyboardFocused(value:Boolean):void

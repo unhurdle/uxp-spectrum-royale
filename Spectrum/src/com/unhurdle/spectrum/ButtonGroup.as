@@ -19,7 +19,7 @@ package com.unhurdle.spectrum
 
     public function get vertical():Boolean
     {
-    	return getAttribute("vertical");//_vertical;
+    	return _vertical;
     }
 
     public function set vertical(value:Boolean):void
@@ -40,7 +40,7 @@ package com.unhurdle.spectrum
      */
     public function get compact():Boolean
     {
-    	return getAttribute("compact");//_compact;
+    	return _compact;
     }
 
     public function set compact(value:Boolean):void
