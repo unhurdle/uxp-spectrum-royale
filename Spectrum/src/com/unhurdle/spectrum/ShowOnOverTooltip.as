@@ -1,5 +1,6 @@
 package com.unhurdle.spectrum
 {
+  //TODO this doesn't work!
   COMPILE::JS{
     import org.apache.royale.core.WrappedHTMLElement;
   }
@@ -20,13 +21,13 @@ package com.unhurdle.spectrum
     }
     COMPILE::JS
     override protected function createElement():WrappedHTMLElement{
-    super.createElement();
-    textNode = new TextNode("");
-    toolTip = new Tooltip();
-    style="margin: 15px 50px; cursor: default;";
-    addElement(toolTip);
-    textNode.element = element;
-    return element;
+      super.createElement();
+      textNode = new TextNode("");
+      toolTip = new Tooltip();
+      style = "margin: 15px 50px; cursor: default;";
+      addElement(toolTip);
+      textNode.element = element;
+      return element;
     }
 
     public function get visibleText():String

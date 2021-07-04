@@ -20,12 +20,12 @@ package com.unhurdle.spectrum
       // className = "spectrum-Tooltip--top";
       direction = "top";
     }
-    override protected function getSelector():String{
-      return "spectrum-Tooltip";
-    }
+    // override protected function getSelector():String{
+    //   return "spectrum-Tooltip";
+    // }
     private var span1:TextNode;
     override protected function getTag():String{
-      return "span";
+      return "sp-tooltip";
     }
     COMPILE::JS
     private var tipSpan:HTMLSpanElement;
@@ -39,11 +39,11 @@ package com.unhurdle.spectrum
       // direction = "top";
       span1 = new TextNode("");
       span1.element = newElement("span") as HTMLSpanElement;
-      span1.className = appendSelector("-label");
+      // span1.className = appendSelector("-label");
       element.appendChild(span1.element);
-      tipSpan = newElement("span") as HTMLSpanElement;
-      tipSpan.className = appendSelector("-tip");
-      element.appendChild(tipSpan);
+      // tipSpan = newElement("span") as HTMLSpanElement;
+      // tipSpan.className = appendSelector("-tip");
+      // element.appendChild(tipSpan);
       return element;
     }
     private var _text:String;
@@ -87,12 +87,13 @@ package com.unhurdle.spectrum
           default:
             throw new Error("Unknown flavor: " + value);
         }
-        if(_flavor){
-          var oldFlavor:String = valueToSelector(_flavor);
-          toggle(oldFlavor,false);
-        }
-        var newFlavor:String = valueToSelector(value);
-        toggle(newFlavor,true);
+        // if(_flavor){
+        //   var oldFlavor:String = valueToSelector(_flavor);
+        //   toggle(oldFlavor,false);
+        // }
+        // var newFlavor:String = valueToSelector(value);
+        // toggle(newFlavor,true);
+        setAttribute('variant',value);
       }
     	_flavor = value;
     }
@@ -160,16 +161,17 @@ package com.unhurdle.spectrum
     [Inspectable(category="General", enumeration="left,right,bottom,top" defaultValue="top")]
     public function set direction(value:String):void
     {
-      if(_direction){
-        toggle(getSelector()+"--"+_direction,false);
-      }
+      // if(_direction){
+      //   toggle(getSelector()+"--"+_direction,false);
+      // }
       if(value){
         switch(value){
           case "left":
           case "right":
           case "bottom":
           case "top":
-            toggle(getSelector()+"--"+value,true);
+            // toggle(getSelector()+"--"+value,true);
+            setAttribute('placement',value);
             break;
           default:
             throw new Error("Invalid direction: " + value);
@@ -243,7 +245,12 @@ package com.unhurdle.spectrum
     public function set isOpen(value:Boolean):void
     {
       if(value != !!_isOpen){
-        toggle("is-open",value);
+        // toggle("is-open",value);
+        if(value){
+          setAttribute('open',true);
+        } else {
+          removeAttribute('open');
+        }
       }
     	_isOpen = value;
     }
