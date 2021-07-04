@@ -1,5 +1,11 @@
 package com.unhurdle.spectrum.typography
 {
+
+  // TODO
+  //*italic
+  //*serif
+  //*secondary
+
   public class Typography extends TypographyBase
   {
     public static const STRONG:String = "strong;"
@@ -10,20 +16,18 @@ package com.unhurdle.spectrum.typography
     {
       super();
     }
-    protected function getTypographySelector():String{
-      return "";
-    }
-    override protected function getSelector():String{
-      var retVal:String = '';
-      var suffix:Array = getSuffix();
-      if(!suffix.length){
-        return getTypographySelector();
-      }
-      for(var i:int =0;i<suffix.length;i++){
-        retVal += getTypographySelector() + suffix[i] + ' ';
-      }
-      return retVal.trim();
-    }
+    // override protected function getSelector():String{
+    //   // var retVal:String = '';
+    //   // var suffix:Array = getSuffix();
+    //   // if(!suffix.length){
+    //   //   return getTypographySelector();
+    //   // }
+    //   // for(var i:int =0;i<suffix.length;i++){
+    //   //   retVal += getTypographySelector() + suffix[i] + ' ';
+    //   // }
+    //   // return retVal.trim();
+    //   return "";
+    // }
     protected function getSuffix():Array{
       return [];
     }
@@ -78,11 +82,14 @@ package com.unhurdle.spectrum.typography
       if(!validateSize(value)){
           throw new Error("invalid size: " + value);
       }
-      if(_size){
-        toggle(valueToSelector(_size),false);
-      }
+      // if(_size){
+      //   // toggle(valueToSelector(_size),false);
+      //   removeAttribute(_size);
+      // }
     	_size = value;
-      toggle(valueToSelector(value),true);
+      // // toggle(valueToSelector(value),true);
+      // setAttribute(value,true);
+      setAttribute("size",value);
     }
 
     private var _italic:Boolean;
@@ -94,10 +101,15 @@ package com.unhurdle.spectrum.typography
 
     public function set italic(value:Boolean):void
     {
-        if(value != !!_italic){
-            toggle(valueToSelector("italic"),value);
-        }
-        _italic = value;
+      if(value != !!_italic){
+            // toggle(valueToSelector("italic"),value);
+				if(value){
+					setAttribute("italic",true);
+				}else{
+					removeAttribute("italic");
+				}
+      }
+      _italic = value;
     }
     private var _serif:Boolean;
 
@@ -109,7 +121,12 @@ package com.unhurdle.spectrum.typography
     public function set serif(value:Boolean):void
     {
       if(value != !!_serif){
-        toggle(valueToSelector("serif"),value);
+        // toggle(valueToSelector("serif"),value);
+				if(value){
+					setAttribute("serif",true);
+				}else{
+					removeAttribute("serif");
+				}
       }
       _serif = value;
     }
@@ -123,16 +140,14 @@ package com.unhurdle.spectrum.typography
     public function set secondary(value:Boolean):void
     {
       if(value != !!_secondary){
-        toggle(valueToSelector("secondary"),value);
+        // toggle(valueToSelector("secondary"),value);
+				if(value){
+					setAttribute("secondary",true);
+				}else{
+					removeAttribute("secondary");
+				}
       }
       _secondary = value;
-    }
-    protected function setTypeNames():void{
-      typeNames = getSelector();
-      COMPILE::JS
-      {
-        setClassName(computeFinalClassNames());
-      }
     }
 
   }

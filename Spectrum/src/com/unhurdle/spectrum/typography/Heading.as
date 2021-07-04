@@ -1,12 +1,22 @@
 package com.unhurdle.spectrum.typography
 {
 
+  // TODO
+  // *strong
+  //*heavy
+  //*light
+
   public class Heading extends Typography
   {
     public function Heading()
     {
       super();
     }
+
+    override protected function getTag():String{
+      return "sp-heading";
+    }
+
     // override protected function getSuffix():Array{
     //   var suffix:Array = [];
     //   if(size == 1 || size == 2){
@@ -104,10 +114,13 @@ package com.unhurdle.spectrum.typography
     public function set heavy(value:Boolean):void
     {
       if(value != !!_heavy){
-        toggle(valueToSelector("heavy"),value);
-      }
-      if(value){
-        light = false;
+        // toggle(valueToSelector("heavy"),value);
+        if(value){
+          light = false;
+          setAttribute("heavy",true);
+        }else{
+          removeAttribute("heavy");
+        }
       }
       _heavy = value;
     }
@@ -121,17 +134,15 @@ package com.unhurdle.spectrum.typography
     public function set light(value:Boolean):void
     {
       if(value != !!_light){
-        toggle(valueToSelector("light"),value);
+        // toggle(valueToSelector("light"),value);
       }
       if(value){
         heavy = false;
+        setAttribute("light",true);
+      }else{
+        removeAttribute("light");
       }
       _light = value;
     }
-
-    override protected function getTypographySelector():String{
-      return "spectrum-Heading";
-    }
-
   }
 }

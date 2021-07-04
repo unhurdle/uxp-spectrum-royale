@@ -6,9 +6,11 @@ package com.unhurdle.spectrum.typography
     {
       super();
     }
-    override protected function getTypographySelector():String{
-      return "spectrum-Body";
+
+    override protected function getTag():String{
+      return "sp-body";
     }
+
     override protected function getSizes():Array{
       return[
         "XS",

@@ -5,7 +5,8 @@ package com.unhurdle.spectrum.typography
   COMPILE::JS
   {
   }
-  
+  //TODO
+  //*light
 
   public class Detail extends Typography
   {
@@ -13,8 +14,9 @@ package com.unhurdle.spectrum.typography
     {
       super();
     }
-    override protected function getSelector():String{
-      return "spectrum-Detail";
+
+    override protected function getTag():String{
+      return "sp-detail";
     }
 
     override protected function getSizes():Array{
@@ -43,7 +45,12 @@ package com.unhurdle.spectrum.typography
     public function set light(value:Boolean):void
     {
       if(value != !!_light){
-        toggle(valueToSelector("light"),value);
+        // toggle(valueToSelector("light"),value);
+				if(value){
+					setAttribute("light",true);
+				}else{
+					removeAttribute("light");
+				}
       }
       _light = value;
     }
