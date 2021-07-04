@@ -18,6 +18,10 @@ package com.unhurdle.spectrum
 			super();
 		}
 
+		override protected function getSelector():String{
+			return "spectrum-ClearButton";
+		}
+
 		private var icon:Icon;
 		
 		override protected function getTag():String{
@@ -29,6 +33,7 @@ package com.unhurdle.spectrum
 			button.type = "reset";
 			var type:String = IconType.CROSS_SMALL;
 			icon = generateIcon(type);
+			icon.size = "xxs";
 			icon.type = type;
 			button.appendChild(icon.element);
 			button.onclick = function():void{
@@ -66,14 +71,14 @@ package com.unhurdle.spectrum
 		public function set small(value:Boolean):void
 		{
 			if(value != _small){
-				// toggle(valueToSelector("small"),value);
-				if(value){
-					setAttribute("size","small");
-					// setAttribute("small",true);
-				}else{
-					removeAttribute("size");
-					// removeAttribute("small");
-				}
+				toggle(valueToSelector("small"),value);
+				// if(value){
+				// 	setAttribute("size","small");
+				// 	// setAttribute("small",true);
+				// }else{
+				// 	removeAttribute("size");
+				// 	// removeAttribute("small");
+				// }
 				// it seems like both versions use the small x
 				// var type:String = value ? IconType.CROSS_SMALL : IconType.CROSS_MEDIUM;
 				// icon.selector = Icon.getCSSTypeSelector(type);
