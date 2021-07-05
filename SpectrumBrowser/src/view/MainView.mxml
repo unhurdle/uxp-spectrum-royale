@@ -13,6 +13,7 @@
         import view.panes.AccordionPane;
         import view.panes.ActionBarPane;
         import view.panes.ActionButtonPane;
+        import view.panes.ActionGroupPane;
         import view.panes.ActionMenuPane;
         import view.panes.AlertPane;
         import view.panes.AssetListPane;
@@ -31,12 +32,18 @@
         import view.panes.CircleLoaderPane;
         import view.panes.ClearButtonPane;
         import view.panes.CoachMarkPane;
+        import view.panes.ColorPickerPane;
+        import view.panes.ColorHandlePane;
+        import view.panes.ColorLoupePane;
+        import view.panes.ColorSliderPane;
+        import view.panes.ColorWheelPane;
         import view.panes.ComboboxPane;
         import view.panes.ComingSoonPane;
         import view.panes.CycleButtonPane;
         import view.panes.DatePickerPane;
         import view.panes.DialPane;
         import view.panes.DialogPane;
+        import view.panes.DividerPane;
         import view.panes.DropIndicatorPane;
         import view.panes.DropzonePane;
         import view.panes.FieldGroupPane;
@@ -53,6 +60,7 @@
         import view.panes.PaginationButtonStylePane;
         import view.panes.PaginationExplicitPane;
         import view.panes.PaginationPagePane;
+        import view.panes.PickerPane;
         import view.panes.PopoverPane;
         import view.panes.QuickActionsPane;
         import view.panes.RadioPane;
@@ -68,14 +76,20 @@
         import view.panes.StepperPane;
         import view.panes.SwitchPane;
         import view.panes.TabsPane;
+        import view.panes.TagFieldPane;
         import view.panes.TagsPane;
         import view.panes.TextFieldPane;
         import view.panes.TextareaPane;
+        import view.panes.ThumbnailPane;
         import view.panes.ToastPane;
         import view.panes.TooltipPane;
         import view.panes.TreeViewPane;
-        import view.panes.TypographyInternationalizedPane;
         import view.panes.TypographyPane;
+        import view.panes.TypographyInternationalizedPane;
+        import view.panes.TypographyHeadingPane;
+        import view.panes.TypographyDetailPane;
+        import view.panes.TypographyCodePane;
+        import view.panes.TypographyBodyPane;
         import view.panes.WellPane;
 
 
@@ -84,6 +98,7 @@
         new NavProvider("Accordion",AccordionPane,"accordion"),
         new NavProvider("Action Bar",ActionBarPane,"action_bar"),
         new NavProvider("Action Button",ActionButtonPane,"action_button"),
+        new NavProvider("Action Group",ActionGroupPane,"action_group"),
         new NavProvider("Action Menu",ActionMenuPane,"action_menu"),
         new NavProvider("Alert",AlertPane,"alert"),
         new NavProvider("Asset",AssetPane,"asset"),
@@ -103,11 +118,17 @@
         new NavProvider("Clear Button",ClearButtonPane,"clear_button"),
         new NavProvider("Coach Mark",CoachMarkPane,"coach_mark"),
         // new NavProvider("Color Area",ColorAreaPane,"color_area"),
+        new NavProvider("Color Picker",ColorPickerPane,"color_picker"),
+        new NavProvider("Color Handle",ColorHandlePane,"color_handle"),
+        new NavProvider("Color Loupe",ColorLoupePane,"color_loupe"),
+        new NavProvider("Color Slider",ColorSliderPane,"color_slider"),
+        new NavProvider("Color Wheel",ColorWheelPane,"color_wheel"),
         new NavProvider("Combobox",ComboboxPane,"combobox"),
         new NavProvider("Cycle Button",CycleButtonPane,"cycle_button"),
         new NavProvider("Date Picker",DatePickerPane,"date_picker"),
         new NavProvider("Dial",DialPane,"dial"),
         new NavProvider("Dialog",DialogPane,"dialog"),
+        new NavProvider("Divider",DividerPane,"divider"),
         // new NavProvider("Dropdown",DropdownPane,"dropdown"),
         new NavProvider("Drop Indicator",DropIndicatorPane,"drop_indicator"),
         new NavProvider("Dropzone",DropzonePane,"dropzone"),
@@ -125,6 +146,7 @@
         new NavProvider("Pagination - Button Style",PaginationButtonStylePane,"pagination_button_style"),
         new NavProvider("Pagination - Explicit",PaginationExplicitPane,"pagination_explicit"),
         new NavProvider("Pagination - Page",PaginationPagePane,"pagination_page"),
+        new NavProvider("Picker",PickerPane,"picker"),
         new NavProvider("Popover",PopoverPane,"popover"),
         new NavProvider("Quick Actions",QuickActionsPane,"quick_actions"),
         new NavProvider("Radio",RadioPane,"radio"),
@@ -142,16 +164,22 @@
         new NavProvider("Switch",SwitchPane,"switch"),
         new NavProvider("Table",ComingSoonPane,"table"),
         new NavProvider("Tabs",TabsPane,"tabs"),
+        new NavProvider("Tag Field",TagFieldPane,"tag_field"),
         new NavProvider("Tags",TagsPane,"tags"),
         new NavProvider("Text area",TextareaPane,"text_area"),
         new NavProvider("Text Field",TextFieldPane,"text_field"),
         // new NavProvider("Text Field - Decorated",TextFieldDecoratedPane,"text_field_decorated"),
+        new NavProvider("Thumbnail",ThumbnailPane,"thumbnail"),
         new NavProvider("Toast",ToastPane,"toast"),
         // new NavProvider("Tool",ToolPane,"tool"),
         new NavProvider("Tooltip",TooltipPane,"tooltip"),
         new NavProvider("Tree View",TreeViewPane,"tree_view"),
-        new NavProvider("Typography (Internationalized)",TypographyInternationalizedPane,"typography_internationalized"),
         new NavProvider("Typography",TypographyPane,"typography"),
+        new NavProvider("Typography (Internationalized)",TypographyInternationalizedPane,"typography_internationalized"),
+        new NavProvider("Typography Body",TypographyBodyPane,"typography_body"),
+        new NavProvider("Typography Code",TypographyCodePane,"typography_code"),
+        new NavProvider("Typography Detail",TypographyDetailPane,"typography_cetail"),
+        new NavProvider("Typography Heading",TypographyHeadingPane,"typography_heading"),
         new NavProvider("Well",WellPane,"well")
       ];
 
