@@ -61,6 +61,7 @@ package com.unhurdle.spectrum
         requiredIcon = generateIcon(type);
         requiredIcon.type = type;
         requiredIcon.className = appendSelector("-requiredIcon");
+        requiredIcon.size = "XXS";
         addElement(requiredIcon);
       } else if(requiredIcon){
         requiredIcon.visible = value;
