@@ -13,9 +13,9 @@ package com.unhurdle.spectrum.typography
       super();
       typeNames = "";
     }
-    override protected function getSelector():String{
-      return getTypographySelector() + "--subtitle";
-    }
+    // override protected function getSelector():String{
+    //   return getTypographySelector() + "--subtitle";
+    // }
     override public function validateSize(value:String):Boolean{
       var numVal:Number = Number(value);
       if(!isNaN(numVal) && numVal<=3 && numVal>=1){

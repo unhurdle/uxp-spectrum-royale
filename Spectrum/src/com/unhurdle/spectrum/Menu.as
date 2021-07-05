@@ -16,6 +16,9 @@ package com.unhurdle.spectrum
     {
       super();
     }
+    override protected function getTag():String{
+      return "sp-menu";
+    }
 
     override public function set dataProvider(value:Object):void{
       if(value is Array){
