@@ -1,12 +1,12 @@
 package com.unhurdle.spectrum
 {
+  //TODO minlength, maxlength, size
   public class PasswordField extends TextField
   {
     public function PasswordField()
     {
       super();
-      //TODO
-      // input.type = "password";
+      setAttribute('type','password');
     }
 
      public function get minlength():Number
