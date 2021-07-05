@@ -7,9 +7,9 @@ package com.unhurdle.spectrum.typography
     {
       super();
     }
-    override protected function getTypographySelector():String{
-      return "spectrum-Code";
-    }
+    // override protected function getTypographySelector():String{
+    //   return "spectrum-Code";
+    // }
     override protected function getTag():String{
       return "code";
     }

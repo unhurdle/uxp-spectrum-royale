@@ -68,9 +68,14 @@ package com.unhurdle.spectrum
 		public function set selected(value:Boolean):void
 		{
 			if(value != !!_selected){
-        COMPILE::JS
-        {
-          toggle("is-selected",value);
+        // COMPILE::JS
+        // {
+        //   toggle("is-selected",value);
+        // }
+        if(value){
+          setAttribute('selected',true);
+        } else {
+          removeAttribute('selected')
         }
       }
 			_selected = value;

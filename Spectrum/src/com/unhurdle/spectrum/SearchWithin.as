@@ -45,7 +45,7 @@ package com.unhurdle.spectrum
 
       _dropdown = new Picker();
       _dropdown.toggle(appendSelector("-picker"),true);
-      _dropdown.button.toggle(appendSelector("-pickerTrigger"),true);
+      // _dropdown.button.toggle(appendSelector("-pickerTrigger"),true);
       _dropdown.visible = false;
       //TODO this should really be fixed in the spectrum css
       // https://github.com/adobe/spectrum-css/issues/880

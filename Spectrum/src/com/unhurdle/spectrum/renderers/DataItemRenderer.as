@@ -110,9 +110,12 @@ package com.unhurdle.spectrum.renderers
 
     public function set disabled(value:Boolean):void{
     	_disabled = value;
-      toggle("is-disabled",value);
+      // toggle("is-disabled",value);
       if(value){
         setStyle("pointerEvents","none");
+        setAttribute('disabled',true);
+      } else {
+        removeAttribute('disabled');
       }
     }
     

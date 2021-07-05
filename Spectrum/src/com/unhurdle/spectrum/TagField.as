@@ -162,7 +162,7 @@ package com.unhurdle.spectrum
     	_tagList = value;
       if(value){
         picker = new Picker();
-        picker.button.visible = false;
+        // picker.button.visible = false;
         picker.width = 0;
         COMPILE::JS{
           addElement(picker);

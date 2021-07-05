@@ -4,18 +4,17 @@ package com.unhurdle.spectrum.renderers
   {
     import org.apache.royale.core.WrappedHTMLElement;
   }
-  import com.unhurdle.spectrum.data.MenuItem;
-  import com.unhurdle.spectrum.TextNode;
   import com.unhurdle.spectrum.Icon;
-
-  import com.unhurdle.spectrum.const.IconType;
-  import com.unhurdle.spectrum.const.IconPrefix;
-  import org.apache.royale.html.util.getLabelFromData;
-  // import com.unhurdle.spectrum.data.IMenuItem;
   import com.unhurdle.spectrum.ImageIcon;
   import com.unhurdle.spectrum.Menu;
-  import org.apache.royale.events.Event;
+  import com.unhurdle.spectrum.TextNode;
+  import com.unhurdle.spectrum.const.IconType;
+  import com.unhurdle.spectrum.data.MenuItem;
   import com.unhurdle.spectrum.utils.generateIcon;
+
+  import org.apache.royale.core.IParent;
+  import org.apache.royale.events.Event;
+  import org.apache.royale.html.util.getLabelFromData;
 
   public class MenuItemRenderer extends DataItemRenderer
   {
@@ -27,6 +26,10 @@ package com.unhurdle.spectrum.renderers
     override protected function getSelector():String{
       return "spectrum-Menu";
     }
+    private var isDivider:Boolean;
+    override protected function getTag():String{
+      return isDivider ? "sp-menu-divider" : "sp-menu-item";
+    }
     private var submenu:Menu;
     COMPILE::JS
     override public function set data(value:Object):void{
@@ -36,19 +39,36 @@ package com.unhurdle.spectrum.renderers
       var menuItem:MenuItem;
       menuItem = value as MenuItem;
       // element.className = "";
+      isDivider = menuItem.isDivider;
+      /**
+       * 1. check if element has a parent
+       * 2. If no, we can just replace the element with a new divider one
+       * 3. If yes, we need to swap the element in the parent with the new divider element
+       */
+      if(menuItem.isDivider){
+        var hasParent:Boolean = parent ? true : false;
+        if(hasParent){
+          var idx:int = parent.getElementIndex(this);
+          var parentRef:IParent = parent;
+          parent.removeElement(this);
+        }
+        createElement();
+        if(hasParent){
+          parentRef.addElementAt(this,idx);
+        }
+        element.style.pointerEvents = "none";
+      } else {
+        // only populate text if it's not a divider
+        textNode.text = getLabelFromData(this,value);
+      }
       toggle(appendSelector("-sectionHeading"),menuItem.isHeading);
       var isItem:Boolean = !menuItem.isHeading && !menuItem.isDivider;
       toggle(appendSelector("-item"),isItem);
       // if(menuItem.isHeading){
         // element.style.pointerEvents = "none";
       // }
-      toggle(appendSelector("-divider"),menuItem.isDivider);
-      if(menuItem.isDivider){
-        // element.style.pointerEvents = "none";
-      } else {
-        // only populate text if it's not a divider
-        textNode.text = getLabelFromData(this,value);
-      }
+
+      // toggle(appendSelector("-divider"),menuItem.isDivider);
       if(menuItem.subMenu && menuItem.isOpen){
         submenu = new Menu();
         submenu.dataProvider = menuItem.subMenu;
@@ -173,12 +193,12 @@ package com.unhurdle.spectrum.renderers
     // }
     override public function set selected(value:Boolean):void{
       super.selected = value;
-      if(value){
-        checkIcon.setStyle("display",null);
-        //set the color of the text to the color of the checkmark ? rgb(20, 115, 230) #1473e6
-      }else{
-        checkIcon.setStyle("display","none");
-      }
+      // if(value){
+      //   checkIcon.setStyle("display",null);
+      //   //set the color of the text to the color of the checkmark ? rgb(20, 115, 230) #1473e6
+      // }else{
+      //   checkIcon.setStyle("display","none");
+      // }
 
     }
     //TODO deal with sub-menus
@@ -210,11 +230,11 @@ package com.unhurdle.spectrum.renderers
     private var textNode:TextNode;
     private var indicator:Icon;
     private var type:String;
-    private var checkIcon:Icon;
+    // private var checkIcon:Icon;
 
-    override protected function getTag():String{
-      return "li";
-    }
+    // override protected function getTag():String{
+    //   return "li";
+    // }
 
     COMPILE::JS
     override protected function createElement():WrappedHTMLElement
@@ -224,12 +244,12 @@ package com.unhurdle.spectrum.renderers
       textNode.className = appendSelector("-itemLabel");
       textNode.element.style.userSelect = "none";
       elem.appendChild(textNode.element);
-      var type:String = IconType.CHECKMARK_MEDIUM;
-      checkIcon = generateIcon(IconPrefix.SPECTRUM_CSS_ICON + type);
-      checkIcon.type = type;
-      checkIcon.className = appendSelector("-checkmark");
-      checkIcon.setStyle("display","none");
-      addElement(checkIcon);
+      // var type:String = IconType.CHECKMARK_MEDIUM;
+      // checkIcon = generateIcon(IconPrefix.SPECTRUM_CSS_ICON + type);
+      // checkIcon.type = type;
+      // checkIcon.className = appendSelector("-checkmark");
+      // checkIcon.setStyle("display","none");
+      // addElement(checkIcon);
 
 
       return elem;
