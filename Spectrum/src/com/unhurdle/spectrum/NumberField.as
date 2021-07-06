@@ -1,5 +1,6 @@
 package com.unhurdle.spectrum
 {
+  //TODO min, max, value, step
   import org.apache.royale.html.elements.Span;
   COMPILE::JS
   {
@@ -11,8 +12,7 @@ package com.unhurdle.spectrum
     public function NumberField()
     {
       super();
-      //TODO
-      // input.type = "number";
+      setAttribute('type','number');
       // input.step = "1";
       // _input.addEventListener("input",handleInput);
     }
