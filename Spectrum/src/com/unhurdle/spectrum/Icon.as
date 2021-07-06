@@ -96,6 +96,7 @@ package com.unhurdle.spectrum
     public function set selector(value:String):void
     {
     	_selector = value;
+      createIcon();
       // useElement.setAttributeNS('http://www.w3.org/1999/xlink', 'xlink:href', value);
     }
 
@@ -125,15 +126,29 @@ package com.unhurdle.spectrum
       var elem:WrappedHTMLElement = super.createElement();
       elem.className = "icon";
       elem.setAttribute('slot','icon');
+      if(selector){
+        createIcon();
+      }
+      return elem;
+    }
+    private var svgElem:SVGElement;
+    private function createIcon():void
+    {
       var svg:SVGElement = document.getElementById(selector.substring(1)) as SVGElement;
-      var svgElem:SVGElement = newIconSVG("");
+      if(svgElem){
+        COMPILE::JS{
+          element.removeChild(svgElem);
+        }
+      }
+      svgElem = newIconSVG("");
       svgElem.className = IconInclude.getSelector();
       svgElem.setAttribute("viewBox",svg.getAttribute("viewBox"));
       for(var i:int=0;i<svg.children.length;i++){
         svgElem.appendChild(svg.children[i].cloneNode(true));
       }
-      elem.appendChild(svgElem);
-      return elem;
+      COMPILE::JS{
+        element.appendChild(svgElem);
+      }
     }
 
     // private var useElement:SVGUseElement;
