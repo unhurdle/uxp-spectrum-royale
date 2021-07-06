@@ -185,6 +185,7 @@ package com.unhurdle.spectrum
 			super.addElement(c,dispatchEvent);
 			(c as ISpectrumElement).toggle(appendSelector("-pane"),true);
 			positionElements(position);
+    	element.parentElement.style.background = "none";
 		}
   }
 }
