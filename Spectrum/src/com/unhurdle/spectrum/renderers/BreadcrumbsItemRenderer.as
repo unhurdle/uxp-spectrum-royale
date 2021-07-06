@@ -117,8 +117,8 @@ package com.unhurdle.spectrum.renderers
       var type:String = IconType.CHEVRON_RIGHT_SMALL;
       icon = generateIcon(type);
       // icon.type = type;
-      icon.size = 'xxs';
-      // icon.className = appendSelector("-itemSeparator");
+      icon.size = 'XXS';
+      icon.className = appendSelector("-itemSeparator");
       addElement(icon);
       return elem;
     }
