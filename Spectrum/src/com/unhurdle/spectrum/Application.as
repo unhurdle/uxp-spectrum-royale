@@ -16,7 +16,8 @@ package com.unhurdle.spectrum
     {
       
       super();
-      
+      window.pageXOffset = 0;
+      window.pageYOffset = 0;
 			this.valuesImpl = new AllCSSValuesImpl();
       addBead(new ApplicationDataBinding());
       // default values
