@@ -1,7 +1,7 @@
 package com.unhurdle.spectrum
 {
 	//TODO 
-	// thumbnail
+	// thumbnail, quiet
 	COMPILE::JS{
 		import org.apache.royale.core.WrappedHTMLElement;
 	}
@@ -84,47 +84,47 @@ package com.unhurdle.spectrum
 		// 	_button.selected = popover.open;
 		// 	toggle("is-open",popover.open);
 		// }
-		private function positionPopup():void{
-			var minHeight:Number = _minMenuHeight + 6;
-			// Figure out direction and max size
-			var appBounds:Rectangle = DisplayUtils.getScreenBoundingRect(Application.current.initialView);
-			var componentBounds:Rectangle = DisplayUtils.getScreenBoundingRect(this);
-			var spaceToBottom:Number = appBounds.bottom - componentBounds.bottom;
-			var spaceToTop:Number = componentBounds.top - appBounds.top;
-			var spaceOnBottom:Boolean = spaceToBottom >= spaceToTop;
-			var pxStr:String = "px";
-			// switch(_position)
-			// {
-			// 	case "top":
-			// 		if(spaceToTop >= minHeight || !spaceOnBottom){
-			// 			positionPopoverTop(appBounds.bottom - componentBounds.top,spaceToTop);
-			// 		} else {
-			// 			positionPopoverBottom(componentBounds,spaceToBottom);
+		// private function positionPopup():void{
+		// 	var minHeight:Number = _minMenuHeight + 6;
+		// 	// Figure out direction and max size
+		// 	var appBounds:Rectangle = DisplayUtils.getScreenBoundingRect(Application.current.initialView);
+		// 	var componentBounds:Rectangle = DisplayUtils.getScreenBoundingRect(this);
+		// 	var spaceToBottom:Number = appBounds.bottom - componentBounds.bottom;
+		// 	var spaceToTop:Number = componentBounds.top - appBounds.top;
+		// 	var spaceOnBottom:Boolean = spaceToBottom >= spaceToTop;
+		// 	var pxStr:String = "px";
+		// 	switch(_position)
+		// 	{
+		// 		case "top":
+		// 			if(spaceToTop >= minHeight || !spaceOnBottom){
+		// 				positionPopoverTop(appBounds.bottom - componentBounds.top,spaceToTop);
+		// 			} else {
+		// 				positionPopoverBottom(componentBounds,spaceToBottom);
 
-			// 		}
-			// 		break;
-			// 	default:
-			// 		if(spaceToBottom >= minHeight || spaceOnBottom){
-			// 			positionPopoverBottom(componentBounds,spaceToBottom);
-			// 		} else {
-			// 			positionPopoverTop(appBounds.bottom - componentBounds.top,spaceToTop);
-			// 		}
-			// 		break;
-			// }
-			var leftSpace:Number = componentBounds.x;
-			var rightSpace:Number = appBounds.width - (componentBounds.x + componentBounds.width);
-			// if(rightSpace < leftSpace){
-			// 	popover.setStyle("right",rightSpace + "px");
-			// 	popover.setStyle("left",null);
-			// } else {
-			// 	popover.setStyle("right",null);
-			// 	popover.setStyle("left",leftSpace + "px");
-			// }
-			// if(isNaN(_popupWidth)){
-			// 	popover.setStyle("minWidth",width + "px");
-			// 	// popover.width = width;
-			// }
-		}
+		// 			}
+		// 			break;
+		// 		default:
+		// 			if(spaceToBottom >= minHeight || spaceOnBottom){
+		// 				positionPopoverBottom(componentBounds,spaceToBottom);
+		// 			} else {
+		// 				positionPopoverTop(appBounds.bottom - componentBounds.top,spaceToTop);
+		// 			}
+		// 			break;
+		// 	}
+		// 	var leftSpace:Number = componentBounds.x;
+		// 	var rightSpace:Number = appBounds.width - (componentBounds.x + componentBounds.width);
+		// 	if(rightSpace < leftSpace){
+		// 		popover.setStyle("right",rightSpace + "px");
+		// 		popover.setStyle("left",null);
+		// 	} else {
+		// 		popover.setStyle("right",null);
+		// 		popover.setStyle("left",leftSpace + "px");
+		// 	}
+		// 	if(isNaN(_popupWidth)){
+		// 		popover.setStyle("minWidth",width + "px");
+		// 		// popover.width = width;
+		// 	}
+		// }
 
 		// private function toggleDropdown(ev:*):void{
 		// 	ev.preventDefault();
