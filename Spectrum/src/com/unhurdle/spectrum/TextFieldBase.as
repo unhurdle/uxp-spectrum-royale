@@ -50,21 +50,31 @@ package com.unhurdle.spectrum
       }
     }
 
-    private function handleKeyDown(event:KeyboardEvent):void{
+    private function handleKeyDown(event:*):void{
       var eventName:String;
-      var key:String = event.key;
-      switch(key)
+      var keyCode:String = event.keyCode;
+      var key:String;
+      switch(keyCode)
       {
-        case WhitespaceKeys.ENTER:
-        case EditingKeys.BACKSPACE:
-        case NavigationKeys.DOWN:
-        case NavigationKeys.UP:
-        case WhitespaceKeys.TAB:
-          eventName = "on" + key;
+        case "13":
+          key = WhitespaceKeys.ENTER;
+          break;
+        case "8":
+          key =  EditingKeys.BACKSPACE;
+          break;
+        case "40":
+          key = NavigationKeys.DOWN;
+          break;
+        case "38":
+          key = NavigationKeys.UP;
+          break;
+        case "9":
+          key = WhitespaceKeys.TAB;
           break;
         default:
           return;
       }
+      eventName = "on" + key;
       dispatchEvent(new ValueEvent(eventName,event));
     }
 
