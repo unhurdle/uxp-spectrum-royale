@@ -5,6 +5,7 @@ package com.unhurdle.spectrum
     import org.apache.royale.core.WrappedHTMLElement;
   }
   import com.unhurdle.spectrum.includes.IconInclude;
+  import com.unhurdle.spectrum.const.IconPrefix;
 
   public class Icon extends Group implements IAsset
   {
@@ -19,12 +20,12 @@ package com.unhurdle.spectrum
       return IconInclude.getSelector();
     }
 
-    // public static function getCSSTypeSelector(type:String):String{
-    //   return IconPrefix.SPECTRUM_CSS_ICON + type;
-    // }
-    // public static function getUIIconSelector(type:String):String{
-    //   return IconPrefix.SPECTRUM_UI_ICON + type;
-    // }
+    public static function getCSSTypeSelector(type:String):String{
+      return IconPrefix.SPECTRUM_CSS_ICON + type;
+    }
+    public static function getUIIconSelector(type:String):String{
+      return IconPrefix.SPECTRUM_UI_ICON + type;
+    }
 
     private var _size:String;
 

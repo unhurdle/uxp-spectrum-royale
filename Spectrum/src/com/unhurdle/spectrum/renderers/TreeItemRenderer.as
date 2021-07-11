@@ -6,6 +6,7 @@ package com.unhurdle.spectrum.renderers
   }
   import com.unhurdle.spectrum.Icon;
   import com.unhurdle.spectrum.TextNode;
+  import com.unhurdle.spectrum.const.IconType;
 
   import org.apache.royale.core.IParent;
   import org.apache.royale.events.Event;
@@ -13,7 +14,6 @@ package com.unhurdle.spectrum.renderers
   import org.apache.royale.events.MouseEvent;
   import org.apache.royale.html.elements.A;
   import org.apache.royale.html.supportClasses.TreeListData;
-  import com.unhurdle.spectrum.utils.generateIcon;
 
   public class TreeItemRenderer extends TreeItemRendererBase
   {
@@ -27,39 +27,42 @@ package com.unhurdle.spectrum.renderers
       return "spectrum-TreeView";
     }
     private var treeListData:TreeListData;
-    private var chevronRightIcon:Icon
+    private var chevronIcon:Icon;
     COMPILE::JS
     override public function set data(value:Object):void{
       super.data = value;
       if(listData is TreeListData){
         treeListData = listData as TreeListData;
         if(listData.hasChildren){
-          var type:String = "ChevronRightMedium";
-          if(!chevronRightIcon){
-            chevronRightIcon = generateIcon(type);
-            chevronRightIcon.type = type;
-            chevronRightIcon.toggle(appendSelector("-itemIndicator"),true);
-            chevronRightIcon.setStyle("flex-shrink",0);
-            link.addElementAt(chevronRightIcon,0);
-            chevronRightIcon.addEventListener(MouseEvent.CLICK,function (ev:Event):void
-            {
-              if(!disabled){
-                isOpen = !isOpen;
-                var expandEvent:ItemClickedEvent = new ItemClickedEvent("itemExpanded");
-                expandEvent.data = data;
-                expandEvent.index = index;
-                //wait until all the intem renderers are updated to modify the list 
-                setTimeout(function():void{
-                  dispatchEvent(expandEvent);
-                })
-              }
-            });
+          var type:String = IconType.CHEVRON_RIGHT_MEDIUM;
+          if(!chevronIcon){
+           createIcon(type);
           }
           if(listData.isOpen){
             isOpen = value.isOpen = true;
           }
         }
       }
+    }
+    private function createIcon(type:String):void{
+      chevronIcon = new Icon(Icon.getCSSTypeSelector(type));
+      chevronIcon.type = type;
+      chevronIcon.toggle(appendSelector("-itemIndicator"),true);
+      chevronIcon.setStyle("flex-shrink",0);
+      link.addElementAt(chevronIcon,0);
+      chevronIcon.addEventListener(MouseEvent.CLICK,function (ev:Event):void
+      {
+        if(!disabled){
+          isOpen = !isOpen;
+          var expandEvent:ItemClickedEvent = new ItemClickedEvent("itemExpanded");
+          expandEvent.data = data;
+          expandEvent.index = index;
+          //wait until all the intem renderers are updated to modify the list 
+          setTimeout(function():void{
+            dispatchEvent(expandEvent);
+          })
+        }
+      });
     }
     private var _isOpen:Boolean = false;
 
@@ -72,6 +75,12 @@ package com.unhurdle.spectrum.renderers
     {
     	_isOpen = value;
       toggle('is-open',value);
+      link.removeElement(chevronIcon);
+      if(value){
+        createIcon(IconType.CHEVRON_DOWN_MEDIUM);
+      } else {
+        createIcon(IconType.CHEVRON_RIGHT_MEDIUM);
+      }
       treeListData.isOpen = _isOpen;
     }
     override protected function setText(value:String):void{
