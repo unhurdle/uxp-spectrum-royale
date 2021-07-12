@@ -189,29 +189,29 @@
       //   setNavSelection();
       // }
       private function setNavSelection():void{
-        // Theme.router = router;
-        var routeState:RouteState = router.routeState;
-        // if(routeState.state){
-        //   setNavFromHash(routeState.state);
-        // } else {
+        // // Theme.router = router;
+        // var routeState:RouteState = router.routeState;
+        // // if(routeState.state){
+        // //   setNavFromHash(routeState.state);
+        // // } else {
           sideNav.selectedIndex = 0;
           setNav()
-        // }
-        if(routeState.parameters){
-          if(routeState.parameters["appScale"]){
-            Application.current.appScale = routeState.parameters["appScale"];
-          } else {
-            Application.current.appScale = "medium";
-          }
-          if(routeState.parameters["colorstop"]){
-            Application.current.colorstop = routeState.parameters["colorstop"];
-          } else {
-            Application.current.colorstop = "light";
-          }
-        } else {
+        // // }
+        // if(routeState.parameters){
+        //   if(routeState.parameters["appScale"]){
+        //     Application.current.appScale = routeState.parameters["appScale"];
+        //   } else {
+        //     Application.current.appScale = "medium";
+        //   }
+        //   if(routeState.parameters["colorstop"]){
+        //     Application.current.colorstop = routeState.parameters["colorstop"];
+        //   } else {
+        //     Application.current.colorstop = "light";
+        //   }
+        // } else {
           Application.current.appScale = "medium";
           Application.current.colorstop = "light";
-        }
+        // }
       }
       private var currentPane:DemoPane;
       private function setNav():void{
@@ -225,9 +225,9 @@
       private function onNavChange():void{
         setNav();
         var provider:NavProvider = sideNav.selectedItem as NavProvider;
-        router.routeState.title = provider.text;
-        // router.routeState.state = provider.hashLink;
-        router.setState();
+        // router.routeState.title = provider.text;
+        // // router.routeState.state = provider.hashLink;
+        // router.setState();
       }
       private function hashChanged():void{
         setNavSelection();
@@ -270,7 +270,7 @@
     }
   </fx:Style>
   <sp:beads>
-    <js:Router id="router" stateChange="hashChanged()"/>
+    <!-- <js:Router id="router" stateChange="hashChanged()"/> -->
   </sp:beads>
   <sp:FlexContainer id="mainGroup" wrap="false">
     <sp:List id="sideNav" dataProvider="{navProvider}" change="onNavChange()" style="max-height:100vh;flex-shrink: 0; padding-left:14px; padding-right:14px; background-color:rgba(0.5,0.5,0.5,0.05)"/>
