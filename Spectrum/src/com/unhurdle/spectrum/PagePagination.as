@@ -81,21 +81,24 @@ package com.unhurdle.spectrum
     }
     private function findChild(children:NodeList):void{
        for each(var selectedChild:Element in children){
-          if(selectedChild.text && selectedChild.text == "" + selectedPage){
-            selectedChild.classList.add("is-selected");
+         if(!selectedChild){
+           continue;
+         }
+        if(selectedChild.text && selectedChild.text == "" + selectedPage){
+          selectedChild.classList.add("is-selected");
+        }
+        else{
+          if(selectedChild.classList && selectedChild.classList.contains("is-selected")){
+              selectedChild.classList.remove("is-selected");
           }
-          else{
-            if(selectedChild.classList && selectedChild.classList.contains("is-selected")){
-                selectedChild.classList.remove("is-selected");
-            }
-            else
-            {
-              if(selectedChild.children && selectedChild.children.length){
-                findChild(selectedChild.children)
-              }
+          else
+          {
+            if(selectedChild.children && selectedChild.children.length){
+              findChild(selectedChild.children)
             }
           }
         }
+      }
     }
     private function prevPage():void{
       selectedPage > 1? selectedPage--: selectedPage = 1;
