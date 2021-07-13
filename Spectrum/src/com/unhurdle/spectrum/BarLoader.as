@@ -1,8 +1,7 @@
 package com.unhurdle.spectrum
 {
-    //TODO
+     //TODO
     //* sideLabel
-    //* indeterminate
     //* meter
     //* valueSuffix
     
@@ -25,11 +24,7 @@ package com.unhurdle.spectrum
         }
         
         override protected function getSelector():String{
-          return "";
-        }
-
-        override protected function getTag():String{
-            return "sp-progressbar";
+          return "spectrum-BarLoader";
         }
 
         private var _label:String;
@@ -113,27 +108,30 @@ package com.unhurdle.spectrum
             } else {
                 percent = 0;
             }
-            // if(_meter){
-            //     if(percent < _warningThreshold){
-            //         setColor("is-positive");
-            //     } else if(percent < _criticalThreshold){
-            //         setColor("is-warning");
-            //     } else {
-            //         setColor("is-critical");
-            //     }
-            // } else {
-            //     // set it to the default
-            //     setColor("");
-            // }
-            // var percentStr:String = percent + "%";
-            // valueNode.text = value + _valueSuffix;
-            // fill.style.width = percentStr;
+            if(_meter){
+                if(percent < _warningThreshold){
+                    setColor("is-positive");
+                } else if(percent < _criticalThreshold){
+                    setColor("is-warning");
+                } else {
+                    setColor("is-critical");
+                }
+            } else {
+                // set it to the default
+                setColor("");
+            }
+            var percentStr:String = percent + "%";
+            valueNode.text = value + _valueSuffix;
+            fill.style.width = percentStr;
             setAttribute("value",percent);
-            // setAttribute("aria-valuenow",percent);
-            setAttribute("min",min);
-            setAttribute("max",max);
+            setAttribute("aria-valuenow",percent);
+            setAttribute("aria-valuemin",min);
+            setAttribute("aria-valuemax",max);
         }
 
+        private var fill:HTMLElement;
+
+        private var valueNode:TextNode;
 
         private var labelNode:TextNode;
 
@@ -143,10 +141,23 @@ package com.unhurdle.spectrum
             elem.setAttribute("role","progressbar");
             
             var baseSelector:String = getSelector();
-            labelNode = new TextNode("sp-label");
-            labelNode.setAttribute('slot','label');
+            labelNode = new TextNode("div");
+            labelNode.className = baseSelector + "-label";
             labelNode.element.style.display = "none";
             elem.appendChild(labelNode.element);
+            valueNode = new TextNode("div");
+            valueNode.className = baseSelector + "-percentage";
+            elem.appendChild(valueNode.element);
+
+            var track:HTMLElement = newElement("div");
+            track.className = baseSelector + "-track";
+            track.style.flexGrow = 1;
+            fill = newElement("div");
+            fill.className = baseSelector + "-fill";
+            fill.style.width = value;
+            fill.style.display = 'inline-block';
+            track.appendChild(fill);
+            elem.appendChild(track);
 
             return elem;
         }
@@ -187,21 +198,21 @@ package com.unhurdle.spectrum
         	_criticalThreshold = value;
         }
 
-        // private var _color:String;
+        private var _color:String;
 
 
-        // private function setColor(value:String):void
-        // {
-        //     if(value != _color){
-        //         if(_color){
-        //             toggle(_color, false);
-        //         }
-        //         if(value){
-        //             toggle(value, true);
-        //         }
-        //         _color = value;
-        //     }
-        // }
+        private function setColor(value:String):void
+        {
+            if(value != _color){
+                if(_color){
+                    toggle(_color, false);
+                }
+                if(value){
+                    toggle(value, true);
+                }
+                _color = value;
+            }
+        }
         private var _sideLabel:Boolean;
 
         public function get sideLabel():Boolean
@@ -212,8 +223,7 @@ package com.unhurdle.spectrum
         public function set sideLabel(value:Boolean):void
         {
             if(value != !!_sideLabel){
-                //TODO
-                // toggle(valueToSelector("sideLabel"),value);
+                toggle(valueToSelector("sideLabel"),value);
             }
             _sideLabel = value;
         }
@@ -227,11 +237,7 @@ package com.unhurdle.spectrum
         public function set small(value:Boolean):void
         {
             if(value != !!_small){
-                if(value){
-                    setAttribute("size","small");
-                } else {
-                    removeAttribute("size");
-                }
+                toggle(valueToSelector("small"),value);
             }
             _small = value;
         }
@@ -245,11 +251,7 @@ package com.unhurdle.spectrum
         public function set overBackground(value:Boolean):void
         {
             if(value != !!_overBackground){
-                if(value){
-                    setAttribute("variant","overBackground");
-                } else {
-                    removeAttribute("variant");
-                }
+                toggle(valueToSelector("overBackground"),value);
             }
             _overBackground = value;
         }
@@ -261,10 +263,10 @@ package com.unhurdle.spectrum
         public function set showPercentage(value:Boolean):void
         {
             if(value){
-                removeAttribute("show-value");
+                valueNode.element.style.display = "inherit";
             }
             else{
-                setAttribute("show-value",false);
+                valueNode.element.style.display = "none";
             }
         }
         private var _indeterminate:Boolean;
@@ -280,39 +282,25 @@ package com.unhurdle.spectrum
                 _indeterminate = value;
                 if(value){
                     // set the bar to defaults
-                    // setColor("");
-                    // valueNode.text = "";
-                    // fill.style.width = "";
-                    setAttribute("indeterminate",true);
+                    setColor("");
+                    valueNode.text = "";
+                    fill.style.width = "100%";
+                    animationFrame = requestAnimationFrame(repeatOften);
                 } else {
-                    removeAttribute("indeterminate");
                     calculatePosition();
                 }
+                // toggle(valueToSelector("indeterminate"),value);
             }
         }
-//         <sp-detail>PROGRESS BAR</sp-detail>
-// <sp-progressbar max=100 value=50></sp-progressbar>
-// <br/><sp-detail>PROGRESS BAR W/ LABEL</sp-detail>
-// <sp-progressbar max=100 value=50>
-//     <sp-label slot="label">Uploading...</sp-label>
-// </sp-progressbar>
-// <br/><sp-detail>PROGRESS BAR W/ CUSTOM VALUE</sp-detail>
-// <sp-progressbar max=100 value=50 value-label="593KB">
-//     <sp-label slot="label">Uploading...</sp-label>
-// </sp-progressbar>
-// <br/><sp-detail>PROGRESS BAR W/O VALUE</sp-detail>
-// <sp-progressbar max=100 value=50 show-value="false">
-//     <sp-label slot="label">Uploading...</sp-label>
-// </sp-progressbar>
-// <br/><sp-detail>SMALL PROGRESS BAR</sp-detail>
-// <sp-progressbar max=100 value=50 size="small">
-//     <sp-label slot="label">Uploading...</sp-label>
-// </sp-progressbar>
-// <br/><sp-detail>OVER BACKGROUND</sp-detail>
-// <div style="background-color:#C08040; padding: 16px">
-//     <sp-progressbar variant="overBackground" max=100 value=50>
-//         <sp-label slot="label">Uploading...</sp-label>
-//     </sp-progressbar>
-// </div>
+        private var counter:Number = -136;
+        private var animationFrame:Number;
+        private function repeatOften():void{
+            fill.style.transform = 'translate(' + counter + 'px)';
+            counter ++ ;
+            if(counter > 192){
+                counter = -136;
+            }
+            animationFrame = requestAnimationFrame(repeatOften);
+        }
     }
 }
