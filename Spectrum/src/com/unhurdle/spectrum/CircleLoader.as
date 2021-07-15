@@ -130,11 +130,24 @@ package com.unhurdle.spectrum
 		{
 			if(!value){
 				calculatePosition();
+			} else {
+				animationFrame = requestAnimationFrame(repeatOften);
 			}
-			if(value != !!_indeterminate){
-				toggle(valueToSelector("indeterminate"),value);
-			}
+			// if(value != !!_indeterminate){
+			// 	toggle(valueToSelector("indeterminate"),value);
+			// }
 			_indeterminate = value;
+		}
+		private var counter:Number = 0;
+		private var animationFrame:Number;
+		private function repeatOften():void{
+			// fill.style.transform = 'translate(' + counter + 'px)';
+		
+			counter ++ ;
+			if(counter > 100){
+				counter = 0;
+			}
+			animationFrame = requestAnimationFrame(repeatOften);
 		}
 
 		private var _size:String;
