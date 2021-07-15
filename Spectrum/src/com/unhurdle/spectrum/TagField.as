@@ -30,6 +30,7 @@ package com.unhurdle.spectrum
       var elem:WrappedHTMLElement = addElementToWrapper(this,'div');
       tagGroup = new TagGroup();
       tagGroup.setStyle("display","inline");
+      tagGroup.height = 19;
       elem.appendChild(tagGroup.element);
       input = new TextField();
       input.setStyle("display","inline-block");
@@ -38,6 +39,7 @@ package com.unhurdle.spectrum
       input.element.addEventListener(FocusEvent.FOCUS_OUT,addTag);
       input.input.style.borderStyle = "none";
       input.input.style.background = "none";
+      input.height = 32;
       elem.appendChild(input.element);
       return elem;
     }
@@ -50,7 +52,8 @@ package com.unhurdle.spectrum
     /**
      * @royaleignorecoercion com.unhurdle.spectrum.Tag
      */
-    private var picker:Picker;
+    public var menu:Menu;
+    public var popover:ComboBoxList;
     private var valuesArr:Array = [];
     private var ind:Number = 0;
     private function selectValue(ev:Event):void{
@@ -96,27 +99,56 @@ package com.unhurdle.spectrum
           }
         }
       }
-      if(picker){
-        picker.dataProvider = arr;
+      if(menu){
         if(!!arr.length){
-          picker.popover.open = true;
-          positionPopup();
-        }else{
-          picker.popover.open = false;
+          if(!popover){
+            createPopover();
+          }
+          menu.dataProvider = arr;
+          popover.x = popover.y = 0;
+          popover.open = true;
+          popover.list.focus();
+          COMPILE::JS
+          {
+            requestAnimationFrame(positionPopup);
+          }
+     }else{
+          closePopup();
         }
       }
       calculatePosition();
     }
+
+    public function createPopover():void{
+      popover = new ComboBoxList();
+      menu = popover.list;
+      popover.width = input.width;
+      menu.addEventListener("change",handleMenuChange);
+    }
+
+    private function handleMenuChange(ev:Event):void{
+      closePopup();
+      dispatchEvent(new Event("change"));
+    }
+
+    protected function closePopup():void{
+      if(popover && popover.open){
+  			popover.open = false;
+        popover.list.blur();
+      }
+    }
+
     protected function positionPopup():void{
       var origin:Point = new Point(input.x, height);
       var relocated:Point = PointUtils.localToGlobal(origin,this);
-      picker.popover.x = relocated.x
-      picker.popover.y = relocated.y;
+      popover.x = relocated.x
+      popover.y = relocated.y;
     }
+
     private function addTag():void{
       if(input.text){
-        if(picker){
-          picker.popover.open = false;
+        if(menu){
+          closePopup();
         }
         var len:int = tagGroup.numElements;
         for(var index:int = 0; index < len; index++)
@@ -135,9 +167,12 @@ package com.unhurdle.spectrum
         tag.deletable = true;
         tag.text = input.text;
         input.text = "";
+        COMPILE::JS{
+        tag.element.className = null;
+        }
         tagGroup.addElement(tag);
-      }
-      calculatePosition();
+        requestAnimationFrame(function():void{ tag.toggle('spectrum-Tags-item--deletable',true);calculatePosition();})
+      } 
     }
 
     private function calculatePosition():void {
@@ -161,19 +196,15 @@ package com.unhurdle.spectrum
     public function set tagList(value:Array):void{
     	_tagList = value;
       if(value){
-        picker = new Picker();
-        // picker.button.visible = false;
-        picker.width = 0;
+        menu = new Menu();
         COMPILE::JS{
-          addElement(picker);
           input.addEventListener("onArrowDown",selectValue);
           input.addEventListener("onArrowUp",selectValue);
           input.element.addEventListener("input",updateValue);
         }
       }else{
-        picker = null;
+        menu = null;
         COMPILE::JS{
-          removeElement(picker);
           input.removeEventListener("onArrowDown",selectValue);
           input.removeEventListener("onArrowUp",selectValue);
           input.element.removeEventListener("input",updateValue);
