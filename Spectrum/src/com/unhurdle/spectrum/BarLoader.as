@@ -152,6 +152,7 @@ package com.unhurdle.spectrum
             var track:HTMLElement = newElement("div");
             track.className = baseSelector + "-track";
             track.style.flexGrow = 1;
+            track.style.display = "flex";
             fill = newElement("div");
             fill.className = baseSelector + "-fill";
             fill.style.width = value;
