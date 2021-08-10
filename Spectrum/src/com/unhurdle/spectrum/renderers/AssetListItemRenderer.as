@@ -59,7 +59,6 @@ package com.unhurdle.spectrum.renderers
         toggle("is-selectable",true);
         if(!checkBox){
           checkBox = new CheckBox();
-          checkBox.className = appendSelector("-itemSelector");
           checkBox.checked = getSelected();
           checkBox.addEventListener("click",handleCheckClick)
           addElementAt(checkBox,0);
