@@ -4,6 +4,7 @@ package com.unhurdle.spectrum
     import org.apache.royale.core.WrappedHTMLElement;
   }
   import com.unhurdle.spectrum.utils.generateIcon;
+  import org.apache.royale.events.Event;
 
   [Event(name="change", type="org.apache.royale.events.Event")]
   public class Tag extends SpectrumBase
@@ -22,9 +23,10 @@ package com.unhurdle.spectrum
       var elem:WrappedHTMLElement = super.createElement();
       span = new TextNode("");
       span.element = newElement("span") as HTMLSpanElement;
-      span.className = "spectrum-Tags-itemLabel";
+      span.className = getSelector()+"Label";
       elem.appendChild(span.element);
       clearButton = new ClearButton();
+      clearButton.toggle(getSelector()+"ClearButton",true);
       clearButton.small = true;
       clearButton.visible = false;
       addElement(clearButton);
@@ -167,6 +169,7 @@ package com.unhurdle.spectrum
 
     private function removeTag():void{
       parent.removeElement(this);
+      dispatchEvent(new Event('change'));
     }
   }
 }
