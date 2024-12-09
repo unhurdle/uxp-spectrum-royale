@@ -24,6 +24,7 @@ package com.unhurdle.spectrum
       flavor = "primary";
       _text = "";
       _tabFocusable = true;
+      submit = false;
     }
 
     public static const CTA:String = "cta";
@@ -31,6 +32,27 @@ package com.unhurdle.spectrum
     public static const SECONDARY:String = "secondary";
     public static const WARNING:String = "warning";
     public static const OVER_BACKGROUND:String = "overBackground";
+
+    private var _submit:Boolean;
+
+    /**
+     * By default buttons inside forms will cause the form to be submitted and the web page reloaded.
+     * Unless submit is true, the button will get a button type which will prevent the form from being submitted when clicked.
+     */
+    public function get submit():Boolean
+    {
+    	return _submit;
+    }
+
+    public function set submit(value:Boolean):void
+    {
+      if(value){
+        removeAttribute("type");
+      } else {
+        setAttribute("type","button");
+      }
+    	_submit = value;
+    }
 
     private var _text:String;
 
