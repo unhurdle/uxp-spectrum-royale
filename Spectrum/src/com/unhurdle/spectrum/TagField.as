@@ -40,7 +40,9 @@ package com.unhurdle.spectrum
       input.input.style.borderStyle = "none";
       input.input.style.background = "none";
       input.height = 32;
-      elem.appendChild(input.element);
+      // elem.appendChild(input.element);
+      input.tabFocusable = false;
+      tagGroup.addElement(input);
       return elem;
     }
 
@@ -150,10 +152,13 @@ package com.unhurdle.spectrum
         if(menu){
           closePopup();
         }
-        var len:int = tagGroup.numElements;
+        // var len:int = tagGroup.numElements;
+        var tags:Array = tagGroup.tags;
+        var len:int = tags.length;
         for(var index:int = 0; index < len; index++)
         {
-          var element:Tag = tagGroup.getElementAt(index) as Tag;
+          // var element:Tag = tagGroup.getElementAt(index) as Tag;
+          var element:Tag = tags[index];
           if(element.text == input.text){
             element.setStyle("visibility","hidden");
             input.text = "";
@@ -170,7 +175,7 @@ package com.unhurdle.spectrum
         COMPILE::JS{
         tag.element.className = null;
         }
-        tagGroup.addElement(tag);
+        tagGroup.addTag(tag);
         requestAnimationFrame(function():void{ tag.toggle('spectrum-Tags-item--deletable',true);calculatePosition();})
       } 
     }
@@ -213,9 +218,9 @@ package com.unhurdle.spectrum
     }
 
     private function removeTag():void{
-      if(!input.text && tagGroup.numElements){
-        var tag:Tag = tagGroup.getElementAt(tagGroup.numElements-1) as Tag;
-        tagGroup.removeElement(tag);
+      var tags:Array = tagGroup.tags;
+      if(!input.text && tags.length){
+        tagGroup.removeElement(tags[tags.length-1]);
       }
       calculatePosition();
     }
