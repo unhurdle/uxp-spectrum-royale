@@ -222,6 +222,7 @@ package com.unhurdle.spectrum
       if(!popover){
         createPopover();
       }
+      popover.setStyle("pointer-events","none");
       dispatchEvent(new Event("beforeShow"));
       popover.x = popover.y = 0;
       popover.open = true;
@@ -237,6 +238,7 @@ package com.unhurdle.spectrum
 			});
     }
     protected function positionPopup():void{
+      popover.setStyle("pointer-events","");
       var origin:Point = new Point(width, height);
       var relocated:Point = PointUtils.localToGlobal(origin,this);
       popover.x = relocated.x
