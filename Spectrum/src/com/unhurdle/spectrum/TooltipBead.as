@@ -204,9 +204,7 @@ package com.unhurdle.spectrum
 
 			var comp:IUIBase = _strand as IUIBase
 			host = UIUtils.findPopUpHost(comp);
-			if (tt)
-				host.popUpParent.removeElement(tt);
-
+			removeTooltip();
 			tt = new Tooltip();
 			tt.direction = _direction;
 			if(tipPosition){
@@ -264,16 +262,18 @@ package com.unhurdle.spectrum
 		protected function closeTooltip():void{
 			clearTimeouts();
 			activeBead = null;
-
+			removeTooltip();
 			var comp:IUIBase = _strand as IUIBase;
-			if (tt) {
-				host.popUpParent.removeElement(tt);
-				tt = null;
-			}
 			closeTimeoutId = 0;
 			showTimeoutId = 0;
 			lastShownTS = new Date().getTime();
 
+		}
+		protected function removeTooltip():void{
+			if(tt && tt.parent){
+				tt.parent.removeElement(tt);
+			}
+			tt = null;
 		}
 		public static var lastShownTS:Number = 0;
 	}
