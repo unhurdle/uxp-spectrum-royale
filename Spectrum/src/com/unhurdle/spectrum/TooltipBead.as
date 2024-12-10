@@ -243,7 +243,7 @@ package com.unhurdle.spectrum
 			} else
 			{
 				pt.x = (comp.width - tooltip.width) / 2;
-				pt.y = tooltip.height;
+				pt.y = comp.height;
 			}
 
 			pt = PointUtils.localToGlobal(pt, comp);
