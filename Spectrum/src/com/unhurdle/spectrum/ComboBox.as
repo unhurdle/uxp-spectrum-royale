@@ -12,10 +12,17 @@ package com.unhurdle.spectrum
     {
       super();
     }
-		override protected function loadBeads():void{
-			super.loadBeads();
-			addBead(new KeyboardFocusHandler());
-		}
+	override protected function requiresView():Boolean{
+      return true;
+    }
+    override protected function requiresController():Boolean{
+      return true;
+    }
+
+	override protected function loadBeads():void{
+		super.loadBeads();
+		addBead(new KeyboardFocusHandler());
+	}
     override protected function getSelector():String{
       return InputGroupInclude.getSelector();
     }

@@ -33,13 +33,17 @@ package com.unhurdle.spectrum
     }
 		// private var input:*;
 
-		private function elementClicked():void{
-			indeterminate = false;
-			checked = !checked;
+		COMPILE::JS
+		override public function addedToParent():void{
+			if(!input){
+				initialize();
+			}
+			super.addedToParent();
+
 		}
 		COMPILE::JS
-		override protected function createElement():WrappedHTMLElement{
-			var elem:WrappedHTMLElement = super.createElement();
+		protected function initialize():void{
+			var elem:WrappedHTMLElement = element;
 			// input = newElement("sp-checkbox");
 			// input.type = "checkbox";
 			// input.className = appendSelector("-input");
@@ -58,8 +62,21 @@ package com.unhurdle.spectrum
 			// icon.className = appendSelector("-partialCheckmark");
 			// spanBox.addElement(icon);
 			// elem.appendChild(spanBox.element);
-			return elem;
+						// set values
+			// input.disabled = disabled;
+			// input.checked = checked;
+			if(text){
+				setText(text);
+			}
+
 		}
+				private var input:HTMLInputElement;
+
+		private function elementClicked():void{
+			indeterminate = false;
+			checked = !checked;
+		}
+		private var spanLabel:TextNode;
 
 		private var _text:String = "";
 		public function get text():String
@@ -71,32 +88,35 @@ package com.unhurdle.spectrum
 		{
 			COMPILE::JS
 			{
-				if(_text != value){
-					// if(!spanLabel){
-					// 	spanLabel = new TextNode("span");
-					// 	spanLabel.className = appendSelector("-label");
-					// 	/**
-					// 	 * A fix for https://github.com/adobe/spectrum-css/issues/1029 - 
-					// 	 * Checkbox css no longer has ellipsis for overset label
-					// 	 * Truncated labels are necessary for panels with limited space.
-					// 	 */
-					// 	if(truncate){
-					// 		spanLabel.element.style.textOverflow = "ellipsis";
-					// 		spanLabel.element.style.overflow = "hidden";
-					// 		spanLabel.element.style.whiteSpace = "nowrap";
-					// 	}
-					// 	element.appendChild(spanLabel.element);
-					// }
-					// spanLabel.text = value;
-					COMPILE::JS{
-						element.innerHTML = value;
-					}
-
-					// element.text = value;
+				if(input && _text != value){
+					setText(value);
 				}
+
 			}
 			_text = value;
 		}
+				
+		COMPILE::JS
+		protected function setText(value:String):void{
+			//TODO!!!!
+			// if(!spanLabel){
+			// 	spanLabel = new TextNode("span");
+			// 	spanLabel.className = appendSelector("-label");
+			// 	/**
+			// 	 * A fix for https://github.com/adobe/spectrum-css/issues/1029 - 
+			// 	 * Checkbox css no longer has ellipsis for overset label
+			// 	 * Truncated labels are necessary for panels with limited space.
+			// 	 */
+			// 	if(truncate){
+			// 		spanLabel.element.style.textOverflow = "ellipsis";
+			// 		spanLabel.element.style.overflow = "hidden";
+			// 		spanLabel.element.style.whiteSpace = "nowrap";
+			// 	}
+			// 	element.appendChild(spanLabel.element);
+			// }
+			// spanLabel.text = value;
+		}
+
 		private var _truncate:Boolean;
 
 		public function get truncate():Boolean
