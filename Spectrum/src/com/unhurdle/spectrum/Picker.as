@@ -47,7 +47,7 @@ package com.unhurdle.spectrum
 		// public function get button():FieldButton{
 		// 	return _button;
 		// }
-		private var menu:Menu;
+		public var menu:Menu;
 		COMPILE::JS
 		override protected function createElement():WrappedHTMLElement{
 			var elem:WrappedHTMLElement = super.createElement();
