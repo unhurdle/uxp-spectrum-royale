@@ -6,6 +6,7 @@ package com.unhurdle.spectrum
   import com.unhurdle.spectrum.interfaces.IKeyboardFocusable;
   import com.unhurdle.spectrum.beads.KeyboardFocusHandler;
 
+  [Event(name="change", type="org.apache.royale.events.Event")]
   public class ComboBox extends SpectrumBase implements IKeyboardFocusable
   {
     public function ComboBox()
