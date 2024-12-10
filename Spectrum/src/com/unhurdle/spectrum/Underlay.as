@@ -2,12 +2,14 @@ package com.unhurdle.spectrum
 {
 
   import org.apache.royale.core.IBead;
+  import org.apache.royale.core.IParent;
   import org.apache.royale.core.IStrand;
   import org.apache.royale.core.IUIBase;
+  import org.apache.royale.core.UIBase;
   import org.apache.royale.events.Event;
   import org.apache.royale.events.IEventDispatcher;
-  import org.apache.royale.core.IParent;
   import org.apache.royale.events.MouseEvent;
+
 
 
   public class Underlay extends SpectrumBase implements IBead
@@ -55,6 +57,8 @@ package com.unhurdle.spectrum
      */
     private function handleShown(ev:Event):void
     {
+      var style:CSSStyleDeclaration =  window["getComputedStyle"]((host as UIBase).element);
+      setStyle("z-index",style.zIndex);
       var hostParent:IParent = host.parent;
       var index:int = hostParent.getElementIndex(host);
       hostParent.addElementAt(this,index);
