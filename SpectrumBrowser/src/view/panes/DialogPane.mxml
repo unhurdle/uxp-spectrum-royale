@@ -102,8 +102,10 @@
         '</sp:Dialog>\n'+
         '<sp:Dialog id="fullScreenTakeover" size="{Dialog.FULLSCREEN_TAKEOVER}">\n'+
         '  <sp:DialogHeader title="Fullscreen Takeover">\n'+
-        '    <sp:Button text="Cancel" flavor="{Button.SECONDARY}" click="fullScreenTakeover.hide()"/>\n'+
-        '    <sp:Button text="Save" click="fullScreenTakeover.hide()"/>\n'+
+        '    <sp:ButtonGroup vertical="false">\n'+
+        '     <sp:Button text="Cancel" flavor="{Button.SECONDARY}" click="fullScreenTakeover.hide()"/>\n'+
+        '     <sp:Button text="Save" click="fullScreenTakeover.hide()"/>\n'+
+        '    </sp:ButtonGroup>\n'+
         '  </sp:DialogHeader>\n'+
         '  <sp:DialogContent text="{longLoremIpsum}"/>\n'+
         '  <sp:DialogFooter>\n'+
@@ -210,8 +212,10 @@
     </sp:Dialog>
     <sp:Dialog id="fullScreenTakeover" size="{Dialog.FULLSCREEN_TAKEOVER}">
       <sp:DialogHeader title="Fullscreen Takeover">
-        <sp:Button text="Cancel" flavor="{Button.SECONDARY}" click="fullScreenTakeover.hide()"/>
-        <sp:Button text="Save" click="fullScreenTakeover.hide()"/>
+        <sp:ButtonGroup vertical="false">
+          <sp:Button text="Cancel" flavor="{Button.SECONDARY}" click="fullScreenTakeover.hide()"/>
+          <sp:Button text="Save" click="fullScreenTakeover.hide()"/>
+        </sp:ButtonGroup>
       </sp:DialogHeader>
       <sp:DialogContent text="{longLoremIpsum}"/>
       <sp:DialogFooter>
