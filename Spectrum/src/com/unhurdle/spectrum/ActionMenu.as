@@ -98,6 +98,7 @@ package com.unhurdle.spectrum
 
     override public function showMenu():void{
       super.showMenu();
+      popover.setStyle('max-height','');
       selected = true;
       _openMenu = this;
     }
@@ -139,15 +140,26 @@ package com.unhurdle.spectrum
     public function determinePosition(ptY:Number):Number
 		{
 			var screenHeight:Number = (UIUtils.findPopUpHost(this).popUpParent as IParentIUIBase).height;
-      var h:Number = popover.height;
-			if(ptY + h > screenHeight){
-			  ptY -= (h + this.height-7);
-        popover.position = "top";
+			var h:Number = popover.height;
+			if(ptY + h <= screenHeight){
+				popover.position = "bottom";
+				return ptY + 5;
 			}
-      else{
-        ptY += 5;
-        popover.position = "bottom";
-      }
+			var topSpace:Number = ptY - this.height -7;
+			var bottomSpace:Number = screenHeight - ptY;
+			var avaliableSpace:Number;
+			if(topSpace > bottomSpace){
+				ptY -= (h + this.height-7);
+				popover.position = "top";
+				avaliableSpace = topSpace;
+			} else {
+				ptY += 5;
+				popover.position = "bottom";
+				avaliableSpace = bottomSpace;
+			}
+			if(avaliableSpace < popover.height){
+				popover.setStyle('max-height',avaliableSpace + 'px');
+			}
       return ptY;
 		}
   }
