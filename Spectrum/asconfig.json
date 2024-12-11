@@ -22,7 +22,7 @@
             "libs"
         ],
         "load-config": [
-            "compile-config.xml"
+            "asconfigc-config.xml"
         ],
         "js-load-config": [
             "js-compile-config.xml"
