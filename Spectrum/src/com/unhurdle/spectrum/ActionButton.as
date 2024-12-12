@@ -15,6 +15,7 @@ package com.unhurdle.spectrum
   import com.unhurdle.spectrum.includes.ActionButtonInclude;
   import com.unhurdle.spectrum.interfaces.IKeyboardNavigateable;
   import com.unhurdle.spectrum.utils.generateIcon;
+  import com.unhurdle.spectrum.utils.getExplicitZIndex;
 
 	[Event(name="change", type="org.apache.royale.events.Event")]
 	[Event(name="selectionChanged", type="org.apache.royale.events.Event")]
@@ -209,6 +210,10 @@ package com.unhurdle.spectrum
     }
     public function createPopover():void{
       popover = new ComboBoxList();
+      var zIndex:Number = getExplicitZIndex(this);
+      if(zIndex > 2){
+        popover.setStyle("z-index",zIndex);
+      }
       menu = popover.list;
       menu.dataProvider = dataProvider;
       menu.addEventListener("change",handleMenuChange);
@@ -222,7 +227,9 @@ package com.unhurdle.spectrum
       if(!popover){
         createPopover();
       }
-      popover.setStyle("pointer-events","none");
+      
+      var style:CSSStyleDeclaration =  window["getComputedStyle"](element);
+			popover.setStyle("z-index",style.zIndex);
       dispatchEvent(new Event("beforeShow"));
       popover.x = popover.y = 0;
       popover.open = true;
