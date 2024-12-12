@@ -36,6 +36,7 @@ package com.unhurdle.spectrum
 		private function elementClicked():void{
 			indeterminate = false;
 			checked = !checked;
+			dispatchEvent(new Event("change"));
 		}
 		private var spanLabel:TextNode;
 		COMPILE::JS
@@ -208,7 +209,6 @@ package com.unhurdle.spectrum
 				indeterminate = false;
 			}
 			_checked = value;
-		// dispatchEvent(new Event("change"));
 		}
 		private var _quiet:Boolean;
 
