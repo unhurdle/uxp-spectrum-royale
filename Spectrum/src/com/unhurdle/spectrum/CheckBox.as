@@ -148,14 +148,14 @@ package com.unhurdle.spectrum
 
 		public function set indeterminate(value:Boolean):void
 		{
-			if(!indeterminateIcon){
-				var type:String = IconType.DASH_SMALL;
-				indeterminateIcon = new Icon(Icon.getCSSTypeSelector(type));
-				indeterminateIcon.type = type;
-				indeterminateIcon.className = appendSelector("-partialCheckmark");
-				// spanBox.addElement(indeterminateIcon);
-			}
 			if(value != !!_indeterminate){
+				if(!indeterminateIcon){
+					var type:String = IconType.DASH_SMALL;
+					indeterminateIcon = new Icon(Icon.getCSSTypeSelector(type));
+					indeterminateIcon.type = type;
+					indeterminateIcon.className = appendSelector("-partialCheckmark");
+					// spanBox.addElement(indeterminateIcon);
+				}
 				if(value){
 					setAttribute("indeterminate",true);
 				} else {
@@ -198,14 +198,14 @@ package com.unhurdle.spectrum
 
 		public function set checked(value:Boolean):void
 		{
-			if(!checkIcon){
-				var type:String = IconType.CHECKMARK_SMALL;
-				checkIcon = new Icon(Icon.getCSSTypeSelector(type));
-				checkIcon.type = type;
-				checkIcon.className = appendSelector("-checkmark");
-				// spanBox.addElement(checkIcon);
-			}
 			if(value != !!_checked){
+				if(!checkIcon){
+					var type:String = IconType.CHECKMARK_SMALL;
+					checkIcon = new Icon(Icon.getCSSTypeSelector(type));
+					checkIcon.type = type;
+					checkIcon.className = appendSelector("-checkmark");
+					// spanBox.addElement(checkIcon);
+				}
 				if(value){
 					setAttribute("checked",true);
 				} else {
