@@ -9,7 +9,9 @@ package com.unhurdle.spectrum
     import org.apache.royale.html.elements.H3;
     import org.apache.royale.core.IChild;
     import com.unhurdle.spectrum.utils.generateIcon;
+    import org.apache.royale.events.Event;
 
+	[Event(name="openChanged", type="org.apache.royale.events.Event")]
   public class AccordionSection extends Group
   {
     public function AccordionSection()
@@ -54,6 +56,7 @@ package com.unhurdle.spectrum
       if(value != _open){
       	_open = value;
         toggle("is-open",value);
+        dispatchEvent(new Event("openChanged"));
         // var type:String = value ? IconType.CHEVRON_DOWN_MEDIUM:IconType.CHEVRON_RIGHT_MEDIUM;
         // headerIcon.selector = Icon.getCSSTypeSelector(type);
         // headerIcon.type = type;
