@@ -144,6 +144,10 @@ package com.unhurdle.spectrum
     protected function handleTopMostEventDispatcherMouseDown(event:MouseEvent):void{
 			picker.popover.open = false;
 		}
+    protected function handleControlMouseDown(event:MouseEvent):void{			
+			event.stopImmediatePropagation();
+		}
+
 
     protected function positionPopup():void{
       var origin:Point = new Point(input.x, height);
@@ -237,6 +241,8 @@ package com.unhurdle.spectrum
             input.addEventListener("onArrowDown",selectValue);
             input.addEventListener("onArrowUp",selectValue);
             input.element.addEventListener("input",updateValue);
+            input.addEventListener(MouseEvent.MOUSE_DOWN, handleControlMouseDown);
+            picker.popover.addEventListener(MouseEvent.MOUSE_DOWN, handleControlMouseDown);
             topMostEventDispatcher.addEventListener(MouseEvent.MOUSE_DOWN, handleTopMostEventDispatcherMouseDown);
           }
         }
@@ -249,6 +255,8 @@ package com.unhurdle.spectrum
           input.removeEventListener("onArrowDown",selectValue);
           input.removeEventListener("onArrowUp",selectValue);
           input.element.removeEventListener("input",updateValue);
+          input.removeEventListener(MouseEvent.MOUSE_DOWN, handleControlMouseDown);
+          picker.popover.removeEventListener(MouseEvent.MOUSE_DOWN, handleControlMouseDown);
           topMostEventDispatcher.removeEventListener(MouseEvent.MOUSE_DOWN, handleTopMostEventDispatcherMouseDown);
         }
       }
