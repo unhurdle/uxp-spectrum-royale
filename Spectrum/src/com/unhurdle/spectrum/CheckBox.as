@@ -38,6 +38,7 @@ package com.unhurdle.spectrum
 			checked = !checked;
 		}
 		private var spanLabel:TextNode;
+		// private var spanBox:Span;
 		COMPILE::JS
 		override protected function createElement():WrappedHTMLElement{
 			var elem:WrappedHTMLElement = super.createElement();
@@ -47,18 +48,8 @@ package com.unhurdle.spectrum
 			// input.className = appendSelector("-input");
 			// input.onclick = elementClicked;
 			// elem.appendChild(input);
-			// var spanBox:Span = new Span();
+			// spanBox = new Span();
 			// spanBox.element.className = appendSelector("-box");
-			// var type:String = IconType.CHECKMARK_SMALL;
-			// var icon:Icon = new Icon(Icon.getCSSTypeSelector(type));
-			// icon.type = type;
-			// icon.className = appendSelector("-checkmark");
-			// spanBox.addElement(icon);
-			// type = IconType.DASH_SMALL;
-			// icon = new Icon(Icon.getCSSTypeSelector(type));
-			// icon.type = type;
-			// icon.className = appendSelector("-partialCheckmark");
-			// spanBox.addElement(icon);
 			// elem.appendChild(spanBox.element);
 						// set values
 			// input.disabled = disabled;
@@ -78,7 +69,7 @@ package com.unhurdle.spectrum
 		{
 			COMPILE::JS
 			{
-								if(_text != value){
+				if(_text != value){
 					if(!spanLabel){
 						spanLabel = new TextNode("span");
 						spanLabel.className = appendSelector("-label");
@@ -147,6 +138,7 @@ package com.unhurdle.spectrum
 			}
 			_invalid = value;
 		}
+		private var indeterminateIcon:Icon;
 		private var _indeterminate:Boolean;
 
 		public function get indeterminate():Boolean
@@ -156,6 +148,13 @@ package com.unhurdle.spectrum
 
 		public function set indeterminate(value:Boolean):void
 		{
+			if(!indeterminateIcon){
+				var type:String = IconType.DASH_SMALL;
+				indeterminateIcon = new Icon(Icon.getCSSTypeSelector(type));
+				indeterminateIcon.type = type;
+				indeterminateIcon.className = appendSelector("-partialCheckmark");
+				// spanBox.addElement(indeterminateIcon);
+			}
 			if(value != !!_indeterminate){
 				if(value){
 					setAttribute("indeterminate",true);
@@ -189,6 +188,7 @@ package com.unhurdle.spectrum
 			}
 			_disabled = value;
 		}
+		private var checkIcon:Icon;
 		private var _checked:Boolean;
 		[Bindable]
 		public function get checked():Boolean
@@ -198,6 +198,13 @@ package com.unhurdle.spectrum
 
 		public function set checked(value:Boolean):void
 		{
+			if(!checkIcon){
+				var type:String = IconType.CHECKMARK_SMALL;
+				checkIcon = new Icon(Icon.getCSSTypeSelector(type));
+				checkIcon.type = type;
+				checkIcon.className = appendSelector("-checkmark");
+				// spanBox.addElement(checkIcon);
+			}
 			if(value != !!_checked){
 				if(value){
 					setAttribute("checked",true);
