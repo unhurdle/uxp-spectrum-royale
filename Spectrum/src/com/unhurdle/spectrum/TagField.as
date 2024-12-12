@@ -4,12 +4,14 @@ package com.unhurdle.spectrum
     import org.apache.royale.core.WrappedHTMLElement;
     import org.apache.royale.html.util.addElementToWrapper;
   }
-  import org.apache.royale.events.FocusEvent;
-  import org.apache.royale.utils.PointUtils;
-  import org.apache.royale.geom.Point;
+  import org.apache.royale.core.IHasLabelField;
   import org.apache.royale.events.Event;
-
-  public class TagField extends Group
+   import org.apache.royale.events.FocusEvent;
+   import org.apache.royale.geom.Point;
+  import org.apache.royale.html.util.getLabelFromData;
+  import org.apache.royale.utils.PointUtils;
+ 
+  public class TagField extends Group implements IHasLabelField
   {
     public function TagField()
     {
@@ -92,10 +94,11 @@ package com.unhurdle.spectrum
       if(input.text){
         valuesArr.push(input.text);
         var len:int = tagList.length;
-        for(var index:int = 0; index < len; index++)
+        var labels:Array = labelList;
+        for(var i:int = 0; i < len; i++)
         {
-          var t:String = tagList[index];
-          if(t.indexOf(input.text) == 0){
+          var t:String = _labelList[i];
+          if(labels[i].indexOf(input.text) == 0){
             arr.push(t);
             valuesArr.push(t);
           }
@@ -200,6 +203,7 @@ package com.unhurdle.spectrum
 
     public function set tagList(value:Array):void{
     	_tagList = value;
+      _labelList = null;
       if(value){
         menu = new Menu();
         COMPILE::JS{
@@ -216,6 +220,17 @@ package com.unhurdle.spectrum
         }
       }
     }
+    private var _labelList:Array;
+
+    private function get labelList():Array{
+      if(!_labelList){
+        _labelList = [];
+        for each(var tag:* in tagList){
+          _labelList.push(getLabelFromData(this,tag));
+        }
+      }
+    	return _labelList;
+    }
 
     private function removeTag():void{
       var tags:Array = tagGroup.tags;
@@ -223,6 +238,14 @@ package com.unhurdle.spectrum
         tagGroup.removeElement(tags[tags.length-1]);
       }
       calculatePosition();
+    }
+    private var _labelField:String = "label";
+
+    public function get labelField():String{
+    	return _labelField;
+    }
+    public function set labelField(value:String):void{
+    	_labelField = value;
     }
   }
 }
