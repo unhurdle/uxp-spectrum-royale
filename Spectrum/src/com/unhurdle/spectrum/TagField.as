@@ -158,8 +158,7 @@ package com.unhurdle.spectrum
         // var len:int = tagGroup.numElements;
         var tags:Array = tagGroup.tags;
         var len:int = tags.length;
-        for(var index:int = 0; index < len; index++)
-        {
+        for(var index:int = 0; index < len; index++){
           // var element:Tag = tagGroup.getElementAt(index) as Tag;
           var element:Tag = tags[index];
           if(element.text == input.text){
@@ -171,16 +170,28 @@ package com.unhurdle.spectrum
             return;
           }
         }
-        var tag:Tag = new Tag();
-        tag.deletable = true;
-        tag.text = input.text;
-        input.text = "";
-        COMPILE::JS{
-        tag.element.className = null;
+        var foundInList:Boolean = false;
+        if(_limitToList){
+          for each(var t:* in tagList){
+            if(getLabelFromData(this,t) == input.text){
+              foundInList = true;
+              break;
+            }
+          }
         }
-        tagGroup.addTag(tag);
-        requestAnimationFrame(function():void{ tag.toggle('spectrum-Tags-item--deletable',true);calculatePosition();})
+        if(!_limitToList || foundInList){
+          var tag:Tag = new Tag();
+          tag.deletable = true;
+          tag.text = input.text;
+          input.text = "";
+          tagGroup.addTag(tag);
+        }
+        // COMPILE::JS{
+        // tag.element.className = null;
+        // }
+        // requestAnimationFrame(function():void{ tag.toggle('spectrum-Tags-item--deletable',true);calculatePosition();})
       } 
+      calculatePosition();
     }
 
     private function calculatePosition():void {
@@ -246,6 +257,14 @@ package com.unhurdle.spectrum
     }
     public function set labelField(value:String):void{
     	_labelField = value;
+    }
+    private var _limitToList:Boolean;
+
+    public function get limitToList():Boolean{
+    	return _limitToList;
+    }
+    public function set limitToList(value:Boolean):void{
+    	_limitToList = value;
     }
   }
 }
