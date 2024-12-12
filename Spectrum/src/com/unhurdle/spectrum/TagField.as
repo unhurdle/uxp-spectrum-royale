@@ -6,7 +6,7 @@ package com.unhurdle.spectrum
   }
   import org.apache.royale.core.IHasLabelField;
   import org.apache.royale.events.Event;
-   import org.apache.royale.geom.Point;
+  import org.apache.royale.geom.Point;
   import org.apache.royale.html.util.getLabelFromData;
   import org.apache.royale.utils.PointUtils;
  
@@ -54,7 +54,7 @@ package com.unhurdle.spectrum
     /**
      * @royaleignorecoercion com.unhurdle.spectrum.Tag
      */
-    public var menu:Menu;
+    public var picker:Picker;
     public var popover:ComboBoxList;
     private var valuesArr:Array = [];
     private var ind:Number = 0;
@@ -102,12 +102,12 @@ package com.unhurdle.spectrum
           }
         }
       }
-      if(menu){
+      if(picker){
         if(!!arr.length){
           if(!popover){
             createPopover();
           }
-          menu.dataProvider = arr;
+          picker.dataProvider = arr;
           popover.x = popover.y = 0;
           popover.open = true;
           popover.list.focus();
@@ -124,9 +124,9 @@ package com.unhurdle.spectrum
 
     public function createPopover():void{
       popover = new ComboBoxList();
-      menu = popover.list;
+      picker.popover = popover;
       popover.width = input.width;
-      menu.addEventListener("change",handleMenuChange);
+      picker.addEventListener("change",handleMenuChange);
     }
 
     private function handleMenuChange(ev:Event):void{
@@ -149,8 +149,8 @@ package com.unhurdle.spectrum
     }
 
     private function itemSelected(ev:Event):void{
-      if(menu.selectedItem){
-        addTag(menu.selectedItem.text);
+      if(picker.selectedItem){
+        addTag(picker.selectedItem.text);
       }
     }
     private function inputChanged():void{
@@ -158,7 +158,7 @@ package com.unhurdle.spectrum
     }
     private function addTag(text:String):void{
       if(text){
-        if(menu){
+        if(picker){
           closePopup();
         }
         // var len:int = tagGroup.numElements;
@@ -221,19 +221,19 @@ package com.unhurdle.spectrum
     public function set tagList(value:Array):void{
     	_tagList = value;
       _labelList = null;
-      menu.addEventListener('change',itemSelected);
+      picker.addEventListener('change',itemSelected);
       if(value){
-        menu = new Menu();
+        picker = new Picker();
         COMPILE::JS{
           input.addEventListener("onArrowDown",selectValue);
           input.addEventListener("onArrowUp",selectValue);
           input.element.addEventListener("input",updateValue);
         }
       }else{
-        if(menu){
-          menu.removeEventListener('change',itemSelected);
+        if(picker){
+          picker.removeEventListener('change',itemSelected);
         }
-        menu = null;
+        picker = null;
         COMPILE::JS{
           input.removeEventListener("onArrowDown",selectValue);
           input.removeEventListener("onArrowUp",selectValue);
