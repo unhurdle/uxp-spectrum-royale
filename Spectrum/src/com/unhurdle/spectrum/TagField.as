@@ -6,12 +6,11 @@ package com.unhurdle.spectrum
   }
   import org.apache.royale.core.IHasLabelField;
   import org.apache.royale.events.Event;
-  import org.apache.royale.events.KeyboardEvent;
   import org.apache.royale.events.MouseEvent;
   import org.apache.royale.events.ValueEvent;
-  import org.apache.royale.geom.Point;
+  import org.apache.royale.geom.Rectangle;
   import org.apache.royale.html.util.getLabelFromData;
-  import org.apache.royale.utils.PointUtils;
+  import org.apache.royale.utils.DisplayUtils;
  
   public class TagField extends Group implements IHasLabelField
   {
@@ -57,8 +56,7 @@ package com.unhurdle.spectrum
     /**
      * @royaleignorecoercion com.unhurdle.spectrum.Tag
      */
-    public var picker:Picker;
-    public var popover:ComboBoxList;
+    private var comboBoxList:ComboBoxList;
     private var valuesArr:Array = [];
     private var ind:Number = 0;
     private function selectValue(ev:ValueEvent):void{
@@ -78,7 +76,7 @@ package com.unhurdle.spectrum
       }
       ev.value.preventDefault();
       var move:int = type == "onArrowDown" ? 1 : -1;
-      var index:int = picker.selectedIndex + move;
+      var index:int = comboBoxList.list.selectedIndex + move;
       var dataLength:int = valuesArr.length;
       if(index == dataLength){
         index = 0;
@@ -86,7 +84,7 @@ package com.unhurdle.spectrum
       if(index == -1){
         index = dataLength - 1;
       }
-      picker.selectedIndex = index;
+      comboBoxList.list.selectedIndex = index;
       input.text = valuesArr[index];
     }
     private function updateValue():void{
@@ -103,22 +101,25 @@ package com.unhurdle.spectrum
           }
         }
       }
-      if(picker){
-        picker.selectedIndex = -1;
-        picker.dataProvider = valuesArr.slice();
+      if(comboBoxList){
+        comboBoxList.list.selectedIndex = -1;
+        comboBoxList.list.dataProvider = valuesArr.slice();
         if(valuesArr.length){
-          if(!popover){
-            createPopover();
-          }
-          popover.x = popover.y = 0;
-          popover.open = true;
-          popover.list.focus();
-          COMPILE::JS
-          {
-            requestAnimationFrame(positionPopup);
-          }
+          positionPopup();//need to position before opening because adding it to the dom changes the position
+          comboBoxList.open = true;
+          // if(!popover){
+          //   createPopover();
+          // }
+          // popover.x = popover.y = 0;
+          // popover.open = true;
+          // popover.list.focus();
+          // COMPILE::JS
+          // {
+          //   requestAnimationFrame(positionPopup);
+          // }
         }else{
-          closePopup();
+          comboBoxList.open = false;
+          // closePopup();
         }
       }
       COMPILE::JS{
@@ -127,42 +128,38 @@ package com.unhurdle.spectrum
       calculatePosition();
     }
 
-    public function createPopover():void{
-      popover = new ComboBoxList();
-      picker.popover = popover;
-      popover.width = input.width;
-      picker.addEventListener("change",handleMenuChange);
-    }
+    // public function createPopover():void{
+    //   popover = new ComboBoxList();
+    //   picker.popover = popover;
+    //   popover.width = input.width;
+    //   picker.addEventListener("change",handleMenuChange);
+    // }
 
     private function handleMenuChange(ev:Event):void{
-      closePopup();
+      comboBoxList.open = false;
       dispatchEvent(new Event("change"));
     }
 
-    protected function closePopup():void{
-      if(popover && popover.open){
-  			popover.open = false;
-        popover.list.blur();
-      }
-    }
-    protected function handleTopMostEventDispatcherMouseDown(event:MouseEvent):void{
-			picker.popover.open = false;
-		}
+    // protected function closePopup():void{
+    //   if(popover && popover.open){
+  	// 		popover.open = false;
+    //     popover.list.blur();
+    //   }
+    // }
     protected function handleControlMouseDown(event:MouseEvent):void{			
 			event.stopImmediatePropagation();
 		}
 
 
     protected function positionPopup():void{
-      var origin:Point = new Point(input.x, height);
-      var relocated:Point = PointUtils.localToGlobal(origin,this);
-      popover.x = relocated.x
-      popover.y = relocated.y;
+      var componentBounds:Rectangle = DisplayUtils.getScreenBoundingRect(input);
+			comboBoxList.positionPopup(componentBounds);
+
     }
 
     private function itemSelected(ev:Event):void{
-      if(picker.selectedItem){
-        addTag(picker.selectedItem.text);
+      if(comboBoxList.list.selectedItem){
+        addTag(comboBoxList.list.selectedItem.text);
       }
     }
     private function inputChanged():void{
@@ -170,8 +167,8 @@ package com.unhurdle.spectrum
     }
     private function addTag(text:String):void{
       if(text){
-        if(picker){
-          closePopup();
+        if(comboBoxList){
+          comboBoxList.open = false;
         }
         // var len:int = tagGroup.numElements;
         var tags:Array = tagGroup.tags;
@@ -233,35 +230,28 @@ package com.unhurdle.spectrum
     public function set tagList(value:Array):void{
     	_tagList = value;
       _labelList = null;
-      picker.addEventListener('change',itemSelected);
+      // picker.addEventListener('change',itemSelected);
       if(value){
-        if(!picker){
-          picker = new Picker();
-          picker.addEventListener('change',itemSelected);
-          // picker.button.visible = false;
-          picker.width = 0;
+        if(!comboBoxList){
+          comboBoxList = new ComboBoxList();
+          comboBoxList.addEventListener('change',itemSelected);
           COMPILE::JS{
-            addElement(picker);
             input.addEventListener("onArrowDown",selectValue);
             input.addEventListener("onArrowUp",selectValue);
             input.element.addEventListener("input",updateValue);
             input.addEventListener(MouseEvent.MOUSE_DOWN, handleControlMouseDown);
-            picker.popover.addEventListener(MouseEvent.MOUSE_DOWN, handleControlMouseDown);
-            topMostEventDispatcher.addEventListener(MouseEvent.MOUSE_DOWN, handleTopMostEventDispatcherMouseDown);
           }
         }
       }else{
-        if(picker){
-          picker.removeEventListener('change',itemSelected);
+        if(comboBoxList){
+          comboBoxList.removeEventListener('change',itemSelected);
         }
-        picker = null;
+        comboBoxList = null;
         COMPILE::JS{
           input.removeEventListener("onArrowDown",selectValue);
           input.removeEventListener("onArrowUp",selectValue);
           input.element.removeEventListener("input",updateValue);
           input.removeEventListener(MouseEvent.MOUSE_DOWN, handleControlMouseDown);
-          picker.popover.removeEventListener(MouseEvent.MOUSE_DOWN, handleControlMouseDown);
-          topMostEventDispatcher.removeEventListener(MouseEvent.MOUSE_DOWN, handleTopMostEventDispatcherMouseDown);
         }
       }
     }
