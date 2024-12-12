@@ -90,7 +90,13 @@ package com.unhurdle.spectrum
       comboBoxList.list.selectedIndex = index;
       input.text = valuesArr[index];
     }
+    private var updating:Boolean;
+    //TODO just show and hide rather than add and remove from dom
     private function updateValue(ev:InputEvent = null):void{
+      if(updating){// don't do nested updates
+        return;
+      }
+      updating = true;
       valuesArr = [];
       var len:int = tagList.length;
       var labels:Array = labelList;
@@ -133,6 +139,7 @@ package com.unhurdle.spectrum
         input.input.focus();
       }
       calculatePosition();
+      updating = false;
     }
 
     // public function createPopover():void{
