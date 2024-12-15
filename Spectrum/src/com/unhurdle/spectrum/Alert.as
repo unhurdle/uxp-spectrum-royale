@@ -8,6 +8,10 @@ package com.unhurdle.spectrum
   import org.apache.royale.html.beads.plugin.ModalDisplay;
   import com.unhurdle.spectrum.Icon;
   import com.unhurdle.spectrum.utils.generateIcon;
+  import org.apache.royale.events.Event;
+  
+  [Event(name="modalShown", type="org.apache.royale.events.Event")]
+  [Event(name="modalHidden", type="org.apache.royale.events.Event")]
   
   public class Alert extends SpectrumBase
   {
@@ -196,12 +200,14 @@ package com.unhurdle.spectrum
       visible = true;
       window.addEventListener(KeyboardEvent.KEY_DOWN,handleKeyDown);
       modal.show(Application.current.popUpHost);
+      dispatchEvent(new Event("modalShown"));
 		}
 
     public function hide():void{
       window.removeEventListener(KeyboardEvent.KEY_DOWN,handleKeyDown);
       visible = false;
       modal.hide();
+      dispatchEvent(new Event("modalHidden"));
     }
     
     public static const ERROR:String = "error";
