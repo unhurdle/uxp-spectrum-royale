@@ -318,6 +318,13 @@ package com.unhurdle.spectrum
       }
       calculatePosition();
     }
+    public function removeAllTags():void{
+      var tags:Array = tagGroup.tags;
+      for each(var tag:Tag in tags){
+        tagGroup.removeElement(tag);
+      }
+      calculatePosition();
+    }
     private var _labelField:String = "label";
 
     public function get labelField():String{
