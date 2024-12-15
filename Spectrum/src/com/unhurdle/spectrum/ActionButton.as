@@ -229,7 +229,9 @@ package com.unhurdle.spectrum
       }
       
       var style:CSSStyleDeclaration =  window["getComputedStyle"](element);
-			popover.setStyle("z-index",style.zIndex);
+			if(Number(style.zIndex) > 2){
+        popover.setStyle("z-index",style.zIndex);
+      }
       dispatchEvent(new Event("beforeShow"));
       popover.x = popover.y = 0;
       popover.open = true;
