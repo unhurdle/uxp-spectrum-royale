@@ -294,9 +294,8 @@ package com.unhurdle.spectrum{
 				var relocated:Point = PointUtils.localToGlobal(origin,comboHost);
 				_popup.x = relocated.x
 				_popup.y = relocated.y;
-				_popup.width = comboHost.width;
+                _popup.width = comboHost.popupWidth ? comboHost.popupWidth : comboHost.width;
 				list.selectedIndex = -1;
-
 				var popupHost:IPopUpHost = UIUtils.findPopUpHost(comboHost);
 				callLater(openPopup);
 			} else {
