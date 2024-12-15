@@ -177,7 +177,17 @@ package com.unhurdle.spectrum
 		public function set keyboardFocused(value:Boolean):void{
 			getModel().keyboardFocused = value;
 		}
+		private var _popupWidth:Number;
+		public function get popupWidth():Number
+		{
+			return _popupWidth;
+		}
 
+		public function set popupWidth(value:Number):void
+		{
+			_popupWidth = value;
+			getView().popUp.width = value;
+		}
 		public var filterFunction:Function = function(input:String,dataProvider:Object):Array{
 			var inArray:Array;
 			if(dataProvider is IArrayList){
