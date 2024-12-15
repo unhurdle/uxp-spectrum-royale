@@ -12,6 +12,7 @@ package com.unhurdle.spectrum
   import org.apache.royale.html.util.getLabelFromData;
   import org.apache.royale.utils.DisplayUtils;
  
+  [Event(name="inputChanged", type="org.apache.royale.events.Event")]
   public class TagField extends Group implements IHasLabelField
   {
     public function TagField()
@@ -42,6 +43,7 @@ package com.unhurdle.spectrum
       input.setStyle("display","inline-block");
       input.addEventListener("onBackspace",removeTag);
       input.addEventListener("onEnter",inputChanged);
+      input.element.addEventListener("input",inputValueChanged);
       input.input.style.borderStyle = "none";
       input.input.style.background = "none";
       input.height = 32;
@@ -93,6 +95,9 @@ package com.unhurdle.spectrum
     private var updating:Boolean;
     //TODO just show and hide rather than add and remove from dom
     private function updateValue(ev:InputEvent = null):void{
+      if(!tagList){
+        return;
+      }
       if(updating){// don't do nested updates
         return;
       }
@@ -104,8 +109,10 @@ package com.unhurdle.spectrum
       if(!text){
         valuesArr = labels.slice();
       } else {
+        var lower:String = input.text.toLowerCase();
         for each( var t:String in labels){
-          if(t.toLowerCase().indexOf(input.text.toLowerCase()) == 0){
+          var idx:int = t.toLowerCase().indexOf(lower);
+          if((!strictMatch && idx > -1) || idx == 0){
             valuesArr.push(t);
           }
         }
@@ -264,7 +271,6 @@ package com.unhurdle.spectrum
           COMPILE::JS{
             input.addEventListener("onArrowDown",selectValue);
             input.addEventListener("onArrowUp",selectValue);
-            input.element.addEventListener("input",updateValue);
             input.element.addEventListener("focus",updateValue,true);
             input.addEventListener(MouseEvent.MOUSE_DOWN, handleControlMouseDown);
           }
@@ -279,12 +285,16 @@ package com.unhurdle.spectrum
         COMPILE::JS{
           input.removeEventListener("onArrowDown",selectValue);
           input.removeEventListener("onArrowUp",selectValue);
-          input.element.removeEventListener("input",updateValue);
           input.element.removeEventListener("focus",updateValue,true);
           input.removeEventListener(MouseEvent.MOUSE_DOWN, handleControlMouseDown);
         }
       }
     }
+    private function inputValueChanged():void{
+      updateValue();
+      dispatchEvent(new ValueEvent("inputChanged",input.text));
+    }
+
     private var _labelList:Array;
 
     private function get labelList():Array{
@@ -296,6 +306,10 @@ package com.unhurdle.spectrum
       }
     	return _labelList;
     }
+    /**
+     * If true only tags matching the beginning of the substring will be shown.
+     */
+    public var strictMatch:Boolean = true;
 
     private function removeTag():void{
       var tags:Array = tagGroup.tags;
