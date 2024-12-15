@@ -299,6 +299,10 @@ package com.unhurdle.spectrum
         return null;
       }
     }
+    override public function get tabFocusable():Boolean
+    {
+      return super.tabFocusable && !disabled;
+    }
 
     private var _keyboardFocused:Boolean;
 
