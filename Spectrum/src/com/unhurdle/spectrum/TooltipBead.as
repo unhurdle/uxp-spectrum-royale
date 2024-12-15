@@ -131,19 +131,39 @@ package com.unhurdle.spectrum
 
 		private var _tipPosition:String;
 
-    /**
-     * The position of the tip within the tooltip
-     */
+		/**
+		 * The position of the tip within the tooltip
+		 */
 		public function get tipPosition():String{
 			return _tipPosition;
 		}
 
-    [Inspectable(category="General", enumeration="start,end,center" defaultValue="center")]
+		[Inspectable(category="General", enumeration="start,end,center" defaultValue="center")]
 		public function set tipPosition(value:String):void{
 			_tipPosition = value;
 			if (tt)
 			{
 				tt.tipPosition = value;
+			}
+		}
+		private var _flavor:String;
+
+		/**
+		 * The flavor of the Tooltip
+		 * One of info, positive and negative, success and error.
+		 * To set the Tooltip to the default, specify an empty string
+		 */
+		public function get flavor():String
+		{
+			return _flavor;
+		}
+
+		[Inspectable(category="General", enumeration="info,positive,negative,success,error")]
+		public function set flavor(value:String):void
+		{
+			_flavor = value;
+			if(tt){
+				tt.flavor = value;
 			}
 		}
 
