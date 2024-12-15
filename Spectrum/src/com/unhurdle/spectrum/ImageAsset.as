@@ -31,6 +31,7 @@ package com.unhurdle.spectrum
         if(!_imageElement){
           createImageElement();
         }
+        if (value == null) value = ''; //null does not convert well
         _imageElement.src = value;
         _src = value;
       }
