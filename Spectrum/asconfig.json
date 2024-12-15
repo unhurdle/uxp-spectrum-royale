@@ -27,6 +27,7 @@
         "js-load-config": [
             "js-compile-config.xml"
         ],
+        "allow-abstract-classes": true,
         "warn-public-vars": false,
         "include-classes": [
             "Spectrum"

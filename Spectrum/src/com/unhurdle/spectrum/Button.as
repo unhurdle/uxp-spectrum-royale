@@ -9,8 +9,7 @@ package com.unhurdle.spectrum
   import com.unhurdle.spectrum.utils.generateIcon;
 
 
-  public class Button extends SpectrumBase implements IKeyboardFocusable
-  {
+  public class Button extends SpectrumBase implements IKeyboardFocusable, ITextContent  {
     /**
      * <inject_html>
      * <link rel="stylesheet" href="assets/css/components/button/dist.css">

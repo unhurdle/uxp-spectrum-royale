@@ -5,7 +5,7 @@ package com.unhurdle.spectrum
   import com.unhurdle.spectrum.includes.SideNavInclude;
   import com.unhurdle.spectrum.utils.generateIcon;
 
-  public class SideNavItem extends Group
+  public class SideNavItem extends Group implements ITextContent
   {
     public function SideNavItem(text:String = "")
     {

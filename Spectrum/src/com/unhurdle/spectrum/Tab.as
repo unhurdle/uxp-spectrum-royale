@@ -7,7 +7,7 @@ package com.unhurdle.spectrum
   import org.apache.royale.events.Event;
   import com.unhurdle.spectrum.utils.generateIcon;
 
-  public class Tab extends SpectrumBase
+  public class Tab extends SpectrumBase implements ITextContent
   {
     public function Tab()
     {
