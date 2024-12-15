@@ -1,38 +1,38 @@
 package com.unhurdle.spectrum
 {
-  import com.unhurdle.spectrum.includes.InputGroupInclude;
-  import org.apache.royale.collections.IArrayList;
-  import com.unhurdle.spectrum.data.IMenuItem;
-  import com.unhurdle.spectrum.interfaces.IKeyboardFocusable;
-  import com.unhurdle.spectrum.beads.KeyboardFocusHandler;
+	import com.unhurdle.spectrum.includes.InputGroupInclude;
+	import org.apache.royale.collections.IArrayList;
+	import com.unhurdle.spectrum.data.IMenuItem;
+	import com.unhurdle.spectrum.interfaces.IKeyboardFocusable;
+	import com.unhurdle.spectrum.beads.KeyboardFocusHandler;
 
-  [Event(name="change", type="org.apache.royale.events.Event")]
-  public class ComboBox extends SpectrumBase implements IKeyboardFocusable
-  {
-    public function ComboBox()
-    {
-      super();
-    }
-	override protected function requiresView():Boolean{
-      return true;
-    }
-    override protected function requiresController():Boolean{
-      return true;
-    }
+	[Event(name="change", type="org.apache.royale.events.Event")]
+	public class ComboBox extends SpectrumBase implements IKeyboardFocusable
+	{
+		public function ComboBox()
+		{
+			super();
+		}
+		override protected function requiresView():Boolean{
+			return true;
+		}
+		override protected function requiresController():Boolean{
+			return true;
+		}
 
-	override protected function loadBeads():void{
-		super.loadBeads();
-		addBead(new KeyboardFocusHandler());
-	}
-    override protected function getSelector():String{
-      return InputGroupInclude.getSelector();
-    }
+		override protected function loadBeads():void{
+			super.loadBeads();
+			addBead(new KeyboardFocusHandler());
+		}
+		override protected function getSelector():String{
+			return InputGroupInclude.getSelector();
+		}
 		public function get focusElement():HTMLElement{
 			return getView().textInputField.focusElement;
 		}
-    private function getModel():IComboBoxModel{
-      return model as IComboBoxModel;
-    }
+		private function getModel():IComboBoxModel{
+			return model as IComboBoxModel;
+		}
 		private function getView():ComboBoxView{
 			return view as ComboBoxView;
 		}
@@ -101,45 +101,45 @@ package com.unhurdle.spectrum
 			_text = value;
 		}
 
-    public function get placeholder():String
-    {
-    	return getModel().placeholder;
-    }
+		public function get placeholder():String
+		{
+			return getModel().placeholder;
+		}
 
-    public function set placeholder(value:String):void
-    {
-    	getModel().placeholder = value;
-    }
+		public function set placeholder(value:String):void
+		{
+			getModel().placeholder = value;
+		}
 
-    public function get pattern():String
-    {
-    	return getModel().pattern;
-    }
+		public function get pattern():String
+		{
+			return getModel().pattern;
+		}
 
-    public function set pattern(value:String):void
-    {
-    	getModel().pattern = value;
-    }
+		public function set pattern(value:String):void
+		{
+			getModel().pattern = value;
+		}
 
-    public function get required():Boolean
-    {
-    	return getModel().required;
-    }
+		public function get required():Boolean
+		{
+			return getModel().required;
+		}
 
-    public function set required(value:Boolean):void
-    {
-    	getModel().required = value;
-    }
+		public function set required(value:Boolean):void
+		{
+			getModel().required = value;
+		}
 
-    public function get disabled():Boolean
-    {
-    	return getModel().disabled;
-    }
+		public function get disabled():Boolean
+		{
+			return getModel().disabled;
+		}
 
-    public function set disabled(value:Boolean):void
-    {
-    	getModel().disabled = value;
-    }
+		public function set disabled(value:Boolean):void
+		{
+			getModel().disabled = value;
+		}
 
 		private var _invalid:Boolean;
 
@@ -210,6 +210,5 @@ package com.unhurdle.spectrum
 		// 	}
 		// 	_open = value;
 		// }
-
   }
 }

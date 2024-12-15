@@ -90,7 +90,7 @@ package com.unhurdle.spectrum{
 		}
 		
 		private var comboHost:ComboBox;
-    private var model:IComboBoxModel;
+		private var model:IComboBoxModel;
 		/**
 		 * @private
 		 * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
@@ -104,7 +104,7 @@ package com.unhurdle.spectrum{
 			var text:String = comboHost.text;
 			textfield = new TextField();
 			textfield.tabFocusable = false;
-      textfield.className = appendSelector("-textfield");
+			textfield.className = appendSelector("-textfield");
 			textfield.input.classList.add(appendSelector('-input'));
 			COMPILE::JS
 			{
@@ -123,11 +123,11 @@ package com.unhurdle.spectrum{
 			}
 
 			button = new FieldButton();
-      button.className = appendSelector("-button");
+			button.className = appendSelector("-button");
 			var type:String = IconType.CHEVRON_DOWN_MEDIUM;
-      button.icon = type;//Icon.getCSSTypeSelector(type);
+			button.icon = type;//Icon.getCSSTypeSelector(type);
 			button.iconType = type;
-      button.iconClass = appendSelector("-icon");
+			button.iconClass = appendSelector("-icon");
 
 			// if (isNaN(host.width)) input.width = 100;
 			
@@ -143,39 +143,39 @@ package com.unhurdle.spectrum{
 			
 			_popup = loadBeadFromValuesManager(ComboBoxList,"iPopUp",_strand) as ComboBoxList;
 			_popup.position = "bottom";
-      list = _popup.list;
-      // list.dataProvider = model.dataProvider;
+			list = _popup.list;
+			// list.dataProvider = model.dataProvider;
 			// _popup.style = {
 			// 	"position": "absolute",
-    	// 	"top": "100%",
-    	// 	"left": "0",
-    	// 	"width": "100%"
+			// 	"top": "100%",
+			// 	"left": "0",
+			// 	"width": "100%"
 			// };
 
 			comboHost.addElement(textfield as IChild);
 			comboHost.addElement(button as IChild);
-      // host.addElement(_popup);
+			// host.addElement(_popup);
 			list.model.addEventListener("selectedIndexChanged", handleItemChange);
 			list.model.addEventListener("selectedItemChanged", handleItemChange);
 
 			model.addEventListener("selectedIndexChanged", handleItemChange);
 			model.addEventListener("selectedItemChanged", handleItemChange);
 			model.addEventListener("dataProviderChanged", dataProviderChangeHandler);
-      model.addEventListener("placeholderChange",handlePlaceholderChange);
-      model.addEventListener("patternChange",handlePatternChange);
-      model.addEventListener("requiredChange",handleRequiredChange);
-      model.addEventListener("disabledChange",handleDisabledChange);
-      model.addEventListener("quietChange",handleQuietChange);
-      model.addEventListener("invalidChange",handleInvalidChange);
+			model.addEventListener("placeholderChange",handlePlaceholderChange);
+			model.addEventListener("patternChange",handlePatternChange);
+			model.addEventListener("requiredChange",handleRequiredChange);
+			model.addEventListener("disabledChange",handleDisabledChange);
+			model.addEventListener("quietChange",handleQuietChange);
+			model.addEventListener("invalidChange",handleInvalidChange);
 			model.addEventListener("focusChange",focusChangeHandler);
 			(_strand as IEventDispatcher).addEventListener("sizeChanged",handleSizeChange);
 			
 			// set initial value and positions using default sizes
-      handlePlaceholderChange(null);
-      handlePatternChange(null);
-      handleRequiredChange(null);
-      handleDisabledChange(null);
-      handleQuietChange(null);
+			handlePlaceholderChange(null);
+			handlePatternChange(null);
+			handleRequiredChange(null);
+			handleDisabledChange(null);
+			handleQuietChange(null);
 			handleInvalidChange(null);
 
 			itemChangeAction();
@@ -200,9 +200,9 @@ package com.unhurdle.spectrum{
 					/**
 					 * 
 					 * event = document.createEvent('KeyboardEvent') as KeyboardEvent;
-    event.initKeyboardEvent(options.type, options.cancelable, options.bubbles, window, key, 0, 0, 0, 0);
-  } else {
-    event = new KeyboardEvent(options.type, eventInitDict)
+						event.initKeyboardEvent(options.type, options.cancelable, options.bubbles, window, key, 0, 0, 0, 0);
+					} else {
+						event = new KeyboardEvent(options.type, eventInitDict)
 
 
 					 */
@@ -279,7 +279,7 @@ package com.unhurdle.spectrum{
 		 */
 		public function get popUpVisible():Boolean
 		{
-      return _popup.open;
+			return _popup.open;
 		}
 		/**
 		 * @royaleignorecoercion org.apache.royale.core.IComboBoxModel
@@ -305,7 +305,7 @@ package com.unhurdle.spectrum{
 			} else {
 				closePopup();
 			}
-      // _popup.open = value;
+			// _popup.open = value;
 		}
 		private var indexSet:Boolean = false;
 		private function openPopup():void{
@@ -329,16 +329,16 @@ package com.unhurdle.spectrum{
 		
 		protected function handleTopMostEventDispatcherMouseDown(event:MouseEvent):void
 		{
-      closePopup();
+			closePopup();
 		}
 
-    private function closePopup():void{
-      if(_popup && _popup.open){
-  			_popup.removeEventListener(MouseEvent.MOUSE_DOWN, handleControlMouseDown);
-	  		this.removeEventListener(MouseEvent.MOUSE_DOWN, handleControlMouseDown);
-		  	_popup.topMostEventDispatcher.removeEventListener(MouseEvent.MOUSE_DOWN, handleTopMostEventDispatcherMouseDown);
-        _popup.open = false;
-      }
+		private function closePopup():void{
+			if(_popup && _popup.open){
+				_popup.removeEventListener(MouseEvent.MOUSE_DOWN, handleControlMouseDown);
+				this.removeEventListener(MouseEvent.MOUSE_DOWN, handleControlMouseDown);
+				_popup.topMostEventDispatcher.removeEventListener(MouseEvent.MOUSE_DOWN, handleTopMostEventDispatcherMouseDown);
+				_popup.open = false;
+			}
 			textfield.focus();
 		}
 		/**
@@ -361,30 +361,28 @@ package com.unhurdle.spectrum{
 			}
 			itemChangeAction();
 		}
-    protected function dataProviderChangeHandler(event:Event):void{
-      list.dataProvider = model.dataProvider;
-    }
-    protected function handlePlaceholderChange(event:Event):void{
-      textfield.placeholder = model.placeholder;
-    }
-    protected function handlePatternChange(event:Event):void{
-      textfield.pattern = model.pattern;
-    }
-    protected function handleRequiredChange(event:Event):void{
-      textfield.required = model.required;
-    }
-    protected function handleDisabledChange(event:Event):void{
-      button.disabled = textfield.disabled = model.disabled;
-
-    }
-    protected function handleQuietChange(event:Event):void{
-      button.quiet = textfield.quiet = model.quiet;
+		protected function dataProviderChangeHandler(event:Event):void{
+			list.dataProvider = model.dataProvider;
+		}
+		protected function handlePlaceholderChange(event:Event):void{
+			textfield.placeholder = model.placeholder;
+		}
+		protected function handlePatternChange(event:Event):void{
+			textfield.pattern = model.pattern;
+		}
+		protected function handleRequiredChange(event:Event):void{
+			textfield.required = model.required;
+		}
+		protected function handleDisabledChange(event:Event):void{
+			button.disabled = textfield.disabled = model.disabled;
+		}
+		protected function handleQuietChange(event:Event):void{
+			button.quiet = textfield.quiet = model.quiet;
 			comboHost.toggle(InputGroupInclude.getSelector()+ "--quiet",model.quiet);
-    }
+		}
 		protected function handleInvalidChange(event:Event):void{
-      button.invalid = textfield.invalid = model.invalid;
+			button.invalid = textfield.invalid = model.invalid;
 			comboHost.toggle("is-invalid",model.invalid);
-
 		}
 		private function focusChangeHandler(event:Event):void{
 			comboHost.toggle("is-keyboardFocused",model.keyboardFocused);
