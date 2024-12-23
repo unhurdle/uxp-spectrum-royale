@@ -2,15 +2,16 @@ package com.unhurdle.spectrum
 {
 	import com.unhurdle.spectrum.interfaces.IKeyboardHandler;
 
+	import org.apache.royale.collections.ITreeData;
+	import org.apache.royale.core.ISelectableItemRenderer;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.events.Event;
-	import org.apache.royale.events.ItemClickedEvent;
-	import org.apache.royale.utils.loadBeadFromValuesManager;
-	import org.apache.royale.html.beads.controllers.ListSingleSelectionMouseController;
-	import org.apache.royale.collections.ITreeData;
-	import org.apache.royale.events.ItemAddedEvent;
 	import org.apache.royale.events.IEventDispatcher;
+	import org.apache.royale.events.ItemAddedEvent;
+	import org.apache.royale.events.ItemClickedEvent;
 	import org.apache.royale.events.ItemRemovedEvent;
+	import org.apache.royale.html.beads.controllers.ListSingleSelectionMouseController;
+	import org.apache.royale.utils.loadBeadFromValuesManager;
 
   public class TreeController extends ListSingleSelectionMouseController
   {
@@ -50,8 +51,8 @@ package com.unhurdle.spectrum
 			super.handleItemRemoved(event);
 			(event.item as IEventDispatcher).removeEventListener("itemExpanded", expandedHandler);
 		}
-    protected function expandedHandler(event:org.apache.royale.events.ItemClickedEvent):void
-    {
+		protected function expandedHandler(event:org.apache.royale.events.ItemClickedEvent):void
+		{
 			var treeData:ITreeData = listModel.dataProvider as ITreeData;
 			if (treeData == null) return;
 			
@@ -59,13 +60,19 @@ package com.unhurdle.spectrum
 			
 			if (treeData.hasChildren(node))
 			{
+				// remove the selection of the current selected item renderer
+				if(dataGroup){
+					var ir:ISelectableItemRenderer = dataGroup.getItemRendererForIndex(listModel.selectedIndex) as ISelectableItemRenderer;
+					ir.selected = false;
+				}
 				if (treeData.isOpen(node)) {
 					treeData.closeNode(node);
 				} else {
 					treeData.openNode(node);
 				}
 			}
-      event.currentTarget.dispatchEvent(new Event('expanded'));
-    }
+			(listModel as ListModel).refreshIndex();
+			event.currentTarget.dispatchEvent(new Event('expanded'));
+		}
 	}
 }

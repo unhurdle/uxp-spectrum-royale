@@ -171,6 +171,11 @@ package com.unhurdle.spectrum
 			dispatchEvent(new Event("selectedItemChanged"));
 			dispatchEvent(new Event("selectedIndexChanged"));
 		}
+		public function refreshIndex():void{
+			_selectedIndex = getItemIndex(_selectedItem);
+			dispatchEvent(new Event("selectedItemChanged"));
+			dispatchEvent(new Event("selectedIndexChanged"));
+		}
 
 		public function getLabelForIndex(index:int):String{
 			var item:Object = getItemAt(index);
