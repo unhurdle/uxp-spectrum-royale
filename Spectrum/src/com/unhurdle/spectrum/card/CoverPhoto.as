@@ -1,6 +1,7 @@
 package com.unhurdle.spectrum.card
 {
   import com.unhurdle.spectrum.SpectrumBase;
+  import org.apache.royale.debugging.assert;
 
   public class CoverPhoto extends SpectrumBase
   {
@@ -23,7 +24,8 @@ package com.unhurdle.spectrum.card
         _src = value;
         var elem:HTMLElement = element as HTMLElement;
           if(value){
-            elem.style.backgroundImage = "url(" + value +")";
+            assert(value.indexOf('"') == -1, "Double quotes should be url-encoded in the background image src string");
+            elem.style.backgroundImage = 'url("' + value +'")';
           } else {
             elem.style.backgroundImage = null;
           }
