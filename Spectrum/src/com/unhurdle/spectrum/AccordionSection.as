@@ -57,9 +57,9 @@ package com.unhurdle.spectrum
       	_open = value;
         toggle("is-open",value);
         dispatchEvent(new Event("openChanged"));
-        // var type:String = value ? IconType.CHEVRON_DOWN_MEDIUM:IconType.CHEVRON_RIGHT_MEDIUM;
-        // headerIcon.selector = Icon.getCSSTypeSelector(type);
-        // headerIcon.type = type;
+        var type:String = value ? IconType.CHEVRON_DOWN_MEDIUM:IconType.CHEVRON_RIGHT_MEDIUM;
+        headerIcon.selector = Icon.getCSSTypeSelector(type);
+        headerIcon.type = type;
       }
     }
     private function toggleSection():void{
@@ -109,8 +109,8 @@ package com.unhurdle.spectrum
 
       var type:String = IconType.CHEVRON_RIGHT_MEDIUM;
       headerIcon = generateIcon(type);
-      headerIcon.type = type;
       headerIcon.className = appendSelector("Indicator");
+      headerIcon.type = type;
       headerElem.addElement(headerIcon);
 
       addElement(headerElem);
