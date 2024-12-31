@@ -24,20 +24,17 @@ package com.unhurdle.spectrum
     }
     private var _rightLabelElem:TextNode;
     private var _leftLabelElem:TextNode;
-    private var input:HTMLInputElement;
+    private var input:*;
     // only set label once even if called multiple times while creating element
     private var debouncedSetInput:Function;
     COMPILE::JS
     override protected function createElement():WrappedHTMLElement{
       var elem:WrappedHTMLElement = super.createElement();
-      input = newElement("input") as HTMLInputElement;
+      input = newElement("sp-switch");
       input.className = appendSelector("-input");
-      input.type = "checkbox";
+      input.setAttribute("emphasized","");
       input.addEventListener("change",handleInputChange);
       elem.appendChild(input);
-      var span:HTMLElement = newElement("span");
-      span.className = appendSelector("-switch");
-      elem.appendChild(span);
       return elem;
     }
     override public function addedToParent():void{
@@ -54,13 +51,15 @@ package com.unhurdle.spectrum
           _rightLabelElem = new TextNode("label");
           _rightLabelElem.className = appendSelector("-label");
           _rightLabelElem.text = _rightLabel;
+          _rightLabelElem.element.style.marginLeft = "35px";
+          _rightLabelElem.element.style.marginRight = "35px";
           element.appendChild(_rightLabelElem.element);
         }
         debouncedSetInput();
       }
     }
     private function handleInputChange(ev:Event):void{
-      var label:String = input.checked ? onLabel : offLabel;
+      var label:String = checked ? onLabel : offLabel;
       if(label){
         if(_rightLabelElem){
           _rightLabelElem.text = label;
@@ -125,15 +124,22 @@ package com.unhurdle.spectrum
         _leftLabelElem.text = value;
       }
     }
+    private var _checked:Boolean;
     public function get checked():Boolean
     {
-    	return input.checked;
+      _checked = input.hasAttribute("checked");
+      return _checked;
     }
 
     public function set checked(value:Boolean):void
     {
-      if(value != input.checked){
-        input.checked = value;
+      if(value != _checked){
+        if(value){
+          input.setAttribute("checked","");
+        } else {
+          input.removeAttribute("checked");
+        }
+        _checked = value;
         debouncedSetInput();
       }
     }
@@ -147,7 +153,11 @@ package com.unhurdle.spectrum
     public function set disabled(value:Boolean):void
     {
       if(value != !!_disabled){
-        input.disabled = value;
+        if(value){
+          input.setAttribute("disabled","");
+        } else {
+          input.removeAttribute("disabled");
+        }
       }
     	_disabled = value;
     }
@@ -162,7 +172,11 @@ package com.unhurdle.spectrum
     public function set quiet(value:Boolean):void
     {
       if(value != !!_quiet){
-        toggle(valueToSelector("quiet"),value);
+        if(!value){
+          input.setAttribute("emphasized","");
+        } else {
+          input.removeAttribute("emphasized");
+        }
       }
     	_quiet = value;
     }
