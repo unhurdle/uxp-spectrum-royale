@@ -48,12 +48,12 @@ package com.unhurdle.spectrum.renderers
     public function set selected(value:Boolean):void
     {
       _selected = value;
-      // host.toggle("is-selected",value);
-      if(value){
-        host.setAttribute('selected',true);
-      } else {
-        host.removeAttribute('selected');
-      }
+      host.toggle("is-selected",value);
+      // if(value){
+      //   host.setAttribute('selected',true);
+      // } else {
+      //   host.removeAttribute('selected');
+      // }
     }
 
     private var _down:Boolean;
