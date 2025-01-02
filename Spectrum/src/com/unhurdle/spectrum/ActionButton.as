@@ -214,6 +214,8 @@ package com.unhurdle.spectrum
       if(zIndex > 2){
         popover.setStyle("z-index",zIndex);
       }
+      popover.setStyle("white-space","nowrap");
+      popover.setStyle("width","auto");
       menu = popover.list;
       menu.dataProvider = dataProvider;
       menu.addEventListener("change",handleMenuChange);
@@ -260,6 +262,7 @@ package com.unhurdle.spectrum
     private function handleMenuChange(ev:Event):void{
       closePopup();
       dispatchEvent(new Event("change"));
+      menu.setStyle("margin-right","19px");
     }
 		protected function handleControlMouseDown(event:MouseEvent):void
 		{			
