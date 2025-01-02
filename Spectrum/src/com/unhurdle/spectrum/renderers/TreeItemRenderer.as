@@ -49,9 +49,9 @@ package com.unhurdle.spectrum.renderers
       chevronIcon.type = type;
       chevronIcon.toggle(appendSelector("-itemIndicator"),true);
       chevronIcon.setStyle("flex-shrink",0);
+      chevronIcon.style = {"margin-right": "20px","margin-bottom": "0px","padding-bottom": "15px"};
       link.addElementAt(chevronIcon,0);
-      chevronIcon.addEventListener(MouseEvent.CLICK,function (ev:Event):void
-      {
+      chevronIcon.addEventListener(MouseEvent.CLICK,function (ev:Event):void{
         if(!disabled){
           isOpen = !isOpen;
           var expandEvent:ItemClickedEvent = new ItemClickedEvent("itemExpanded");
@@ -75,12 +75,17 @@ package com.unhurdle.spectrum.renderers
     {
     	_isOpen = value;
       toggle('is-open',value);
-      link.removeElement(chevronIcon);
+      // link.removeElement(chevronIcon);
+      var type:String;
       if(value){
-        createIcon(IconType.CHEVRON_DOWN_MEDIUM);
+        chevronIcon.style = {"padding-bottom": "0px"};
+        type = IconType.CHEVRON_DOWN_MEDIUM;
       } else {
-        createIcon(IconType.CHEVRON_RIGHT_MEDIUM);
+        chevronIcon.style = {"padding-bottom": "15px"};
+        type = IconType.CHEVRON_RIGHT_MEDIUM;
       }
+      chevronIcon.selector = Icon.getCSSTypeSelector(type);
+      chevronIcon.type = type;
       treeListData.isOpen = _isOpen;
     }
     override protected function setText(value:String):void{
@@ -101,7 +106,8 @@ package com.unhurdle.spectrum.renderers
       textNode.className = appendSelector("-itemLabel");
       textNode.element.style.userSelect = "none";
       textNode.element.style.display = "inline";
-      link.element.appendChild(textNode.element)
+      link.style = {"position":"relative"};
+      link.element.appendChild(textNode.element);
       // setStyle("cursor","default");
       return elem;
     }
