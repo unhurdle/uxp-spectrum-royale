@@ -135,6 +135,7 @@ package com.unhurdle.spectrum
     {
       if(menu){
         menu.selectedIndex = value;
+        menu.setStyle("margin-right","19px");
       }
     	_selectedIndex = value;
     }
