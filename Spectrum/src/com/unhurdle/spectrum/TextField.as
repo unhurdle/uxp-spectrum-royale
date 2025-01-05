@@ -27,18 +27,24 @@ package com.unhurdle.spectrum
     //  <sp-label style="padding-right: 16px" isrequired="true" slot="label">Phone Number</sp-label>
     //</sp-textfield>
 
-    public function get readonly():Boolean
-    {
-      //TODO
-      return false;
-    	// return input.readOnly;
-    }
+   private var _readonly:Boolean;
+		public function get readonly():Boolean
+		{
+			_readonly = _input.hasAttribute("readonly");
+			return _readonly;
+		}
 
-    public function set readonly(value:Boolean):void
-    {
-      //TODO
-      // input.readOnly = value;
-    }
+		public function set readonly(value:Boolean):void
+		{
+			if(value != _readonly){
+				if(value){
+				_input.setAttribute("readonly","");
+				} else {
+				_input.removeAttribute("readonly");
+				}
+				_readonly = value;
+			}
+		}
 
     public function get placeholder():String
     {

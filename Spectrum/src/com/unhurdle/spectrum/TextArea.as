@@ -21,16 +21,23 @@ package com.unhurdle.spectrum
 		private var textarea:HTMLTextAreaElement;
 
 			
+		private var _readonly:Boolean;
 		public function get readonly():Boolean
 		{
-			//TODO
-			return false//textarea.readOnly;
+			_readonly = textarea.hasAttribute("readonly");
+			return _readonly;
 		}
 
 		public function set readonly(value:Boolean):void
 		{
-			//TODO
-			// textarea.readOnly = value;
+			if(value != _readonly){
+				if(value){
+				textarea.setAttribute("readonly","");
+				} else {
+				textarea.removeAttribute("readonly");
+				}
+				_readonly = value;
+			}
 		}
 		
 		public function get placeholder():String
