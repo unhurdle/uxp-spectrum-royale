@@ -23,6 +23,7 @@ package com.unhurdle.spectrum
 		COMPILE::JS
 		override protected function createElement():WrappedHTMLElement{
 			var elem:WrappedHTMLElement = super.createElement();
+			setAttribute("emphasized","");
 			return elem;
 		}
 		private var _value:String;
@@ -133,9 +134,9 @@ package com.unhurdle.spectrum
 				// toggle(valueToSelector("quiet"),value);
 			if(value != !!_quiet){
 				if(value){
-					setAttribute("quiet",true);
+					removeAttribute("emphasized");
 				}else{
-					removeAttribute("quiet");
+					setAttribute("emphasized","");
 				}
 			}
 			_quiet = value
