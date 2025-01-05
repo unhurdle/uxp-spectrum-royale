@@ -105,7 +105,7 @@
 .spectrum-Breadcrumbs-item:last-of-type {
     font-weight: 700;
   }
-.spectrum-Breadcrumbs-item:last-of-type .spectrum-Breadcrumbs-itemSeparator {
+  .spectrum-Breadcrumbs .spectrum-Breadcrumbs-item:last-child .spectrum-Breadcrumbs-itemSeparator {
       display: none;
     }
 [dir="ltr"] .spectrum-Breadcrumbs-item > .spectrum-ActionButton {

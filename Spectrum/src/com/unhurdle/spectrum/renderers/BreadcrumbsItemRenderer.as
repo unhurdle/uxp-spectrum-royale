@@ -115,9 +115,8 @@ package com.unhurdle.spectrum.renderers
       textNode.element.setAttribute('tabindex',"0");
       elem.appendChild(textNode.element);
       var type:String = IconType.CHEVRON_RIGHT_SMALL;
-      icon = generateIcon(type);
+      icon = new Icon(Icon.getCSSTypeSelector(type));
       // icon.type = type;
-      icon.size = 'XXS';
       icon.className = appendSelector("-itemSeparator");
       addElement(icon);
       return elem;
