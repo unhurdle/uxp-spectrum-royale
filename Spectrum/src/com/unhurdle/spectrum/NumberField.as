@@ -13,47 +13,39 @@ package com.unhurdle.spectrum
     {
       super();
       setAttribute('type','number');
-      // input.step = "1";
-      // _input.addEventListener("input",handleInput);
+      input.step = "1";
+      _input.addEventListener("input",handleInput);
     }
 
     private var _value:Number;
 
     public function get value():Number{
-      //TODO
-    	return 1;//Number(input.value);
+    	return Number(input.value);
     }
 
     public function set value(value:Number):void{
-      //TODO
-    	// input.value = ""+value;
+    	input.value = ""+value;
     }
      public function get min():Number{
-       //TODO
-      return 1;//Number(input.min);
+      return Number(input.min);
     }
 
     public function set min(value:Number):void{
-      // TODO
-      // input.min = ""+value;
+      input.min = ""+value;
     }
     public function get max():Number{
-      // TODO
-      return 1;//Number(input.max);
+      return Number(input.max);
     }
 
     public function set max(value:Number):void{
-      // TODO
-      // input.max = "" + value;
+      input.max = "" + value;
     }
      public function get step():Number{
-       // TODO
-      return 1;//Number(input.step);
+      return Number(input.step);
     }
 
     public function set step(value:Number):void{
-      // TODO
-      // input.step = "" + value;
+      input.step = "" + value;
     }
 
     private var _suffix:String;
@@ -94,23 +86,22 @@ package com.unhurdle.spectrum
         element.appendChild(suffixSpan.element);
       }
       suffixSpan.text = suffix;
-      //TODO
-      // var computed:CSSStyleDeclaration = getComputedStyle(_input);
-      // var fontString:String = computed.fontStyle + " " + computed.fontWeight + " " + computed.fontSize + " " + computed.fontFamily;
-      // var width:Number = getTextWidth(this.text,fontString);
-      // trace(width);
-			// var paddingVal:Number;
-      // if(quiet){
-			// 	paddingVal = 0;
-      // } else{
+      var computed:CSSStyleDeclaration = getComputedStyle(_input);
+      var fontString:String = computed.fontStyle + " " + computed.fontWeight + " " + computed.fontSize + " " + computed.fontFamily;
+      var width:Number = getTextWidth(this.text,fontString);
+      trace(width);
+			var paddingVal:Number;
+      if(quiet){
+				paddingVal = 0;
+      } else{
 
-      //   var paddingStr:Object = computed.direction == "ltr" ? computed.paddingLeft : computed.paddingRight;
-      //   paddingVal = parseFloat(paddingStr) + 1;// It's probably the border which requires an extra pixel
-      // }
-      // trace(computed.direction);
-      // trace(computed.paddingLeft);
+        var paddingStr:Object = computed.direction == "ltr" ? computed.paddingLeft : computed.paddingRight;
+        paddingVal = parseFloat(paddingStr) + 1;// It's probably the border which requires an extra pixel
+      }
+      trace(computed.direction);
+      trace(computed.paddingLeft);
       suffixSpan.visible = true;
-      // suffixSpan.x = width + paddingVal;
+      suffixSpan.x = width + paddingVal;
     }
     COMPILE::JS
     private static var canvas:HTMLCanvasElement;
