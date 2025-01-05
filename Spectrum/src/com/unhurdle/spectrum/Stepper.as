@@ -4,12 +4,14 @@ package com.unhurdle.spectrum
   {
     import org.apache.royale.core.WrappedHTMLElement;
   }
-  import org.apache.royale.events.Event;
+  import com.unhurdle.spectrum.beads.KeyboardFocusHandler;
   import com.unhurdle.spectrum.const.IconType;
+  import com.unhurdle.spectrum.interfaces.IKeyboardFocusable;
+
+  import org.apache.royale.events.Event;
+  import org.apache.royale.events.KeyboardEvent;
   import org.apache.royale.events.MouseEvent;
   import org.apache.royale.html.elements.Span;
-  import com.unhurdle.spectrum.interfaces.IKeyboardFocusable;
-  import com.unhurdle.spectrum.beads.KeyboardFocusHandler;
   import org.apache.royale.utils.number.pinValue;
   
   [Event(name="change", type="org.apache.royale.events.Event")]
@@ -24,6 +26,7 @@ package com.unhurdle.spectrum
     public function Stepper()
     {
       super();
+      input.addEventListener(KeyboardEvent.KEY_DOWN,handleKeyDown);
     }
     override protected function loadBeads():void{
       super.loadBeads();
@@ -37,6 +40,19 @@ package com.unhurdle.spectrum
       return input.focusElement;
     }
 
+    private function handleKeyDown(event:*):void{
+      var keyCode:String = event.keyCode;
+      switch(keyCode){
+        case "40"://DOWN;
+          nudgeValue(false);
+          break;
+        case "38"://UP;
+          nudgeValue(true);
+          break;
+        default:
+          return;
+      }
+    }
     private function upButtonClicked(event:Event):void{
       event.preventDefault();
       nudgeValue(true);
