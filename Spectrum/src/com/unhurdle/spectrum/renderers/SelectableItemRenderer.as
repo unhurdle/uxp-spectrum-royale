@@ -49,11 +49,11 @@ package com.unhurdle.spectrum.renderers
     {
       _selected = value;
       host.toggle("is-selected",value);
-      // if(value){
-      //   host.setAttribute('selected',true);
-      // } else {
-      //   host.removeAttribute('selected');
-      // }
+      if(value){
+        host.setAttribute('selected',true);
+      } else {
+        host.removeAttribute('selected');
+      }
     }
 
     private var _down:Boolean;
