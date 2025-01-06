@@ -29,8 +29,8 @@ package com.unhurdle.spectrum
 			return "";
 		}
 		override protected function getTag():String{
-      return "sp-checkbox";
-    }
+			return "sp-checkbox";
+		}
 		private var input:*;
 
 		private function elementClicked():void{
@@ -42,7 +42,7 @@ package com.unhurdle.spectrum
 		COMPILE::JS
 		override protected function createElement():WrappedHTMLElement{
 			var elem:WrappedHTMLElement = super.createElement();
-
+			setAttribute("emphasized","");
 			// input = newElement("sp-checkbox");
 			// input.type = "checkbox";
 			// input.className = appendSelector("-input");
@@ -225,9 +225,12 @@ package com.unhurdle.spectrum
 
 		public function set quiet(value:Boolean):void
 		{
-			console.log('quiet');
 			if(value != !!_quiet){
-				toggle(valueToSelector("quiet"),value);
+				if(!value){
+					setAttribute("emphasized","");
+				} else {
+					removeAttribute("emphasized");
+				}
 			}
 			_quiet = value;
 		}

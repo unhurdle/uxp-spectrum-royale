@@ -23,12 +23,12 @@ package com.unhurdle.spectrum
 
     public function get headerText():String
     {
-    	return headerButton.text;
+    	return headerNode.text;
     }
 
     public function set headerText(value:String):void
     {
-    	headerButton.text = value;
+    	headerNode.text = value;
     }
     private var _disabled:Boolean = false;
 
@@ -57,7 +57,14 @@ package com.unhurdle.spectrum
       	_open = value;
         toggle("is-open",value);
         dispatchEvent(new Event("openChanged"));
-        var type:String = value ? IconType.CHEVRON_DOWN_MEDIUM:IconType.CHEVRON_RIGHT_MEDIUM;
+        var type:String;
+        if(value){
+          type = IconType.CHEVRON_DOWN_MEDIUM;
+          headerIcon.style = {"padding-top": "2px"};
+        } else {
+          type = IconType.CHEVRON_RIGHT_MEDIUM;
+          headerIcon.style = {"padding-top": "0px"};
+        }
         headerIcon.selector = Icon.getCSSTypeSelector(type);
         headerIcon.type = type;
       }
@@ -89,7 +96,7 @@ package com.unhurdle.spectrum
 
     protected var headerElem:H3;
     
-    protected var headerButton:TextNode;
+    protected var headerNode:TextNode;
 
     protected var headerIcon:Icon;
 
@@ -99,13 +106,14 @@ package com.unhurdle.spectrum
 			headerElem = new H3();
       headerElem.className = appendSelector("Heading");
 
-			headerButton = new TextNode("button");
-      (headerButton.element as HTMLButtonElement).type = "button";
-      headerButton.className = appendSelector("Header");
+			headerNode = new TextNode("div");
+      // (headerButton.element as HTMLButtonElement).type = "button";
+      headerNode.className = appendSelector("Header");
+      headerNode.element.style.marginTop = '2px';
 
-      headerButton.element.addEventListener("click",toggleSection)
+      headerNode.element.addEventListener("click",toggleSection)
 
-      headerElem.element.appendChild(headerButton.element);
+      headerElem.element.appendChild(headerNode.element);
 
       var type:String = IconType.CHEVRON_RIGHT_MEDIUM;
       headerIcon = new Icon(Icon.getCSSTypeSelector(type));

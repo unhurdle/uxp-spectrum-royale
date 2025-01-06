@@ -32,9 +32,7 @@ package com.unhurdle.spectrum
 			button = super.createElement() as HTMLButtonElement;
 			button.type = "reset";
 			var type:String = IconType.CROSS_SMALL;
-			icon = generateIcon(type);
-			icon.size = "xxs";
-			icon.type = type;
+			icon = new Icon(Icon.getCSSTypeSelector(type));
 			button.appendChild(icon.element);
 			button.onclick = function():void{
 				dispatchEvent("clear");

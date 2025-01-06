@@ -29,6 +29,7 @@ package com.unhurdle.spectrum
       clearButton.toggle(getSelector()+"ClearButton",true);
       clearButton.small = true;
       clearButton.visible = false;
+      clearButton.style = {"margin-top": "5px"};
       addElement(clearButton);
       clearButton.addEventListener("click",removeTag);
       return elem;
@@ -76,6 +77,7 @@ package com.unhurdle.spectrum
       if(value){
         if(!imageElement){
           imageElement = new Avatar();
+          imageElement.style = {"margin-right": "5px"};
           addElementAt(imageElement,0);
         }
         imageElement.src = value;
@@ -102,6 +104,7 @@ package com.unhurdle.spectrum
       } else {
         iconElement = generateIcon(value);
         iconElement.size = 'XS';
+        iconElement.style = {"margin-right": "5px", "margin-bottom": "5px"};
         addElementAt(iconElement,0);
       }
     }
