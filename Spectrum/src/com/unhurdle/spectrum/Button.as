@@ -165,7 +165,9 @@ package com.unhurdle.spectrum
       _iconElement.size = iconSize;
       _iconElement.type = iconType;
     }
-
+    override protected function getSelector():String{
+      return "spectrum-Button";
+    }
     private var _flavor:String;
 
     public function get flavor():String
@@ -196,9 +198,9 @@ package com.unhurdle.spectrum
 				// 	removeAttribute("variant");
         //   // toggle(oldSelector,false);
         // }
-        // var newSelector:String = valueToSelector(value);
         setAttribute("variant",value);
-        // toggle(newSelector,true);
+        var newSelector:String = valueToSelector(value);
+        toggle(newSelector,true);
       }
     	_flavor = value;
     }
@@ -213,7 +215,7 @@ package com.unhurdle.spectrum
     public function set quiet(value:Boolean):void
     {
       if(_quiet != value){
-        // toggle(valueToSelector("quiet"),value);
+        toggle(valueToSelector("quiet"),value);
 				if(value){
 					setAttribute('quiet',true);
 				} else {

@@ -15,6 +15,9 @@ package com.unhurdle.spectrum
     {
       super();
     }
+    override protected function getSelector():String{
+      return "spectrum-ButtonGroup";
+    }
     private var _vertical:Boolean;
 
     public function get vertical():Boolean
@@ -25,7 +28,7 @@ package com.unhurdle.spectrum
     public function set vertical(value:Boolean):void
     {
       if(value != !!_vertical){
-        // toggle(valueToSelector("vertical"),value);
+        toggle(valueToSelector("vertical"),value);
 				if(value){
 					setAttribute('vertical',true);
 				} else {
@@ -75,7 +78,7 @@ package com.unhurdle.spectrum
       if(!compact){
         var spectrumItem:ISpectrumElement = c as ISpectrumElement;
         if(spectrumItem){
-          // spectrumItem.toggle(appendSelector("-item"),add);
+          spectrumItem.toggle(appendSelector("-item"),add);
         }
       }
     }
