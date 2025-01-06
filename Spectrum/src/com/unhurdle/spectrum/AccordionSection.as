@@ -108,9 +108,9 @@ package com.unhurdle.spectrum
       headerElem.element.appendChild(headerButton.element);
 
       var type:String = IconType.CHEVRON_RIGHT_MEDIUM;
-      headerIcon = generateIcon(type);
+      headerIcon = new Icon(Icon.getCSSTypeSelector(type));
       headerIcon.className = appendSelector("Indicator");
-      headerIcon.type = type;
+      // headerIcon.type = type;
       headerElem.addElement(headerIcon);
 
       addElement(headerElem);
