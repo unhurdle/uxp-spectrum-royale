@@ -268,7 +268,7 @@ package com.unhurdle.spectrum
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement{
             super.createElement();
-            var styleStr:String = "z-index:1;"; // TODO check the width
+            var styleStr:String = "z-index:1; padding: 4px;"; // TODO check the width
             setAttribute("style",styleStr);
 
             var header:Div = new Div();

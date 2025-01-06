@@ -34,7 +34,7 @@ package com.unhurdle.spectrum
     private var input:TextField;
     private var input2:TextField;
     private var button:FieldButton;
-    private var datePicker:HTMLInputElement;
+    // private var datePicker:HTMLInputElement;
     
     public var dateFormat:String = "mm/dd/yyyy";
     
@@ -54,8 +54,8 @@ package com.unhurdle.spectrum
       // button.onclick = openDatePicker;
       button.addEventListener("click",toggleButton);
 
-      datePicker = newElement("input") as HTMLInputElement;
-      datePicker.type = "hidden";
+      // datePicker = newElement("input") as HTMLInputElement;
+      // datePicker.type = "hidden";
       
       var svgElement:SVGIcon = new SVGIcon();
       svgElement.setAttribute("viewBox","0 0 36 36");
@@ -68,10 +68,10 @@ package com.unhurdle.spectrum
       path = new Path();
       path.d = "M6 12h4v4H6zm6 0h4v4h-4zm6 0h4v4h-4zm6 0h4v4h-4zM6 18h4v4H6zm6 0h4v4h-4zm6 0h4v4h-4zm6 0h4v4h-4zM6 24h4v4H6zm6 0h4v4h-4zm6 0h4v4h-4zm6 0h4v4h-4z";
       svgElement.addElement(path);
-      // button.iconElement = svgElement;
+      button.iconElement = svgElement;
       addElement(input);
       addElement(button);
-      element.appendChild(datePicker); 
+      // element.appendChild(datePicker); 
 
       popover = new Popover();
       popover.floating = true;
