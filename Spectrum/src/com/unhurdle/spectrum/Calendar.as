@@ -50,7 +50,7 @@ package com.unhurdle.spectrum
         private var prev:ActionButton;
         private var next:ActionButton;
         private var _disabled:Boolean;
-        private var table:org.apache.royale.html.elements.Table;
+        private var table:FlexContainer;
         private var calenderBody:org.apache.royale.html.elements.Tbody;
         private var _startDate:Date;
         private var _endDate:Date;
@@ -227,47 +227,48 @@ package com.unhurdle.spectrum
             if(!displayedMonth){
                 datePickerModel.displayedMonth = today.getMonth();
             }
-            var body:HTMLElement = newElement('div');
+            var body:FlexContainer = new FlexContainer();
             body.className = appendSelector("-body");
             body.setAttribute("role","grid");
-            body.tabIndex = 0;
+            // body.tabIndex = 0;
 
-            table = new org.apache.royale.html.elements.Table();
+            table = new FlexContainer();
+            table.vertical = true;
             table.className = appendSelector("-table");
             table.setAttribute("role","presentation");
 
-            var daysOfTheWeekHeader:HTMLElement = newElement('thead');
+            var daysOfTheWeekHeader:FlexContainer = new FlexContainer();
             daysOfTheWeekHeader.setAttribute("role","presentation");
 
-            var daysOfTheWeek:HTMLElement = newElement('tr');
+            var daysOfTheWeek:FlexContainer = new FlexContainer()
             daysOfTheWeek.setAttribute("role","row");
 
             for(var i:int = 0 ; i <7; i++){
-                var dayOfWeek:HTMLElement = newElement('th'); 
+                var dayOfWeek:FlexContainer = new FlexContainer(); 
                 dayOfWeek.className = appendSelector("-tableCell"); 
                 dayOfWeek.setAttribute("role","columnheader");
                 dayOfWeek.setAttribute("scope","col");
 
                 var d:TextNode = new TextNode('abbr');  
                 d.className = appendSelector("-dayOfWeek");
-                d.text = getWeekdays(i);
+                d.text = getWeekdays(i); // need to fix text-transform: uppercase;
                 d.element.title = datePickerModel.dayNames[i];
-                dayOfWeek.appendChild(d.element); 
-                daysOfTheWeek.appendChild(dayOfWeek); 
+                dayOfWeek.element.appendChild(d.element); 
+                daysOfTheWeek.addElement(dayOfWeek); 
             }
             
-            daysOfTheWeekHeader.appendChild(daysOfTheWeek); 
-            table.element.appendChild(daysOfTheWeekHeader);
-            body.appendChild(table.element);
+            daysOfTheWeekHeader.addElement(daysOfTheWeek); 
+            table.addElement(daysOfTheWeekHeader);
+            body.addElement(table);
             table.addedToParent();
-            element.appendChild(body);
+            addElement(body);
             
             updateCalendar();
         }
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement{
             super.createElement();
-            var styleStr:String = "width:280px;z-index:1;";
+            var styleStr:String = "z-index:1;"; // TODO check the width
             setAttribute("style",styleStr);
 
             var header:Div = new Div();
@@ -317,15 +318,15 @@ package com.unhurdle.spectrum
             calenderBody.setAttribute("role","presentation");
             var l:int = 0;
             for (var k:int = 0; k<6;k++,l--){
-                var calenderRow:Tr = new Tr();
+                var calenderRow:FlexContainer = new FlexContainer();
                 calenderRow.setAttribute("role","row");
                 var addRow:Boolean = true;
                for(var j:int = 0; j<7; j++,l++){
-                    var cell:Td = new Td();  
+                    var cell:FlexContainer = new FlexContainer();  
                     cell.setAttribute("role", "gridcell");
                     cell.className = appendSelector("-tableCell");
                     //TODO is this correct?
-                    cell.tabIndex = -1;
+                    // cell.tabIndex = -1;
                     var span:CalendarDay = new CalendarDay();
                     if(j == 0){
                         span.firstInWeek = true;

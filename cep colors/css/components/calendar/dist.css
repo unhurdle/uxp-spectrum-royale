@@ -160,7 +160,7 @@
       border-radius: 40px;
     }
 .spectrum-Calendar {
-  width: 280px;
+  /* width: 280px; */
   display: inline-block;
 }
 .spectrum-Calendar--padded {
@@ -254,6 +254,7 @@
   height: 32px;
   width: 32px;
   padding: 4px;
+  margin: 5px;
 }
 .spectrum-Calendar-tableCell:focus {
     outline: 0;
@@ -324,13 +325,13 @@
     border-width: 0;
     line-height: 32px;
     border-radius: 0;
-    width: 40px;
+    width: 42px;
   }
 .spectrum-Calendar-date.is-range-selection.is-range-start,
     .spectrum-Calendar-date.is-range-selection.is-range-end,
     .spectrum-Calendar-date.is-range-selection.is-selection-start,
     .spectrum-Calendar-date.is-range-selection.is-selection-end {
-      width: 36px;
+      width: 38px;
     }
 .spectrum-Calendar-date.is-range-selection.is-selection-start,
     .spectrum-Calendar-date.is-range-selection.is-selection-end {
