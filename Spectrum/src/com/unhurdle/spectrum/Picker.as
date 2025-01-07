@@ -430,8 +430,7 @@ package com.unhurdle.spectrum
 		public function set searchable(value:Boolean):void 
 		{
 			popover.searchable = value;
-						if (popover.search)
-			{
+			if (popover.search){
 				popover.search.input.addEventListener(KeyboardEvent.KEY_DOWN, handleKeyDown);
 			}
 		}
@@ -458,15 +457,15 @@ package com.unhurdle.spectrum
 			switch(value){
 				case "bottom":
 				// break;
-					case "top":
-							// (element as HTMLElement).insertBefore((element as HTMLElement).removeChild(popover.element as HTMLElement),button.element as HTMLElement);
-                        // popover.setStyle("bottom","30px");
-						// break;
-					case "right":
-					case "left":
-						break;
-					default:
-						throw new Error("invalid position: " + value);
+				case "top":
+						// (element as HTMLElement).insertBefore((element as HTMLElement).removeChild(popover.element as HTMLElement),button.element as HTMLElement);
+					// popover.setStyle("bottom","30px");
+					// break;
+				case "right":
+				case "left":
+					break;
+				default:
+					throw new Error("invalid position: " + value);
 			}
 			if(value != !!_position){
 				// popover.position = value;
