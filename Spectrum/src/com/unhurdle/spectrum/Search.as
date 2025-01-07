@@ -86,15 +86,12 @@ package com.unhurdle.spectrum
 
 		//TODO forward events
 		addElement(_input);
-		var type:String = IconType.MAGNIFIER;
-		_input.icon = IconPrefix.SPECTRUM_CSS_ICON + type;
-		_input.iconType = type;
 
 		_input.input.style.paddingRight = "25px";
 		button = new ClearButton();
-		button.className = appendSelector("-clearButton");
+		button.style = {"position":"absolute","right":"14px","top":"5px"};
 		button.addEventListener("clear" , clear);
-		_input.addElement(button);
+		addElement(button);
 		_input.input.addEventListener("input", function(ev:Event):void{
 			dispatchEvent(new Event("input"));
 		});
