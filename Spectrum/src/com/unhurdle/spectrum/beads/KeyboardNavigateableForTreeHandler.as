@@ -4,10 +4,10 @@ package com.unhurdle.spectrum.beads
 
   import com.unhurdle.spectrum.interfaces.IKeyboardHandler;
   import com.unhurdle.spectrum.renderers.TreeItemRenderer;
+  import com.unhurdle.spectrum.utils.getKeyFromKeyCode;
 
   import org.apache.royale.core.IStrand;
   import org.apache.royale.events.ItemClickedEvent;
-  import org.apache.royale.events.KeyboardEvent;
   import org.apache.royale.events.utils.NavigationKeys;
 
   public class KeyboardNavigateableForTreeHandler extends KeyboardNavigateableHandler implements IKeyboardHandler
@@ -21,9 +21,12 @@ package com.unhurdle.spectrum.beads
       super.strand = value;
       host.focusParent.removeEventListener("click",clickHandler);
     }
-    override protected function changeValue(event:KeyboardEvent):void{
+    override protected function changeValue(event:*):void{
       super.changeValue(event);
       var key:String = event.key;
+			if(!key){
+				key = getKeyFromKeyCode(event.keyCode);
+			}
       var treeRenderer:TreeItemRenderer = focusableItemRenderer as TreeItemRenderer;
       switch(key)
       {

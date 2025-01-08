@@ -7,13 +7,14 @@ package com.unhurdle.spectrum
   }
     import com.unhurdle.spectrum.const.IconType;
     import com.unhurdle.spectrum.utils.getFocusableElements;
+    import com.unhurdle.spectrum.utils.getKeyFromKeyCode;
     import com.unhurdle.spectrum.utils.hasAutoFocus;
 
     import org.apache.royale.core.IChild;
     import org.apache.royale.debugging.assert;
     import org.apache.royale.events.KeyboardEvent;
-    import org.apache.royale.events.utils.WhitespaceKeys;
     import org.apache.royale.events.utils.UIKeys;
+    import org.apache.royale.events.utils.WhitespaceKeys;
 
   [Event(name="modalShown", type="org.apache.royale.events.Event")]
   [Event(name="modalHidden", type="org.apache.royale.events.Event")]
@@ -51,11 +52,15 @@ package com.unhurdle.spectrum
       return "spectrum-Dialog";
     }
 
-    private function handleKeyDown(event:KeyboardEvent):void{
-      if(event.key == UIKeys.ESCAPE){
+    private function handleKeyDown(event:*):void{
+      var key:String = event.key;
+			if(!key){
+				key = getKeyFromKeyCode(event.keyCode);
+			}
+      if(key == UIKeys.ESCAPE){
           hide();
       }
-      if(event.key == WhitespaceKeys.TAB){
+      if(key == WhitespaceKeys.TAB){
           event.preventDefault();
           whenKey(event.shiftKey);
       }

@@ -87,9 +87,8 @@ package com.unhurdle.spectrum
 		//TODO forward events
 		addElement(_input);
 
-		_input.input.style.paddingRight = "25px";
 		button = new ClearButton();
-		button.style = {"position":"absolute","right":"14px","top":"5px"};
+		button.style = {"position":"absolute","right":"-11px","top":"5px"};
 		button.addEventListener("clear" , clear);
 		addElement(button);
 		_input.input.addEventListener("input", function(ev:Event):void{

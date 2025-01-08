@@ -4,29 +4,30 @@ package com.unhurdle.spectrum{
 	import com.unhurdle.spectrum.includes.InputGroupInclude;
 	import com.unhurdle.spectrum.utils.cloneNativeKeyboardEvent;
 	import com.unhurdle.spectrum.utils.getExplicitZIndex;
+	import com.unhurdle.spectrum.utils.getKeyFromKeyCode;
 
 	import org.apache.royale.collections.ICollectionView;
- 	import org.apache.royale.core.BeadViewBase;
+	import org.apache.royale.core.BeadViewBase;
 	import org.apache.royale.core.IChild;
 	import org.apache.royale.core.IPopUpHost;
- 	import org.apache.royale.core.IStrand;
- 	import org.apache.royale.events.Event;
+	import org.apache.royale.core.IStrand;
+	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.events.KeyboardEvent;
 	import org.apache.royale.events.MouseEvent;
 	import org.apache.royale.events.utils.EditingKeys;
 	import org.apache.royale.events.utils.NavigationKeys;
+	import org.apache.royale.events.utils.UIKeys;
 	import org.apache.royale.events.utils.WhitespaceKeys;
- 	import org.apache.royale.geom.Point;
+	import org.apache.royale.geom.Point;
 	import org.apache.royale.geom.Rectangle;
- 	import org.apache.royale.html.beads.IComboBoxView;
- 	import org.apache.royale.html.util.getLabelFromData;
+	import org.apache.royale.html.beads.IComboBoxView;
+	import org.apache.royale.html.util.getLabelFromData;
 	import org.apache.royale.utils.DisplayUtils;
 	import org.apache.royale.utils.PointUtils;
 	import org.apache.royale.utils.UIUtils;
- 	import org.apache.royale.utils.callLater;
- 	import org.apache.royale.utils.loadBeadFromValuesManager;
- 	import org.apache.royale.events.utils.UIKeys;
+	import org.apache.royale.utils.callLater;
+	import org.apache.royale.utils.loadBeadFromValuesManager;
 	
 	/**
 	 *  The ComboBoxView class creates the visual elements of the ComboBox component.
@@ -187,10 +188,14 @@ package com.unhurdle.spectrum{
 		}
 		// track which provider is being modified to apply the correct one and prevent endless loop
 		private var modifyingList:Boolean;
-		private function handleKeyDown(event:KeyboardEvent):void
+		private function handleKeyDown(event:*):void
 		{
+			var key:String = event.key;
+			if(!key){
+				key = getKeyFromKeyCode(event.keyCode);
+			}
 			// forward relevent keys to the list
-			switch(event.key){
+			switch(key){
 				case WhitespaceKeys.ENTER:
 				case NavigationKeys.DOWN:
 				case NavigationKeys.UP:
@@ -203,7 +208,7 @@ package com.unhurdle.spectrum{
 					break;
 			}
 			// prevent default behavior for these keys to keep the cursor posiiton from changing
-			if(event.key == NavigationKeys.UP || event.key == NavigationKeys.DOWN){
+			if(key == NavigationKeys.UP || key == NavigationKeys.DOWN){
 				event.preventDefault();
 				event.stopImmediatePropagation();
 			}

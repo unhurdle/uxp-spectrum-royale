@@ -1,15 +1,13 @@
 package com.unhurdle.spectrum
 {
-  import com.unhurdle.spectrum.interfaces.IKeyboardFocusable;
-  import org.apache.royale.debugging.assert;
   import com.unhurdle.spectrum.beads.KeyboardFocusHandler;
-  import org.apache.royale.events.KeyboardEvent;
-  import org.apache.royale.events.utils.WhitespaceKeys;
-  import org.apache.royale.events.Event;
-  import org.apache.royale.events.ValueEvent;
-  import org.apache.royale.events.utils.EditingKeys;
-  import org.apache.royale.events.utils.NavigationKeys;
+  import com.unhurdle.spectrum.interfaces.IKeyboardFocusable;
   import com.unhurdle.spectrum.utils.generateIcon;
+  import com.unhurdle.spectrum.utils.getKeyFromKeyCode;
+
+  import org.apache.royale.debugging.assert;
+  import org.apache.royale.events.KeyboardEvent;
+  import org.apache.royale.events.ValueEvent;
 
   COMPILE::JS
   {}
@@ -58,28 +56,7 @@ package com.unhurdle.spectrum
 
     private function handleKeyDown(event:*):void{
       var eventName:String;
-      var keyCode:String = event.keyCode;
-      var key:String;
-      switch(keyCode)
-      {
-        case "13":
-          key = WhitespaceKeys.ENTER;
-          break;
-        case "8":
-          key =  EditingKeys.BACKSPACE;
-          break;
-        case "40":
-          key = NavigationKeys.DOWN;
-          break;
-        case "38":
-          key = NavigationKeys.UP;
-          break;
-        case "9":
-          key = WhitespaceKeys.TAB;
-          break;
-        default:
-          return;
-      }
+      var key:String = getKeyFromKeyCode(event.keyCode);
       eventName = "on" + key;
       dispatchEvent(new ValueEvent(eventName,event));
     }

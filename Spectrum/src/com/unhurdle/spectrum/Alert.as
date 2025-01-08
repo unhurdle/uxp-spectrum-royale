@@ -4,12 +4,14 @@ package com.unhurdle.spectrum
     import org.apache.royale.core.WrappedHTMLElement;
   }
   
-  import org.apache.royale.events.KeyboardEvent;
-  import org.apache.royale.html.beads.plugin.ModalDisplay;
   import com.unhurdle.spectrum.Icon;
   import com.unhurdle.spectrum.utils.generateIcon;
+  import com.unhurdle.spectrum.utils.getKeyFromKeyCode;
+
   import org.apache.royale.events.Event;
+  import org.apache.royale.events.KeyboardEvent;
   import org.apache.royale.events.utils.UIKeys;
+  import org.apache.royale.html.beads.plugin.ModalDisplay;
   
   [Event(name="modalShown", type="org.apache.royale.events.Event")]
   [Event(name="modalHidden", type="org.apache.royale.events.Event")]
@@ -33,8 +35,12 @@ package com.unhurdle.spectrum
       return "spectrum-Alert";
     }
 
-    private function handleKeyDown(event:KeyboardEvent):void{
-      if(event.key == UIKeys.ESCAPE){
+    private function handleKeyDown(event:*):void{
+      var key:String = event.key;
+			if(!key){
+				key = getKeyFromKeyCode(event.keyCode);
+			}
+      if(key == UIKeys.ESCAPE){
         hide();
       }
     }

@@ -5,11 +5,16 @@ package com.unhurdle.spectrum.beads
   import com.unhurdle.spectrum.interfaces.IKeyboardHandler;
   import com.unhurdle.spectrum.interfaces.IKeyboardNavigateable;
   import com.unhurdle.spectrum.renderers.DataItemRenderer;
+  import com.unhurdle.spectrum.utils.canItemGetFocus;
+  import com.unhurdle.spectrum.utils.getKeyFromKeyCode;
 
   import org.apache.royale.core.Bead;
   import org.apache.royale.core.IBead;
+  import org.apache.royale.core.IItemRenderer;
   import org.apache.royale.core.IParent;
   import org.apache.royale.core.IStrand;
+  import org.apache.royale.core.IUIBase;
+  import org.apache.royale.core.UIBase;
   import org.apache.royale.debugging.assert;
   import org.apache.royale.events.Event;
   import org.apache.royale.events.KeyboardEvent;
@@ -18,10 +23,6 @@ package com.unhurdle.spectrum.beads
   import org.apache.royale.html.beads.DataContainerView;
   import org.apache.royale.html.beads.IListView;
   import org.apache.royale.utils.sendStrandEvent;
-  import org.apache.royale.core.UIBase;
-  import com.unhurdle.spectrum.utils.canItemGetFocus;
-  import org.apache.royale.core.IItemRenderer;
-  import org.apache.royale.core.IUIBase;
 
   public class KeyboardNavigateableHandler extends Bead implements IBead, IKeyboardHandler
   {
@@ -100,8 +101,11 @@ package com.unhurdle.spectrum.beads
       // listModel.keyboardFocusedIndex = -1;
     }
 
-    protected function changeValue(event:KeyboardEvent):void{
+    protected function changeValue(event:*):void{
       var key:String = event.key;
+			if(!key){
+				key = getKeyFromKeyCode(event.keyCode);
+			}
       var index:int;
       switch(key)
       {

@@ -1,32 +1,31 @@
 package com.unhurdle.spectrum
 {
-	//TODO 
-	// thumbnail, quiet
 	COMPILE::JS{
 		import org.apache.royale.core.WrappedHTMLElement;
 	}
 
+	import com.unhurdle.spectrum.const.IconPrefix;
 	import com.unhurdle.spectrum.const.IconType;
-	import org.apache.royale.events.KeyboardEvent;
-	import org.apache.royale.html.util.getLabelFromData;
-	import org.apache.royale.collections.IArrayList;
+	import com.unhurdle.spectrum.data.IMenuItem;
 	import com.unhurdle.spectrum.data.MenuItem;
-	import org.apache.royale.events.MouseEvent;
+	import com.unhurdle.spectrum.interfaces.IKeyboardNavigateable;
+	import com.unhurdle.spectrum.utils.cloneNativeKeyboardEvent;
+	import com.unhurdle.spectrum.utils.getExplicitZIndex;
+	import com.unhurdle.spectrum.utils.getKeyFromKeyCode;
+
+	import org.apache.royale.collections.IArrayList;
 	import org.apache.royale.events.Event;
+	import org.apache.royale.events.KeyboardEvent;
+	import org.apache.royale.events.MouseEvent;
+	import org.apache.royale.events.utils.NavigationKeys;
+	import org.apache.royale.events.utils.UIKeys;
+	import org.apache.royale.events.utils.WhitespaceKeys;
 	import org.apache.royale.geom.Rectangle;
+	import org.apache.royale.html.elements.Div;
+	import org.apache.royale.html.elements.Span;
+	import org.apache.royale.html.util.getLabelFromData;
 	import org.apache.royale.utils.DisplayUtils;
 	import org.apache.royale.utils.callLater;
-	// import com.unhurdle.spectrum.data.IMenuItem;
-	import com.unhurdle.spectrum.const.IconPrefix;
-	import com.unhurdle.spectrum.data.IMenuItem;
-	import com.unhurdle.spectrum.interfaces.IKeyboardNavigateable;
-	import com.unhurdle.spectrum.utils.generateIcon;
-	import com.unhurdle.spectrum.utils.getExplicitZIndex;
-	import org.apache.royale.events.utils.WhitespaceKeys;
-	import org.apache.royale.events.utils.NavigationKeys;
-	import com.unhurdle.spectrum.utils.cloneNativeKeyboardEvent;
-	import org.apache.royale.events.utils.UIKeys;
-
 	/**
 	 * TODO maybe add flexible with styling of min-width: 0;width:auto;
 	 */
@@ -47,26 +46,33 @@ package com.unhurdle.spectrum
 		override protected function getSelector():String{
 			return "spectrum-Picker";
 		}
-		override protected function getTag():String{
-			return "sp-dropdown";
+		private var _div:Div;
+		public function get div():Div{
+			return _div;
 		}
-		// private var _button:FieldButton;
-		// public function get button():FieldButton{
-		// 	return _button;
-		// }
-		public var menu:Menu;
+		private var span:Span;
+		private var icon:Icon;
 		COMPILE::JS
 		override protected function createElement():WrappedHTMLElement{
 			var elem:WrappedHTMLElement = super.createElement();
-			menu = new Menu();
-			menu.setAttribute('slot','options');
-			addElement(menu);
+			_div = new Div()
+			_div.className = appendSelector("-trigger spectrum-FieldButton");
+			addElement(div);
+			span = new Span();
+			// span.className = appendSelector("-label");
+			span.className = appendSelector("-label is-placeholder");
+			div.addElement(span);
+			var type:String = IconType.CHEVRON_DOWN_MEDIUM;
+			icon = new Icon(Icon.getCSSTypeSelector(type));
+			icon.className = appendSelector("-icon");
+			// icon.className = appendSelector("-icon");
+			div.addElement(icon);
 			// _button = new FieldButton();
 			// _button.labelClass = appendSelector("-label");
 			// _button.className = appendSelector("-trigger");
-			// _button.addEventListener("click",toggleDropdown);
+			div.addEventListener("click",toggleDropdown);
 			// var type:String = IconType.CHEVRON_DOWN_MEDIUM;
-			// _button.icon = type;//Icon.getCSSTypeSelector(type);
+			// _button.icon = Icon.getCSSTypeSelector(type);
 			// _button.iconType = type;
 			// _button.iconClass = appendSelector("-icon");
 			// // _button.textNode.element.style.maxWidth = '85%';
@@ -75,62 +81,25 @@ package com.unhurdle.spectrum
 			popover.className = appendSelector("-popover");
 			popover.addEventListener("openChanged",handlePopoverChange);
 			// popover.percentWidth = 100;
-            popover.setStyle("z-index",100);//????
+			// popover.setStyle("z-index",100);//????
 			// menu = new Menu();
 			// popover.addElement(menu);
 			menu.addEventListener("change", handleListChange);
 			menu.percentWidth = 100;
-			// popover.setStyle("z-index", "2");
+			// popover.style = {"z-index": "2"};
 			return elem;
 		}
 		public var popover:ComboBoxList;
-		// private function get menu():Menu{
-		// 	return popover.list;
-		// }
+		public function get menu():Menu{
+			return popover.list;
+		}
 		private function handlePopoverChange(ev:Event):void{
 			// _button.selected = popover.open;
-			// toggle("is-open",popover.open);
+			toggle("is-open",popover.open);
 		}
 		private function positionPopup():void{
-			var minHeight:Number = _minMenuHeight + 6;
-			// Figure out direction and max size
-			var appBounds:Rectangle = DisplayUtils.getScreenBoundingRect(Application.current.initialView);
 			var componentBounds:Rectangle = DisplayUtils.getScreenBoundingRect(this);
-			var spaceToBottom:Number = appBounds.bottom - componentBounds.bottom;
-			var spaceToTop:Number = componentBounds.top - appBounds.top;
-			var spaceOnBottom:Boolean = spaceToBottom >= spaceToTop;
-			var pxStr:String = "px";
-			switch(_position)
-			{
-				case "top":
-					if(spaceToTop >= minHeight || !spaceOnBottom){
-						positionPopoverTop(appBounds.bottom - componentBounds.top,spaceToTop);
-					} else {
-						positionPopoverBottom(componentBounds,spaceToBottom);
-
-					}
-					break;
-				default:
-					if(spaceToBottom >= minHeight || spaceOnBottom){
-						positionPopoverBottom(componentBounds,spaceToBottom);
-					} else {
-						positionPopoverTop(appBounds.bottom - componentBounds.top,spaceToTop);
-					}
-					break;
-			}
-			var leftSpace:Number = componentBounds.x;
-			var rightSpace:Number = appBounds.width - (componentBounds.x + componentBounds.width);
-			if(rightSpace < leftSpace){
-				popover.setStyle("right",rightSpace + "px");
-				popover.setStyle("left",null);
-			} else {
-				popover.setStyle("right",null);
-				popover.setStyle("left",leftSpace + "px");
-			}
-			if(isNaN(_popupWidth)){
-				popover.setStyle("minWidth",width + "px");
-				// popover.width = width;
-			}
+			popover.positionPopup(componentBounds,componentBounds.width);
 		}
 
 		private function toggleDropdown(ev:*):void{
@@ -145,7 +114,7 @@ package com.unhurdle.spectrum
 				closePopup();
 			}
 		}
-        private var zIndexSet:Boolean = false;
+		private var zIndexSet:Boolean = false;
 		private function openPopup():void{
 			if(!zIndexSet){
 				var zIndex:Number = getExplicitZIndex(this);
@@ -156,54 +125,21 @@ package com.unhurdle.spectrum
 			}
 			popover.open = true;
 			popover.filterFunction = filterFunction;
-			// _button.addEventListener(MouseEvent.MOUSE_DOWN, handleControlMouseDown);
-			popover.addEventListener(MouseEvent.MOUSE_DOWN, handleControlMouseDown);//TODO Do we need this? (doesn't exist in regular spectrum)
-			topMostEventDispatcher.addEventListener(MouseEvent.MOUSE_DOWN, handleTopMostEventDispatcherMouseDown);//TODO Do we need this? (doesn't exist in regular spectrum)
+			_div.addEventListener(MouseEvent.MOUSE_DOWN, handleControlMouseDown);
 			if(searchable){
 				popover.search.input.focus();
 			}
-
 		}
 		private function closePopup():void{
 			if(popover && popover.open){
-				popover.removeEventListener(MouseEvent.MOUSE_DOWN, handleControlMouseDown);
-				// _button.removeEventListener(MouseEvent.MOUSE_DOWN, handleControlMouseDown);
-				topMostEventDispatcher.removeEventListener(MouseEvent.MOUSE_DOWN, handleTopMostEventDispatcherMouseDown);
+				_div.removeEventListener(MouseEvent.MOUSE_DOWN, handleControlMouseDown);
 				popover.open = false;
 			}
 		}
-
-		private function positionPopoverBottom(componentBounds:Rectangle,maxHeight:Number):void{
-			maxHeight -= 6;
-			var pxStr:String;
-			popover.setStyle("bottom","");
-			pxStr = componentBounds.bottom + "px";
-			popover.setStyle("top",pxStr);
-			pxStr = maxHeight + "px";
-			popover.setStyle("max-height",pxStr);
-			if(popover.position == "top"){
-				popover.position = "bottom";
-			}
-		}
-		private function positionPopoverTop(bottom:Number,maxHeight:Number):void{
-			maxHeight -= 6;
-			var pxStr:String;
-			pxStr = bottom + "px";
-			popover.setStyle("top","");
-			popover.setStyle("bottom",pxStr);
-			pxStr = maxHeight + "px";
-			popover.setStyle("max-height",pxStr);
-			if(popover.position == "bottom"){
-				popover.position = "top";
-			}
-		}
+		
 		protected function handleControlMouseDown(event:MouseEvent):void
 		{			
 			event.stopImmediatePropagation();
-		}
-		protected function handleTopMostEventDispatcherMouseDown(event:MouseEvent):void
-		{
-			closePopup();
 		}
 		public function get dataProvider():Object{
 			return menu.dataProvider;
@@ -225,8 +161,9 @@ package com.unhurdle.spectrum
 		public function set selectedIndex(value:int):void
 		{
 			menu.selectedIndex = value;
-			// setButtonText();
+			setButtonText();
 		}
+
 		private var _filterFunction:Function;
 		public function set filterFunction(func:Function):void {
 			_filterFunction = func;
@@ -237,47 +174,47 @@ package com.unhurdle.spectrum
 			return _filterFunction;
 		}
 
-		// private function setButtonAsset(index:int,icon:Boolean):void{
-		// 	if(_button.getElementAt(0) is IAsset){
-		// 		_button.removeElement(_button.getElementAt(0));
-		// 	}
-		// 	if (icon)
-		// 	{
-		// 		var iconClone:Icon = generateIcon(dataProvider[index].icon);
-		// 		_button.addElementAt(iconClone, 0);
-		// 	} else
-		// 	{
-		// 		var asset:ImageAsset = new ImageAsset();
-				// asset.width = 18;
-				// asset.setStyle("margin-right","8px");      
-		// 		asset.src = icon? dataProvider[index].icon: dataProvider[index].imageIcon;
-		// 		_button.addElementAt(asset,0);
-		// 	}
-		// }
-		// private function setButtonText():void{
-		// 	if(selectedIndex){
-		// 		if(selectedIndex < 0 || dataProvider[selectedIndex].isDivider){
-		// 			_button.text = "";
-		// 		}else{
-		// 			_button.text = dataProvider[selectedIndex].text;
-		// 			if(dataProvider[selectedIndex].imageIcon){
-		// 				setButtonAsset(selectedIndex,false);
-		// 			}else if(dataProvider[selectedIndex].icon){
-		// 				setButtonAsset(selectedIndex,true);
-		// 			}
-		// 		}
-		// 	}else if(!selectedItem ||selectedItem.isDivider){
-		// 		_button.text = "";
-		// 	}else{
-		// 		_button.text = selectedItem.text;
-		// 		var i:int = dataProvider.indexOf(selectedItem)
-		// 		if(dataProvider[i].imageIcon){
-		// 			setButtonAsset(i,false);
-		// 		}else if(dataProvider[i].icon){
-		// 			setButtonAsset(i,true);
-		// 		}
-		// 	}
-		// }
+		private function setButtonAsset(index:int,icon:Boolean):void{
+			if(_div.getElementAt(0) is IAsset){
+				_div.removeElement(_div.getElementAt(0));
+			}
+			if (icon)
+			{
+				var iconClone:Icon = new Icon(dataProvider[index].icon);
+				_div.addElementAt(iconClone, 0);
+			} else
+			{
+				var asset:ImageAsset = new ImageAsset();
+				asset.width = 18;
+				asset.setStyle("margin-right","8px");      
+				asset.src = icon? dataProvider[index].icon: dataProvider[index].imageIcon;
+				_div.addElementAt(asset,0);
+			}
+		}
+		private function setButtonText():void{
+			if(selectedIndex){
+				if(selectedIndex < 0 || dataProvider[selectedIndex].isDivider){
+					span.text = "";
+				}else{
+					span.text = dataProvider[selectedIndex].text;
+					if(dataProvider[selectedIndex].imageIcon){
+						setButtonAsset(selectedIndex,false);
+					}else if(dataProvider[selectedIndex].icon){
+						setButtonAsset(selectedIndex,true);
+					}
+				}
+			}else if(!selectedItem ||selectedItem.isDivider){
+				span.text = "";
+			}else{
+				span.text = selectedItem.text;
+				var i:int = dataProvider.indexOf(selectedItem)
+				if(dataProvider[i].imageIcon){
+					setButtonAsset(i,false);
+				}else if(dataProvider[i].icon){
+					setButtonAsset(i,true);
+				}
+			}
+		}
 
 		public function get selectedItem():Object
 		{
@@ -287,7 +224,7 @@ package com.unhurdle.spectrum
 		public function set selectedItem(value:Object):void
 		{
 			menu.selectedItem = value;
-			// setButtonText();
+			setButtonText();
 		}
 		private function convertArray(value:Object):void{
 			var len:int = value.length;
@@ -311,9 +248,9 @@ package com.unhurdle.spectrum
 				if(value[i].selected || i == selectedIndex || value[i] == selectedItem){
 					item.selected = value[i]["selected"];
 					if(item.icon){
-						// setButtonAsset(i,true);
+						setButtonAsset(i,true);
 					}else if(item.imageIcon){
-						// setButtonAsset(i,false);
+						setButtonAsset(i,false);
 					}
 				}
 				value[i] = item;
@@ -328,13 +265,12 @@ package com.unhurdle.spectrum
 		public function set placeholder(value:String):void
 		{
 			_placeholder = value;
-			setAttribute('placeholder',value);
-			// _button.placeholderText = value;
+			span.text = value;
 		}
 
 		public function handleListChange():void{
-			// closePopup();
-			// setButtonText();
+			closePopup();
+			setButtonText();
 			dispatchEvent(new Event("change"));
 		}
 		
@@ -351,11 +287,11 @@ package com.unhurdle.spectrum
 				toggle("is-invalid",value);
 				// _button.invalid = value;
 				if(value){
-					var invalidIcon:Icon = generateIcon(IconPrefix._18 + "Alert");
+					var invalidIcon:Icon = new Icon(IconPrefix._18 + "Alert");
 					invalidIcon.size = "S";
-					// _button.addElementAt(invalidIcon, _button.numElements - 1);
+					_div.addElementAt(invalidIcon, _div.numElements - 1);
 				}else{
-					// _button.removeElement(invalidIcon);
+					_div.removeElement(invalidIcon);
 				}
 			}
 			_invalid = value;
@@ -372,7 +308,7 @@ package com.unhurdle.spectrum
 			if(value != _quiet){
 				toggle(valueToSelector("quiet"),value);
 				// _button.quiet = value;
-				// popover.quiet = value;
+				popover.quiet = value;
 			}
 			_quiet = value;
 		}
@@ -387,12 +323,7 @@ package com.unhurdle.spectrum
 		public function set disabled(value:Boolean):void
 		{
 			if(value != !!_disabled){
-				if(value){
-					setAttribute('disabled',true);
-				} else {
-					removeAttribute('disabled');
-				}
-				// toggle("is-disabled",value);
+				toggle("is-disabled",value);
 				// _button.disabled = value;
 			}
 			_disabled = value;
@@ -407,7 +338,7 @@ package com.unhurdle.spectrum
 		public function set popupWidth(value:Number):void
 		{
 			_popupWidth = value;
-			// popover.width = value;
+			popover.width = value;
 		}
 		private var _position:String;
 
@@ -416,17 +347,16 @@ package com.unhurdle.spectrum
 			return _position;
 		}
 
-		private var _minMenuHeight:Number = 60;
-
 		public function get minMenuHeight():Number
 		{
-			return _minMenuHeight;
+			return popover.minMenuHeight;
 		}
 
 		public function set minMenuHeight(value:Number):void
 		{
-			_minMenuHeight = value;
+			popover.minMenuHeight = value;
 		}
+
 		public function get searchable():Boolean
 		{
 			return popover.searchable;
@@ -440,10 +370,14 @@ package com.unhurdle.spectrum
 				popover.search.input.addEventListener(KeyboardEvent.KEY_DOWN, handleKeyDown);
 			}
 		}
-		private function handleKeyDown(event:KeyboardEvent):void
+		private function handleKeyDown(event:*):void
 		{
+			var key:String = event.key;
+			if(!key){
+				key = getKeyFromKeyCode(event.keyCode);
+			}
 			// forward relevent keys to the list
-			switch(event.key){
+			switch(key){
 				case WhitespaceKeys.ENTER:
 				case NavigationKeys.DOWN:
 				case NavigationKeys.UP:
@@ -456,10 +390,11 @@ package com.unhurdle.spectrum
 					break;
 			}
 			// prevent default behavior for these keys to keep the cursor posiiton from changing
-			if(event.key == NavigationKeys.UP || event.key == NavigationKeys.DOWN){
+			if(key == NavigationKeys.UP || key == NavigationKeys.DOWN){
 				event.preventDefault();
 				event.stopImmediatePropagation();
 			}
+
 		}
 
 		[Inspectable(category="General", enumeration="bottom,top,right,left")]
@@ -468,25 +403,25 @@ package com.unhurdle.spectrum
 			switch(value){
 				case "bottom":
 				// break;
-				case "top":
-						// (element as HTMLElement).insertBefore((element as HTMLElement).removeChild(popover.element as HTMLElement),button.element as HTMLElement);
-					// popover.setStyle("bottom","30px");
-					// break;
-				case "right":
-				case "left":
-					break;
-				default:
-					throw new Error("invalid position: " + value);
+					case "top":
+							// (element as HTMLElement).insertBefore((element as HTMLElement).removeChild(popover.element as HTMLElement),button.element as HTMLElement);
+						// popover.setStyle("bottom","30px");
+						// break;
+					case "right":
+					case "left":
+						break;
+					default:
+						throw new Error("invalid position: " + value);
 			}
 			if(value != !!_position){
-				// popover.position = value;
+				popover.position = value;
 			}
 			_position = value;
 		}
 
 		public function get focusParent():ISpectrumElement
 		{
-			return menu;
+			return popover;
 		}
 	}
 }
