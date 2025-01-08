@@ -150,7 +150,6 @@ package com.unhurdle.spectrum.renderers
       if(value){
         focused = !value;
         tabFocusable = true;
-        focus();
       }    
     }
 
