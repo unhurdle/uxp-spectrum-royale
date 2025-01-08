@@ -156,8 +156,12 @@ package com.unhurdle.spectrum
 			popover.open = true;
 			popover.filterFunction = filterFunction;
 			// _button.addEventListener(MouseEvent.MOUSE_DOWN, handleControlMouseDown);
-			popover.addEventListener(MouseEvent.MOUSE_DOWN, handleControlMouseDown);
-			topMostEventDispatcher.addEventListener(MouseEvent.MOUSE_DOWN, handleTopMostEventDispatcherMouseDown);
+			popover.addEventListener(MouseEvent.MOUSE_DOWN, handleControlMouseDown);//TODO Do we need this? (doesn't exist in regular spectrum)
+			topMostEventDispatcher.addEventListener(MouseEvent.MOUSE_DOWN, handleTopMostEventDispatcherMouseDown);//TODO Do we need this? (doesn't exist in regular spectrum)
+			if(searchable){
+				popover.search.input.focus();
+			}
+
 		}
 		private function closePopup():void{
 			if(popover && popover.open){
@@ -429,6 +433,7 @@ package com.unhurdle.spectrum
 
 		public function set searchable(value:Boolean):void 
 		{
+			popover.autoFocusList = !value;
 			popover.searchable = value;
 			if (popover.search){
 				popover.search.input.addEventListener(KeyboardEvent.KEY_DOWN, handleKeyDown);
