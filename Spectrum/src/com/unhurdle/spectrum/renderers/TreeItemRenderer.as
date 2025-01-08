@@ -36,33 +36,36 @@ package com.unhurdle.spectrum.renderers
         if(listData.hasChildren){
           var type:String = IconType.CHEVRON_RIGHT_MEDIUM;
           if(!chevronIcon){
-           createIcon(type);
+            chevronIcon = new Icon(Icon.getCSSTypeSelector(type));
+            chevronIcon.type = type;
+            chevronIcon.toggle(appendSelector("-itemIndicator"),true);
+            chevronIcon.setStyle("flex-shrink",0);
+            chevronIcon.style = {"margin-right": "20px","margin-bottom": "0px","padding-bottom": "15px"};
+            link.addElementAt(chevronIcon,0);
+            chevronIcon.addEventListener(MouseEvent.CLICK,function (ev:Event):void{
+              // This is a bit of a hack. Currently for multi-select trees,
+              // the logic for opening nodes is dependent on selection.
+              // Until that's separated, we can't stop propogation on multi-select trees
+              if(!value?.multiSelect){
+                ev.stopPropagation(); //to prevent selection when expanding
+              }
+              if(!disabled){
+                isOpen = !isOpen;
+                var expandEvent:ItemClickedEvent = new ItemClickedEvent("itemExpanded");
+                expandEvent.data = data;
+                expandEvent.index = index;
+                //wait until all the intem renderers are updated to modify the list 
+                setTimeout(function():void{
+                  dispatchEvent(expandEvent);
+                })
+              }
+            });
           }
           if(listData.isOpen){
             isOpen = value.isOpen = true;
           }
         }
       }
-    }
-    private function createIcon(type:String):void{
-      chevronIcon = new Icon(Icon.getCSSTypeSelector(type));
-      chevronIcon.type = type;
-      chevronIcon.toggle(appendSelector("-itemIndicator"),true);
-      chevronIcon.setStyle("flex-shrink",0);
-      chevronIcon.style = {"margin-right": "20px","margin-bottom": "0px","padding-bottom": "15px"};
-      link.addElementAt(chevronIcon,0);
-      chevronIcon.addEventListener(MouseEvent.CLICK,function (ev:Event):void{
-        if(!disabled){
-          isOpen = !isOpen;
-          var expandEvent:ItemClickedEvent = new ItemClickedEvent("itemExpanded");
-          expandEvent.data = data;
-          expandEvent.index = index;
-          //wait until all the intem renderers are updated to modify the list 
-          setTimeout(function():void{
-            dispatchEvent(expandEvent);
-          })
-        }
-      });
     }
     private var _isOpen:Boolean = false;
 
