@@ -8,6 +8,7 @@ package com.unhurdle.spectrum.renderers
   import com.unhurdle.spectrum.ImageIcon;
   import com.unhurdle.spectrum.Menu;
   import com.unhurdle.spectrum.TextNode;
+  import com.unhurdle.spectrum.const.IconPrefix;
   import com.unhurdle.spectrum.const.IconType;
   import com.unhurdle.spectrum.data.MenuItem;
   import com.unhurdle.spectrum.utils.generateIcon;
@@ -193,22 +194,22 @@ package com.unhurdle.spectrum.renderers
     // }
     override public function set selected(value:Boolean):void{
       super.selected = value;
-      // if(value){
-        // if(!checkIcon){
-        //   var type:String = IconType.CHECKMARK_MEDIUM;
-        //   checkIcon = new Icon(IconPrefix.SPECTRUM_CSS_ICON + type);
-        //   checkIcon.type = type;
-        //   checkIcon.className = appendSelector("-checkmark");
-        //   checkIcon.setStyle("display","none");
-        //   addElement(checkIcon);
-        // }
-      //   checkIcon.setStyle("display",null);
+      if(value){
+        if(!checkIcon){
+          var type:String = IconType.CHECKMARK_MEDIUM;
+          checkIcon = new Icon(IconPrefix.SPECTRUM_CSS_ICON + type);
+          checkIcon.type = type;
+          checkIcon.className = appendSelector("-checkmark");
+          checkIcon.setStyle("display","none");
+          addElement(checkIcon);
+        }
+        checkIcon.setStyle("display",null);
       //   //set the color of the text to the color of the checkmark ? rgb(20, 115, 230) #1473e6
-      // }else{
-      //if(checkIcon){
-        //   checkIcon.setStyle("display","none");
-        // }
-      // }
+      }else{
+        if(checkIcon){
+          checkIcon.setStyle("display","none");
+        }
+      }
 
     }
     //TODO deal with sub-menus
@@ -240,7 +241,7 @@ package com.unhurdle.spectrum.renderers
     protected var textNode:TextNode;
     private var indicator:Icon;
     private var type:String;
-    // protected var checkIcon:Icon;
+    protected var checkIcon:Icon;
 
     // override protected function getTag():String{
     //   return "li";
