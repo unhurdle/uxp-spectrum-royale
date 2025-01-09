@@ -28,7 +28,7 @@ package com.unhurdle.spectrum.renderers
     }
     private var isDivider:Boolean;
     override protected function getTag():String{
-      return isDivider ? "sp-menu-divider" : "sp-menu-item";
+      return isDivider ? "sp-menu-divider" : "div";
     }
     private var submenu:Menu;
     COMPILE::JS
