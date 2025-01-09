@@ -1,16 +1,16 @@
 package com.unhurdle.spectrum
 {
-  import org.apache.royale.core.IBead;
-  import org.apache.royale.core.IPopUp;
-  import org.apache.royale.core.IStrand;
-  import org.apache.royale.events.Event;
-  import org.apache.royale.events.MouseEvent;
-  import org.apache.royale.functional.decorator.debounceLong;
-  import org.apache.royale.geom.Rectangle;
-  import org.apache.royale.html.beads.DataContainerView;
-  import org.apache.royale.utils.DisplayUtils;
-  import org.apache.royale.core.IItemRenderer;
-  import org.apache.royale.core.IUIBase;
+	import org.apache.royale.core.IBead;
+	import org.apache.royale.core.IPopUp;
+	import org.apache.royale.core.IStrand;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.events.MouseEvent;
+	import org.apache.royale.functional.decorator.debounceLong;
+	import org.apache.royale.geom.Rectangle;
+	import org.apache.royale.html.beads.DataContainerView;
+	import org.apache.royale.utils.DisplayUtils;
+	import org.apache.royale.core.IItemRenderer;
+	import org.apache.royale.core.IUIBase;
 
 	[Event(name="change", type="org.apache.royale.events.Event")]
 	public class ComboBoxList extends Popover implements IPopUp, IBead
@@ -73,14 +73,10 @@ package com.unhurdle.spectrum
 			var dataView:DataContainerView = list.view as DataContainerView;
 			var len:int = dataView.numItemRenderers;
 			var appliedFilterFunction:Function = _filterFunction != null ? _filterFunction : defaultFilterFunction;
+			var searchText:String = _search.text;
 			for (var i:int = 0; i < len; i++) {
-				var renderer:IItemRenderer = dataView.getItemRendererAt(i) as IItemRenderer;
-                if (!_search.text || (appliedFilterFunction(renderer.data, _search.text))) {
-					(renderer as IUIBase).visible = true;
-				}
-				else {
-					(renderer as IUIBase).visible = false;
-				}
+				var renderer:IItemRenderer = dataView.getItemRendererAt(i);
+				(renderer as IUIBase).visible = !searchText || appliedFilterFunction(renderer.data, searchText);
 			}
 		}
 		protected function defaultFilterFunction(data:Object, searchText:String):Boolean {
@@ -106,14 +102,18 @@ package com.unhurdle.spectrum
 			super.open = value;
 			if(value){
 				if (_autoFocusList){
-				_list.focus();
+					_list.focus();
 				}
 				addEventListener(MouseEvent.MOUSE_DOWN, handleControlMouseDown);
 				topMostEventDispatcher.addEventListener(MouseEvent.MOUSE_DOWN, handleTopMostEventDispatcherMouseDown);
 			} else {
 				_list.blur();
+				if(_search){
+					_search.text = "";
+					handleSearch();
+				}
 				removeEventListener(MouseEvent.MOUSE_DOWN, handleControlMouseDown);
-						topMostEventDispatcher.removeEventListener(MouseEvent.MOUSE_DOWN, handleTopMostEventDispatcherMouseDown);
+				topMostEventDispatcher.removeEventListener(MouseEvent.MOUSE_DOWN, handleTopMostEventDispatcherMouseDown);
 			}
 		}
 
