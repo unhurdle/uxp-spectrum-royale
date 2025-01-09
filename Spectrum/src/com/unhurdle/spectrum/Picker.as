@@ -65,6 +65,7 @@ package com.unhurdle.spectrum
 			var type:String = IconType.CHEVRON_DOWN_MEDIUM;
 			icon = new Icon(Icon.getCSSTypeSelector(type));
 			icon.className = appendSelector("-icon");
+			icon.setStyle("right","-8px");
 			// icon.className = appendSelector("-icon");
 			div.addElement(icon);
 			// _button = new FieldButton();

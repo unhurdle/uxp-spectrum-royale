@@ -102,6 +102,9 @@ package com.unhurdle.spectrum.beads
     }
 
     protected function changeValue(event:*):void{
+      if(!event.key && !event.keyCode){
+        event = event.nativeEvent;
+      }
       var key:String = event.key;
 			if(!key){
 				key = getKeyFromKeyCode(event.keyCode);
