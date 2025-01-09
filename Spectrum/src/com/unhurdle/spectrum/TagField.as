@@ -37,19 +37,18 @@ package com.unhurdle.spectrum
     override protected function createElement():WrappedHTMLElement{
       var elem:WrappedHTMLElement = addElementToWrapper(this,'div');
       tagGroup = new TagGroup();
-      tagGroup.setStyle("display","inline");
+      tagGroup.setStyle("display","inline-block");
       tagGroup.setStyle('flex-grow','1');
       tagGroup.setStyle('flex-shrink','1');
-      tagGroup.height = 19;
       elem.appendChild(tagGroup.element);
       input = new TextField();
+      input.setAttribute("quiet","");
       input.setStyle("display","inline-block");
       input.addEventListener("onBackspace",removeTag);
       input.addEventListener("onEnter",inputChanged);
       input.element.addEventListener("input",inputValueChanged);
       input.input.style.borderStyle = "none";
       input.input.style.background = "none";
-      input.height = 32;
       // elem.appendChild(input.element);
       input.tabFocusable = false;
       tagGroup.addElement(input);
