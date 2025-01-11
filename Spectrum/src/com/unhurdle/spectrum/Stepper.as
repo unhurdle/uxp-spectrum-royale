@@ -11,6 +11,7 @@ package com.unhurdle.spectrum
   import org.apache.royale.events.Event;
   import org.apache.royale.events.KeyboardEvent;
   import org.apache.royale.events.MouseEvent;
+  import org.apache.royale.html.elements.Div;
   import org.apache.royale.html.elements.Span;
   import org.apache.royale.utils.number.pinValue;
   
@@ -77,8 +78,8 @@ package com.unhurdle.spectrum
     }
     
     private var input:NumberField;
-    private var upButton:FieldButton;
-    private var downButton:FieldButton;
+    private var upButton:Div;
+    private var downButton:Div;
 
     COMPILE::JS
     override protected function createElement():WrappedHTMLElement{
@@ -92,12 +93,22 @@ package com.unhurdle.spectrum
       input.addEventListener(Event.CHANGE,inputChanged);
       addElement(input);
       var span:Span = new Span();
-      // var span:HTMLSpanElement = newElement("span") as HTMLSpanElement;
-      span.className = appendSelector("-buttons");
-      upButton = getButton("-stepUp",IconType.CHEVRON_UP_SMALL);
+      upButton = new Div();
+      upButton.className = appendSelector("-stepUp spectrum-FieldButton");
+      var upType:String = IconType.CHEVRON_UP_SMALL;
+			var upIcon:Icon = new Icon(Icon.getCSSTypeSelector(upType));
+			upIcon.className = appendSelector("-icon");
+      upIcon.style = {'top': '4px','left': '6px','position': 'absolute'};
+      upButton.addElement(upIcon);
+      downButton = new Div();
+      downButton.className = appendSelector("-stepDown spectrum-FieldButton");
+      var downType:String = IconType.CHEVRON_DOWN_SMALL;
+			var downIcon:Icon = new Icon(Icon.getCSSTypeSelector(downType));
+			downIcon.className = appendSelector("-icon");
+      downIcon.style = {'top': '4px','left': '6px','position': 'absolute'};
+      downButton.addElement(downIcon);
       upButton.addEventListener(MouseEvent.CLICK,upButtonClicked);
       span.addElement(upButton);
-      downButton = getButton("-stepDown",IconType.CHEVRON_DOWN_SMALL);
       downButton.addEventListener(MouseEvent.CLICK,downButtonClicked);
       span.addElement(downButton);
       addElement(span);
@@ -216,8 +227,8 @@ package com.unhurdle.spectrum
       if(value != !!_disabled){
         toggle("is-disabled",value);
         input.disabled = value;
-        upButton.disabled = value;
-        downButton.disabled = value;
+        // upButton.disabled = value;
+        // downButton.disabled = value;
       }
     	_disabled = value;
     }
@@ -233,8 +244,8 @@ package com.unhurdle.spectrum
       if(value != !!_quiet){
         toggle(valueToSelector("quiet"),value);
         input.quiet = value;
-        upButton.quiet = value;
-        downButton.quiet = value;
+        // upButton.quiet = value;
+        // downButton.quiet = value;
       }
     	_quiet = value;
     }
