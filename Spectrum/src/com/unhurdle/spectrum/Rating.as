@@ -25,15 +25,10 @@ package com.unhurdle.spectrum
     override protected function getSelector():String{
       return "spectrum-Rating";
     }
-    private var input:HTMLInputElement;
 
     COMPILE::JS
     override protected function createElement():WrappedHTMLElement{
       super.createElement();
-      input = newElement("input") as HTMLInputElement;
-      input.className = appendSelector("-input");
-      input.type = "range";
-      element.appendChild(input);
       max = 5;
       value = 0;
       // element.addEventListener("click",handleClick);
@@ -52,36 +47,36 @@ package com.unhurdle.spectrum
         var index:Number = this.getElementIndex(ev.target);// Number(ev.target.id);
         // var index:Number = Number((ev.target as HTMLElement).getAttribute("data-index"));
         if(!isNaN(index)){
-          if(value == index){
+          if(value == index + 1){
             value = 0;
           }else{
-            value = index;
+            value = index + 1;
           }
         }
       }
       // console.log(ev.target);
     }
-    
+    private var _max:Number;
     public function get max():Number
     {
-    	return Number(input.max);
+    	return _max;
     }
 
     public function set max(val:Number):void
     {
-      input.max = "" + val;
+      _max = val;
       if(!parent){//wait until addedToParent
         return;
       }
       validateIconElements();
     }
     private function validateIconElements():void{
-      while(numElements > max + 1){
-        var elem:UIBase = getElementAt(numElements-1) as UIBase;
+      while(numElements > max){
+        var elem:UIBase = getElementAt(numElements) as UIBase;
         elem.removeEventListener("click",handleClick);
         removeElement(elem);
       }
-      while(numElements < max + 1){
+      while(numElements < max){
         var span:Span = new Span();
         span.className = appendSelector("-icon");
         var type:String = IconType.STAR;
@@ -100,10 +95,10 @@ package com.unhurdle.spectrum
 
       }
     }
-
+    private var _value:Number;
     public function get value():Number
     {
-    	return Number(input.value);
+    	return _value;
     }
     private var icon1:Icon;
     private var icon2:Icon;
@@ -114,14 +109,14 @@ package com.unhurdle.spectrum
     COMPILE::JS
     public function set value(val:Number):void
     {
-      input.value = "" + val;
+      _value = val;
       if(!parent){
         return;
       }
       validateIconElements();
       var len:int = numElements;
-      for(var i:int=1;i<len;i++){
-        if(i > val){
+      for(var i:int=0;i<len;i++){
+        if(val == 0 || i > val-1){
           (element.children[i] as Element).classList.remove("is-selected");
           (element.children[i] as Element).classList.remove("is-currentValue");
         } else {
@@ -145,7 +140,6 @@ package com.unhurdle.spectrum
     {
       if(value != !!_disabled){
         toggle("is-disabled",value);
-        input.disabled = value;
       }
     	_disabled = value;
     }
@@ -174,7 +168,6 @@ package com.unhurdle.spectrum
     {
       if(value != !!_readOnly){
         toggle("is-readOnly",value);
-        input.readOnly = value;
       }
     	_readOnly = value;
     }
