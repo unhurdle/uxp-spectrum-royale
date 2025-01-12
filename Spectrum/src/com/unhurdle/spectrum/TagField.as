@@ -109,7 +109,7 @@ package com.unhurdle.spectrum
       var labels:Array = labelList;
       var text:String = input.text;
       if(!text){
-        valuesArr = labels.slice();
+        valuesArr = labels.slice(); // opens the combobox when clicking on the textield
       } else {
         var lower:String = input.text.toLowerCase();
         for each( var t:String in labels){
@@ -145,7 +145,9 @@ package com.unhurdle.spectrum
         }
       }
       COMPILE::JS{
-        input.input.focus();
+        if(text) {
+          input.input.focus();
+        }
       }
       calculatePosition();
       updating = false;
@@ -276,6 +278,7 @@ package com.unhurdle.spectrum
         if(!comboBoxList){
           comboBoxList = new ComboBoxList();
           comboBoxList.addEventListener('change',itemSelected);
+          comboBoxList.list.setStyle("width", "calc(100% + 16px)");
           COMPILE::JS{
             input.addEventListener("onArrowDown",selectValue);
             input.addEventListener("onArrowUp",selectValue);
