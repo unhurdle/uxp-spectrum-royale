@@ -373,12 +373,11 @@ package com.unhurdle.spectrum
 		}
 		private function handleKeyDown(event:*):void
 		{
-			var key:String = event.key;
-			if(!key){
-				key = getKeyFromKeyCode(event.keyCode);
+			if(!event.key){
+				event.key = getKeyFromKeyCode(event.keyCode);
 			}
 			// forward relevent keys to the list
-			switch(key){
+			switch(event.key){
 				case WhitespaceKeys.ENTER:
 				case NavigationKeys.DOWN:
 				case NavigationKeys.UP:
@@ -399,7 +398,7 @@ package com.unhurdle.spectrum
 					break;
 			}
             // prevent default behavior for these keys to keep the cursor position from changing
-			if(key == NavigationKeys.UP || key == NavigationKeys.DOWN){
+			if(event.key == NavigationKeys.UP || event.key == NavigationKeys.DOWN){
 				event.preventDefault();
 				event.stopImmediatePropagation();
 			}

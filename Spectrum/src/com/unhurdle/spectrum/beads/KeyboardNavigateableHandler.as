@@ -105,12 +105,11 @@ package com.unhurdle.spectrum.beads
       if(!event.key && !event.keyCode){
         event = event.nativeEvent;
       }
-      var key:String = event.key;
-			if(!key){
-				key = getKeyFromKeyCode(event.keyCode);
+			if(!event.key){
+				event.key = getKeyFromKeyCode(event.keyCode);
 			}
       var index:int;
-      switch(key)
+      switch(event.key)
       {
         case WhitespaceKeys.ENTER:// enter should always trigger "change" even if it's not changing to ensure that popups are closed
           if(focusableItemRenderer?.keyboardFocused){
@@ -141,10 +140,10 @@ package com.unhurdle.spectrum.beads
           focusPrevious();
           break;
         default:
-          if (key.length > 1) {
+          if (event.key.length > 1) {
               return;// do nothing
           }
-          updateValue(key);
+          updateValue(event.key);
           break;
       }
     }

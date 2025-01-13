@@ -23,12 +23,11 @@ package com.unhurdle.spectrum.beads
     }
     override protected function changeValue(event:*):void{
       super.changeValue(event);
-      var key:String = event.key;
-			if(!key){
-				key = getKeyFromKeyCode(event.keyCode);
+			if(!event.key){
+				event.key = getKeyFromKeyCode(event.keyCode);
 			}
       var treeRenderer:TreeItemRenderer = focusableItemRenderer as TreeItemRenderer;
-      switch(key)
+      switch(event.key)
       {
         case NavigationKeys.RIGHT:
           if(focusableItemRenderer){
