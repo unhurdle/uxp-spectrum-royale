@@ -11,7 +11,7 @@ package com.unhurdle.spectrum
 		public function TextArea()
 		{
 			super();
-			toggle(valueToSelector("multiline"),true);
+			// textarea.setAttribute("multiline","");
 			textarea.addEventListener("input",checkValidation);
 		}
 		override protected function getTag():String{

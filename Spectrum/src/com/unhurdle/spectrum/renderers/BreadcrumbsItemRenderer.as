@@ -116,6 +116,7 @@ package com.unhurdle.spectrum.renderers
       elem.appendChild(textNode.element);
       var type:String = IconType.CHEVRON_RIGHT_SMALL;
       icon = new Icon(Icon.getCSSTypeSelector(type));
+      icon.height = 11;
       // icon.type = type;
       icon.className = appendSelector("-itemSeparator");
       addElement(icon);
