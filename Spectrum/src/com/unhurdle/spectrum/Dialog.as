@@ -53,14 +53,13 @@ package com.unhurdle.spectrum
     }
 
     private function handleKeyDown(event:*):void{
-      var key:String = event.key;
-			if(!key){
-				key = getKeyFromKeyCode(event.keyCode);
+			if(!event.key){
+				event.key = getKeyFromKeyCode(event.keyCode);
 			}
-      if(key == UIKeys.ESCAPE){
+      if(event.key == UIKeys.ESCAPE){
           hide();
       }
-      if(key == WhitespaceKeys.TAB){
+      if(event.key == WhitespaceKeys.TAB){
           event.preventDefault();
           whenKey(event.shiftKey);
       }
