@@ -135,7 +135,6 @@ package com.unhurdle.spectrum
     {
       if(menu){
         menu.selectedIndex = value;
-        menu.setStyle("margin-right","19px");
       }
     	_selectedIndex = value;
     }
@@ -263,7 +262,6 @@ package com.unhurdle.spectrum
     private function handleMenuChange(ev:Event):void{
       closePopup();
       dispatchEvent(new Event("change"));
-      menu.setStyle("margin-right","19px");
     }
 		protected function handleControlMouseDown(event:MouseEvent):void
 		{			
