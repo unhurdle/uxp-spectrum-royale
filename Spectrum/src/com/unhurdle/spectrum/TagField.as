@@ -190,8 +190,9 @@ package com.unhurdle.spectrum
 
     protected function positionPopup():void{
       var componentBounds:Rectangle = DisplayUtils.getScreenBoundingRect(input);
-			comboBoxList.positionPopup(componentBounds);
-
+      comboBoxList.positionPopup(componentBounds, NaN, false);
+      var leftSpace:Number = componentBounds.x;
+      comboBoxList.setStyle("left", leftSpace + "px");
     }
 
     private function itemSelected(ev:Event):void{
@@ -278,7 +279,6 @@ package com.unhurdle.spectrum
         if(!comboBoxList){
           comboBoxList = new ComboBoxList();
           comboBoxList.addEventListener('change',itemSelected);
-          comboBoxList.list.setStyle("width", "calc(100% + 16px)");
           COMPILE::JS{
             input.addEventListener("onArrowDown",selectValue);
             input.addEventListener("onArrowUp",selectValue);
