@@ -104,6 +104,9 @@ package com.unhurdle.spectrum
 		}
 
 		private function toggleDropdown(ev:*):void{
+			if(disabled){
+				return;
+			}
 			ev.preventDefault();
 			var open:Boolean = !popover.open;
 			toggle("is-open",open);
