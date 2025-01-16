@@ -42,7 +42,7 @@ package com.unhurdle.spectrum
       tagGroup.setStyle('flex-shrink','1');
       elem.appendChild(tagGroup.element);
       input = new TextField();
-      input.setAttribute("quiet","");
+      input.quiet = true;
       input.setStyle("display","inline-block");
       input.addEventListener("onBackspace",removeTag);
       input.addEventListener("onEnter",inputChanged);
@@ -145,12 +145,12 @@ package com.unhurdle.spectrum
         }
       }
       COMPILE::JS{
-        if(text) {
-          input.input.focus();
-        }
+        input.input.focus();
       }
-      calculatePosition();
-      updating = false;
+      requestAnimationFrame(function():void{
+        calculatePosition();
+        updating = false;
+      });
     }
 
     // public function createPopover():void{
