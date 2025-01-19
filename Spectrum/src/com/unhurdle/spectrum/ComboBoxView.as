@@ -2,7 +2,6 @@ package com.unhurdle.spectrum{
 	import com.unhurdle.spectrum.const.IconType;
 	import com.unhurdle.spectrum.data.MenuItem;
 	import com.unhurdle.spectrum.includes.InputGroupInclude;
-	import com.unhurdle.spectrum.utils.cloneNativeKeyboardEvent;
 	import com.unhurdle.spectrum.utils.getExplicitZIndex;
 	import com.unhurdle.spectrum.utils.getKeyFromKeyCode;
 
@@ -28,6 +27,7 @@ package com.unhurdle.spectrum{
 	import org.apache.royale.utils.UIUtils;
 	import org.apache.royale.utils.callLater;
 	import org.apache.royale.utils.loadBeadFromValuesManager;
+	import org.apache.royale.utils.sendStrandEvent;
 	
 	/**
 	 *  The ComboBoxView class creates the visual elements of the ComboBox component.
@@ -215,6 +215,11 @@ package com.unhurdle.spectrum{
 						}
 						break;
 				}
+			} else {
+				if(event.key == WhitespaceKeys.ENTER){
+					sendStrandEvent(_strand,"change");
+				}
+
 			}
             // prevent default behavior for these keys to keep the cursor position from changing
 			if(event.key == NavigationKeys.UP || event.key == NavigationKeys.DOWN){
