@@ -193,26 +193,28 @@ package com.unhurdle.spectrum{
 			if(!event.key){
 				event.key = getKeyFromKeyCode(event.keyCode);
 			}
-			// forward relevent keys to the list
-			switch(event.key){
-				case WhitespaceKeys.ENTER:
-				case NavigationKeys.DOWN:
-				case NavigationKeys.UP:
-                case UIKeys.ESCAPE:
-					COMPILE::JS
-					{
-						var newEvent:KeyboardEvent = new KeyboardEvent(
-							event.type,
-							event.key,
-							event.code,
-							event.shiftKey,
-							event.altKey,
-							event.ctrlKey,
-							event.metaKey,
-							false);
-						list.focusParent.dispatchEvent(newEvent);
-					}
-					break;
+			if(popUpVisible){
+				// forward relevent keys to the list
+				switch(event.key){
+					case WhitespaceKeys.ENTER:
+					case NavigationKeys.DOWN:
+					case NavigationKeys.UP:
+					case UIKeys.ESCAPE:
+						COMPILE::JS
+						{
+							var newEvent:KeyboardEvent = new KeyboardEvent(
+								event.type,
+								event.key,
+								event.code,
+								event.shiftKey,
+								event.altKey,
+								event.ctrlKey,
+								event.metaKey,
+								false);
+							list.focusParent.dispatchEvent(newEvent);
+						}
+						break;
+				}
 			}
             // prevent default behavior for these keys to keep the cursor position from changing
 			if(event.key == NavigationKeys.UP || event.key == NavigationKeys.DOWN){
