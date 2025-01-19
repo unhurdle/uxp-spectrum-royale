@@ -34,9 +34,9 @@ package com.unhurdle.spectrum
 		{
 			_rowGap = value;
 		}
-    override protected function getTag():String{
-      return "div";
-    }
+		override protected function getTag():String{
+		return "div";
+		}
 
 	}
 }

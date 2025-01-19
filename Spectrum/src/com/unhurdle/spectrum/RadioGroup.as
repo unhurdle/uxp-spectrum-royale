@@ -10,8 +10,8 @@ package com.unhurdle.spectrum
 			super();
 		}
 		override protected function getTag():String{
-      return "sp-radio-group";
-    }
+			return "sp-radio-group";
+		}
 		COMPILE::JS
 		override protected function createElement():WrappedHTMLElement{
 			var elem:WrappedHTMLElement = super.createElement();

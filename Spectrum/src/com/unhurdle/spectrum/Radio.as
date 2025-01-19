@@ -17,8 +17,8 @@ package com.unhurdle.spectrum
 			super();
 		}
 		override protected function getTag():String{
-      return "sp-radio";
-    }
+			return "sp-radio";
+		}
 
 		COMPILE::JS
 		override protected function createElement():WrappedHTMLElement{

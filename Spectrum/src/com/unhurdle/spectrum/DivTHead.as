@@ -13,7 +13,7 @@ package com.unhurdle.spectrum
 		}
 
 		override protected function getTag():String{
-		return "div";
+			return "div";
 		}
 		COMPILE::JS
 		private var elem:WrappedHTMLElement;

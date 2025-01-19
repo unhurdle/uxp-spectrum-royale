@@ -28,4 +28,4 @@ package com.unhurdle.spectrum.renderers
 			return elem;
 		}
 	}
-	}
+}

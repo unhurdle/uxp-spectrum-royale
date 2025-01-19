@@ -43,7 +43,7 @@ package com.unhurdle.spectrum.renderers
 		}
 
 		COMPILE::JS
-    protected var textNode:TextNode;
+		protected var textNode:TextNode;
 
 		
 
@@ -69,9 +69,9 @@ package com.unhurdle.spectrum.renderers
 		override protected function getTag():String{
 			return "li";
 		}
-    COMPILE::JS
-    override protected function createElement():WrappedHTMLElement
-    {
+		COMPILE::JS
+		override protected function createElement():WrappedHTMLElement
+		{
 			super.createElement();
 			//TODO what's this for?
 			if(MXMLDescriptor == null)

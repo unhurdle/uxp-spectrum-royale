@@ -27,9 +27,9 @@ package com.unhurdle.spectrum
 			return "sp-slider";
 		}
 		override public function addedToParent():void{
-				super.addedToParent();
-				// positionElements();
-		}
+			super.addedToParent();
+			// positionElements();
+	}
 
 		override public function set min(value:Number):void
 		{
