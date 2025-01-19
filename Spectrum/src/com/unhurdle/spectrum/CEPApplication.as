@@ -14,10 +14,10 @@ package com.unhurdle.spectrum
     {
       
       super();
-      _themeManager = ThemeManager.instance;
-      _themeManager.init(this);
+      // _themeManager = ThemeManager.instance;
+      // _themeManager.init(this);
     }
-    private var _themeManager:ThemeManager;
+    // private var _themeManager:ThemeManager;
     private var _needsLayout:Boolean = false;
 
     public function get needsLayout():Boolean{
@@ -58,10 +58,10 @@ package com.unhurdle.spectrum
 			dispatchEvent(new Event("applicationComplete"));
 		}
 
-    public function get themeManager():ThemeManager
-    {
-    	return _themeManager;
-    }
+    // public function get themeManager():ThemeManager
+    // {
+    // 	return _themeManager;
+    // }
     // override public function set colorstop(value:String):void
     // {
       
