@@ -100,10 +100,10 @@ package com.unhurdle.spectrum
       if(!tagList){
         return;
       }
-      if(updating){// don't do nested updates
-        return;
-      }
-      updating = true;
+      // if(updating){// don't do nested updates
+      //   return;
+      // }
+      // updating = true;
       valuesArr = [];
       var len:int = tagList.length;
       var labels:Array = labelList;
@@ -111,7 +111,7 @@ package com.unhurdle.spectrum
       if(!text){
         valuesArr = labels.slice(); // opens the combobox when clicking on the textield
       } else {
-        var lower:String = input.text.toLowerCase();
+        var lower:String = text.toLowerCase();
         for each( var t:String in labels){
           var idx:int = t.toLowerCase().indexOf(lower);
           if((!strictMatch && idx > -1) || idx == 0){
@@ -129,28 +129,12 @@ package com.unhurdle.spectrum
         if(valuesArr.length){
           positionPopup();//need to position before opening because adding it to the dom changes the position
           comboBoxList.open = true;
-          // if(!popover){
-          //   createPopover();
-          // }
-          // popover.x = popover.y = 0;
-          // popover.open = true;
-          // popover.list.focus();
-          // COMPILE::JS
-          // {
-          //   requestAnimationFrame(positionPopup);
-          // }
         }else{
           comboBoxList.open = false;
-          // closePopup();
         }
       }
-      COMPILE::JS{
-        input.input.focus();
-      }
-      requestAnimationFrame(function():void{
         calculatePosition();
-        updating = false;
-      });
+        // updating = false;
     }
 
     // public function createPopover():void{
@@ -286,6 +270,7 @@ package com.unhurdle.spectrum
       if(value){
         if(!comboBoxList){
           comboBoxList = new ComboBoxList();
+          comboBoxList.autoFocusList = false;
           comboBoxList.addEventListener('change',itemSelected);
           COMPILE::JS{
             input.addEventListener("onArrowDown",selectValue);
