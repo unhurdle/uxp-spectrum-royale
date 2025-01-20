@@ -78,9 +78,99 @@
 	<link rel="stylesheet" href="assets/css/components/well/dist.css">
 	<svg id="svgContainer"></svg>
 	<script src="assets/icons/loadIcons.js"></script>
-  ${head}
+	<script>
+		CLOSURE_IMPORT_SCRIPT = function(src) {
+			var script = document.createElement('script');
+			if(src.indexOf("../../../") == 0){
+				src = src.substr(9);
+			} else {
+				console.log(`no prefix for ${src}`);
+			}
+			script.src = src;
+			script.type = 'text/javascript';
+			goog.global.document.getElementsByTagName("head")[0].appendChild(script);
+			return true;
+		};
+		CLOSURE_NO_DEPS = true;
+		
+	</script>
+</script>
+	<script type="text/javascript" src="./library/closure/goog/base.js"></script>
+	<script type="text/javascript" src="./library/closure/goog/async/freelist.js"></script>
+	<script type="text/javascript" src="./library/closure/goog/debug/error.js"></script>
+	<script type="text/javascript" src="./library/closure/goog/deps.js"></script>
+	<script type="text/javascript" src="./library/closure/goog/disposable/idisposable.js"></script>
+	<script type="text/javascript" src="./library/closure/goog/disposable/disposable.js"></script>
+	<script type="text/javascript" src="./library/closure/goog/dom/animationframe/polyfill.js"></script>
+	<script type="text/javascript" src="./library/closure/goog/dom/animationframe/animationframe.js"></script>
+	<script type="text/javascript" src="./library/closure/goog/dom/nodetype.js"></script>
+	<script type="text/javascript" src="./library/closure/goog/dom/tagname.js"></script>
+	<script type="text/javascript" src="./library/closure/goog/events/eventid.js"></script>
+	<script type="text/javascript" src="./library/closure/goog/events/event.js"></script>
+	<script type="text/javascript" src="./library/closure/goog/events/listenable.js"></script>
+	<script type="text/javascript" src="./library/closure/goog/events/listener.js"></script>
+	<script type="text/javascript" src="./library/closure/goog/fs/url.js"></script>
+	<script type="text/javascript" src="./library/closure/goog/functions/functions.js"></script>
+	<script type="text/javascript" src="./library/closure/goog/i18n/bidi.js"></script>
+	<script type="text/javascript" src="./library/closure/goog/math/size.js"></script>
+	<script type="text/javascript" src="./library/closure/goog/object/object.js"></script>
+	<script type="text/javascript" src="./library/closure/goog/dom/tags.js"></script>
+	<script type="text/javascript" src="./library/closure/goog/promise/resolver.js"></script>
+	<script type="text/javascript" src="./library/closure/goog/promise/thenable.js"></script>
+	<script type="text/javascript" src="./library/closure/goog/reflect/reflect.js"></script>
+	<script type="text/javascript" src="./library/closure/goog/string/string.js"></script>
+	<script type="text/javascript" src="./library/closure/goog/asserts/asserts.js"></script>
+	<script type="text/javascript" src="./library/closure/goog/array/array.js"></script>
+	<script type="text/javascript" src="./library/closure/goog/async/workqueue.js"></script>
+	<script type="text/javascript" src="./library/closure/goog/debug/entrypointregistry.js"></script>
+	<script type="text/javascript" src="./library/closure/goog/events/listenermap.js"></script>
+	<script type="text/javascript" src="./library/closure/goog/labs/useragent/util.js"></script>
+	<script type="text/javascript" src="./library/closure/goog/labs/useragent/browser.js"></script>
+	<script type="text/javascript" src="./library/closure/goog/labs/useragent/engine.js"></script>
+	<script type="text/javascript" src="./library/closure/goog/async/nexttick.js"></script>
+	<script type="text/javascript" src="./library/closure/goog/labs/useragent/platform.js"></script>
+	<script type="text/javascript" src="./library/closure/goog/math/math.js"></script>
+	<script type="text/javascript" src="./library/closure/goog/math/coordinate.js"></script>
+	<script type="text/javascript" src="./library/closure/goog/math/box.js"></script>
+	<script type="text/javascript" src="./library/closure/goog/math/rect.js"></script>
+	<script type="text/javascript" src="./library/closure/goog/string/typedstring.js"></script>
+	<script type="text/javascript" src="./library/closure/goog/string/const.js"></script>
+	<script type="text/javascript" src="./library/closure/goog/html/safestyle.js"></script>
+	<script type="text/javascript" src="./library/closure/goog/html/safestylesheet.js"></script>
+	<script type="text/javascript" src="./library/closure/goog/html/safeurl.js"></script>
+	<script type="text/javascript" src="./library/closure/goog/html/trustedresourceurl.js"></script>
+	<script type="text/javascript" src="./library/closure/goog/html/safehtml.js"></script>
+	<script type="text/javascript" src="./library/closure/goog/dom/safe.js"></script>
+	<script type="text/javascript" src="./library/closure/goog/testing/objectpropertystring.js"></script>
+	<script type="text/javascript" src="./library/closure/goog/testing/stacktrace.js"></script>
+	<script type="text/javascript" src="./library/closure/goog/testing/asserts.js"></script>
+	<script type="text/javascript" src="./library/closure/goog/testing/watchers.js"></script>
+	<script type="text/javascript" src="./library/closure/goog/async/run.js"></script>
+	<script type="text/javascript" src="./library/closure/goog/promise/promise.js"></script>
+	<script type="text/javascript" src="./library/closure/goog/testing/testcase.js"></script>
+	<script type="text/javascript" src="./library/closure/goog/testing/testrunner.js"></script>
+	<script type="text/javascript" src="./library/closure/goog/testing/jsunit.js"></script>
+	<script type="text/javascript" src="./library/closure/goog/useragent/useragent.js"></script>
+	<script type="text/javascript" src="./library/closure/goog/dom/browserfeature.js"></script>
+	<script type="text/javascript" src="./library/closure/goog/dom/dom.js"></script>
+	<script type="text/javascript" src="./library/closure/goog/dom/vendor.js"></script>
+	<script type="text/javascript" src="./library/closure/goog/events/browserfeature.js"></script>
+	<script type="text/javascript" src="./library/closure/goog/events/eventtype.js"></script>
+	<script type="text/javascript" src="./library/closure/goog/debug/debug.js"></script>
+	<script type="text/javascript" src="./library/closure/goog/events/browserevent.js"></script>
+	<script type="text/javascript" src="./library/closure/goog/events/events.js"></script>
+	<script type="text/javascript" src="./library/closure/goog/events/eventtarget.js"></script>
+	<script type="text/javascript" src="./library/closure/goog/events/keycodes.js"></script>
+	<script type="text/javascript" src="./library/closure/goog/style/style.js"></script>
+	
+	${head}
 </head>
 <body>
-  ${body}
+	<script type="text/javascript">
+		setTimeout(start,1000);
+		  function start(){
+			  new SpectrumBrowser().start();
+		  }
+	</script>
 </body>
 </html>
