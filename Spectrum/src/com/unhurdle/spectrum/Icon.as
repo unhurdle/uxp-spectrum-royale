@@ -9,7 +9,7 @@ package com.unhurdle.spectrum
 
   public class Icon extends Group implements IAsset
   {
-    public function Icon(selector:String)
+    public function Icon(selector:String = "")
     {
       _selector = selector;
       super();
@@ -136,6 +136,9 @@ package com.unhurdle.spectrum
     private function createIcon():void
     {
       var svg:SVGElement = document.getElementById(selector.substring(1)) as SVGElement;
+      if(!svg){
+        return;
+      }
       if(svgElem){
         COMPILE::JS{
           element.removeChild(svgElem);

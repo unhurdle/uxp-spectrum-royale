@@ -42,5 +42,6 @@ package com.unhurdle.spectrum
 			}
 			_radioName = value;
 		}
+		public var vertical:Boolean;
 	}
 }
