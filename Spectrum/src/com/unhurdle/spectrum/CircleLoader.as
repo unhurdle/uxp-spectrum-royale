@@ -21,36 +21,22 @@ package com.unhurdle.spectrum
 		}
 		
 		private var elem:Object;
-		private var fillSubMask1:HTMLDivElement;
-		private var fillSubMask2:HTMLDivElement;
+		// private var fillSubMask1:HTMLDivElement;
+		// private var fillSubMask2:HTMLDivElement;
+		private var circleImage:ImageAsset;
 
 		COMPILE::JS
 		override protected function createElement():WrappedHTMLElement{
+			// switch to a gif element
 			var elem:WrappedHTMLElement = super.createElement();
-			var track:HTMLDivElement = newElement("div") as HTMLDivElement;
-			track.className = appendSelector("-track");
-			elem.appendChild(track);
-			var fills:HTMLDivElement = newElement("div") as HTMLDivElement;
-			fills.className = appendSelector("-fills");
-			var fillMask1:HTMLDivElement = newElement("div") as HTMLDivElement;
-			fillMask1.className = appendSelector("-fillMask1");
-			fillSubMask1 = newElement("div") as HTMLDivElement;
-			fillSubMask1.className = appendSelector("-fillSubMask1");
-			var fill1:HTMLDivElement = newElement("div") as HTMLDivElement;
-			fill1.className = appendSelector("-fill");
-			fillSubMask1.appendChild(fill1);
-			fillMask1.appendChild(fillSubMask1);
-			fills.appendChild(fillMask1);
-			var fillMask2:HTMLDivElement = newElement("div") as HTMLDivElement;
-			fillMask2.className = appendSelector("-fillMask2");
-			fillSubMask2 = newElement("div") as HTMLDivElement;
-			fillSubMask2.className = appendSelector("-fillSubMask2");
-			var fill2:HTMLDivElement = newElement("div") as HTMLDivElement;
-			fill2.className = appendSelector("-fill");
-			fillSubMask2.appendChild(fill2);
-			fillMask2.appendChild(fillSubMask2);
-			fills.appendChild(fillMask2);
-			elem.appendChild(fills);
+			elem.style.display = "inline-flex";
+			elem.style.alignItems = "center";
+			elem.style.justifyContent = "space-around";			
+			circleImage = new ImageAsset();
+			// circleImage.src = './assets/loading-image.gif';
+			circleImage.src = './assets/Circle Loader.gif';
+			circleImage.width = circleImage.height = 42; // Medium by default
+			elem.appendChild(circleImage.element);
 			return elem;
 		}
 
@@ -64,9 +50,9 @@ package com.unhurdle.spectrum
 		public function set max(value:Number):void
 		{
 			_max = value;
-			if(_value){
-				calculatePosition();
-			}
+			// if(_value){
+			// 	calculatePosition();
+			// }
 		}
 
 		private var _min:Number = 0;
@@ -79,9 +65,9 @@ package com.unhurdle.spectrum
 		public function set min(value:Number):void
 		{
 			_min = value;
-			if(_value){
-				calculatePosition();
-			}
+			// if(_value){
+			// 	calculatePosition();
+			// }
 		}
 
 		private var _value:Number = 0;
@@ -94,31 +80,31 @@ package com.unhurdle.spectrum
 		public function set value(value:Number):void
 		{
 			_value = value;
-			calculatePosition();
+			// calculatePosition();
 		}
 		override public function addedToParent():void{
 			super.addedToParent();
-			calculatePosition();
+			// calculatePosition();
 		}
-		private function calculatePosition():void {
-			var angle:Number;
-			if(value){
-				var total:Number = _max - _min;
-				var percent:Number = value / total * 100;
-			} else {
-				percent = 0;
-			}
-			if(percent > 0 && percent <= 50) {
-				angle = -180 + (percent/50 * 180);
-				fillSubMask1.style.transform = 'rotate('+angle+'deg)';
-				fillSubMask2.style.transform = 'rotate(-180deg)';
-			}
-			else if (percent > 50) {
-				angle = -180 + (percent-50)/50 * 180;
-				fillSubMask1.style.transform = 'rotate(0deg)';
-				fillSubMask2.style.transform = 'rotate('+angle+'deg)';
-			}
-		}
+		// private function calculatePosition():void {
+			// var angle:Number;
+			// if(value){
+			// 	var total:Number = _max - _min;
+			// 	var percent:Number = value / total * 100;
+			// } else {
+			// 	percent = 0;
+			// }
+			// if(percent > 0 && percent <= 50) {
+			// 	angle = -180 + (percent/50 * 180);
+			// 	fillSubMask1.style.transform = 'rotate('+angle+'deg)';
+			// 	fillSubMask2.style.transform = 'rotate(-180deg)';
+			// }
+			// else if (percent > 50) {
+			// 	angle = -180 + (percent-50)/50 * 180;
+			// 	fillSubMask1.style.transform = 'rotate(0deg)';
+			// 	fillSubMask2.style.transform = 'rotate('+angle+'deg)';
+			// }
+		// }
 		private var _indeterminate:Boolean;
 
 		public function get indeterminate():Boolean
@@ -128,11 +114,11 @@ package com.unhurdle.spectrum
 
 		public function set indeterminate(value:Boolean):void
 		{
-			if(!value){
-				calculatePosition();
-			} else {
-				animationFrame = requestAnimationFrame(repeatOften);
-			}
+			// if(!value){
+			// 	calculatePosition();
+			// } else {
+			// 	animationFrame = requestAnimationFrame(repeatOften);
+			// }
 			// if(value != !!_indeterminate){
 			// 	toggle(valueToSelector("indeterminate"),value);
 			// }
@@ -163,8 +149,13 @@ package com.unhurdle.spectrum
 			if(value != _size){
 				switch (value){
 				case "small":
+					circleImage.width = circleImage.height = 22;
+					break;
 				case "large":
+					circleImage.width = circleImage.height = 80;
+					break;
 				case "normal":
+					circleImage.width = circleImage.height = 42;
 					break;
 				default:
 					throw new Error("Invalid size: " + value);

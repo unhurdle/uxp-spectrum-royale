@@ -24,7 +24,9 @@ package com.unhurdle.spectrum
     {
     	return _src;
     }
-
+    override protected function getTag():String{
+      return "sp-image";
+    }
     public function set src(value:String):void
     {
       if(value != _src){
