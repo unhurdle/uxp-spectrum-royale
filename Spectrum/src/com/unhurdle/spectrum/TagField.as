@@ -173,10 +173,15 @@ package com.unhurdle.spectrum
 		}
 
     protected function positionPopup():void{
-      var componentBounds:Rectangle = DisplayUtils.getScreenBoundingRect(input);
-      comboBoxList.positionPopup(componentBounds, NaN, false);
-      var leftSpace:Number = componentBounds.x;
-      comboBoxList.setStyle("left", leftSpace + "px");
+      var longestWord:int = 0;
+			for each (var t:String in comboBoxList.list.dataProvider)
+			{
+				var label:String = getLabelFromData(comboBoxList.list,t);
+				longestWord = Math.max(longestWord, label.length);
+			}
+			var componentBounds:Rectangle = DisplayUtils.getScreenBoundingRect(input);
+			componentBounds.width = Math.min(componentBounds.width, longestWord * 16);
+			comboBoxList.positionPopup(componentBounds);
     }
 
     private function itemSelected(ev:Event):void{
