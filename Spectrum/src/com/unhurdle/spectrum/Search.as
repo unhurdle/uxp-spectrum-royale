@@ -86,6 +86,9 @@ package com.unhurdle.spectrum
 
 		//TODO forward events
 		addElement(_input);
+		var type:String = IconType.MAGNIFIER;
+		_input.icon = IconPrefix.SPECTRUM_CSS_ICON + type;
+		_input.iconType = type;
 
 		button = new ClearButton();
 		button.style = {"position":"absolute","right":"-11px","top":"5px"};
