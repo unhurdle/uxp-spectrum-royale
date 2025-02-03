@@ -6,6 +6,7 @@ package com.unhurdle.spectrum
   }
   import com.unhurdle.spectrum.includes.IconInclude;
   import com.unhurdle.spectrum.const.IconPrefix;
+  import com.unhurdle.spectrum.utils.svgLookup;
 
   public class Icon extends Group implements IAsset
   {
@@ -152,6 +153,8 @@ package com.unhurdle.spectrum
       }
       COMPILE::JS{
         element.appendChild(svgElem);
+        var path:String = svgLookup.getSvg(_selector);
+        if(path) { svgElem.innerHTML = path }
       }
     }
 
