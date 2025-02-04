@@ -4,8 +4,8 @@ package com.unhurdle.spectrum
   {
     import org.apache.royale.core.WrappedHTMLElement;
   }
-  import com.unhurdle.spectrum.includes.IconInclude;
   import com.unhurdle.spectrum.const.IconPrefix;
+  import com.unhurdle.spectrum.includes.IconInclude;
   import com.unhurdle.spectrum.utils.svgLookup;
 
   public class Icon extends Group implements IAsset
@@ -136,21 +136,23 @@ package com.unhurdle.spectrum
     private var svgElem:SVGElement;
     private function createIcon():void
     {
-      var svg:SVGElement = document.getElementById(selector.substring(1)) as SVGElement;
-      if(!svg){
-        return;
-      }
-      if(svgElem){
-        COMPILE::JS{
-          element.removeChild(svgElem);
-        }
-      }
+      //var svg:SVGElement = document.getElementById(selector.substring(1)) as SVGElement;
+      // if(!svg){
+      //   return;
+      // }
+      // if(svgElem){
+      //   COMPILE::JS{
+      //     element.removeChild(svgElem);
+      //   }
+      // }
+
       svgElem = newIconSVG("");
       svgElem.className = IconInclude.getSelector();
-      svgElem.setAttribute("viewBox",svg.getAttribute("viewBox"));
-      for(var i:int=0;i<svg.children.length;i++){
-        svgElem.appendChild(svg.children[i].cloneNode(true));
-      }
+      // svgElem.setAttribute("viewBox",svg.getAttribute("viewBox"));
+      // for(var i:int=0;i<svg.children.length;i++){
+      //   svgElem.appendChild(svg.children[i].cloneNode(true));
+      // }
+
       COMPILE::JS{
         element.appendChild(svgElem);
         var path:String = svgLookup.getSvg(_selector);
