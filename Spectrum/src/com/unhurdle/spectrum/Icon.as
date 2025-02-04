@@ -148,7 +148,13 @@ package com.unhurdle.spectrum
 
       svgElem = newIconSVG("");
       svgElem.className = IconInclude.getSelector();
-      // svgElem.setAttribute("viewBox",svg.getAttribute("viewBox"));
+      var viewBox:String = '';
+      if(selector.includes("icon-18")) {
+        viewBox = '0 0 36 36'
+      } else if(selector.includes("icon-24")) {
+        viewBox = '0 0 48 48';
+      }
+      svgElem.setAttribute("viewBox", viewBox);
       // for(var i:int=0;i<svg.children.length;i++){
       //   svgElem.appendChild(svg.children[i].cloneNode(true));
       // }
