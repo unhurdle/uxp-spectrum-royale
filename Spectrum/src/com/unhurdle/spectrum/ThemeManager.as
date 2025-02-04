@@ -1,10 +1,11 @@
 package com.unhurdle.spectrum
 {
-  import com.adobe.cep.CSInterface;
-  import com.adobe.cep.AppSkinInfo;
+//   import com.adobe.cep.CSInterface;
+//   import com.adobe.cep.AppSkinInfo;
   import org.apache.royale.events.EventDispatcher;
-  import com.adobe.cep.CepColor;
+//   import com.adobe.cep.CepColor;
   import org.apache.royale.events.Event;
+  import org.apache.royale.test.async.Async;
 
   public class ThemeManager extends EventDispatcher
   {
@@ -35,12 +36,12 @@ package com.unhurdle.spectrum
 			updateTheme();
 			
 			// Set the Event Listener for future theme changes
-			CSInterface.addEventListener(CSInterface.THEME_COLOR_CHANGED_EVENT, onAppThemeColorChanged);
+			// CSInterface.addEventListener(CSInterface.THEME_COLOR_CHANGED_EVENT, onAppThemeColorChanged);
 		}
 
-		public function getBackgroundColor(delta:Number):String{
-			return "#" + toHex(appSkinInfo.panelBackgroundColor.color as CepColor,delta);
-		}
+		// public function getBackgroundColor(delta:Number):String{
+		// 	return "#" + toHex(appSkinInfo.panelBackgroundColor.color as CepColor,delta);
+		// }
 		private var _backgroundColor:String;
 
 		public function get backgroundColor():String
@@ -49,35 +50,35 @@ package com.unhurdle.spectrum
 		}
 		
 		// Convert the Color object to string in hexadecimal format; 
-		private function toHex(color:CepColor, delta:Number=NaN):String {
+		// private function toHex(color:CepColor, delta:Number=NaN):String {
 			
-			function computeValue(value:Number, delta:Number):String {
-				var computedValue:Number = !isNaN(delta) ? value + delta : value;
-				if (computedValue < 0) {
-					computedValue = 0;
-				} else if (computedValue > 255) {
-					computedValue = 255;
-				}
+		// 	function computeValue(value:Number, delta:Number):String {
+		// 		var computedValue:Number = !isNaN(delta) ? value + delta : value;
+		// 		if (computedValue < 0) {
+		// 			computedValue = 0;
+		// 		} else if (computedValue > 255) {
+		// 			computedValue = 255;
+		// 		}
 				
-				computedValue = Math.floor(computedValue);
+		// 		computedValue = Math.floor(computedValue);
 				
-				var computedStr:String = computedValue.toString(16);
-				return computedStr.length === 1 ? "0" + computedValue : computedStr;
-			}
+		// 		var computedStr:String = computedValue.toString(16);
+		// 		return computedStr.length === 1 ? "0" + computedValue : computedStr;
+		// 	}
 			
-			var hex:String = "";
-			if (color) {
-				hex = computeValue(color.red, delta) + computeValue(color.green, delta) + computeValue(color.blue, delta);
-			}
-			return hex;
-		}
+		// 	var hex:String = "";
+		// 	if (color) {
+		// 		hex = computeValue(color.red, delta) + computeValue(color.green, delta) + computeValue(color.blue, delta);
+		// 	}
+		// 	return hex;
+		// }
 
 
 		// Callback for the CSInterface.THEME_COLOR_CHANGED_EVENT
 		private function onAppThemeColorChanged(event:*):void {
 			updateTheme();
 		}
-		private var appSkinInfo:AppSkinInfo;
+		// private var appSkinInfo:AppSkinInfo;
 		private var _isLight:Boolean;
 
 		public function get isLight():Boolean
@@ -87,25 +88,39 @@ package com.unhurdle.spectrum
 		private function updateTheme():void
 		{
 			_isLight = false;
-			appSkinInfo = new AppSkinInfo(CSInterface.getHostEnvironment().appSkinInfo);
-			_backgroundColor = "#" + toHex(appSkinInfo.panelBackgroundColor.color as CepColor)
-			// Using the red value to infer the darkness
-			var redShade:Number = appSkinInfo.panelBackgroundColor.color.red;
-			if (redShade > 200) { // exact: 214 (#D6D6D6)
-				app.colorstop = "lightest";
-				_isLight = true;
-			} 
-				else if (redShade > 180) { // exact: 184 (#B8B8B8)
-					app.colorstop = "light";
+			var batchPlay:Function = require("photoshop").action.batchPlay;
+			var arr:Array = [
+				{
+					"_obj": "get",
+					"_target": [{"_property": "kuiBrightnessLevel"},{"_ref": "application","_enum": "ordinal","_value": "targetEnum"}],
+					"_options": {"dialogOptions": "dontDisplay"}
+				}
+  			];
+			var obj:Object = {"synchronousExecution": false};
+			batchPlay(arr,obj).then(function(result:*):void{
+				var val:String = result[0].kuiBrightnessLevel._value;
+				if (val == "kPanelBrightnessDarkGray"){
+					// app.colorstop = "darkest";
+					trace('darkest');
+				}
+				if (val == "kPanelBrightnessMediumGray"){
+					// app.colorstop = "dark";
+					trace('dark');
+				}
+				if (val == "kPanelBrightnessLightGray"){
+					// app.colorstop = "light";
+					trace('light');
 					_isLight = true;
-			} 
-				else if (redShade > 75) { // exact: 83 (#535353)
-					app.colorstop = "dark";
-			} 
-				else { // exact: 52 (#343434)
-					app.colorstop = "darkest";
-			} 
-			dispatchEvent(new Event(THEME_CHANGED));
+				}
+				if (val == "kPanelBrightnessOriginal"){
+					// app.colorstop = "lightest";
+					trace('lightest');
+					_isLight = true;
+				}
+				dispatchEvent(new Event(THEME_CHANGED));
+			}).catch(function(err:*):void{
+				trace('err',err);
+			});
 
 		}
 
