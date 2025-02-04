@@ -140,11 +140,11 @@ package com.unhurdle.spectrum
       // if(!svg){
       //   return;
       // }
-      // if(svgElem){
-      //   COMPILE::JS{
-      //     element.removeChild(svgElem);
-      //   }
-      // }
+      if(svgElem){
+        COMPILE::JS{
+          element.removeChild(svgElem);
+        }
+      }
 
       svgElem = newIconSVG("");
       svgElem.className = IconInclude.getSelector();
