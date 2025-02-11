@@ -111,7 +111,7 @@ package com.unhurdle.spectrum
         var popoverWidth:Number = popover.width + 1;//added +1 cuz the browser was rounding it down
   			var popupHost:IPopUpHost = UIUtils.findPopUpHost(this);
         var offset:Point = PointUtils.localToGlobal(new Point(),popupHost);
-				var origin:Point = new Point(0, height + 10);
+				var origin:Point = new Point(0, height - 6);
 				var relocated:Point = PointUtils.localToGlobal(origin,this);
         relocated.x -= offset.x;
         relocated.y -= offset.y;
