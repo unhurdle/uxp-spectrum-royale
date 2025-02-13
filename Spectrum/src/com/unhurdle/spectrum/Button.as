@@ -153,7 +153,7 @@ package com.unhurdle.spectrum
         _iconElement.selector = selector;
         setIconProps();
       } else {
-        _iconElement = generateIcon(selector);
+        _iconElement = new Icon(selector);
         setIconProps();
         addElementAt(_iconElement,0);
       }
