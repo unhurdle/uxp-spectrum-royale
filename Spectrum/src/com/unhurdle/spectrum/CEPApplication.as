@@ -15,10 +15,10 @@ package com.unhurdle.spectrum
     {
       
       super();
-      // _themeManager = ThemeManager.instance;
-      // _themeManager.init(this);
+      _themeManager = ThemeManager.instance;
+      _themeManager.init(this);
     }
-    // private var _themeManager:ThemeManager;
+    private var _themeManager:ThemeManager;
     private var _needsLayout:Boolean = false;
 
     public function get needsLayout():Boolean{
@@ -59,31 +59,31 @@ package com.unhurdle.spectrum
 			dispatchEvent(new Event("applicationComplete"));
 		}
 
-    // public function get themeManager():ThemeManager
-    // {
-    // 	return _themeManager;
-    // }
-    // override public function set colorstop(value:String):void
-    // {
+    public function get themeManager():ThemeManager
+    {
+    	return _themeManager;
+    }
+    override public function set colorstop(value:String):void
+    {
       
-    //   if(value != _colorstop){
-    //     switch (value){
-    //       // check that values are valid
-    //       case "light":
-    //       case "lightest":
-    //       case "dark":
-    //       case "darkest":
-    //         break;
-    //       default:
-    //         throw new Error("Invalid colorstop: " + value);
-    //     }
-    //     var oldStop:String = valueToSelector("panel"+_colorstop);
-    //     var newStop:String = valueToSelector("panel"+value);
-    //     toggle(newStop, true);
-    //     toggle(oldStop, false);
-    //   	_colorstop = value;
-    //   }
-    // }
+      if(value != _colorstop){
+        switch (value){
+          // check that values are valid
+          case "light":
+          case "lightest":
+          case "dark":
+          case "darkest":
+            break;
+          default:
+            throw new Error("Invalid colorstop: " + value);
+        }
+        var oldStop:String = valueToSelector(_colorstop);
+        var newStop:String = valueToSelector(value);
+        toggle(newStop, true);
+        toggle(oldStop, false);
+      	_colorstop = value;
+      }
+    }
 
   }
 }

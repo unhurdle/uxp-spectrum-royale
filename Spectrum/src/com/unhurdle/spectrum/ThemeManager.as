@@ -34,6 +34,10 @@ package com.unhurdle.spectrum
 			
 			// Update the theme
 			updateTheme();
+			document['theme'].onUpdated.addListener(function (theme:*):void{
+				app.colorstop = theme;
+				dispatchEvent(new Event(THEME_CHANGED));
+			});
 			
 			// Set the Event Listener for future theme changes
 			// CSInterface.addEventListener(CSInterface.THEME_COLOR_CHANGED_EVENT, onAppThemeColorChanged);
@@ -88,6 +92,7 @@ package com.unhurdle.spectrum
 		private function updateTheme():void
 		{
 			_isLight = false;
+			//TODO changes this, this is getting the theme from Photoshop, but we need to get it from whichever app we are in
 			var batchPlay:Function = require("photoshop").action.batchPlay;
 			var arr:Array = [
 				{
@@ -100,20 +105,20 @@ package com.unhurdle.spectrum
 			batchPlay(arr,obj).then(function(result:*):void{
 				var val:String = result[0].kuiBrightnessLevel._value;
 				if (val == "kPanelBrightnessDarkGray"){
-					// app.colorstop = "darkest";
+					app.colorstop = "darkest";
 					trace('darkest');
 				}
 				if (val == "kPanelBrightnessMediumGray"){
-					// app.colorstop = "dark";
+					app.colorstop = "dark";
 					trace('dark');
 				}
 				if (val == "kPanelBrightnessLightGray"){
-					// app.colorstop = "light";
+					app.colorstop = "light";
 					trace('light');
 					_isLight = true;
 				}
 				if (val == "kPanelBrightnessOriginal"){
-					// app.colorstop = "lightest";
+					app.colorstop = "lightest";
 					trace('lightest');
 					_isLight = true;
 				}
