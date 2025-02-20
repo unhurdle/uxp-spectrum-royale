@@ -4,8 +4,6 @@ package com.unhurdle.spectrum
 		import org.apache.royale.core.WrappedHTMLElement;
 	}
 	import com.unhurdle.spectrum.const.IconType;
-	import org.apache.royale.html.elements.Span;
-	import org.apache.royale.events.Event;
 	/**
 	 *  Dispatched when the user checks or un-checks the CheckBox.
 	 *
@@ -43,6 +41,7 @@ package com.unhurdle.spectrum
 		override protected function createElement():WrappedHTMLElement{
 			var elem:WrappedHTMLElement = super.createElement();
 			setAttribute("emphasized","");
+			elem.addEventListener("change",elementClicked);
 			// input = newElement("sp-checkbox");
 			// input.type = "checkbox";
 			// input.className = appendSelector("-input");
@@ -199,19 +198,20 @@ package com.unhurdle.spectrum
 		public function set checked(value:Boolean):void
 		{
 			if(value != !!_checked){
-				if(!checkIcon){
-					var type:String = IconType.CHECKMARK_SMALL;
-					checkIcon = new Icon(Icon.getCSSTypeSelector(type));
-					checkIcon.type = type;
-					checkIcon.className = appendSelector("-checkmark");
-					// spanBox.addElement(checkIcon);
-				}
-				if(value){
-					setAttribute("checked",true);
-				} else {
-					removeAttribute("checked");
-				}
-				// input.checked = value;
+			// 	if(!checkIcon){
+			// 		var type:String = IconType.CHECKMARK_SMALL;
+			// 		checkIcon = new Icon(Icon.getCSSTypeSelector(type));
+			// 		checkIcon.type = type;
+			// 		checkIcon.className = appendSelector("-checkmark");
+			// 		// spanBox.addElement(checkIcon);
+			// 	}
+			// 	if(value){
+			// 		setAttribute("checked",true);
+			// 	} else {
+			// 		removeAttribute("checked");
+			// 	}
+			// 	// input.checked = value;
+				element["checked"] = value;
 				indeterminate = false;
 			}
 			_checked = value;
