@@ -280,7 +280,9 @@ package com.unhurdle.spectrum
 			//keep focus on button after closing, so key down (for arrow down/space) will open it
 			var currentFocus:Element = document.activeElement;
 			if(document.activeElement == currentFocus){
-				_div.element.focus();
+				COMPILE::JS{
+					_div.element.focus();
+				}
 			}
 			_div.addEventListener(KeyboardEvent.KEY_DOWN, handleKeyDown);
 
