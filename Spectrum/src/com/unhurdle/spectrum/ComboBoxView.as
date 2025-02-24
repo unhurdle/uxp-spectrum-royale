@@ -218,6 +218,8 @@ package com.unhurdle.spectrum{
 			} else {
 				if(event.key == WhitespaceKeys.ENTER){
 					sendStrandEvent(_strand,"change");
+				} else if(event.key == NavigationKeys.DOWN){
+					openPopup();
 				}
 
 			}
