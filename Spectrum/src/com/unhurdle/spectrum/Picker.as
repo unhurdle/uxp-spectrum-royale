@@ -278,7 +278,9 @@ package com.unhurdle.spectrum
 			setButtonText();
 			dispatchEvent(new Event("change"));
 			//keep focus on button after closing, so key down (for arrow down/space) will open it
-			_div.element.focus();// for some reason causes it to re-open. looks like 'focus' event triggers 'click' event.
+			requestAnimationFrame(function():void{
+				_div.element.focus();
+			});
 			_div.addEventListener(KeyboardEvent.KEY_DOWN, handleKeyDown);
 
 		}
