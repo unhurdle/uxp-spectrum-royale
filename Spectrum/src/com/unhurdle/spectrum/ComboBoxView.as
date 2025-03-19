@@ -218,8 +218,10 @@ package com.unhurdle.spectrum{
 				}
 			} else {
 				if(event.key == WhitespaceKeys.ENTER){
-					checkLimitToList();
-					sendStrandEvent(_strand,"change");
+					if (checkLimitToList()){
+						sendStrandEvent(_strand,"change");
+					}
+
 				} else if(event.key == NavigationKeys.DOWN){
 					openPopup();
 				}
@@ -414,9 +416,9 @@ package com.unhurdle.spectrum{
 			comboHost.toggle("is-invalid",model.invalid);
 		}
 
-		private function checkLimitToList():void{
+		private function checkLimitToList():Boolean{
 			if(!model.limitToList || !textfield || !textfield.text){
-				return;
+				return true;
 			}
 			var exist:Boolean = false;
 			for each(var item:MenuItem in model.dataProvider){
@@ -428,7 +430,9 @@ package com.unhurdle.spectrum{
 			}
 			if(!exist){
 				updateText("");
+				return false
 			}
+			return true;
 		}
 
 		private function focusChangeHandler(event:Event):void{
