@@ -218,8 +218,6 @@ package com.unhurdle.spectrum{
 				}
 			} else {
 				if(event.key == WhitespaceKeys.ENTER){
-					textfield.element.blur();
-					model.focused = false; // this also runs limitToList checks
 					sendStrandEvent(_strand,"change");
 				} else if(event.key == NavigationKeys.DOWN){
 					openPopup();
