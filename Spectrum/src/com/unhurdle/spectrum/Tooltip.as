@@ -41,9 +41,9 @@ package com.unhurdle.spectrum
       span1.element.style.whiteSpace = "pre-wrap";
       // span1.className = appendSelector("-label");
       element.appendChild(span1.element);
-      // tipSpan = newElement("span") as HTMLSpanElement;
-      // tipSpan.className = appendSelector("-tip");
-      // element.appendChild(tipSpan);
+      tipSpan = newElement("span") as HTMLSpanElement;
+      tipSpan.className = appendSelector("-tip");
+      element.appendChild(tipSpan);
       return element;
     }
     private var _text:String;
