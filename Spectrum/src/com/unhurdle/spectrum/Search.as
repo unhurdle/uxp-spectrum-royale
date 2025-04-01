@@ -80,7 +80,7 @@ package com.unhurdle.spectrum
 		super.createElement();
 		_input = new TextField();
 		// percentWidth needed to allow the container copmponent to be sized
-		_input.percentWidth = 100;
+		// _input.percentWidth = 100;
 		(_input.element as HTMLInputElement).type = "search";
 		_input.placeholder = "Search";
 
@@ -93,7 +93,7 @@ package com.unhurdle.spectrum
 		button = new ClearButton();
 		button.style = {"position":"absolute","right":"-11px","top":"5px"};
 		button.addEventListener("clear" , clear);
-		addElement(button);
+		_input.addElement(button);
 		_input.input.addEventListener("input", function(ev:Event):void{
 			dispatchEvent(new Event("input"));
 		});

@@ -4,8 +4,10 @@ package com.unhurdle.spectrum
   {
     import org.apache.royale.core.WrappedHTMLElement;
   }
-  import com.unhurdle.spectrum.const.IconType;
+  import com.unhurdle.spectrum.utils.generateIcon;
+
   import org.apache.royale.html.accessories.RestrictTextInputBead;
+  import org.apache.royale.html.elements.Div;
 
 /**
  * <input type="text" placeholder="Enter your name" name="field" value="Not a valid input" class="spectrum-Textfield" pattern="[\d]+" required>
@@ -18,9 +20,9 @@ package com.unhurdle.spectrum
       super();
       _input.addEventListener("input",checkValidation);
     }
-    override protected function getTag():String{
-      return "sp-textfield";
-    }
+    // override protected function getTag():String{
+    //   return "sp-textfield";
+    // }
 
     //TODO add label option
     //<sp-textfield placeholder="Phone Number" style="display: flex; flex-direction: row; align-items: baseline;">
@@ -45,20 +47,38 @@ package com.unhurdle.spectrum
 				_readonly = value;
 			}
 		}
+    private var _placeholder:String;
 
     public function get placeholder():String
     {
-    	return getAttribute("placeholder");
+      return _placeholder;
     }
 
     public function set placeholder(value:String):void
     {
+      _placeholder = value;
       if(value){
-        setAttribute("placeholder",value);
-      	// input.placeholder = value;
+        _input.setAttribute("placeholder",value);
+        _div.text = value;
       } else {
-        removeAttribute("placeholder");
+        _input.removeAttribute("placeholder");
+        _div.text = "";
       }
+      setDivPlaceholder();
+    }
+    private function setDivPlaceholder():void{
+        if(text){
+          COMPILE::JS{
+              _div.element.style.fontStyle = "normal";
+              _div.element.style.opacity = "1";
+          }
+          return;
+        }
+        COMPILE::JS{
+          _div.element.style.fontStyle = "italic";
+          _div.element.style.opacity = "0.7";//this doesn't work! (UXP)
+        }
+
     }
 
     // COMPILE::SWF
@@ -86,7 +106,6 @@ package com.unhurdle.spectrum
       //TODO
         // input.name = name;
     }
-
     override public function get text():String
     {
       return input.value;
@@ -96,8 +115,10 @@ package com.unhurdle.spectrum
     {
       if(value){
       	input.value = value;
+        div.text = value;
       } else {
         input.value = "";
+        div.text = _placeholder;
       }
       checkValidation();
     }
@@ -301,12 +322,38 @@ package com.unhurdle.spectrum
     {
     	return _input;
     }
-
-    COMPILE::JS
+    protected var _div:Div;
+    public function get div():Div
+    {
+    	return _div;
+    }
+     COMPILE::JS
 		override protected function createElement():WrappedHTMLElement{
       var elem:WrappedHTMLElement = super.createElement();
-      _input = elem as HTMLInputElement;
+      className = "spectrum-Textfield";
+      _div = new Div();
+      _div.addEventListener("click",handleClick);
+      elem.appendChild(_div.element);
+      _input = newElement("sp-textfield") as HTMLInputElement;
+      _div.className = "spectrum-Textfield-input";
+      setDivStyle();
+      _input.addEventListener("blur",handleBlur);
+      elem.appendChild(_input);
+      _input.style.display = "none";
       return elem;
+    }
+    COMPILE::JS
+    private function handleClick(ev:Event):void{
+      _input.style.display = "block";
+      _input.focus();
+      _div.element.style.display = "none";
+    }
+    COMPILE::JS
+    private function handleBlur(ev:Event):void{
+      _div.text = _input.value || _placeholder || "";
+      setDivPlaceholder();
+      _div.element.style.display = "block";
+      _input.style.display = "none";
     }
     private var _inputClass:String;
 
@@ -318,7 +365,42 @@ package com.unhurdle.spectrum
     public function set inputClass(value:String):void
     {
     	_inputClass = value;
-      input.className = appendSelector("-input") + " " + value;
+      input.className = value;
+      div.className = "spectrum-Textfield-input " + value;
+      setDivStyle();
+    }
+    private function setDivStyle():void{
+      COMPILE::JS{
+        div.element.style.fontSize = "13px";
+        div.element.style.paddingTop = "4px";//0px
+        div.element.style.paddingLeft = "14px";
+      }
+    }
+    private var divIconElement:Icon;
+    override protected function createIcon(selector:String):void{
+      if(iconElement && divIconElement){
+        iconElement.selector = selector;
+        divIconElement.selector = selector;
+        setIconProps();
+      } else {
+        setIconElement(generateIcon(selector));
+        divIconElement = generateIcon(selector);
+        setIconProps();
+        COMPILE::JS{
+          _input.appendChild(iconElement.element);
+        }
+        _div.addElementAt(divIconElement,0);
+      }
+    }
+    override protected function setIconProps():void{
+      if(iconClass){
+        iconElement.className = iconClass;
+        divIconElement.className = iconClass;
+      }
+      iconElement.size = iconSize;
+      divIconElement.size = iconSize;
+      iconElement.type = iconType;
+      divIconElement.type = iconType;
     }
   }
 }

@@ -284,6 +284,9 @@ package com.unhurdle.spectrum
         addElementAt(_iconElement,0);
       }
     }
+    protected function setIconElement(value:Icon):void{
+      _iconElement = value;
+    }
 
     protected function createIcon(selector:String):void{
       if(_iconElement){
