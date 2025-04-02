@@ -110,8 +110,8 @@ package com.unhurdle.spectrum{
 			var text:String = comboHost.text;
 			textfield = new TextField();
 			textfield.tabFocusable = false;
-			textfield.className = appendSelector("-textfield");
-			textfield.input.classList.add(appendSelector('-input'));
+			textfield.className = appendSelector("-textfield") + " spectrum-Textfield";
+			textfield.inputClass = appendSelector('-input');
 			COMPILE::JS
 			{
                 textfield.focusElement.addEventListener('focus',function():void{
@@ -134,6 +134,7 @@ package com.unhurdle.spectrum{
 			button.icon = type;//Icon.getCSSTypeSelector(type);
 			button.iconType = type;
 			button.iconClass = appendSelector("-icon");
+			button.style = {"max-width":"32px"};
 
 			// if (isNaN(host.width)) input.width = 100;
 			
