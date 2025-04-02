@@ -336,6 +336,7 @@ package com.unhurdle.spectrum
       elem.appendChild(_div.element);
       _input = newElement("sp-textfield") as HTMLInputElement;
       _div.className = "spectrum-Textfield-input";
+      _div.style = {"display" : "flex"};
       setDivStyle();
       _input.addEventListener("blur",handleBlur);
       elem.appendChild(_input);
@@ -352,7 +353,7 @@ package com.unhurdle.spectrum
     private function handleBlur(ev:Event):void{
       _div.text = _input.value || _placeholder || "";
       setDivPlaceholder();
-      _div.element.style.display = "block";
+      _div.element.style.display = "flex";
       _input.style.display = "none";
     }
     private var _inputClass:String;
@@ -372,8 +373,8 @@ package com.unhurdle.spectrum
     private function setDivStyle():void{
       COMPILE::JS{
         div.element.style.fontSize = "13px";
-        div.element.style.paddingTop = "4px";//0px
-        div.element.style.paddingLeft = "14px";
+        div.element.style.paddingTop = "5px";
+        div.element.style.paddingLeft = "12px";
       }
     }
     private var divIconElement:Icon;
@@ -401,6 +402,7 @@ package com.unhurdle.spectrum
       divIconElement.size = iconSize;
       iconElement.type = iconType;
       divIconElement.type = iconType;
+      divIconElement.style = {'margin-right': '10px','margin-top': '2px'};
     }
   }
 }
