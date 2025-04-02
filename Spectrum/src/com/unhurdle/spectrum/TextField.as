@@ -327,6 +327,8 @@ package com.unhurdle.spectrum
     {
     	return _div;
     }
+
+    public var defaultDivDisplay:String = "flex";
      COMPILE::JS
 		override protected function createElement():WrappedHTMLElement{
       var elem:WrappedHTMLElement = super.createElement();
@@ -336,7 +338,7 @@ package com.unhurdle.spectrum
       elem.appendChild(_div.element);
       _input = newElement("sp-textfield") as HTMLInputElement;
       _div.className = "spectrum-Textfield-input";
-      _div.style = {"display" : "flex"};
+      _div.style = {"display" : defaultDivDisplay};
       setDivStyle();
       _input.addEventListener("blur",handleBlur);
       elem.appendChild(_input);
@@ -345,7 +347,7 @@ package com.unhurdle.spectrum
     }
     COMPILE::JS
     private function handleClick(ev:Event):void{
-      _input.style.display = "block";
+      _input.style.display = "inline-block";
       _input.focus();
       _div.element.style.display = "none";
     }
@@ -353,7 +355,7 @@ package com.unhurdle.spectrum
     private function handleBlur(ev:Event):void{
       _div.text = _input.value || _placeholder || "";
       setDivPlaceholder();
-      _div.element.style.display = "flex";
+      _div.element.style.display = defaultDivDisplay;
       _input.style.display = "none";
     }
     private var _inputClass:String;

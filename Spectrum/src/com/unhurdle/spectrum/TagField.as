@@ -44,12 +44,14 @@ package com.unhurdle.spectrum
       elem.appendChild(tagGroup.element);
       input = new TextField();
       input.quiet = true;
+      input.defaultDivDisplay = "inline-block";
       input.setStyle("display","inline-block");
       input.addEventListener("onBackspace",removeTag);
       input.addEventListener("onEnter",inputChanged);
       input.element.addEventListener("input",inputValueChanged);
       input.input.style.borderStyle = "none";
       input.input.style.background = "none";
+      input.div.style = {"border-style":"none","background":"none"};
       // elem.appendChild(input.element);
       input.tabFocusable = false;
       tagGroup.addElement(input);
