@@ -118,7 +118,7 @@ package com.unhurdle.spectrum
         div.text = value;
       } else {
         input.value = "";
-        div.text = _placeholder;
+        div.text = _placeholder || "";
       }
       checkValidation();
     }
