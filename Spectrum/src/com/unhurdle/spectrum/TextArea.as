@@ -4,7 +4,7 @@ package com.unhurdle.spectrum
 	{
 		import org.apache.royale.core.WrappedHTMLElement;
 	}
-
+	import org.apache.royale.html.elements.Div;
 
 	public class TextArea extends TextFieldBase
 	{
@@ -14,11 +14,9 @@ package com.unhurdle.spectrum
 			// textarea.setAttribute("multiline","");
 			textarea.addEventListener("input",checkValidation);
 		}
-		override protected function getTag():String{
-			return "sp-textarea";
-		}
-
-		private var textarea:HTMLTextAreaElement;
+		// override protected function getTag():String{
+		// 	return "sp-textarea";
+		// }
 
 			
 		private var _readonly:Boolean;
@@ -40,15 +38,38 @@ package com.unhurdle.spectrum
 			}
 		}
 		
+		private var _placeholder:String;
+
 		public function get placeholder():String
 		{
-			return getAttribute("placeholder");
+			return _placeholder;
 		}
 
 		public function set placeholder(value:String):void
 		{
-			//set the content in the textArea
-			setAttribute("placeholder",value);
+			_placeholder = value;
+			if(value){
+				_textarea.setAttribute("placeholder",value);
+				_div.text = value;
+			} else {
+				_textarea.removeAttribute("placeholder");
+				_div.text = "";
+			}
+			setDivPlaceholder();
+		}
+		private function setDivPlaceholder():void{
+			if(text){
+				COMPILE::JS{
+					_div.element.style.fontStyle = "normal";
+					_div.element.style.opacity = "1";
+				}
+				return;
+			}
+			COMPILE::JS{
+				_div.element.style.fontStyle = "italic";
+				_div.element.style.opacity = "0.7";//this doesn't work! (UXP)
+			}
+
 		}
 		// private var _multiline:Boolean;
 		// public function get multiline():Boolean
@@ -167,14 +188,63 @@ package com.unhurdle.spectrum
 			}
 		}
 		override public function get focusElement():HTMLElement{
-		return textarea;
+			return textarea;
+		}
+		protected var _textarea:HTMLTextAreaElement;
+
+		public function get textarea():HTMLTextAreaElement
+		{
+			return _textarea;
+		}
+		protected var _div:Div;
+		public function get div():Div
+		{
+			return _div;
 		}
 
-		COMPILE::JS
+		// COMPILE::JS
+		// override protected function createElement():WrappedHTMLElement{
+		// 	var elem:WrappedHTMLElement = super.createElement();
+		// 	textarea = elem as HTMLTextAreaElement;
+		// 	return elem;
+		// }
+		 COMPILE::JS
 		override protected function createElement():WrappedHTMLElement{
 			var elem:WrappedHTMLElement = super.createElement();
-			textarea = elem as HTMLTextAreaElement;
+			className = "spectrum-Textfield--multiline spectrum-Textfield";
+			_div = new Div();
+			_div.addEventListener("click",handleClick);
+			elem.appendChild(_div.element);
+			_textarea = newElement("sp-textarea") as HTMLTextAreaElement;
+			_div.className = "spectrum-Textfield-input";
+			_div.style = {"display" : "inline-block","white-space": "pre-line"};
+			setDivStyle();
+			_textarea.addEventListener("blur",handleBlur);
+			elem.appendChild(_textarea);
+			_textarea.style.display = "none";
 			return elem;
+		}
+		COMPILE::JS
+		private function handleClick(ev:Event):void{
+			_textarea.style.display = "inline-block";
+			_textarea.focus();
+			_div.element.style.display = "none";
+		}
+		COMPILE::JS
+		private function handleBlur(ev:Event):void{
+			_div.text = _textarea.value || _placeholder || "";
+			setDivPlaceholder();
+			_div.element.style.display = "inline-block";
+			_textarea.style.display = "none";
+			_div.width = _textarea.offsetWidth;
+			_div.height = _textarea.offsetHeight;
+		}
+		private function setDivStyle():void{
+			COMPILE::JS{
+				div.element.style.fontSize = "13px";
+				div.element.style.paddingTop = "5px";
+				div.element.style.paddingLeft = "12px";
+			}
 		}
 	}
 }
