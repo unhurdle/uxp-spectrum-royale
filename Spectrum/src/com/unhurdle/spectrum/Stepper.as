@@ -27,7 +27,7 @@ package com.unhurdle.spectrum
     public function Stepper()
     {
       super();
-      input.addEventListener(KeyboardEvent.KEY_DOWN,handleKeyDown);
+      numberField.addEventListener(KeyboardEvent.KEY_DOWN,handleKeyDown);
     }
     override protected function loadBeads():void{
       super.loadBeads();
@@ -38,7 +38,7 @@ package com.unhurdle.spectrum
     }
 
     public function get focusElement():HTMLElement{
-      return input.focusElement;
+      return numberField.focusElement;
     }
 
     private function handleKeyDown(event:*):void{
@@ -74,24 +74,27 @@ package com.unhurdle.spectrum
       dispatchEvent(new Event("change"));
     }
     private function inputChanged():void{
+      if(!numberField.input.value){
+        return;
+      }
       value = pinValue(value,min,max);
     }
     
-    private var input:NumberField;
+    private var numberField:NumberField;
     private var upButton:Div;
     private var downButton:Div;
 
     COMPILE::JS
     override protected function createElement():WrappedHTMLElement{
       var elem:WrappedHTMLElement = super.createElement();
-      input = new NumberField();
-      input.className =  appendSelector("-textfield");
-      input.input.classList.add(appendSelector("-input"));
+      numberField = new NumberField();
+      numberField.className =  appendSelector("-textfield");
+      numberField.input.classList.add(appendSelector("-input"));
       // default to any valid integer
-      input.min = Number.MIN_SAFE_INTEGER;
-      input.max = Number.MAX_SAFE_INTEGER;
-      input.addEventListener(Event.CHANGE,inputChanged);
-      addElement(input);
+      numberField.min = Number.MIN_SAFE_INTEGER;
+      numberField.max = Number.MAX_SAFE_INTEGER;
+      numberField.addEventListener(Event.CHANGE,inputChanged);
+      addElement(numberField);
       var span:Span = new Span();
       upButton = new Div();
       upButton.className = appendSelector("-stepUp spectrum-FieldButton");
@@ -124,60 +127,60 @@ package com.unhurdle.spectrum
     }
     public function get placeholder():String
     {
-      return input.placeholder;
+      return numberField.placeholder;
     }
 
     public function set placeholder(value:String):void
     {
-      input.placeholder = value;
+      numberField.placeholder = value;
     }
     private var _value:Number;
 
     public function get value():Number
     {
-    	return input.value;
+    	return numberField.value;
     }
 
     public function set value(value:Number):void
     {
-    	input.value = value;
+    	numberField.value = value;
     }
      public function get min():Number
     {
-      return input.min;
+      return numberField.min;
     }
 
     public function set min(value:Number):void
     {
-      input.min = value;
+      numberField.min = value;
     }
     public function get max():Number
     {
-      return input.max;
+      return numberField.max;
     }
 
     public function set max(value:Number):void
     {
-      input.max = value;
+      numberField.max = value;
     }
      public function get step():Number
     {
-      return input.step;
+      return numberField.step;
     }
 
     public function set step(value:Number):void
     {
-      input.step = value;
+      numberField.step = value;
     }
     /**
      * A suffix is some text attached to the value such as px or %
      */
     public function get suffix():String{
-    	return input.suffix;
+    	return numberField.suffix;
     }
 
     public function set suffix(value:String):void{
-    	input.suffix = value;
+    	numberField.suffix = value;
     }
     private var _focused:Boolean;
 
@@ -226,7 +229,7 @@ package com.unhurdle.spectrum
     {
       if(value != !!_disabled){
         toggle("is-disabled",value);
-        input.disabled = value;
+        numberField.disabled = value;
         // upButton.disabled = value;
         // downButton.disabled = value;
       }
@@ -243,7 +246,7 @@ package com.unhurdle.spectrum
     {
       if(value != !!_quiet){
         toggle(valueToSelector("quiet"),value);
-        input.quiet = value;
+        numberField.quiet = value;
         // upButton.quiet = value;
         // downButton.quiet = value;
       }
