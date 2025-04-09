@@ -15,6 +15,7 @@ package com.unhurdle.spectrum
 		COMPILE::JS
 		override protected function createElement():WrappedHTMLElement{
 			var elem:WrappedHTMLElement = super.createElement();
+			setAttribute("column",null);
 			return elem;
 		}
 		private var _selected:String;
