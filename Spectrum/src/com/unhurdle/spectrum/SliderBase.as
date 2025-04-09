@@ -114,11 +114,11 @@ package com.unhurdle.spectrum
 		{
 			if(value != !!_displayValue){
 				_displayValue = value;
-				// setLabel();
+				setLabel();
 				if(value){
-					removeAttribute("show-value");
+					removeAttribute("label-visibility");
 				} else {
-					setAttribute("show-value",false);
+					setAttribute("label-visibility","value");
 				}
 			}
 		}
@@ -135,17 +135,17 @@ package com.unhurdle.spectrum
 			setLabel();
 		}
 
-		private function setLabel():void{
+		protected function setLabel():void{
 			COMPILE::JS
 			{
-				if(_label && !labelNode){
+				if((_label || displayValue) && !labelNode){
 					labelNode = new TextNode("sp-label");
 					labelNode.setAttribute('slot','label');
 					element.appendChild(labelNode.element);
 				}
 			}
 			if(labelNode){
-				labelNode.text = _label;
+				labelNode.text = _label || element['value'] || '';
 			}
 		}
 		// protected function getValue():String{
