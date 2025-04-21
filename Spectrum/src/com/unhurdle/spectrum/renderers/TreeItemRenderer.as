@@ -27,7 +27,7 @@ package com.unhurdle.spectrum.renderers
       return "spectrum-TreeView";
     }
     private var treeListData:TreeListData;
-    private var chevronIcon:Icon;
+    protected var chevronRightIcon:Icon;
     COMPILE::JS
     override public function set data(value:Object):void{
       super.data = value;
@@ -35,14 +35,14 @@ package com.unhurdle.spectrum.renderers
         treeListData = listData as TreeListData;
         if(listData.hasChildren){
           var type:String = IconType.CHEVRON_RIGHT_MEDIUM;
-          if(!chevronIcon){
-            chevronIcon = new Icon(Icon.getCSSTypeSelector(type));
-            chevronIcon.type = type;
-            chevronIcon.toggle(appendSelector("-itemIndicator"),true);
-            chevronIcon.setStyle("flex-shrink",0);
-            chevronIcon.style = {"margin-right": "20px","margin-bottom": "0px","padding-bottom": "15px"};
-            link.addElementAt(chevronIcon,0);
-            chevronIcon.addEventListener(MouseEvent.CLICK,function (ev:Event):void{
+          if(!chevronRightIcon){
+            chevronRightIcon = new Icon(Icon.getCSSTypeSelector(type));
+            chevronRightIcon.type = type;
+            chevronRightIcon.toggle(appendSelector("-itemIndicator"),true);
+            chevronRightIcon.setStyle("flex-shrink",0);
+            chevronRightIcon.style = {"margin-right": "20px","margin-bottom": "0px","padding-bottom": "15px"};
+            link.addElementAt(chevronRightIcon,0);
+            chevronRightIcon.addEventListener(MouseEvent.CLICK,function (ev:Event):void{
               // This is a bit of a hack. Currently for multi-select trees,
               // the logic for opening nodes is dependent on selection.
               // Until that's separated, we can't stop propogation on multi-select trees
@@ -79,16 +79,18 @@ package com.unhurdle.spectrum.renderers
     	_isOpen = value;
       toggle('is-open',value);
       // link.removeElement(chevronIcon);
-      var type:String;
-      if(value){
-        chevronIcon.style = {"padding-bottom": "0px"};
-        type = IconType.CHEVRON_DOWN_MEDIUM;
-      } else {
-        chevronIcon.style = {"padding-bottom": "15px"};
-        type = IconType.CHEVRON_RIGHT_MEDIUM;
+      if(chevronRightIcon){
+        var type:String;
+        if(value){
+          chevronRightIcon.style = {"padding-bottom": "0px"};
+          type = IconType.CHEVRON_DOWN_MEDIUM;
+        } else {
+          chevronRightIcon.style = {"padding-bottom": "15px"};
+          type = IconType.CHEVRON_RIGHT_MEDIUM;
+        }
+        chevronRightIcon.selector = Icon.getCSSTypeSelector(type);
+        chevronRightIcon.type = type;
       }
-      chevronIcon.selector = Icon.getCSSTypeSelector(type);
-      chevronIcon.type = type;
       treeListData.isOpen = _isOpen;
     }
     override protected function setText(value:String):void{
