@@ -244,17 +244,28 @@ package com.unhurdle.spectrum
 			}
 		}
 		protected function showTooltip():void {
-			createTooltip();
-			host.popUpParent.addElement(tt, false); // don't trigger a layout
-			var ttWidth:Number = tt.width;
-			var pt:Point = determinePosition(_strand as IUIBase, tt);
-			tt.x = pt.x;
-			tt.y = pt.y;
-			tt.isOpen = true;
-			if(ttWidth != tt.width){
-				pt = determinePosition(_strand as IUIBase, tt);
-				tt.x = pt.x;
-				tt.y = pt.y;
+			COMPILE::JS{	
+				createTooltip();
+				host.popUpParent.addElement(tt, false); // don't trigger a layout
+				tt.isOpen = true;
+				tt.x = 0;
+				tt.y = 0;
+				tt.element.style.visibility = "hidden";
+				setTimeout(function():void{
+					if(!tt){
+						return;
+					}
+					tt.element.style.visibility = "visible";
+					var ttWidth:Number = tt.width;
+					var pt:Point = determinePosition(_strand as IUIBase, tt);
+					tt.x = pt.x;
+					tt.y = pt.y;
+					if(ttWidth != tt.width){
+						pt = determinePosition(_strand as IUIBase, tt);
+						tt.x = pt.x;
+						tt.y = pt.y;
+					}
+				},50);
 			}
 		}
 

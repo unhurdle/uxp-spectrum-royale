@@ -4,7 +4,6 @@ package com.unhurdle.spectrum
     import org.apache.royale.core.WrappedHTMLElement;
   }
   import com.unhurdle.spectrum.const.IconType;
-  import com.unhurdle.spectrum.utils.generateIcon;
   public class Tooltip extends SpectrumBase
   {
     /**
@@ -20,15 +19,14 @@ package com.unhurdle.spectrum
       // className = "spectrum-Tooltip--top";
       direction = "top";
     }
-    // override protected function getSelector():String{
-    //   return "spectrum-Tooltip";
-    // }
+    override protected function getSelector():String{
+      return "spectrum-Tooltip";
+    }
     private var span1:TextNode;
     override protected function getTag():String{
-      return "sp-tooltip";
+      return "span";
     }
-    COMPILE::JS
-    private var tipSpan:HTMLSpanElement;
+    private var tipSpan:Icon;
 
     COMPILE::JS
     override protected function createElement():WrappedHTMLElement{
@@ -36,14 +34,16 @@ package com.unhurdle.spectrum
       element.style.pointerEvents = "none";
       // higher than popovers
       element.style.zIndex = 4;
+      element.style.marginTop = "-10px";
       // direction = "top";
       span1 = new TextNode("span");
       span1.element.style.whiteSpace = "pre-wrap";
-      // span1.className = appendSelector("-label");
+      span1.className = appendSelector("-label");
       element.appendChild(span1.element);
-      tipSpan = newElement("span") as HTMLSpanElement;
-      tipSpan.className = appendSelector("-tip");
-      element.appendChild(tipSpan);
+      tipSpan = new Icon('#spectrum-tooltip-top-tip');
+      element.appendChild(tipSpan.element);
+      tipSpan.element.style.position = "absolute";
+      tipSpan.element.style.color = 'rgb(116, 116, 116)';
       return element;
     }
     private var _text:String;
@@ -87,13 +87,12 @@ package com.unhurdle.spectrum
           default:
             throw new Error("Unknown flavor: " + value);
         }
-        // if(_flavor){
-        //   var oldFlavor:String = valueToSelector(_flavor);
-        //   toggle(oldFlavor,false);
-        // }
-        // var newFlavor:String = valueToSelector(value);
-        // toggle(newFlavor,true);
-        setAttribute('variant',value);
+        if(_flavor){
+          var oldFlavor:String = valueToSelector(_flavor);
+          toggle(oldFlavor,false);
+        }
+        var newFlavor:String = valueToSelector(value);
+        toggle(newFlavor,true);
       }
     	_flavor = value;
     }
@@ -137,10 +136,10 @@ package com.unhurdle.spectrum
         default:
           throw new Error("unknown type: " + value);
       }
-      var selector:String = type;//Icon.getCSSTypeSelector(type);
+      var selector:String = Icon.getCSSTypeSelector(type);
 
       if(!iconElem){
-        iconElem = generateIcon(selector);
+        iconElem = new Icon(selector);
         iconElem.type = type;
         iconElem.className = appendSelector("-typeIcon");
         addElementAt(iconElem,0);
@@ -161,16 +160,57 @@ package com.unhurdle.spectrum
     [Inspectable(category="General", enumeration="left,right,bottom,top" defaultValue="top")]
     public function set direction(value:String):void
     {
-      // if(_direction){
-      //   toggle(getSelector()+"--"+_direction,false);
-      // }
+      if(_direction){
+        toggle(getSelector()+"--"+_direction,false);
+      }
       if(value){
         switch(value){
           case "left":
+            tipSpan.selector = "#spectrum-tooltip-left-tip";
+            COMPILE::JS{
+              element.style.marginLeft = "-10px";
+              element.style.marginTop = "0px";
+              tipSpan.element.style.left = "97%";
+              if(_tipPosition == "center"){
+                tipSpan.element.style.marginTop = "3px";
+                tipSpan.element.style.top = "auto";
+              }
+            }
+            setAttribute('placement',value);
+            break;
           case "right":
+            tipSpan.selector = "#spectrum-tooltip-right-tip";
+            COMPILE::JS{
+              element.style.marginRight = "10px";
+              element.style.marginTop = "0px";
+              tipSpan.element.style.left = "-6px";
+              if(_tipPosition == "center"){
+                tipSpan.element.style.marginTop = "3px";
+                tipSpan.element.style.top = "auto";
+              }
+            }
+            setAttribute('placement',value);
+            break;
           case "bottom":
+            tipSpan.selector = "#spectrum-tooltip-bottom-tip";
+            COMPILE::JS{
+              element.style.marginTop = "10px";
+              tipSpan.element.style.top = "-7px";
+              if(_tipPosition == "center"){
+                tipSpan.element.style.left = "calc(50% - 4px)";
+              }
+            }
+            setAttribute('placement',value);
+            break;
           case "top":
-            // toggle(getSelector()+"--"+value,true);
+            tipSpan.selector = "#spectrum-tooltip-top-tip";
+            COMPILE::JS{
+              element.style.marginTop = "-10px";
+              tipSpan.element.style.top = "97%";
+              if(_tipPosition == "center"){
+                tipSpan.element.style.left = "calc(50% - 4px)";
+              }
+            }
             setAttribute('placement',value);
             break;
           default:
@@ -211,8 +251,8 @@ package com.unhurdle.spectrum
       COMPILE::JS
       {
         if(_tipPosition == "center"){
-          tipSpan.style.left = "";
-          tipSpan.style.top = "";
+          tipSpan.element.style.left = "";
+          tipSpan.element.style.top = "";
           return;
         }
         if(_tipPosition == "start"){
@@ -222,14 +262,20 @@ package com.unhurdle.spectrum
         }
         switch(_direction){
           case "left":
+            tipSpan.element.style.top = stylStr;
+            tipSpan.element.style.left = "97%";
+            break;
           case "right":
-            tipSpan.style.left = "";
-            tipSpan.style.top = stylStr;
+            tipSpan.element.style.top = stylStr;
+            tipSpan.element.style.left = "-6px";
             break;
           case "bottom":
+            tipSpan.element.style.top = "-7px";
+            tipSpan.element.style.left = stylStr;
+            break;
           default://top
-            tipSpan.style.left = stylStr;
-            tipSpan.style.top = "";
+            tipSpan.element.style.top = "97%";
+            tipSpan.element.style.left = stylStr;
             break;
         }
       }
@@ -245,12 +291,7 @@ package com.unhurdle.spectrum
     public function set isOpen(value:Boolean):void
     {
       if(value != !!_isOpen){
-        // toggle("is-open",value);
-        if(value){
-          setAttribute('open',true);
-        } else {
-          removeAttribute('open');
-        }
+        toggle("is-open",value);
       }
     	_isOpen = value;
     }
