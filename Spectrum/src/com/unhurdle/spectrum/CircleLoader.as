@@ -3,184 +3,179 @@ package com.unhurdle.spectrum
 	COMPILE::JS{
 		import org.apache.royale.core.WrappedHTMLElement;
 	}
-
 	public class CircleLoader extends SpectrumBase
 	{
-	/**
-	 * <inject_html>
-	 * <link rel="stylesheet" href="assets/css/components/circleloader/dist.css">
-	 * </inject_html>
-	 * 
-	 */
 		public function CircleLoader()
 		{
 			super();
+			drawCircleLoader();
 		}
-		override protected function getSelector():String{
-			return "spectrum-CircleLoader";
-		}
-		
-		private var elem:Object;
-		// private var fillSubMask1:HTMLDivElement;
-		// private var fillSubMask2:HTMLDivElement;
-		private var circleImage:ImageAsset;
-
 		COMPILE::JS
 		override protected function createElement():WrappedHTMLElement{
-			// switch to a gif element
 			var elem:WrappedHTMLElement = super.createElement();
-			elem.style.display = "inline-flex";
-			elem.style.alignItems = "center";
-			elem.style.justifyContent = "space-around";			
-			circleImage = new ImageAsset();
-			// circleImage.src = './assets/loading-image.gif';
-			circleImage.src = './assets/Circle Loader.gif';
-			circleImage.width = circleImage.height = 42; // Medium by default
-			elem.appendChild(circleImage.element);
 			return elem;
+		}
+		private var actualSize:Number = 42;
+		private var strokeWidth:Number = 4;
+		private var stopAnimate:Boolean;
+		private function drawCircleLoader():void {
+			var trackColor:String = '#ccc';
+			var fillColor:String  = '#00f';
+			var speed:Number = 120;
+
+			// SVG namespace helper
+			var SVG_NS:String = 'http://www.w3.org/2000/svg';
+			var svg:* = document.createElementNS(SVG_NS, 'svg');
+			svg.setAttribute('width', actualSize);
+			svg.setAttribute('height', actualSize);
+			svg.setAttribute('viewBox', "0 0 " + actualSize + " " + actualSize);
+			COMPILE::JS{
+				element.innerHTML = '';
+				element.appendChild(svg);
+			}
+
+			var cx:Number = actualSize / 2;
+			var cy:Number = actualSize / 2;
+			var r :Number = (actualSize - strokeWidth) / 2;
+
+			// Helper: full-circle track path
+			// M (cx-r, cy) a r,r 0 1,0 (2r),0 a r,r 0 1,0 (-2r),0
+			var track:* = document.createElementNS(SVG_NS, 'path');
+			track.setAttribute('d',
+				"M " + (cx - r) + " " + cy +
+				" a " + r + " " + r + " 0 1 0 " + (2 * r) + " 0" +
+				" a " + r + " " + r + " 0 1 0 " + (-2 * r) + " 0"
+			);
+			track.setAttribute('fill', 'none');
+			track.setAttribute('stroke', trackColor);
+			track.setAttribute('stroke-width', strokeWidth);
+			svg.appendChild(track);
+
+			// Quarter-circle fill (animated)
+			var fill:* = document.createElementNS(SVG_NS, 'path');
+			fill.setAttribute('fill', 'none');
+			fill.setAttribute('stroke', fillColor);
+			fill.setAttribute('stroke-width', strokeWidth);
+			fill.setAttribute('stroke-linecap', 'round');
+			svg.appendChild(fill);
+
+			// Animation loop
+			var lastTime:Number;
+			function animate(time:*):void {
+				if(stopAnimate){
+					stopAnimate = false;
+					return;
+				}
+				if (isNaN(lastTime)) lastTime = time;
+				var delta:* = time - lastTime;
+				lastTime = time;
+
+				// Compute cumulative rotation angle (degrees)
+				var angle:Number = ((time * speed) / 1000) % 360;
+
+				// Start/end angles, offset so 0° is at 12 o'clock
+				var startDeg:Number = angle - 90;
+				var endDeg  :Number = startDeg + 90;
+
+				function toRad(d:Number):Number {
+					return (d * Math.PI) / 180;
+				}
+				var x1:Number = cx + r * Math.cos(toRad(startDeg));
+				var y1:Number = cy + r * Math.sin(toRad(startDeg));
+				var x2:Number = cx + r * Math.cos(toRad(endDeg));
+				var y2:Number = cy + r * Math.sin(toRad(endDeg));
+
+				// Build raw arc path: small-arc, sweep-flag=1 (clockwise)
+				fill.setAttribute('d',
+				"M " + x1.toFixed(3) + " " + y1.toFixed(3) +
+				" A " + r + " " + r + " 0 0 1 " + x2.toFixed(3) + " " + y2.toFixed(3)
+				);
+				requestAnimationFrame(animate);
+			}
+			requestAnimationFrame(animate);
 		}
 
 		private var _max:Number = 100;
-
-		public function get max():Number
-		{
+		public function get max():Number{
 			return _max;
 		}
-
-		public function set max(value:Number):void
-		{
+		public function set max(value:Number):void{
 			_max = value;
-			// if(_value){
-			// 	calculatePosition();
-			// }
 		}
 
 		private var _min:Number = 0;
-
-		public function get min():Number
-		{
+		public function get min():Number{
 			return _min;
 		}
-
-		public function set min(value:Number):void
-		{
+		public function set min(value:Number):void{
 			_min = value;
-			// if(_value){
-			// 	calculatePosition();
-			// }
 		}
 
 		private var _value:Number = 0;
-
-		public function get value():Number
-		{
+		public function get value():Number{
 			return _value;
 		}
-
-		public function set value(value:Number):void
-		{
+		public function set value(value:Number):void{
 			_value = value;
-			// calculatePosition();
 		}
-		override public function addedToParent():void{
-			super.addedToParent();
-			// calculatePosition();
-		}
-		// private function calculatePosition():void {
-			// var angle:Number;
-			// if(value){
-			// 	var total:Number = _max - _min;
-			// 	var percent:Number = value / total * 100;
-			// } else {
-			// 	percent = 0;
-			// }
-			// if(percent > 0 && percent <= 50) {
-			// 	angle = -180 + (percent/50 * 180);
-			// 	fillSubMask1.style.transform = 'rotate('+angle+'deg)';
-			// 	fillSubMask2.style.transform = 'rotate(-180deg)';
-			// }
-			// else if (percent > 50) {
-			// 	angle = -180 + (percent-50)/50 * 180;
-			// 	fillSubMask1.style.transform = 'rotate(0deg)';
-			// 	fillSubMask2.style.transform = 'rotate('+angle+'deg)';
-			// }
-		// }
-		private var _indeterminate:Boolean;
 
-		public function get indeterminate():Boolean
-		{
+		private var _indeterminate:Boolean;
+		public function get indeterminate():Boolean{
 			return _indeterminate;
 		}
-
-		public function set indeterminate(value:Boolean):void
-		{
-			// if(!value){
-			// 	calculatePosition();
-			// } else {
-			// 	animationFrame = requestAnimationFrame(repeatOften);
-			// }
-			// if(value != !!_indeterminate){
-			// 	toggle(valueToSelector("indeterminate"),value);
-			// }
+		public function set indeterminate(value:Boolean):void{
 			_indeterminate = value;
-		}
-		private var counter:Number = 0;
-		private var animationFrame:Number;
-		private function repeatOften():void{
-			// fill.style.transform = 'translate(' + counter + 'px)';
-		
-			counter ++ ;
-			if(counter > 100){
-				counter = 0;
-			}
-			animationFrame = requestAnimationFrame(repeatOften);
 		}
 
 		private var _size:String;
-
-		public function get size():String
-		{
+		public function get size():String{
 			return _size;
 		}
-
 		[Inspectable(category="General", enumeration="small,large,normal", defaultValue="normal")]
-		public function set size(value:String):void
-		{
+		public function set size(value:String):void{
 			if(value != _size){
 				switch (value){
 				case "small":
-					circleImage.width = circleImage.height = 22;
+					strokeWidth = 2;
+					actualSize = 18;
+					// setStyle('padding-left','calc(50% - 64px)');
+					// setStyle('padding-top','calc(50% - 64px)');
 					break;
 				case "large":
-					circleImage.width = circleImage.height = 80;
+					// setStyle('padding-left','calc(50% - 40px)');
+					// setStyle('padding-top','calc(50% - 40px)');
+					strokeWidth = 4;
+					actualSize = 80;
 					break;
 				case "normal":
-					circleImage.width = circleImage.height = 42;
+					setStyle('padding-left','calc(50% - 40px)');
+					setStyle('padding-top','calc(50% - 40px)');
+					strokeWidth = 4;
+					actualSize = 42;
 					break;
 				default:
 					throw new Error("Invalid size: " + value);
 				}
-				var oldSize:String = valueToSelector(_size);
-				if(value != "normal"){
-					var newSize:String = valueToSelector(value);
-					toggle(newSize, true);
-				}
-				toggle(oldSize, false);
+				stopAnimate = true;
+				drawCircleLoader();
+				// var oldSize:String = valueToSelector(_size);
+				// if(value != "normal"){
+				// 	var newSize:String = valueToSelector(value);
+				// 	toggle(newSize, true);
+				// }
+				// toggle(oldSize, false);
 				_size = value;
 			}
 		}
-		private var _overBackground:Boolean;
 
-		public function get overBackground():Boolean
-		{
+		private var _overBackground:Boolean;
+		public function get overBackground():Boolean{
 			return overBackground;
 		}
-
-		public function set overBackground(value:Boolean):void
-		{
-			if(value != !!_overBackground){
-				toggle(valueToSelector("overBackground"),value);
-			}
+		public function set overBackground(value:Boolean):void{
+			// if(value != !!_overBackground){
+			// 	toggle(valueToSelector("overBackground"),value);
+			// }
 			_overBackground = value;
 		}
 	}
