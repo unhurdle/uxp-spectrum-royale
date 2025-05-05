@@ -90,6 +90,12 @@ package com.unhurdle.spectrum
         createFlyoutIcon();
       }
     }
+    override public function set icon(value:String):void{
+      super.icon = value;
+      if(iconElement){
+        iconElement.setStyle('line-height','normal');
+      }
+    }
 
     // private var _selected:Boolean = false;
 
