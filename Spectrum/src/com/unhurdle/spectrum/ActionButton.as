@@ -85,6 +85,7 @@ package com.unhurdle.spectrum
     override public function addedToParent():void{
       super.addedToParent();
       addEventListener(MouseEvent.MOUSE_DOWN,elementMouseDown);
+      setStyle("cursor","pointer");
       if(dataProvider){
         createFlyoutIcon();
       }
