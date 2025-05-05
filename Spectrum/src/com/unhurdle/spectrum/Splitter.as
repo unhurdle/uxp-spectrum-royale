@@ -39,8 +39,9 @@ package com.unhurdle.spectrum
 			{
 				if(value){
 					if(_cursor){
-						setStyle("cursor",_cursor);
+						_cursor = "grabbing";
 					}
+					setStyle("cursor",_cursor);
 					if(!element.children.length){
 						gripper = newElement("div","spectrum-SplitView-gripper") as HTMLDivElement;
 						element.appendChild(gripper);
