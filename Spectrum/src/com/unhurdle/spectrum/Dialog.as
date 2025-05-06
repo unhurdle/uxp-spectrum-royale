@@ -38,7 +38,7 @@ package com.unhurdle.spectrum
       addEventListener("modalHidden",handleModalHidden);
       visible = false;
     }
-
+    public static var openDialogsLookup:Object = {};
     public static const ALERT:int = 1;
     public static const REGULAR:int = 2;
     public static const FULLSCREEN:int = 3;
@@ -265,6 +265,21 @@ package com.unhurdle.spectrum
 
     private var attachedToApp:Boolean;
     public function show():void{
+      //Scrollbars were showing on top of everything (even a fullscreen dialog)
+      //Here's answer we got on the UXP channel - "because scrollbar is native element... and native elements are rendered above HTML rendered content."
+      //Our work-around is to hide the other dialogs so that the scrollbars from those dialogs don't show
+      if(size == FULLSCREEN_TAKEOVER){
+        for(var dialogId:String in openDialogsLookup){
+          var dialog:Dialog = openDialogsLookup[dialogId];
+          if(dialog.id != id){
+            dialog.visible = false;
+          }
+        }
+        Application.current.initialView.visible = false;
+        if(id){
+          openDialogsLookup[id] = this;
+        }
+      }
       Application.current.popUpParent.addElement(this);
       addEventListener(KeyboardEvent.KEY_DOWN,handleKeyDown);
       visible = true;
@@ -364,6 +379,21 @@ package com.unhurdle.spectrum
     }
     public function hide():void
     {
+      if(size == FULLSCREEN_TAKEOVER){
+        for(var dialogId:String in openDialogsLookup){
+          var dialog:Dialog = openDialogsLookup[dialogId];
+          if(dialog.id != id){
+            dialog.visible = true;
+          }
+        }
+        if(id){
+          delete openDialogsLookup[id];
+        }
+        //only show the main view if no other dialogs are open
+        if(Object.keys(openDialogsLookup).length === 0){
+          Application.current.initialView.visible = true;
+        }
+      }
       removeEventListener(KeyboardEvent.KEY_DOWN,handleKeyDown);
       elements = [];
       visible = false;
