@@ -256,9 +256,9 @@ package com.unhurdle.spectrum
           return;
         }
         if(_tipPosition == "start"){
-          var stylStr:String = "calc(0% + 7px)";
+          var stylStr:String = "calc(0% + 3px)";
         } else {
-          stylStr = "calc(100% - 7px)";
+          stylStr = "calc(100% - 16px)";
         }
         switch(_direction){
           case "left":
