@@ -74,6 +74,13 @@ package com.unhurdle.spectrum
 			}
 			_disabled = value;
 		}
+		override public function set percentWidth(value:Number):void
+		{
+			super.percentWidth = value;
+			if(_input){
+				_input.percentWidth = value;
+			}
+		}
 
 		COMPILE::JS
 		override protected function createElement():WrappedHTMLElement{
@@ -102,6 +109,9 @@ package com.unhurdle.spectrum
 		_input.addEventListener("onTab", function(ev:Event):void{
 			dispatchEvent(new Event("search"));
 		});
+		if(percentWidth){
+			_input.percentWidth = percentWidth;
+		}
 
 		// element.addEventListener("submit", handleSubmit);
 
