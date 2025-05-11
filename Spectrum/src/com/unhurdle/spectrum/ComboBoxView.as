@@ -14,7 +14,6 @@ package com.unhurdle.spectrum{
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.events.KeyboardEvent;
 	import org.apache.royale.events.MouseEvent;
-	import org.apache.royale.events.utils.EditingKeys;
 	import org.apache.royale.events.utils.NavigationKeys;
 	import org.apache.royale.events.utils.UIKeys;
 	import org.apache.royale.events.utils.WhitespaceKeys;
@@ -77,7 +76,7 @@ package com.unhurdle.spectrum{
 		}
 		
 		private var list:Menu;
-    private var _popup:ComboBoxList;
+		private var _popup:ComboBoxList;
 		
 		/**
 		 *  The pop-up list component of the ComboBox.
@@ -188,8 +187,6 @@ package com.unhurdle.spectrum{
 			itemChangeAction();
 			// sizeChangeAction();
 		}
-		// track which provider is being modified to apply the correct one and prevent endless loop
-		private var modifyingList:Boolean;
 		private function handleKeyDown(event:*):void
 		{
 			if(!event.key){
@@ -238,7 +235,6 @@ package com.unhurdle.spectrum{
 			textfield.text = _currentText = value;
 		}
 
-		private var handleInput:Boolean = true;
 		private function inputHandler(ev:KeyboardEvent):void{
 			if (textfield.text == _currentText || ev.key == NavigationKeys.DOWN || ev.key == NavigationKeys.UP) {
 				// if the text hasn't changed or the up/down arrow key is pressed, ignore
@@ -451,15 +447,11 @@ package com.unhurdle.spectrum{
 		protected function itemChangeAction():void
 		{
 			if(model.selectedItem != list.selectedItem){
-				if(modifyingList){
-					model.selectedItem = list.selectedItem;
-				} else {
-					list.selectedItem = model.selectedItem;
-				}
+				list.selectedItem = model.selectedItem;
 			}
 			var item:Object = model.selectedItem;
 			var text:String = getLabelFromData(list,item);
-			if(handleInput && text){
+			if(text){
 				updateText(text);
 			}
 		}
