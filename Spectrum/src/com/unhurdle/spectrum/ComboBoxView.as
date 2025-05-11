@@ -240,7 +240,9 @@ package com.unhurdle.spectrum{
 
 		private var handleInput:Boolean = true;
 		private function inputHandler(ev:KeyboardEvent):void{
-			if (textfield.text == _currentText) {
+			if (textfield.text == _currentText || ev.key == NavigationKeys.DOWN) {
+				// if the text hasn't changed or the down arrow key is pressed, ignore
+				// this event.  The down arrow key is handled in the handleKeyDown function.
 				return;
 			}
 			_currentText = textfield.text;
