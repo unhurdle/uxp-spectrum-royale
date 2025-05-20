@@ -73,6 +73,7 @@ package com.unhurdle.spectrum.renderers
           button.iconType = type;
           element.insertBefore(button.element,icon.element);
           element.style.marginTop = 'inherit';
+          element.style.fontSize = '10px';
           if(breadCrumbsItem.isDisabled){
             button.disabled = true;
           }
@@ -113,12 +114,14 @@ package com.unhurdle.spectrum.renderers
       textNode = new TextNode("a");
       textNode.className = appendSelector("-itemLink");
       textNode.element.setAttribute('tabindex',"0");
+      textNode.element.style.fontSize = "20px";
       elem.appendChild(textNode.element);
       var type:String = IconType.CHEVRON_RIGHT_SMALL;
       icon = new Icon(Icon.getCSSTypeSelector(type));
       icon.height = 11;
       // icon.type = type;
       icon.className = appendSelector("-itemSeparator");
+      icon.setStyle('font-size','0px');
       addElement(icon);
       return elem;
     }
