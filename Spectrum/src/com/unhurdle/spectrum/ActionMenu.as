@@ -6,19 +6,16 @@ package com.unhurdle.spectrum
   }
   // import org.apache.royale.html.List;
   import com.unhurdle.spectrum.const.IconPrefix;
-  import com.unhurdle.spectrum.const.IconSize;
   import com.unhurdle.spectrum.data.MenuItem;
 
   import org.apache.royale.collections.IArrayList;
   import org.apache.royale.core.IParentIUIBase;
   import org.apache.royale.core.IPopUpHost;
-  import org.apache.royale.events.Event;
   import org.apache.royale.events.MouseEvent;
   import org.apache.royale.geom.Point;
   import org.apache.royale.html.util.getLabelFromData;
   import org.apache.royale.utils.PointUtils;
   import org.apache.royale.utils.UIUtils;
-  import org.apache.royale.utils.callLater;
 
   [Event(name="change", type="org.apache.royale.events.Event")]
   [Event(name="beforeShow", type="org.apache.royale.events.Event")]
@@ -108,7 +105,25 @@ package com.unhurdle.spectrum
     }
     override protected function positionPopup():void{
         popover.setStyle("pointer-events","");
-        var popoverWidth:Number = popover.width + 1;//added +1 cuz the browser was rounding it down
+        var popoverWidth:Number = popover.width;
+        if(!popoverWidth){
+          var labelLength:int = 0;
+          var dataProvider:Array = popover.list?.dataProvider as Array;
+          if(dataProvider && dataProvider.length){
+            for(var i:int=0;i<dataProvider.length;i++){
+              var item:MenuItem = dataProvider[i] as MenuItem;
+              if(item && item.label.length > labelLength){//find the longest text
+                labelLength = item.label.length;
+              }
+            }
+            if(labelLength){
+              var averageCharWidth:Number = labelLength > 7 ? 6.2 : 7; // rough estimate for 14px Adobe Clean or similar fonts
+              var padding:Number = 24;
+              popoverWidth = (labelLength * averageCharWidth) + padding;
+            }
+          }
+        }
+        popoverWidth++;//added +1 cuz the browser was rounding it down
   			var popupHost:IPopUpHost = UIUtils.findPopUpHost(this);
         var offset:Point = PointUtils.localToGlobal(new Point(),popupHost);
 				var origin:Point = new Point(0, height - 6);
@@ -128,7 +143,6 @@ package com.unhurdle.spectrum
         if(_alignRight && popoverWidth>width){
           popover.x -= popoverWidth-width;
         }
-
     }
     override protected function closePopup():void{
       super.closePopup();
