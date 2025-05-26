@@ -85,6 +85,9 @@ package com.unhurdle.spectrum
 		COMPILE::JS
 		override protected function createElement():WrappedHTMLElement{
 		super.createElement();
+		//I added height for collection picker, in Bynder we need 48, in Brandfolder we need 30 (with scrollbar vs without)
+		//But 30 is better that nothing, so I set it to 30
+		height = 30//48;
 		_input = new TextField();
 		// percentWidth needed to allow the container copmponent to be sized
 		// _input.percentWidth = 100;
