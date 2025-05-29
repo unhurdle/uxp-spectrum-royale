@@ -80,13 +80,6 @@ package com.unhurdle.spectrum
         }
 
     }
-    override public function set percentWidth(value:Number):void
-		{
-			super.percentWidth = value;
-			if(_input){
-				_input.style.width = value + "%";
-			}
-		}
 
     // COMPILE::SWF
     // override public function get name():String
@@ -350,6 +343,7 @@ package com.unhurdle.spectrum
       _input.addEventListener("blur",handleBlur);
       elem.appendChild(_input);
       _input.style.display = "none";
+      _input.style.width = "100%";
       return elem;
     }
     COMPILE::JS
