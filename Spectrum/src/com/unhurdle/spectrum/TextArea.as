@@ -115,6 +115,8 @@ package com.unhurdle.spectrum
         override public function set text(value:String):void
 		{
 			textarea.value = value;
+			div.text = value || _placeholder || "";
+			setDivPlaceholder();
 			checkValidation();
 		}
 		private var _maxLength:Number = Number.MAX_VALUE;
@@ -222,6 +224,8 @@ package com.unhurdle.spectrum
 			_textarea.addEventListener("blur",handleBlur);
 			elem.appendChild(_textarea);
 			_textarea.style.display = "none";
+			_textarea.style.width = "100%";
+			_textarea.style.height = "100%";
 			return elem;
 		}
 		COMPILE::JS
