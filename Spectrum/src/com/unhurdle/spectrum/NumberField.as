@@ -25,6 +25,7 @@ package com.unhurdle.spectrum
 
     public function set value(value:Number):void{
     	input.value = ""+value;
+      div.text = input.value;
     }
      public function get min():Number{
       return Number(input.min);
