@@ -192,6 +192,13 @@ package com.unhurdle.spectrum
       //   input.disabled = value;
       // }
       super.disabled = value;
+      _input.disabled = value;
+      if(value){
+        COMPILE::JS{
+          _input.style.display = "inline-block";
+          _div.element.style.display = "none";
+        }
+      }
     }
 
     private var validIcon:Icon;
