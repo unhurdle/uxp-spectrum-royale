@@ -4,6 +4,7 @@ package com.unhurdle.spectrum
   {
     import org.apache.royale.core.WrappedHTMLElement;
   }
+  import com.unhurdle.spectrum.const.IconType;
   import com.unhurdle.spectrum.utils.generateIcon;
 
   import org.apache.royale.html.accessories.RestrictTextInputBead;
@@ -211,22 +212,28 @@ package com.unhurdle.spectrum
     override public function set valid(value:Boolean):void
     {
       super.valid = value;
-      // if(value){
-      //   if(!validIcon){
-      //     var type:String = IconType.CHECKMARK_MEDIUM;
-      //     validIcon = new Icon(Icon.getCSSTypeSelector(type));
-      //     validIcon.className = appendSelector("-validationIcon");
-      //     validIcon.type = type;
-      //   }
-      //   //if icon doesn't exist
-      //   if(getElementIndex(validIcon) == -1){
-      //     addElementAt(validIcon,0);
-      //   }
-      // } else{
-      //   if(validIcon && getElementIndex(validIcon) != -1){
-      //     removeElement(validIcon);
-      //   }
-      // }
+      if(value){
+        if(!validIcon){
+          var type:String = IconType.CHECKMARK_MEDIUM;
+          validIcon = new Icon(Icon.getCSSTypeSelector(type));
+          validIcon.className = appendSelector("-validationIcon");
+          validIcon.setStyle("right","-3px");
+          validIcon.setStyle("top","7px");
+          validIcon.setStyle('position','absolute');
+          validIcon.setStyle("color","green");
+        }
+        COMPILE::JS{
+          element.style.border = "0px";
+        }
+        //if icon doesn't exist
+        if(getElementIndex(validIcon) == -1){
+          addElement(validIcon);
+        }
+      } else{
+        if(validIcon && getElementIndex(validIcon) != -1){
+          removeElement(validIcon);
+        }
+      }
     }
 
     override public function get invalid():Boolean
@@ -266,23 +273,31 @@ package com.unhurdle.spectrum
     override public function set invalid(value:Boolean):void
     {
       super.invalid = value;
-      // if(value){
-      //   if(!invalidIcon){
-      //     var type:String = IconType.ALERT_MEDIUM;
-      //     invalidIcon = new Icon(Icon.getCSSTypeSelector(type));
-      //     invalidIcon.className = appendSelector("-validationIcon");
-      //     invalidIcon.type = type;
-      //     invalidIcon.setStyle('box-sizing','content-box');
-      //   }
-      //   if(getElementIndex(invalidIcon) == -1){
-      //     addElementAt(invalidIcon,0);
-      //   }
-              // applyInvalidToolTip();
-      // } else{
-      //   if(invalidIcon && getElementIndex(invalidIcon) != -1){
-      //     removeElement(invalidIcon);
-      //   }
-      // }
+      if(value){
+        if(!invalidIcon){
+          var type:String = IconType.ALERT_MEDIUM;
+          invalidIcon = new Icon(Icon.getCSSTypeSelector(type));
+          invalidIcon.className = appendSelector("-validationIcon");
+          invalidIcon.setStyle("right","16px");
+          invalidIcon.setStyle("top","5px");
+          invalidIcon.setStyle('position','absolute');
+          invalidIcon.setStyle("color","red");
+        }
+        COMPILE::JS{
+          element.style.border = "1px solid red";
+        }
+        if(getElementIndex(invalidIcon) == -1){
+          addElement(invalidIcon);
+        }
+        applyInvalidToolTip();
+      } else{
+        COMPILE::JS{
+          element.style.border = "0px";
+        }
+        if(invalidIcon && getElementIndex(invalidIcon) != -1){
+          removeElement(invalidIcon);
+        }
+      }
     }
     public function applyInvalidToolTip():void {
       if (!invalidIcon) {
