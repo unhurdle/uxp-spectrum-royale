@@ -31,6 +31,9 @@ package com.unhurdle.spectrum
       if(!val){
         return "";
       }
+      if(val.indexOf("-") > -1){
+        return val; //already in YYYY-MM-DD format
+      }
       //convert format
       var vaArr:Array = val.split("/");
       var month:String = vaArr[0];
