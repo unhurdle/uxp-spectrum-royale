@@ -28,7 +28,7 @@ package com.unhurdle.spectrum
       super();
     }
     override protected function getTag():String{
-      return "sp-action-menu";
+      return "div";
     }
 
     override protected function createFlyoutIcon():void{
@@ -106,9 +106,9 @@ package com.unhurdle.spectrum
     override protected function positionPopup():void{
         popover.setStyle("pointer-events","");
         var popoverWidth:Number = popover.width;
+        var dataProvider:Array = popover.list?.dataProvider as Array;
         if(!popoverWidth){
           var labelLength:int = 0;
-          var dataProvider:Array = popover.list?.dataProvider as Array;
           if(dataProvider && dataProvider.length){
             for(var i:int=0;i<dataProvider.length;i++){
               var item:MenuItem = dataProvider[i] as MenuItem;
@@ -122,6 +122,9 @@ package com.unhurdle.spectrum
               popoverWidth = (labelLength * averageCharWidth) + padding;
             }
           }
+        }
+        if(dataProvider && dataProvider.length){
+          popover.height =  dataProvider.length * 32 + 3;
         }
         popoverWidth++;//added +1 cuz the browser was rounding it down
   			var popupHost:IPopUpHost = UIUtils.findPopUpHost(this);
