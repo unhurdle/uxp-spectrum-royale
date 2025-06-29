@@ -360,7 +360,7 @@ package com.unhurdle.spectrum
       elem.appendChild(_div.element);
       _input = newElement("sp-textfield") as HTMLInputElement;
       _div.className = "spectrum-Textfield-input";
-      _div.style = {"display" : defaultDivDisplay};
+      _div.style = {"display" : defaultDivDisplay,"overflow": "hidden","white-space": "nowrap"};
       setDivStyle();
       _input.addEventListener("blur",handleBlur);
       elem.appendChild(_input);
