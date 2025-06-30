@@ -124,7 +124,7 @@ package com.unhurdle.spectrum
           }
         }
         if(dataProvider && dataProvider.length){
-          popover.height =  dataProvider.length * 32 + 3;
+          popover.height =  dataProvider.length * 32.2 + 3;
         }
         popoverWidth++;//added +1 cuz the browser was rounding it down
   			var popupHost:IPopUpHost = UIUtils.findPopUpHost(this);
