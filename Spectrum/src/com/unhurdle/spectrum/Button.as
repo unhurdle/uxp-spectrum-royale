@@ -225,13 +225,22 @@ package com.unhurdle.spectrum
     	_quiet = value;
     }
 
+    private var _disabled:Boolean;
     public function get disabled():Boolean
     {
-      return (element as HTMLButtonElement).disabled;
+      return _disabled;
     }
 
     public function set disabled(value:Boolean):void
     {
+      if(value != _disabled){
+        if(value){
+          setStyle("pointerEvents","none");
+        } else {
+          setStyle("pointerEvents","auto");
+        }
+      }
+      _disabled = value;
       (element as HTMLButtonElement).disabled = value;
     }
 
