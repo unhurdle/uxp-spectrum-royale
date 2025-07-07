@@ -124,7 +124,16 @@ package com.unhurdle.spectrum
           }
         }
         if(dataProvider && dataProvider.length){
-          popover.height =  dataProvider.length * 32.2 + 3;
+          var h:Number = 0;
+          for(i = 0;i<dataProvider.length;i++){
+            var menuItem:MenuItem = dataProvider[i] as MenuItem;
+            if(menuItem.isDivider){
+              h += 7; // divider height
+            } else {
+              h += 32.2; // menu item height
+            }
+          }
+          popover.height = h + 3; // 3 is the padding
         }
         popoverWidth++;//added +1 cuz the browser was rounding it down
   			var popupHost:IPopUpHost = UIUtils.findPopUpHost(this);
