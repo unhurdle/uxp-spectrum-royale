@@ -38,7 +38,7 @@ package com.unhurdle.spectrum
       addEventListener("modalHidden",handleModalHidden);
       visible = false;
     }
-    public static var openDialogsLookup:Object = {};
+    public static var openDialogsLookup:Array = [];
     public static const ALERT:int = 1;
     public static const REGULAR:int = 2;
     public static const FULLSCREEN:int = 3;
@@ -262,6 +262,19 @@ package com.unhurdle.spectrum
       }
     	_success = value;
     }
+    override public function get visible():Boolean
+    {
+      if(super.visible){
+        return true;
+      }
+      for(var i:int=0;i<openDialogsLookup.length;i++){
+          var dialog:Dialog = openDialogsLookup[i];
+          if(dialog.id == id){
+            return true;
+          }
+        }
+      return false;
+    }
 
     private var attachedToApp:Boolean;
     public function show():void{
@@ -269,15 +282,21 @@ package com.unhurdle.spectrum
       //Here's answer we got on the UXP channel - "because scrollbar is native element... and native elements are rendered above HTML rendered content."
       //Our work-around is to hide the other dialogs so that the scrollbars from those dialogs don't show
       if(size == FULLSCREEN_TAKEOVER){
-        for(var dialogId:String in openDialogsLookup){
-          var dialog:Dialog = openDialogsLookup[dialogId];
+        var foundIndex:int = -1;
+        for(var i:int=0;i<openDialogsLookup.length;i++){
+          var dialog:Dialog = openDialogsLookup[i];
           if(dialog.id != id){
             dialog.visible = false;
+          } else {
+            foundIndex = i;
           }
         }
         Application.current.initialView.visible = false;
         if(id){
-          openDialogsLookup[id] = this;
+          if(foundIndex >= 0){
+            openDialogsLookup.splice(foundIndex,1);
+          }
+          openDialogsLookup.push(this);
         }
       }
       Application.current.popUpParent.addElement(this);
@@ -382,17 +401,18 @@ package com.unhurdle.spectrum
     public function hide():void
     {
       if(size == FULLSCREEN_TAKEOVER){
-        for(var dialogId:String in openDialogsLookup){
-          var dialog:Dialog = openDialogsLookup[dialogId];
-          if(dialog.id != id){
-            dialog.visible = true;
+        for(var i:int=0;i<openDialogsLookup.length;i++){
+          var dialog:Dialog = openDialogsLookup[i];
+          if(dialog.id == id){
+            openDialogsLookup.splice(i,1);
+            break;
           }
         }
-        if(id){
-          delete openDialogsLookup[id];
+        if(openDialogsLookup.length){
+          openDialogsLookup[openDialogsLookup.length - 1].visible = true;
         }
         //only show the main view if no other dialogs are open
-        if(Object.keys(openDialogsLookup).length === 0){
+        if(openDialogsLookup.length === 0){
           Application.current.initialView.visible = true;
         }
       }
