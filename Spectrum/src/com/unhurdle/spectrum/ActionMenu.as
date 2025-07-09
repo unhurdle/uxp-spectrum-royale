@@ -129,6 +129,8 @@ package com.unhurdle.spectrum
             var menuItem:MenuItem = dataProvider[i] as MenuItem;
             if(menuItem.isDivider){
               h += 7; // divider height
+            } else if(menuItem.imageIcon){
+              h += 32.3; // menu item with imageIcon height
             } else {
               h += 32.2; // menu item height
             }
