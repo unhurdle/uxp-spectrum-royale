@@ -381,6 +381,8 @@ package com.unhurdle.spectrum
 			popover.autoFocusList = !value;
 			popover.searchable = value;
 			if (popover.search){
+				popover.search.height = 30;
+				popover.search.setStyle('padding-bottom', '30px');
 				popover.search.input.addEventListener(KeyboardEvent.KEY_DOWN, handleKeyDown);
 			}
 		}
