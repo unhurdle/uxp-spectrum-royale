@@ -37,6 +37,7 @@ package com.unhurdle.spectrum
       addEventListener("modalShown",handleModalShow);
       addEventListener("modalHidden",handleModalHidden);
       visible = false;
+      setStyle("padding-top", "0px");
     }
     public static var openDialogsLookup:Array = [];
     public static const ALERT:int = 1;
