@@ -60,7 +60,7 @@ package com.unhurdle.spectrum
 			addElement(div);
 			span = new Span();
 			// span.className = appendSelector("-label");
-			span.className = appendSelector("-label is-placeholder");
+			span.className = appendSelector("-label");
 			div.addElement(span);
 			var type:String = IconType.CHEVRON_DOWN_MEDIUM;
 			icon = new Icon(Icon.getCSSTypeSelector(type));
@@ -219,6 +219,7 @@ package com.unhurdle.spectrum
 					setButtonAsset(i,true);
 				}
 			}
+			toggleIsPlaceholder();
 		}
 
 		public function get selectedItem():Object
@@ -271,6 +272,14 @@ package com.unhurdle.spectrum
 		{
 			_placeholder = value;
 			span.text = value;
+			toggleIsPlaceholder();
+		}
+		private function toggleIsPlaceholder():void{
+			if(_placeholder && !selectedItem){
+				span.className = appendSelector("-label is-placeholder");
+			}else{
+				span.className = appendSelector("-label");
+			}
 		}
 
 		public function handleListChange():void{
