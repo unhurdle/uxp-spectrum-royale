@@ -37,7 +37,6 @@ package com.unhurdle.spectrum
       addEventListener("modalShown",handleModalShow);
       addEventListener("modalHidden",handleModalHidden);
       visible = false;
-      setStyle("padding-top", "0px");
     }
     public static var openDialogsLookup:Array = [];
     public static const ALERT:int = 1;
@@ -152,6 +151,11 @@ package com.unhurdle.spectrum
         var newSize:String = styleLookup[value];
         if(newSize){
           toggle(valueToSelector(newSize),true);
+        }
+        if(value == FULLSCREEN_TAKEOVER){
+          setStyle("padding-top", "0px");
+        } else {
+          setStyle("padding-top", "30px");
         }
       }
     	_size = value;
