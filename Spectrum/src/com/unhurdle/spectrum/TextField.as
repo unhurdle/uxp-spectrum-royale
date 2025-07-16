@@ -68,16 +68,16 @@ package com.unhurdle.spectrum
       setDivPlaceholder();
     }
     private function setDivPlaceholder():void{
-        if(text){
+        if(_placeholder && !text){
           COMPILE::JS{
-              _div.element.style.fontStyle = "normal";
-              _div.element.style.opacity = "1";
+            _div.element.style.fontStyle = "italic";
+            _div.element.style.opacity = "0.7";//this doesn't work! (UXP)
           }
           return;
         }
         COMPILE::JS{
-          _div.element.style.fontStyle = "italic";
-          _div.element.style.opacity = "0.7";//this doesn't work! (UXP)
+          _div.element.style.fontStyle = "normal";
+          _div.element.style.opacity = "1";
         }
 
     }
@@ -122,6 +122,7 @@ package com.unhurdle.spectrum
         div.text = _placeholder || "";
       }
       checkValidation();
+      setDivPlaceholder();
     }
 
     private var _pattern:String;
