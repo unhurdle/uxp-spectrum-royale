@@ -219,6 +219,7 @@ package com.unhurdle.spectrum
       day = day.length > 1 ? day : '0' + day;
       //TODO international formatting
       input.text = month + '/' + day + '/' +  year;
+      dispatchEvent(new Event("change"));
     }
     public function selectDate(date:Date):void{
       model = calendar.model;
