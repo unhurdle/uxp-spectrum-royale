@@ -123,6 +123,7 @@ package com.unhurdle.spectrum{
 			}
 			textfield.addEventListener(KeyboardEvent.KEY_UP,inputHandler);
 			textfield.addEventListener(KeyboardEvent.KEY_DOWN,handleKeyDown);
+			textfield.input.addEventListener("input", inputHandler);
 			if(text){
 				updateText(text);
 			}
