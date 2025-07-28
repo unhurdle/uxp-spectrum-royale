@@ -376,7 +376,7 @@ package com.unhurdle.spectrum
       _div.element.style.display = "none";
     }
     COMPILE::JS
-    private function handleBlur(ev:Event):void{
+    protected function handleBlur(ev:Event):void{
       _div.text = _input.value || _placeholder || "";
       setDivPlaceholder();
       _div.element.style.display = defaultDivDisplay;

@@ -6,7 +6,7 @@ package com.unhurdle.spectrum
     public function PasswordField()
     {
       super();
-      setAttribute('type','password');
+      input.setAttribute('type','password');
     }
 
      public function get minlength():Number
@@ -40,6 +40,24 @@ package com.unhurdle.spectrum
     {
       //TODO
       // input.size = value;
+    }
+    override public function set text(value:String):void
+    {
+      super.text = value;
+      setDivAsPassword();
+    }
+    COMPILE::JS
+    override protected function handleBlur(ev:Event):void
+    {
+      super.handleBlur(ev);
+      setDivAsPassword();
+    }
+    private function setDivAsPassword():void
+    {
+      if(input.value){
+        var masked:String = "●".repeat(input.value.length);
+        div.text = masked;
+      }
     }
   }
 }
