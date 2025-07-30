@@ -57,6 +57,7 @@ package com.unhurdle.spectrum
 			var elem:WrappedHTMLElement = super.createElement();
 			_div = new Div()
 			_div.className = appendSelector("-trigger spectrum-FieldButton");
+			_div.addEventListener(KeyboardEvent.KEY_DOWN, handleKeyDown);
 			addElement(div);
 			span = new Span();
 			// span.className = appendSelector("-label");
@@ -130,7 +131,6 @@ package com.unhurdle.spectrum
 			popover.open = true;
 			popover.filterFunction = filterFunction;
 			_div.addEventListener(MouseEvent.MOUSE_DOWN, handleControlMouseDown);
-			_div.removeEventListener(KeyboardEvent.KEY_DOWN, handleKeyDown);
 			if(searchable){
 				popover.search.input.focus();
 			}
@@ -293,8 +293,6 @@ package com.unhurdle.spectrum
 					_div.element.focus();
 				}
 			}
-			_div.addEventListener(KeyboardEvent.KEY_DOWN, handleKeyDown);
-
 		}
 		
 		private var _invalid:Boolean;
@@ -424,7 +422,7 @@ package com.unhurdle.spectrum
 				}
 			} else {
 				if (event.key == NavigationKeys.DOWN || event.key == WhitespaceKeys.SPACE) {
-					openPopup();
+					toggleDropdown(event);
 				}
 			}
             // prevent default behavior for these keys to keep the cursor position from changing
