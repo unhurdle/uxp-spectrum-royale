@@ -44,11 +44,23 @@ package com.unhurdle.spectrum
     override public function set text(value:String):void
     {
       super.text = value;
+      setDivAsPassword();
     }
     COMPILE::JS
     override protected function handleBlur(ev:Event):void
     {
       super.handleBlur(ev);
+      setDivAsPassword();
+    }
+    private function setDivAsPassword():void
+    {
+      //need to test this on Windows
+      var isMac:Boolean = require('os').platform() == "darwin";
+      var maskValue:String = isMac ? "●" : "*";
+      if(input.value){
+        var masked:String = maskValue.repeat(input.value.length);
+        div.text = masked;
+      }
     }
   }
 }
