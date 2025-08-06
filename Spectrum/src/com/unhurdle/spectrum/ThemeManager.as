@@ -36,6 +36,7 @@ package com.unhurdle.spectrum
 			updateTheme();
 			document['theme'].onUpdated.addListener(function (theme:*):void{
 				app.colorstop = theme;
+				_isLight = (theme == "darkest" || theme == "dark") ? false : true;
 				dispatchEvent(new Event(THEME_CHANGED));
 			});
 			
