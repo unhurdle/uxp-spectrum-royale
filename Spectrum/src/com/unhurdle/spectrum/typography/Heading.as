@@ -1,22 +1,12 @@
 package com.unhurdle.spectrum.typography
 {
 
-  // TODO
-  // *strong
-  //*heavy
-  //*light
-
   public class Heading extends Typography
   {
     public function Heading()
     {
       super();
     }
-
-    override protected function getTag():String{
-      return "sp-heading";
-    }
-
     // override protected function getSuffix():Array{
     //   var suffix:Array = [];
     //   if(size == 1 || size == 2){
@@ -144,5 +134,10 @@ package com.unhurdle.spectrum.typography
       }
       _light = value;
     }
+
+    override protected function getTypographySelector():String{
+      return "spectrum-Heading";
+    }
+
   }
 }

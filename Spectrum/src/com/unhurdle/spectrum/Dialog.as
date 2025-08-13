@@ -152,11 +152,6 @@ package com.unhurdle.spectrum
         if(newSize){
           toggle(valueToSelector(newSize),true);
         }
-        if(value == FULLSCREEN_TAKEOVER){
-          setStyle("padding-top", "0px");
-        } else {
-          setStyle("padding-top", "30px");
-        }
       }
     	_size = value;
     }
