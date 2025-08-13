@@ -81,11 +81,12 @@ package com.unhurdle.spectrum.renderers
       // link.removeElement(chevronIcon);
       if(chevronRightIcon){
         var type:String;
+        chevronRightIcon.style = {"margin-right": "20px","margin-bottom": "0px","padding-bottom": "15px"};
         if(value){
-          chevronRightIcon.style = {"padding-bottom": "0px"};
+          chevronRightIcon.setStyle("padding-bottom", "0px");
           type = IconType.CHEVRON_DOWN_MEDIUM;
         } else {
-          chevronRightIcon.style = {"padding-bottom": "15px"};
+          chevronRightIcon.setStyle("padding-bottom", "15px");
           type = IconType.CHEVRON_RIGHT_MEDIUM;
         }
         chevronRightIcon.selector = Icon.getCSSTypeSelector(type);
