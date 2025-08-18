@@ -39,6 +39,8 @@ package com.unhurdle.spectrum
     override protected function createElement():WrappedHTMLElement{
       
       var elem:WrappedHTMLElement = super.createElement();
+      elem.style.padding = "0 6px";
+      elem.style.marginBottom = "5px";
       // button.className = //??
       icon = IconPrefix._18 + "More";
       addEventListener(MouseEvent.MOUSE_DOWN,toggleMenu);
