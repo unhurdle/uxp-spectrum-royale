@@ -242,7 +242,6 @@ package com.unhurdle.spectrum
         popover.setStyle("z-index",style.zIndex);
       }
       dispatchEvent(new Event("beforeShow"));
-      popover.x = popover.y = 0;
       popover.open = true;
       popover.list.focus();
       COMPILE::JS
