@@ -106,6 +106,7 @@ package com.unhurdle.spectrum
       _openMenu = this;
     }
     override protected function positionPopup():void{
+      var isMac:Boolean = require('os').platform() == "darwin";
         popover.setStyle("pointer-events","");
         var popoverWidth:Number = popover.width;
         var dataProvider:Array = popover.list?.dataProvider as Array;
@@ -120,8 +121,8 @@ package com.unhurdle.spectrum
             }
             if(labelLength){
               var averageCharWidth:Number = labelLength > 7 ? 6.2 : 7; // rough estimate for 14px Adobe Clean or similar fonts
-              var padding:Number = 24;
-              popoverWidth = (labelLength * averageCharWidth) + padding;
+              var paddingW:Number = isMac ? 24 : 28;
+              popoverWidth = (labelLength * averageCharWidth) + paddingW;
             }
           }
         }
@@ -130,14 +131,15 @@ package com.unhurdle.spectrum
           for(i = 0;i<dataProvider.length;i++){
             var menuItem:MenuItem = dataProvider[i] as MenuItem;
             if(menuItem.isDivider){
-              h += 7; // divider height
+              h += isMac ? 7 : 9; // divider height
             } else if(menuItem.imageIcon){
               h += 32.3; // menu item with imageIcon height
             } else {
               h += 32.2; // menu item height
             }
           }
-          popover.height = h + 3; // 3 is the padding
+          var paddingH:Number = isMac ? 3 : 6; // padding
+          popover.height = h + paddingH;
         }
         popoverWidth++;//added +1 cuz the browser was rounding it down
   			var popupHost:IPopUpHost = UIUtils.findPopUpHost(this);
