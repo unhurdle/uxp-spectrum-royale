@@ -133,7 +133,7 @@ package com.unhurdle.spectrum
             if(menuItem.isDivider){
               h += isMac ? 7 : 9; // divider height
             } else if(menuItem.imageIcon){
-              h += 32.3; // menu item with imageIcon height
+              h += isMac ? 32.3 : 33.9; // menu item with imageIcon height
             } else {
               h += 32.2; // menu item height
             }
