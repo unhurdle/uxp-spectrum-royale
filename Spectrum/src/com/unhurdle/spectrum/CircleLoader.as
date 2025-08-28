@@ -138,20 +138,14 @@ package com.unhurdle.spectrum
 				case "small":
 					strokeWidth = 2;
 					actualSize = 18;
-					// setStyle('padding-left','calc(50% - 64px)');
-					// setStyle('padding-top','calc(50% - 64px)');
 					break;
 				case "large":
-					// setStyle('padding-left','calc(50% - 40px)');
-					// setStyle('padding-top','calc(50% - 40px)');
 					strokeWidth = 4;
 					actualSize = 80;
 					break;
 				case "normal":
-					setStyle('padding-left','calc(50% - 40px)');
-					setStyle('padding-top','calc(50% - 40px)');
-					strokeWidth = 4;
-					actualSize = 42;
+					strokeWidth = 3;
+					actualSize = 30;
 					break;
 				default:
 					throw new Error("Invalid size: " + value);
