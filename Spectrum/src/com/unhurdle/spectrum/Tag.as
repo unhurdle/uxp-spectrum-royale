@@ -17,7 +17,7 @@ package com.unhurdle.spectrum
     override protected function getSelector():String{
       return "spectrum-Tags-item";
     }
-    private var span:TextNode;
+    protected var span:TextNode;
     COMPILE::JS
     override protected function createElement():WrappedHTMLElement{
       var elem:WrappedHTMLElement = super.createElement();
@@ -152,7 +152,7 @@ package com.unhurdle.spectrum
     {
     	return _deletable;
     }
-    private var clearButton:ClearButton;
+    protected var clearButton:ClearButton;
     public function set deletable(value:Boolean):void
     {
       if(value != !!_deletable){
