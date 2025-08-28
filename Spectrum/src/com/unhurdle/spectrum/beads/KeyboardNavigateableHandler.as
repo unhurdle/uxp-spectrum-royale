@@ -248,6 +248,10 @@ package com.unhurdle.spectrum.beads
 			if(ir){
         setKeyboardFocused(ir);
         focusableItemRenderer = ir;
+        COMPILE::JS
+        {
+          ir.element.scrollIntoView({block: "nearest"});
+        }
 			} else {
         focusableItemRenderer = findFirstFocusable();
         if(focusableItemRenderer){
