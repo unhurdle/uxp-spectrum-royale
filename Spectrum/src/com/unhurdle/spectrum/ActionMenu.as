@@ -205,7 +205,7 @@ package com.unhurdle.spectrum
 			var avaliableSpace:Number;
 			if(topSpace > bottomSpace){
         if(ptY -  h > 0){
-					ptY -= h + 20;
+					ptY -= h + 10;
 				} else {
 					ptY = 5;
 				}
