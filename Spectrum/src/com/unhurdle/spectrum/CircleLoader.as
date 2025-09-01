@@ -21,7 +21,7 @@ package com.unhurdle.spectrum
 		private function drawCircleLoader():void {
 			var trackColor:String = '#ccc';
 			var fillColor:String  = '#00f';
-			var speed:Number = 120;
+			var speed:Number = 350;
 
 			// SVG namespace helper
 			var SVG_NS:String = 'http://www.w3.org/2000/svg';
