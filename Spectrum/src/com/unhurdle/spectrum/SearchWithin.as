@@ -50,6 +50,7 @@ package com.unhurdle.spectrum
       input = new TextField();
       input.placeholder = "Search";
       input.inputClass = appendSelector("-input");
+      input.defaultDivDisplay = "block";
       button = new ClearButton();
       button.style = {"position":"absolute","right":"-11px","top":"5px"};
       button.addEventListener("clear" , clear);
