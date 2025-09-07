@@ -141,8 +141,16 @@ package com.unhurdle.spectrum
 				toggle(valueToSelector(value), true);
 				_direction = value;
 		}
+		private function dragStart(ev:Event):void{
+			ev.stopImmediatePropagation();
+		}
+		private function dragEnd(ev:Event):void{
+			ev.stopImmediatePropagation();
+		}
 		private function onMouseDown(e: MouseEvent):void{
 			COMPILE::JS{
+				window.addEventListener("dragstart", dragStart, true);
+				window.addEventListener("dragend", dragEnd, true);
 				dispatchEvent(new Event("resizeStart"));
 				e.preventDefault();
 				e.stopImmediatePropagation();
@@ -152,6 +160,8 @@ package com.unhurdle.spectrum
 		}
 		private function onMouseUp(e: MouseEvent):void{
 			COMPILE::JS{
+				window.removeEventListener("dragstart", dragStart, true);
+				window.removeEventListener("dragend", dragEnd, true);
 				dispatchEvent(new Event("resizeFinish"));
 				window.removeEventListener('mouseup', onMouseUp);
 				element.removeEventListener('mousemove', onMouseMove);		
