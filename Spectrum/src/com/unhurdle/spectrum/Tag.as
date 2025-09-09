@@ -24,6 +24,7 @@ package com.unhurdle.spectrum
       span = new TextNode("");
       span.element = newElement("span") as HTMLSpanElement;
       span.className = getSelector()+"Label";
+      span.element.style.display = "contents";
       elem.appendChild(span.element);
       clearButton = new ClearButton();
       clearButton.toggle(getSelector()+"ClearButton",true);
@@ -43,7 +44,7 @@ package com.unhurdle.spectrum
     {
       _small = value;
       if(value){
-        height = 17;
+        height = 18;
         span.element.style.lineHeight = 1.2;
       } else{
         span.element.style.lineHeight = '';
