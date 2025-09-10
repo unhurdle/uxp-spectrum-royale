@@ -30,7 +30,7 @@ package com.unhurdle.spectrum
       addEventListener(MouseEvent.MOUSE_DOWN,handleMouseDown);
     }
     override protected function getSelector():String{
-      return "";//ActionButtonInclude.getSelector();
+      return ActionButtonInclude.getSelector();
     }
     override protected function getTag():String{
       return "sp-action-button";
