@@ -42,30 +42,29 @@ package com.unhurdle.spectrum.renderers
             chevronRightIcon.setStyle("flex-shrink",0);
             chevronRightIcon.style = {"margin-right": "20px","margin-bottom": "0px","padding-bottom": "15px"};
             link.addElementAt(chevronRightIcon,0);
-            chevronRightIcon.addEventListener(MouseEvent.CLICK,function (ev:Event):void{
-              // This is a bit of a hack. Currently for multi-select trees,
-              // the logic for opening nodes is dependent on selection.
-              // Until that's separated, we can't stop propogation on multi-select trees
-              if(!value?.multiSelect){
-                ev.stopPropagation(); //to prevent selection when expanding
-              }
-              if(!disabled){
-                isOpen = !isOpen;
-                var expandEvent:ItemClickedEvent = new ItemClickedEvent("itemExpanded");
-                expandEvent.data = data;
-                expandEvent.index = index;
-                //wait until all the intem renderers are updated to modify the list 
-                setTimeout(function():void{
-                  dispatchEvent(expandEvent);
-                })
-              }
-            });
+            chevronRightIcon.addEventListener(MouseEvent.CLICK,handleChevronClick);
           }
           if(listData.isOpen){
             isOpen = value.isOpen = true;
+          } else {
+            isOpen = value.isOpen = false;
           }
         }
       }
+    }
+    protected function handleChevronClick(ev:MouseEvent):void
+    {
+			ev.stopPropagation(); //to prevent selection when expanding
+			if(!disabled){
+				isOpen = !isOpen;
+				var expandEvent:ItemClickedEvent = new ItemClickedEvent("itemExpanded");
+				expandEvent.data = data;
+				expandEvent.index = index;
+				//wait until all the intem renderers are updated to modify the list 
+				setTimeout(function():void{
+					dispatchEvent(expandEvent);
+				})
+			}
     }
     private var _isOpen:Boolean = false;
 
