@@ -82,10 +82,29 @@ package com.unhurdle.spectrum
       }
     	_emphasized = value;
     }
+    private var className:String;
+    override public function set disabled(value:Boolean):void
+    {
+      super.disabled = value;
+      if(value){
+        COMPILE::JS{
+          className = element.className;
+          element.className = '';
+        }
+        setStyle("cursor","");
+      } else {
+        COMPILE::JS{
+          element.className = className;
+        }
+        setStyle("cursor","pointer");
+      }
+    }
     override public function addedToParent():void{
       super.addedToParent();
       addEventListener(MouseEvent.MOUSE_DOWN,elementMouseDown);
-      setStyle("cursor","pointer");
+      if(!disabled){
+        setStyle("cursor","pointer");
+      }
       if(dataProvider){
         createFlyoutIcon();
       }
