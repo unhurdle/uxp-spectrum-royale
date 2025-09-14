@@ -86,18 +86,7 @@ package com.unhurdle.spectrum
     override public function set disabled(value:Boolean):void
     {
       super.disabled = value;
-      if(value){
-        COMPILE::JS{
-          className = element.className;
-          element.className = '';
-        }
-        setStyle("cursor","");
-      } else {
-        COMPILE::JS{
-          element.className = className;
-        }
-        setStyle("cursor","pointer");
-      }
+      toggle("is-disabled",value);
     }
     override public function addedToParent():void{
       super.addedToParent();
