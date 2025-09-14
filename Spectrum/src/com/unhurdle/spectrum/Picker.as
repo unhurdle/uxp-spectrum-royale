@@ -344,7 +344,11 @@ package com.unhurdle.spectrum
 		public function set disabled(value:Boolean):void
 		{
 			if(value != !!_disabled){
-				toggle("is-disabled",value);
+				if(value){
+					_div.className += " is-disabled";
+				} else {
+					_div.className = _div.className.replace(" is-disabled","");
+				}
 				// _button.disabled = value;
 			}
 			_disabled = value;
