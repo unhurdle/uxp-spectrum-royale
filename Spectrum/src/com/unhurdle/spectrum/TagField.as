@@ -38,7 +38,7 @@ package com.unhurdle.spectrum
     override protected function createElement():WrappedHTMLElement{
       var elem:WrappedHTMLElement = addElementToWrapper(this,'div');
       tagGroup = new TagGroup();
-      tagGroup.setStyle("display","inline-block");
+      tagGroup.setStyle("display","contents");
       tagGroup.setStyle('flex-grow','1');
       tagGroup.setStyle('flex-shrink','1');
       elem.appendChild(tagGroup.element);
@@ -55,6 +55,8 @@ package com.unhurdle.spectrum
       // elem.appendChild(input.element);
       input.tabFocusable = false;
       tagGroup.addElement(input);
+      setStyle("height","fit-content");
+      setStyle("min-height","62px");
       return elem;
     }
 
@@ -265,15 +267,15 @@ package com.unhurdle.spectrum
     }
 
     private function calculatePosition():void {
-      if(tagGroup.height > input.height){
-        if(width - tagGroup.width < input.width){
-          height = tagGroup.height + 50;
-        } else{
-          height = tagGroup.height + 30;
-        }
-      }else{
-        height = input.height + 30;
-      }
+      // if(tagGroup.height > input.height){
+      //   if(width - tagGroup.width < input.width){
+      //     height = tagGroup.height + 50;
+      //   } else{
+      //     height = tagGroup.height + 30;
+      //   }
+      // }else{
+      //   height = input.height + 30;
+      // }
     }
 
     private var _tagList:Array;
