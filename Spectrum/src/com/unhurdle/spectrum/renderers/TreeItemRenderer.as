@@ -40,7 +40,7 @@ package com.unhurdle.spectrum.renderers
             chevronRightIcon.type = type;
             chevronRightIcon.toggle(appendSelector("-itemIndicator"),true);
             chevronRightIcon.setStyle("flex-shrink",0);
-            chevronRightIcon.style = {"margin-right": "20px","margin-bottom": "0px","padding-bottom": "15px"};
+            setChevronStyle();
             link.addElementAt(chevronRightIcon,0);
             chevronRightIcon.addEventListener(MouseEvent.CLICK,handleChevronClick);
           }
@@ -80,18 +80,24 @@ package com.unhurdle.spectrum.renderers
       // link.removeElement(chevronIcon);
       if(chevronRightIcon){
         var type:String;
-        chevronRightIcon.style = {"margin-right": "20px","margin-bottom": "0px","padding-bottom": "15px"};
+        setChevronStyle();
         if(value){
-          chevronRightIcon.setStyle("padding-bottom", "0px");
           type = IconType.CHEVRON_DOWN_MEDIUM;
         } else {
-          chevronRightIcon.setStyle("padding-bottom", "15px");
           type = IconType.CHEVRON_RIGHT_MEDIUM;
         }
         chevronRightIcon.selector = Icon.getCSSTypeSelector(type);
         chevronRightIcon.type = type;
       }
       treeListData.isOpen = _isOpen;
+    }
+    protected function setChevronStyle():void{
+      chevronRightIcon.style = {"margin-right": "20px","margin-bottom": "0px"};
+      if(isOpen){
+          chevronRightIcon.setStyle("padding-bottom", "0px");
+        } else {
+          chevronRightIcon.setStyle("padding-bottom", "15px");
+        }
     }
     protected function setIsOpen(value:Boolean):void
     {
