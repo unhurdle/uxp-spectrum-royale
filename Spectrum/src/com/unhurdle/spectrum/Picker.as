@@ -43,6 +43,9 @@ package com.unhurdle.spectrum
 		{
 			super();
 		}
+		
+		private static var openPicker:Picker;
+
 		override protected function getSelector():String{
 			return "spectrum-Picker";
 		}
@@ -121,6 +124,10 @@ package com.unhurdle.spectrum
 		}
 		private var zIndexSet:Boolean = false;
 		private function openPopup():void{
+			if (openPicker) {
+				openPicker.closePopup();
+			}
+			openPicker = this;
 			if(!zIndexSet){
 				var zIndex:Number = getExplicitZIndex(this);
 				if(zIndex > 2){
@@ -146,6 +153,7 @@ package com.unhurdle.spectrum
 			if(popover && popover.open){
 				_div.removeEventListener(MouseEvent.MOUSE_DOWN, handleControlMouseDown);
 				popover.open = false;
+				openPicker = null;
 			}
 		}
 		
