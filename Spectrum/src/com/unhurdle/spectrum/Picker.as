@@ -9,11 +9,11 @@ package com.unhurdle.spectrum
 	import com.unhurdle.spectrum.data.IMenuItem;
 	import com.unhurdle.spectrum.data.MenuItem;
 	import com.unhurdle.spectrum.interfaces.IKeyboardNavigateable;
-	import com.unhurdle.spectrum.utils.cloneNativeKeyboardEvent;
 	import com.unhurdle.spectrum.utils.getExplicitZIndex;
 	import com.unhurdle.spectrum.utils.getKeyFromKeyCode;
 
 	import org.apache.royale.collections.IArrayList;
+	import org.apache.royale.core.IItemRendererOwnerView;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.KeyboardEvent;
 	import org.apache.royale.events.MouseEvent;
@@ -134,6 +134,11 @@ package com.unhurdle.spectrum
 			if(searchable){
 				popover.search.input.focus();
 			}
+			if (selectedIndex > -1)
+			{
+				(popover.list.view as IItemRendererOwnerView).getItemRendererForIndex(selectedIndex).element.scrollIntoView();
+			}
+
 		}
 		private function closePopup():void{
 			if(popover && popover.open){
