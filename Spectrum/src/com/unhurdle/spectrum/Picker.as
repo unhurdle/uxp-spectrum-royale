@@ -43,9 +43,6 @@ package com.unhurdle.spectrum
 		{
 			super();
 		}
-		
-		private static var openPicker:Picker;
-
 		override protected function getSelector():String{
 			return "spectrum-Picker";
 		}
@@ -61,6 +58,7 @@ package com.unhurdle.spectrum
 			_div = new Div()
 			_div.className = appendSelector("-trigger spectrum-FieldButton");
 			_div.addEventListener(KeyboardEvent.KEY_DOWN, handleKeyDown);
+			_div.addEventListener(MouseEvent.MOUSE_DOWN, handleControlMouseDown);
 			addElement(div);
 			span = new Span();
 			// span.className = appendSelector("-label");
@@ -124,10 +122,6 @@ package com.unhurdle.spectrum
 		}
 		private var zIndexSet:Boolean = false;
 		private function openPopup():void{
-			if (openPicker) {
-				openPicker.closePopup();
-			}
-			openPicker = this;
 			if(!zIndexSet){
 				var zIndex:Number = getExplicitZIndex(this);
 				if(zIndex > 2){
@@ -137,7 +131,6 @@ package com.unhurdle.spectrum
 			}
 			popover.open = true;
 			popover.filterFunction = filterFunction;
-			_div.addEventListener(MouseEvent.MOUSE_DOWN, handleControlMouseDown);
 			if(searchable){
 				popover.search.input.focus();
 			}
@@ -151,15 +144,15 @@ package com.unhurdle.spectrum
 		}
 		private function closePopup():void{
 			if(popover && popover.open){
-				_div.removeEventListener(MouseEvent.MOUSE_DOWN, handleControlMouseDown);
 				popover.open = false;
-				openPicker = null;
 			}
 		}
 		
 		protected function handleControlMouseDown(event:MouseEvent):void
 		{			
-			event.stopImmediatePropagation();
+			if(popover.open){
+				event.stopImmediatePropagation();
+			}
 		}
 		public function get dataProvider():Object{
 			return menu.dataProvider;
