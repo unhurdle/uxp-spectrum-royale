@@ -55,7 +55,7 @@ package com.unhurdle.spectrum
       // elem.appendChild(input.element);
       input.tabFocusable = false;
       tagGroup.addElement(input);
-      setStyle("height","fit-content");
+      setStyle("height","auto");
       setStyle("min-height","62px");
       return elem;
     }
