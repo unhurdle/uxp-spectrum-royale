@@ -24,7 +24,6 @@ package com.unhurdle.spectrum
       span = new TextNode("");
       span.element = newElement("span") as HTMLSpanElement;
       span.className = getSelector()+"Label";
-      span.element.style.display = "contents";
       elem.appendChild(span.element);
       clearButton = new ClearButton();
       clearButton.toggle(getSelector()+"ClearButton",true);
