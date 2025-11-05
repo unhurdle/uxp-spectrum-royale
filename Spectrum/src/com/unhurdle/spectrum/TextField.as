@@ -230,6 +230,9 @@ package com.unhurdle.spectrum
         if(getElementIndex(validIcon) == -1){
           addElement(validIcon);
         }
+        if(invalidTooltip){
+          invalidTooltip.toolTip = '';
+        }
       } else{
         if(validIcon && getElementIndex(validIcon) != -1){
           removeElement(validIcon);
@@ -297,6 +300,9 @@ package com.unhurdle.spectrum
         }
         if(invalidIcon && getElementIndex(invalidIcon) != -1){
           removeElement(invalidIcon);
+        }
+        if(invalidTooltip){
+          invalidTooltip.toolTip = '';
         }
       }
     }
