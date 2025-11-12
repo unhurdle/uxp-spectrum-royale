@@ -110,6 +110,9 @@ package com.unhurdle.spectrum.renderers
         imageIcon.setStyle("display","none");
       }
       createIcon();
+      if(menuItem.toolTipBead){
+				addBead(menuItem.toolTipBead);
+      }
     }
     
     private function elementHasSubMenu(e:Element):Boolean{

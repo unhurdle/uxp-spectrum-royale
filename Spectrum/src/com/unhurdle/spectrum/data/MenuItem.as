@@ -1,5 +1,7 @@
 package com.unhurdle.spectrum.data
 {
+  import com.unhurdle.spectrum.AdaptiveTooltipBead;
+
   public class MenuItem extends ListItem implements IMenuItem
   {
     public function MenuItem(text:String = null)
@@ -53,5 +55,18 @@ package com.unhurdle.spectrum.data
     {
     	_subMenu = value;
     }
+
+    private var _toolTipBead:AdaptiveTooltipBead;
+
+    public function get toolTipBead():AdaptiveTooltipBead
+    {
+    	return _toolTipBead;
+    }
+
+    public function set toolTipBead(value:AdaptiveTooltipBead):void
+    {
+    	_toolTipBead = value;
+    }
+
   }
 }
