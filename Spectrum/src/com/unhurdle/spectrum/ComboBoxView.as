@@ -247,6 +247,16 @@ package com.unhurdle.spectrum{
 				return;
 			}
 			_currentText = textfield.text;
+			updateFilteredDataProvider();
+			updatePopupVisibility();
+		}
+
+		/**
+		 * Updates the filtered data provider based on the current text input
+		 * and sets the selected index in the original data provider
+		 */
+		private function updateFilteredDataProvider():void
+		{
 			var dataProvider:Object = model.dataProvider;
 			if(textfield.text && model.dataProvider){
 				dataProvider = comboHost.filterFunction(textfield.text,model.dataProvider);
@@ -264,10 +274,14 @@ package com.unhurdle.spectrum{
 				}
 			}
 			model.selectedIndex = selectedIndex;
-			// if(dataProvider && model.selectedItem && dataProvider.indexOf(model.selectedItem) == -1){
-			// 	model.selectedItem = null;
-			// }
-			// show the popup while typing
+			list.selectedItem = model.selectedItem;
+		}
+
+		/**
+		 * Updates popup visibility based on whether the filtered list is empty
+		*/
+		private function updatePopupVisibility():void
+		{
 			var storedIsListEmpty:Boolean = isListEmpty;
 			if(!popUpVisible && !storedIsListEmpty){
 				popUpVisible = true;
@@ -275,7 +289,6 @@ package com.unhurdle.spectrum{
 			{
 				popUpVisible = false;
 			}
-			list.selectedItem = model.selectedItem;
 		}
 		/**
 		 *  Returns whether or not the pop-up is visible.
@@ -326,8 +339,11 @@ package com.unhurdle.spectrum{
 				}
 				_popup.addEventListener(MouseEvent.MOUSE_DOWN, handleControlMouseDown);
 				comboHost.addEventListener(MouseEvent.MOUSE_DOWN, handleControlMouseDown);
-                comboHost.topMostEventDispatcher.addEventListener(MouseEvent.MOUSE_DOWN, handleTopMostEventDispatcherMouseDown);				_popup.open = true;
+                comboHost.topMostEventDispatcher.addEventListener(MouseEvent.MOUSE_DOWN, handleTopMostEventDispatcherMouseDown);
+				_popup.open = true;
                 positionPopup();
+				updateFilteredDataProvider();
+				updatePopupVisibility();
 			}
 			//TODO how to handle keyboard and mouse focus?
 			textfield.focus();
