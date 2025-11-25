@@ -322,10 +322,6 @@ package com.unhurdle.spectrum
       invalidIcon.addBead(invalidTooltip);
       invalidIcon.setStyle("pointer-events","auto");
       invalidTooltip.autoClose = invalidAutoClose;
-      COMPILE::JS{
-        invalidIcon.width = invalidIcon.element.clientWidth;
-        invalidIcon.height = invalidIcon.element.clientHeight;
-      }
       invalidTooltip.toolTip = invalidText;
     };
 
