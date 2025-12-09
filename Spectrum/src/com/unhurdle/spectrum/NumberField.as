@@ -59,9 +59,10 @@ package com.unhurdle.spectrum
     public function set suffix(value:String):void{
     	_suffix = value;
     }
-    private function handleInput(ev:Event):void{
+    private function handleInput(ev:*):void{
       COMPILE::JS
       {
+        ev.target.value = ev.target.value.replace(/[^0-9]/g, "");
         if(suffix && !isNaN(value)){
           requestAnimationFrame(positionSuffix);
         } else if(suffixSpan){

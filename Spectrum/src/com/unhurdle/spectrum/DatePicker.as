@@ -131,6 +131,17 @@ package com.unhurdle.spectrum
       }
     	_invalid = value;
     }
+    public function get invalidText():String
+    {
+    	return input.invalidText;
+    }
+    public function set invalidText(value:String):void
+    {
+      input.invalidText = value;
+      if(input2){
+        input2.invalidText = value;
+      }
+    }
     private var _disabled:Boolean;
 
     public function get disabled():Boolean
