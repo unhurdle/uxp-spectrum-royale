@@ -34,6 +34,7 @@ package com.unhurdle.spectrum{
 	 */
 	public class ComboBoxView extends BeadViewBase implements IComboBoxView
 	{
+		private var _filterPending:Boolean;
 		public function ComboBoxView()
 		{
 			super();
@@ -246,9 +247,18 @@ package com.unhurdle.spectrum{
 				// modifier key only, ignore
 				return;
 			}
+			var listWasEmpty:Boolean = isListEmpty;
 			_currentText = textfield.text;
 			updateFilteredDataProvider();
 			updatePopupVisibility();
+			if (!listWasEmpty && isListEmpty)
+			{
+				// popup was opened due to keyboard change we want to filter the data provider
+				// when popup is made visible
+				// we don't want to filter if it was opened due to a mouse click
+				_filterPending = true;
+				updateFilteredDataProvider();
+			}
 		}
 
 		/**
@@ -342,8 +352,12 @@ package com.unhurdle.spectrum{
                 comboHost.topMostEventDispatcher.addEventListener(MouseEvent.MOUSE_DOWN, handleTopMostEventDispatcherMouseDown);
 				_popup.open = true;
                 positionPopup();
-				updateFilteredDataProvider();
-				updatePopupVisibility();
+				if (_filterPending)
+				{
+					updateFilteredDataProvider();
+					updatePopupVisibility();
+					_filterPending = false;
+				}
 			}
 			//TODO how to handle keyboard and mouse focus?
 			textfield.focus();
