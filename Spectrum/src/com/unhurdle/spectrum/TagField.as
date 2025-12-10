@@ -102,13 +102,10 @@ package com.unhurdle.spectrum
     private var updating:Boolean;
     //TODO just show and hide rather than add and remove from dom
     protected function updateValue(ev:InputEvent = null):void{
-      if(!tagList){
-        return;
-      }
-      // if(updating){// don't do nested updates
-      //   return;
-      // }
-      // updating = true;
+      if(!tagList)return;
+      // don't do nested updates
+      if(updating)return;
+      updating = true;
       valuesArr = [];
       var len:int = tagList.length;
       var labels:Array = labelList;
@@ -125,6 +122,7 @@ package com.unhurdle.spectrum
         }
         if(_limitToList && !valuesArr.length && ev && ev.data){
           input.text = text.substring(0, text.length - ev.data.length);
+          updating = false;
           return updateValue();
         }
       }
@@ -139,7 +137,7 @@ package com.unhurdle.spectrum
         }
       }
         calculatePosition();
-        // updating = false;
+        updating = false;
     }
 
     // public function createPopover():void{
@@ -315,8 +313,8 @@ package com.unhurdle.spectrum
         }
       }
     }
-    private function inputValueChanged():void{
-      updateValue();
+    private function inputValueChanged(ev:InputEvent):void{
+      updateValue(ev);
       dispatchEvent(new ValueEvent("inputChanged",input.text));
     }
 
