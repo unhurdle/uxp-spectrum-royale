@@ -414,7 +414,7 @@ package com.unhurdle.spectrum
 				popover.search.input.addEventListener(KeyboardEvent.KEY_DOWN, handleKeyDown);
 			}
 		}
-		private function handleKeyDown(event:*):void
+		protected function handleKeyDown(event:*):void
 		{
 			if(!event.key){
 				event.key = getKeyFromKeyCode(event.keyCode);
