@@ -53,6 +53,9 @@ package com.unhurdle.spectrum
           _rightLabelElem.text = _rightLabel;
           _rightLabelElem.element.style.marginLeft = "35px";
           _rightLabelElem.element.style.marginRight = "35px";
+          if(!_rightLabel){
+            _rightLabelElem.element.style.display = "none";
+          }
           element.appendChild(_rightLabelElem.element);
         }
         debouncedSetInput();
@@ -63,16 +66,20 @@ package com.unhurdle.spectrum
       if(label){
         if(_rightLabelElem){
           _rightLabelElem.text = label;
+          _rightLabelElem.element.style.display = "";
         }
         if(_leftLabelElem){
           _leftLabelElem.text = label
+          _leftLabelElem.element.style.display = "";
         }
       } else {
         if(_rightLabelElem){
           _rightLabelElem.text = _rightLabel;
+          _rightLabelElem.element.style.display = "none";
         }
         if(_leftLabelElem){
           _leftLabelElem.text = _leftLabel;
+          _leftLabelElem.element.style.display = "none";
         }
       }
     }
@@ -109,6 +116,7 @@ package com.unhurdle.spectrum
       _rightLabel = value
       if(_rightLabelElem){
         _rightLabelElem.text = value;
+        _rightLabelElem.element.style.display = value ? "" : "none";
       }
     }
     private var _leftLabel:String = "";
@@ -122,6 +130,7 @@ package com.unhurdle.spectrum
       _leftLabel = value
       if(_leftLabelElem){
         _leftLabelElem.text = value;
+        _leftLabelElem.element.style.display = value ? "" : "none";
       }
     }
     private var _checked:Boolean;
