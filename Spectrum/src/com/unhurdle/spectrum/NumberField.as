@@ -62,7 +62,7 @@ package com.unhurdle.spectrum
     private function handleInput(ev:*):void{
       COMPILE::JS
       {
-        ev.target.value = ev.target.value.replace(/[^0-9]/g, "");
+        ev.target.value = ev.target.value.replace(/[^0-9\.\-]/g, "");
         if(suffix && !isNaN(value)){
           requestAnimationFrame(positionSuffix);
         } else if(suffixSpan){
