@@ -34,7 +34,7 @@ package com.unhurdle.spectrum
 
     public function get placeholderText():String
     {
-    	return _placeholderText;
+    	return _placeholderText || "";
     }
     override public function set text(value:String):void{
       super.text = value;
