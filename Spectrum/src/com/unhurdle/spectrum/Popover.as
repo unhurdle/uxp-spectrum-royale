@@ -52,6 +52,15 @@ package com.unhurdle.spectrum
 		}
 		public function set anchor(value:Rectangle):void{
 			_anchor = value;
+			COMPILE::JS
+			{
+				if(_open && dialog){
+					positionDialog();
+					if(tipDialog && tipElement){
+						positionTip();
+					}
+				}
+			}
 		}
 
 		private var _open:Boolean;
