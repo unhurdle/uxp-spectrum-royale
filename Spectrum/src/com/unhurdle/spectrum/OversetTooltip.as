@@ -30,7 +30,9 @@ package com.unhurdle.spectrum {
 			if (value is TextField) {
 				element = (value as TextField).input;
 			} else if (value is FieldButton) {
-				element = (value as FieldButton).element;
+				COMPILE::JS {
+					element = (value as FieldButton).element;
+				}
 			} else {
 				COMPILE::JS {
 					element = (value as ISpectrumElement).element;
