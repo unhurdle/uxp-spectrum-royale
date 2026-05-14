@@ -61,6 +61,7 @@ package com.unhurdle.spectrum
 			_div.addEventListener(MouseEvent.MOUSE_DOWN, handleControlMouseDown);
 			addElement(div);
 			span = new Span();
+			span.addBead(new OversetTooltip());
 			// span.className = appendSelector("-label");
 			span.className = appendSelector("-label");
 			div.addElement(span);

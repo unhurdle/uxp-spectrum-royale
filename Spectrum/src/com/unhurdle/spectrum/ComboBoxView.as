@@ -122,6 +122,7 @@ package com.unhurdle.spectrum{
 					comboHost.toggle("is-focused",false);
 				});
 			}
+			textfield.addBead(new OversetTooltip());
 			textfield.addEventListener(KeyboardEvent.KEY_UP,inputHandler);
 			textfield.addEventListener(KeyboardEvent.KEY_DOWN,handleKeyDown);
 			textfield.input.addEventListener("input", inputHandler);
