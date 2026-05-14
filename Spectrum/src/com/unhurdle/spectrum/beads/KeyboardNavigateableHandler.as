@@ -250,7 +250,7 @@ package com.unhurdle.spectrum.beads
         focusableItemRenderer = ir;
         COMPILE::JS
         {
-          ir.element.scrollIntoView({block: "nearest"});
+          ir.element.scrollIntoView({container: "nearest", block: "nearest"});
         }
 			} else {
         focusableItemRenderer = findFirstFocusable();
