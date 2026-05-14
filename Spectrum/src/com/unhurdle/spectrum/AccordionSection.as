@@ -10,6 +10,7 @@ package com.unhurdle.spectrum
     import org.apache.royale.core.IChild;
     import com.unhurdle.spectrum.utils.generateIcon;
     import org.apache.royale.events.Event;
+    import org.apache.royale.events.MouseEvent;
 
 	[Event(name="openChanged", type="org.apache.royale.events.Event")]
   public class AccordionSection extends Group
@@ -69,8 +70,9 @@ package com.unhurdle.spectrum
         headerIcon.type = type;
       }
     }
-    private function toggleSection():void{
+    private function toggleSection(ev:MouseEvent):void{
       if(!disabled){
+        ev.stopPropagation();
         open = !open;
       }
     }
