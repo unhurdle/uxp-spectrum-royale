@@ -63,7 +63,8 @@ package com.unhurdle.spectrum
     	return _selected;
     }
 
-    public function set selected(value:Boolean):void{
+    public function set selected(value:Boolean):void
+    {
       toggle("is-selected",value);
       _selected = value;
     }
