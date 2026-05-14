@@ -99,6 +99,8 @@ package com.unhurdle.spectrum
 		private function handlePopoverChange(ev:Event):void{
 			// _button.selected = popover.open;
 			toggle("is-open",popover.open);
+			// keep focus on button after closing it
+			// _button.focus();
 		}
 		private function positionPopup():void{
 			var componentBounds:Rectangle = DisplayUtils.getScreenBoundingRect(this);
