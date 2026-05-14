@@ -53,10 +53,10 @@ package com.unhurdle.spectrum
 				{
 					if(value){
 						setAttribute("disabled",true);
-						element.addEventListener('mousedown', onMouseDown);
+						element.removeEventListener('mousedown', onMouseDown);
 					} else {
 						removeAttribute("disabled");
-						element.removeEventListener('mousedown', onMouseDown);
+						element.addEventListener('mousedown', onMouseDown);
 					}
 				}
 			}
