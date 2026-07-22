@@ -239,6 +239,7 @@ package com.unhurdle.spectrum
         } else {
           setStyle("pointerEvents","auto");
         }
+        toggle("is-disabled",value);
       }
       _disabled = value;
       (element as HTMLButtonElement).disabled = value;
