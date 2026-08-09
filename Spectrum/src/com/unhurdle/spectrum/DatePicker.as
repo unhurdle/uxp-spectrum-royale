@@ -31,12 +31,7 @@ package com.unhurdle.spectrum
       return InputGroupInclude.getSelector() + value;
     }
 
-    private var _input:TextField;
-    public function get input():HTMLInputElement
-    {
-    	return _input.input;
-    }
-
+    private var input:TextField;
     private var input2:TextField;
     private var button:FieldButton;
     // private var datePicker:HTMLInputElement;
@@ -49,10 +44,10 @@ package com.unhurdle.spectrum
       super.createElement();
       //TODO is this right?
       className = InputGroupInclude.getSelector();
-      _input = new TextField();
-      _input.tabFocusable = false;
-      _input.toggle(appendInputGroup("-textfield"),true);
-      _input.input.classList.add(appendInputGroup('-input'));
+      input = new TextField();
+      input.tabFocusable = false;
+      input.toggle(appendInputGroup("-textfield"),true);
+      input.input.classList.add(appendInputGroup('-input'));
       // input.readOnly = true;
       button = new FieldButton()
       button.className = appendInputGroup("-button");
@@ -74,7 +69,7 @@ package com.unhurdle.spectrum
       path.d = "M6 12h4v4H6zm6 0h4v4h-4zm6 0h4v4h-4zm6 0h4v4h-4zM6 18h4v4H6zm6 0h4v4h-4zm6 0h4v4h-4zm6 0h4v4h-4zM6 24h4v4H6zm6 0h4v4h-4zm6 0h4v4h-4zm6 0h4v4h-4z";
       svgElement.addElement(path);
       button.iconElement = svgElement;
-      addElement(_input);
+      addElement(input);
       addElement(button);
       // element.appendChild(datePicker); 
 
@@ -108,7 +103,7 @@ package com.unhurdle.spectrum
     {
     	if(_quiet != !!value){
         toggle(appendInputGroup("--quiet"),value);
-        _input.quiet = value;
+        input.quiet = value;
         button.quiet = value;
         if(input2){
           input2.quiet = value;
@@ -130,7 +125,7 @@ package com.unhurdle.spectrum
         if(input2){
           input2.invalid = value;
         } else {
-          _input.invalid = value;
+          input.invalid = value;
         }
         button.invalid = value;
       }
@@ -138,11 +133,11 @@ package com.unhurdle.spectrum
     }
     public function get invalidText():String
     {
-    	return _input.invalidText;
+    	return input.invalidText;
     }
     public function set invalidText(value:String):void
     {
-      _input.invalidText = value;
+      input.invalidText = value;
       if(input2){
         input2.invalidText = value;
       }
@@ -158,7 +153,7 @@ package com.unhurdle.spectrum
     {
       if(value != !!_disabled){
         toggle("is-disabled",value);
-        _input.disabled = value;
+        input.disabled = value;
         button.disabled = value;
         if(input2){
           input2.disabled = value;
@@ -198,21 +193,21 @@ package com.unhurdle.spectrum
     }
     public function get placeHolder():String
     {
-    	return _input.placeholder;
+    	return input.placeholder;
     }
 
     public function set placeHolder(value:String):void
     {
-    	_input.placeholder = value;
+    	input.placeholder = value;
     }
      public function get text():String
     {
-    	return _input.text;
+    	return input.text;
     }
 
     public function set text(value:String):void
     {
-    	_input.text = value;
+    	input.text = value;
     }
     public var popover:Popover
     // COMPILE::JS
@@ -232,7 +227,7 @@ package com.unhurdle.spectrum
       var day:String = date.getDate().toString();
       day = day.length > 1 ? day : '0' + day;
       //TODO international formatting
-      _input.text = month + '/' + day + '/' +  year;
+      input.text = month + '/' + day + '/' +  year;
       dispatchEvent(new Event("change"));
     }
     public function selectDate(date:Date):void{
@@ -248,7 +243,7 @@ package com.unhurdle.spectrum
       if(range){
         //TODO
         // input.input.classList.add(appendDatePicker("-startField"),true);
-        _input.placeholder = dateFormat;
+        input.placeholder = dateFormat;
         // add dash
         var div:Div = new Div();
         div.className = appendSelector("-rangeDash");
@@ -261,13 +256,13 @@ package com.unhurdle.spectrum
         // input2.input.classList.add(appendDatePicker("-endField"));
         input2.placeholder = dateFormat;
         if(datetimeRange){
-          _input.placeholder +=" hh:mm a";
+          input.placeholder +=" hh:mm a";
           input2.placeholder +=" hh:mm a";
         }
         if(invalid){
           input2.invalid = true;
-          _input.invalid = false;
-          _input.toggle("is-invalid",true);
+          input.invalid = false;
+          input.toggle("is-invalid",true);
         }
         input2.quiet = quiet;
         input2.disabled = disabled;
@@ -344,12 +339,12 @@ package com.unhurdle.spectrum
         if(_datetimeRange != !!value){
           toggle(valueToSelector("datetimeRange"),value);
           if(value){            
-            _input.placeholder = dateFormat + " hh:mm a";
+            input.placeholder = dateFormat + " hh:mm a";
             if(input2){
               input2.placeholder = dateFormat + " hh:mm a";
             }
           }else{
-            _input.placeholder = dateFormat;
+            input.placeholder = dateFormat;
             if(input2){
               input2.placeholder = dateFormat;
             }
