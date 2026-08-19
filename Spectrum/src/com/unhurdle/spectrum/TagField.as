@@ -28,6 +28,21 @@ package com.unhurdle.spectrum
     
     private var input:TextField;
     private var tagGroup:TagGroup;
+    private var _placeholder:String;
+		
+		public function get placeholder():String
+		{
+			return _placeholder;
+		}
+
+		public function set placeholder(value:String):void
+		{
+			_placeholder = value;
+			if (input)
+			{
+				input.placeholder = value;
+			}
+		}
 
     public function get tags():Array
     {
@@ -43,6 +58,7 @@ package com.unhurdle.spectrum
       tagGroup.setStyle('flex-shrink','1');
       elem.appendChild(tagGroup.element);
       input = new TextField();
+      input.placeholder = _placeholder;
       input.quiet = true;
       input.defaultDivDisplay = "inline-block";
       input.setStyle("display","inline-block");
