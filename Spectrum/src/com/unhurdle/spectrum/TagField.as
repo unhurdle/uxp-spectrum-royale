@@ -58,7 +58,7 @@ package com.unhurdle.spectrum
       tagGroup.setStyle('flex-shrink','1');
       elem.appendChild(tagGroup.element);
       input = new TextField();
-      input.placeholder = _placeholder;
+      input.placeholder = _placeholder || "";
       input.quiet = true;
       input.defaultDivDisplay = "inline-block";
       input.setStyle("display","inline-block");
@@ -281,7 +281,7 @@ package com.unhurdle.spectrum
             dispatchEvent(new ValueEvent("tagRemoved",ev.currentTarget));
             dispatchEvent(new Event("change"));
             if (!tagGroup.tags?.length) {
-              input.placeholder = _placeholder;
+              input.placeholder = _placeholder || "";
             }
           });
           tagGroup.addTag(tag);
@@ -375,7 +375,7 @@ package com.unhurdle.spectrum
         dispatchEvent(new ValueEvent("tagRemoved",tag));
         dispatchEvent(new Event("change"));
         if(!tagGroup.tags?.length){
-					input.placeholder = _placeholder;
+					input.placeholder = _placeholder || "";
 				}
       }
       calculatePosition();
@@ -385,7 +385,7 @@ package com.unhurdle.spectrum
       for each(var tag:Tag in tags){
         tagGroup.removeElement(tag);
       }
-      input.placeholder = _placeholder;
+      input.placeholder = _placeholder || "";
       calculatePosition();
     }
     private var _labelField:String = "label";
