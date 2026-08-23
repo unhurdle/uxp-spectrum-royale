@@ -149,7 +149,12 @@ package com.unhurdle.spectrum
 		public function positionPopup(componentBounds:Rectangle,preferredWidth:Number = NaN,setHorizontalPadding:Boolean = true):void{
 			var minHeight:Number = _minMenuHeight + 6;
 			// Figure out direction and max size
-			var appBounds:Rectangle = DisplayUtils.getScreenBoundingRect(Application.current.initialView);
+			var appBounds:Rectangle;
+			if(!Application.current.initialView || Application.current.initialView.width == 0 || Application.current.initialView.height == 0){
+				appBounds = new Rectangle(0, 0, Application.current.width, Application.current.height);
+			} else {
+				appBounds = DisplayUtils.getScreenBoundingRect(Application.current.initialView);
+			}
 			var spaceToBottom:Number = appBounds.bottom - componentBounds.bottom;
 			var spaceToTop:Number = componentBounds.top - appBounds.top;
 			var spaceOnBottom:Boolean = spaceToBottom >= spaceToTop;
