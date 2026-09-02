@@ -2,6 +2,7 @@ package com.unhurdle.spectrum{
 	import com.unhurdle.spectrum.const.IconType;
 	import com.unhurdle.spectrum.data.MenuItem;
 	import com.unhurdle.spectrum.includes.InputGroupInclude;
+	import com.unhurdle.spectrum.utils.OutsidePointerTracker;
 	import com.unhurdle.spectrum.utils.getExplicitZIndex;
 	import com.unhurdle.spectrum.utils.getKeyFromKeyCode;
 
@@ -95,6 +96,7 @@ package com.unhurdle.spectrum{
 		}
 		
 		private var comboHost:ComboBox;
+		private var outsidePointerTracker:OutsidePointerTracker;
 		private var model:IComboBoxModel;
 		private var _currentText:String;
 		/**
@@ -348,11 +350,21 @@ package com.unhurdle.spectrum{
 					}
 					indexSet = true;
 				}
-				_popup.addEventListener(MouseEvent.MOUSE_DOWN, handleControlMouseDown);
-				comboHost.addEventListener(MouseEvent.MOUSE_DOWN, handleControlMouseDown);
-                comboHost.topMostEventDispatcher.addEventListener(MouseEvent.MOUSE_DOWN, handleTopMostEventDispatcherMouseDown);
+				COMPILE::SWF
+				{
+					_popup.addEventListener(MouseEvent.MOUSE_DOWN, handleControlMouseDown);
+					comboHost.addEventListener(MouseEvent.MOUSE_DOWN, handleControlMouseDown);
+					comboHost.topMostEventDispatcher.addEventListener(MouseEvent.MOUSE_DOWN, handleTopMostEventDispatcherMouseDown);
+				}
 				_popup.open = true;
                 positionPopup();
+				COMPILE::JS
+				{
+					if(!outsidePointerTracker){
+						outsidePointerTracker = new OutsidePointerTracker([comboHost.element, _popup.element], closePopup);
+					}
+					outsidePointerTracker.start();
+				}
 				if (_filterPending)
 				{
 					updateFilteredDataProvider();
@@ -367,12 +379,12 @@ package com.unhurdle.spectrum{
 			var componentBounds:Rectangle = DisplayUtils.getScreenBoundingRect(comboHost);
 			_popup.positionPopup(componentBounds,comboHost.width);
 		}
-
+		COMPILE::SWF
 		protected function handleControlMouseDown(event:MouseEvent):void
 		{			
 			event.stopImmediatePropagation();
 		}
-		
+		COMPILE::SWF
 		protected function handleTopMostEventDispatcherMouseDown(event:MouseEvent):void
 		{
 			closePopup();
@@ -380,9 +392,18 @@ package com.unhurdle.spectrum{
 
 		private function closePopup():void{
 			if(_popup){
-				_popup.removeEventListener(MouseEvent.MOUSE_DOWN, handleControlMouseDown);
-				comboHost.removeEventListener(MouseEvent.MOUSE_DOWN, handleControlMouseDown);
-				comboHost.topMostEventDispatcher.removeEventListener(MouseEvent.MOUSE_DOWN, handleTopMostEventDispatcherMouseDown);
+				COMPILE::JS
+				{
+					if(outsidePointerTracker){
+						outsidePointerTracker.stop();
+					}
+				}
+				COMPILE::SWF
+				{
+					_popup.removeEventListener(MouseEvent.MOUSE_DOWN, handleControlMouseDown);
+					comboHost.removeEventListener(MouseEvent.MOUSE_DOWN, handleControlMouseDown);
+					comboHost.topMostEventDispatcher.removeEventListener(MouseEvent.MOUSE_DOWN, handleTopMostEventDispatcherMouseDown);
+				}
 				_popup.open = false;
 			}
 			textfield.focus();

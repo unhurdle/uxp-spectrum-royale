@@ -4,6 +4,7 @@ package com.unhurdle.spectrum
     import org.apache.royale.core.WrappedHTMLElement;
   }
   import com.unhurdle.spectrum.model.DatePickerModel;
+  import com.unhurdle.spectrum.utils.OutsidePointerTracker;
 
   import org.apache.royale.events.Event;
   import org.apache.royale.svg.elements.Path;
@@ -40,6 +41,7 @@ package com.unhurdle.spectrum
     private var input2:TextField;
     private var button:FieldButton;
     // private var datePicker:HTMLInputElement;
+    private var outsidePointerTracker:OutsidePointerTracker;
     
     public var dateFormat:String = "mm/dd/yyyy";
     
@@ -88,10 +90,12 @@ package com.unhurdle.spectrum
 
       return element;
     }
+    COMPILE::SWF
     protected function handleControlMouseDown(event:MouseEvent):void
 		{			
 			event.stopImmediatePropagation();
 		}
+    COMPILE::SWF
     private function handleTopMostEventDispatcherMouseDown():void
     {
       closePopover();
@@ -176,11 +180,21 @@ package com.unhurdle.spectrum
     }
     private function openPopover():void
     {
-      button.addEventListener(MouseEvent.MOUSE_DOWN, handleControlMouseDown);
-      popover.addEventListener(MouseEvent.MOUSE_DOWN, handleControlMouseDown);
-      topMostEventDispatcher.addEventListener(MouseEvent.MOUSE_DOWN, handleTopMostEventDispatcherMouseDown);
+      COMPILE::SWF
+      {
+        button.addEventListener(MouseEvent.MOUSE_DOWN, handleControlMouseDown);
+        popover.addEventListener(MouseEvent.MOUSE_DOWN, handleControlMouseDown);
+        topMostEventDispatcher.addEventListener(MouseEvent.MOUSE_DOWN, handleTopMostEventDispatcherMouseDown);
+      }
       popover.open = true;
       button.selected = true;
+      COMPILE::JS
+      {
+        if(!outsidePointerTracker){
+          outsidePointerTracker = new OutsidePointerTracker([element, popover.element], closePopover);
+        }
+        outsidePointerTracker.start();
+      }
       var componentBounds:Rectangle = DisplayUtils.getScreenBoundingRect(this);
       popover.y = componentBounds.bottom;
       popover.x = componentBounds.left;
@@ -190,9 +204,16 @@ package com.unhurdle.spectrum
     }
     private function closePopover():void
     {
-      button.removeEventListener(MouseEvent.MOUSE_DOWN, handleControlMouseDown);
-      popover.removeEventListener(MouseEvent.MOUSE_DOWN, handleControlMouseDown);
-      topMostEventDispatcher.removeEventListener(MouseEvent.MOUSE_DOWN, handleTopMostEventDispatcherMouseDown);
+      COMPILE::JS
+      {
+        outsidePointerTracker.stop();
+      }
+      COMPILE::SWF
+      {
+        button.removeEventListener(MouseEvent.MOUSE_DOWN, handleControlMouseDown);
+        popover.removeEventListener(MouseEvent.MOUSE_DOWN, handleControlMouseDown);
+        topMostEventDispatcher.removeEventListener(MouseEvent.MOUSE_DOWN, handleTopMostEventDispatcherMouseDown);
+      }
       popover.open = false;
       button.selected = false;
     }

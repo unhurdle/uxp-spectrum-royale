@@ -4,6 +4,8 @@ package com.unhurdle.spectrum
     import org.apache.royale.core.WrappedHTMLElement;
     import org.apache.royale.html.util.addElementToWrapper;
   }
+  import com.unhurdle.spectrum.utils.OutsidePointerTracker;
+
   import org.apache.royale.core.IHasLabelField;
   import org.apache.royale.events.Event;
   import org.apache.royale.events.MouseEvent;
@@ -11,7 +13,7 @@ package com.unhurdle.spectrum
   import org.apache.royale.geom.Rectangle;
   import org.apache.royale.html.util.getLabelFromData;
   import org.apache.royale.utils.DisplayUtils;
- 
+
   [Event(name="inputChanged", type="org.apache.royale.events.Event")]
   [Event(name="change", type="org.apache.royale.events.Event")]
   [Event(name="tagAdded", type="org.apache.royale.events.ValueEvent")]
@@ -85,6 +87,7 @@ package com.unhurdle.spectrum
      * @royaleignorecoercion com.unhurdle.spectrum.Tag
      */
     private var comboBoxList:ComboBoxList;
+		private var outsidePointerTracker:OutsidePointerTracker;
     private var valuesArr:Array = [];
     private var ind:Number = 0;
     private function selectValue(ev:ValueEvent):void{
@@ -147,9 +150,9 @@ package com.unhurdle.spectrum
         comboBoxList.list.dataProvider = valuesArr.slice();
         if(valuesArr.length){
           positionPopup();//need to position before opening because adding it to the dom changes the position
-          comboBoxList.open = true;
+         setComboBoxListOpen(true);
         }else{
-          comboBoxList.open = false;
+          setComboBoxListOpen(false);
         }
       }
         calculatePosition();
@@ -174,8 +177,21 @@ package com.unhurdle.spectrum
     //     popover.list.blur();
     //   }
     // }
-    protected function handleControlMouseDown(event:MouseEvent):void{			
-			event.stopImmediatePropagation();
+    private function setComboBoxListOpen(value:Boolean):void
+		{
+			comboBoxList.open = value;
+			if(value){
+				if(!outsidePointerTracker){
+					outsidePointerTracker = new OutsidePointerTracker([element, comboBoxList.element], closeComboBoxList);
+				}
+				outsidePointerTracker.start();
+			} else if(outsidePointerTracker){
+				outsidePointerTracker.stop();
+			}
+		}
+		private function closeComboBoxList():void
+		{
+			setComboBoxListOpen(false);
 		}
     public function get minMenuHeight():Number{
       if(!comboBoxList){
@@ -245,7 +261,7 @@ package com.unhurdle.spectrum
 					return;
 				}
         if(comboBoxList){
-          comboBoxList.open = false;
+          setComboBoxListOpen(false);
         }
         // var len:int = tagGroup.numElements;
         var tags:Array = tagGroup.tags;
@@ -331,7 +347,6 @@ package com.unhurdle.spectrum
             input.addEventListener("onArrowDown",selectValue);
             input.addEventListener("onArrowUp",selectValue);
             input.element.addEventListener("focus",updateValue,true);
-            input.addEventListener(MouseEvent.MOUSE_DOWN, handleControlMouseDown);
           }
         } else if(comboBoxList.open){
           updateValue();
@@ -345,7 +360,9 @@ package com.unhurdle.spectrum
           input.removeEventListener("onArrowDown",selectValue);
           input.removeEventListener("onArrowUp",selectValue);
           input.element.removeEventListener("focus",updateValue,true);
-          input.removeEventListener(MouseEvent.MOUSE_DOWN, handleControlMouseDown);
+          if(outsidePointerTracker){
+						outsidePointerTracker.stop();
+					}
         }
       }
     }

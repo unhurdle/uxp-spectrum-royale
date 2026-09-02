@@ -9,6 +9,7 @@ package com.unhurdle.spectrum
 	import com.unhurdle.spectrum.data.IMenuItem;
 	import com.unhurdle.spectrum.data.MenuItem;
 	import com.unhurdle.spectrum.interfaces.IKeyboardNavigateable;
+	import com.unhurdle.spectrum.utils.OutsidePointerTracker;
 	import com.unhurdle.spectrum.utils.getExplicitZIndex;
 	import com.unhurdle.spectrum.utils.getKeyFromKeyCode;
 
@@ -58,7 +59,6 @@ package com.unhurdle.spectrum
 			_div = new Div()
 			_div.className = appendSelector("-trigger spectrum-FieldButton");
 			_div.addEventListener(KeyboardEvent.KEY_DOWN, handleKeyDown);
-			_div.addEventListener(MouseEvent.MOUSE_DOWN, handleControlMouseDown);
 			addElement(div);
 			span = new Span();
 			span.addBead(new OversetTooltip());
@@ -94,6 +94,7 @@ package com.unhurdle.spectrum
 			return elem;
 		}
 		public var popover:ComboBoxList;
+		private var outsidePointerTracker:OutsidePointerTracker;
 		public function get menu():Menu{
 			return popover.list;
 		}
@@ -133,6 +134,13 @@ package com.unhurdle.spectrum
 				zIndexSet = true;
 			}
 			popover.open = true;
+			COMPILE::JS
+			{
+				if(!outsidePointerTracker){
+					outsidePointerTracker = new OutsidePointerTracker([element, popover.element], closePopup);
+				}
+				outsidePointerTracker.start();
+			}
 			popover.filterFunction = filterFunction;
 			if(searchable){
 				popover.search.input.focus();
@@ -147,14 +155,11 @@ package com.unhurdle.spectrum
 		}
 		private function closePopup():void{
 			if(popover && popover.open){
+				COMPILE::JS
+				{
+					outsidePointerTracker.stop();
+				}
 				popover.open = false;
-			}
-		}
-		
-		protected function handleControlMouseDown(event:MouseEvent):void
-		{			
-			if(popover.open){
-				event.stopImmediatePropagation();
 			}
 		}
 		public function get dataProvider():Object{

@@ -18,6 +18,7 @@ package com.unhurdle.spectrum
 	import com.unhurdle.spectrum.data.IMenuItem;
   import com.unhurdle.spectrum.utils.getExplicitZIndex; 
 	import com.unhurdle.spectrum.utils.generateIcon;
+  import com.unhurdle.spectrum.utils.OutsidePointerTracker;
   /**
    * TODO maybe add flexible with styling of min-width: 0;width:auto;
    */
@@ -65,6 +66,7 @@ package com.unhurdle.spectrum
       return elem;
     }
     public var popover:ComboBoxList;
+    private var outsidePointerTracker:OutsidePointerTracker;
     private function get menu():Menu{
       return popover.list;
     }
@@ -127,15 +129,32 @@ package com.unhurdle.spectrum
         popover.setStyle("z-index",zIndex);
       }
       popover.open = true;
-			button.addEventListener(MouseEvent.MOUSE_DOWN, handleControlMouseDown);
-      popover.addEventListener(MouseEvent.MOUSE_DOWN, handleControlMouseDown);
-			topMostEventDispatcher.addEventListener(MouseEvent.MOUSE_DOWN, handleTopMostEventDispatcherMouseDown);
+      COMPILE::JS
+      {
+        if(!outsidePointerTracker){
+          outsidePointerTracker = new OutsidePointerTracker([button.element, popover.element], closePopup);
+        }
+        outsidePointerTracker.start();
+      }
+      COMPILE::SWF
+			{
+        button.addEventListener(MouseEvent.MOUSE_DOWN, handleControlMouseDown);
+        popover.addEventListener(MouseEvent.MOUSE_DOWN, handleControlMouseDown);
+        topMostEventDispatcher.addEventListener(MouseEvent.MOUSE_DOWN, handleTopMostEventDispatcherMouseDown);
+      }
     }
     private function closePopup():void{
       if(popover && popover.open){
-  			popover.removeEventListener(MouseEvent.MOUSE_DOWN, handleControlMouseDown);
-	  		button.removeEventListener(MouseEvent.MOUSE_DOWN, handleControlMouseDown);
-		  	topMostEventDispatcher.removeEventListener(MouseEvent.MOUSE_DOWN, handleTopMostEventDispatcherMouseDown);
+        COMPILE::JS
+        {
+          outsidePointerTracker.stop();
+        }
+        COMPILE::SWF
+        {
+          popover.removeEventListener(MouseEvent.MOUSE_DOWN, handleControlMouseDown);
+          button.removeEventListener(MouseEvent.MOUSE_DOWN, handleControlMouseDown);
+          topMostEventDispatcher.removeEventListener(MouseEvent.MOUSE_DOWN, handleTopMostEventDispatcherMouseDown);
+        }
         popover.open = false;
       }
 
@@ -164,10 +183,12 @@ package com.unhurdle.spectrum
         popover.position = "top";
       }
     }
+    COMPILE::SWF
 		protected function handleControlMouseDown(event:MouseEvent):void
 		{			
 			event.stopImmediatePropagation();
 		}
+    COMPILE::SWF
 		protected function handleTopMostEventDispatcherMouseDown(event:MouseEvent):void
 		{
       closePopup();

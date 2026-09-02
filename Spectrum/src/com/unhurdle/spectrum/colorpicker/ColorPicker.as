@@ -17,6 +17,7 @@ package com.unhurdle.spectrum.colorpicker
 	import org.apache.royale.events.ValueEvent;
 	import org.apache.royale.events.Event;
 	import com.unhurdle.spectrum.utils.getExplicitZIndex;
+	import com.unhurdle.spectrum.utils.OutsidePointerTracker;
 
 	[Event(name="colorChanged", type="org.apache.royale.events.ValueEvent")]
 	[Event(name="colorCommit", type="org.apache.royale.events.ValueEvent")]
@@ -53,6 +54,7 @@ package com.unhurdle.spectrum.colorpicker
 		}
 		
 		protected var button:ColorSwatch;
+		private var outsidePointerTracker:OutsidePointerTracker;
 		public function get appliedColor():IRGBA{
 			return button.color;
 		}
@@ -267,12 +269,18 @@ package com.unhurdle.spectrum.colorpicker
 			}
 			setPopupProperties();
 			popover.open = true;
-			button.addEventListener(MouseEvent.MOUSE_DOWN, handleControlMouseDown);
-			popover.addEventListener(MouseEvent.MOUSE_DOWN, handleControlMouseDown);
-			topMostEventDispatcher.addEventListener(MouseEvent.MOUSE_DOWN, handleTopMostEventDispatcherMouseDown);
 			COMPILE::JS
 			{
-				window.addEventListener('resize', handleResize);
+				if(!outsidePointerTracker){
+					outsidePointerTracker = new OutsidePointerTracker([element, popover.element], cancelPopover);
+				}
+				outsidePointerTracker.start();
+			}
+			COMPILE::SWF
+			{
+				button.addEventListener(MouseEvent.MOUSE_DOWN, handleControlMouseDown);
+				popover.addEventListener(MouseEvent.MOUSE_DOWN, handleControlMouseDown);
+				topMostEventDispatcher.addEventListener(MouseEvent.MOUSE_DOWN, handleTopMostEventDispatcherMouseDown);
 			}
 		}
 		COMPILE::JS
@@ -292,12 +300,15 @@ package com.unhurdle.spectrum.colorpicker
 		}
 		protected function closePopover():void{
 			if(popover && popover.open){
-				popover.removeEventListener(MouseEvent.MOUSE_DOWN, handleControlMouseDown);
-				button.removeEventListener(MouseEvent.MOUSE_DOWN, handleControlMouseDown);
-				topMostEventDispatcher.removeEventListener(MouseEvent.MOUSE_DOWN, handleTopMostEventDispatcherMouseDown);
 				COMPILE::JS
 				{
-					window.removeEventListener('resize', handleResize);
+					outsidePointerTracker.stop();
+				}
+				COMPILE::SWF
+				{
+					popover.removeEventListener(MouseEvent.MOUSE_DOWN, handleControlMouseDown);
+					button.removeEventListener(MouseEvent.MOUSE_DOWN, handleControlMouseDown);
+					topMostEventDispatcher.removeEventListener(MouseEvent.MOUSE_DOWN, handleTopMostEventDispatcherMouseDown);
 				}
 				popover.open = false;
 				COMPILE::JS
@@ -308,9 +319,11 @@ package com.unhurdle.spectrum.colorpicker
 				}
 			}
 		}
+		COMPILE::SWF
 		protected function handleControlMouseDown(event:MouseEvent):void{
 			event.stopImmediatePropagation();
 		}
+		COMPILE::SWF
 		protected function handleTopMostEventDispatcherMouseDown(event:MouseEvent):void{
 			// If the user clicked outside the popover, we're considering that a cancel.
 			cancelPopover();

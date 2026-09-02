@@ -105,15 +105,21 @@ package com.unhurdle.spectrum
 				if (_autoFocusList){
 					_list.focus();
 				}
-				addEventListener(MouseEvent.MOUSE_DOWN, handleControlMouseDown);
-				topMostEventDispatcher.addEventListener(MouseEvent.MOUSE_DOWN, handleTopMostEventDispatcherMouseDown);
+				COMPILE::SWF
+				{
+					addEventListener(MouseEvent.MOUSE_DOWN, handleControlMouseDown);
+					topMostEventDispatcher.addEventListener(MouseEvent.MOUSE_DOWN, handleTopMostEventDispatcherMouseDown);
+				}
 			} else {
 				if(_search){
 					_search.text = "";
 					handleSearch();
 				}
-				removeEventListener(MouseEvent.MOUSE_DOWN, handleControlMouseDown);
-				topMostEventDispatcher.removeEventListener(MouseEvent.MOUSE_DOWN, handleTopMostEventDispatcherMouseDown);
+				COMPILE::SWF
+				{
+					removeEventListener(MouseEvent.MOUSE_DOWN, handleControlMouseDown);
+					topMostEventDispatcher.removeEventListener(MouseEvent.MOUSE_DOWN, handleTopMostEventDispatcherMouseDown);
+				}
 			}
 		}
 
@@ -131,9 +137,11 @@ package com.unhurdle.spectrum
 			open = false;
 			dispatchEvent(new Event("change"));
 		}
+		COMPILE::SWF
 		protected function handleControlMouseDown(event:MouseEvent):void{			
 			event.stopImmediatePropagation();
 		}
+		COMPILE::SWF
 		protected function handleTopMostEventDispatcherMouseDown(event:MouseEvent):void{
 			open = false;
 		}
