@@ -2,6 +2,9 @@ package com.unhurdle.spectrum.utils
 {
 
 
+  import com.unhurdle.spectrum.Application;
+  import org.apache.royale.core.IRenderedObject;
+
   public class OutsidePointerTracker
   {
     public function OutsidePointerTracker(elements:Array, outsideHandler:Function)
@@ -22,7 +25,7 @@ package com.unhurdle.spectrum.utils
           return;
         }
         tracking = true;
-        document.addEventListener("mousedown", handleMouseDown, true);
+        Application.current.initialView.topMostEventDispatcher.addEventListener("mousedown", handleMouseDown, true);
       }
     }
 
@@ -34,14 +37,14 @@ package com.unhurdle.spectrum.utils
           return;
         }
         tracking = false;
-        document.removeEventListener("mousedown", handleMouseDown, true);
+        Application.current.initialView.topMostEventDispatcher.removeEventListener("mousedown", handleMouseDown, true);
       }
     }
 
     COMPILE::JS
-    private function handleMouseDown(event:MouseEvent):void
+    private function handleMouseDown(event:Event):void
     {
-      if(event.button != 0){
+      if(event is MouseEvent && event.button != 0){
         return;
       }
       handleDown(event);
@@ -50,7 +53,7 @@ package com.unhurdle.spectrum.utils
     COMPILE::JS
     private function handleDown(event:Event):void
     {
-      var target:Node = event.target as Node;
+      var target:Node = event.target is IRenderedObject ? (event.target as IRenderedObject).element as Node : event.target as Node;
       for each(var element:HTMLElement in elements){
         if(element && element.contains(target)){
           return;
