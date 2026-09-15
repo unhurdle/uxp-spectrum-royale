@@ -53,6 +53,9 @@ package com.unhurdle.spectrum
 		}
 		private var span:Span;
 		private var icon:Icon;
+		public function get button():FieldButton{
+			return null;
+		}
 		COMPILE::JS
 		override protected function createElement():WrappedHTMLElement{
 			var elem:WrappedHTMLElement = super.createElement();
