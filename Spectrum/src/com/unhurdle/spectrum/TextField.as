@@ -288,8 +288,11 @@ package com.unhurdle.spectrum
           var type:String = IconType.ALERT_MEDIUM;
           invalidIcon = new Icon(Icon.getCSSTypeSelector(type));
           invalidIcon.className = appendSelector("-validationIcon");
-          invalidIcon.setStyle("right","16px");
-          invalidIcon.setStyle("top","5px");
+          COMPILE::JS{
+            invalidIcon.setSvgViewBox("0 0 24 24");
+          }
+          invalidIcon.setStyle("right","12px");
+          invalidIcon.setStyle("top","7px");
           invalidIcon.setStyle('position','absolute');
           invalidIcon.setStyle("color","red");
         }

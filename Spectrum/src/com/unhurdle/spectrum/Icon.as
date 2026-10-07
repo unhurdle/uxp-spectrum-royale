@@ -166,6 +166,14 @@ package com.unhurdle.spectrum
       }
     }
 
+    COMPILE::JS
+    public function setSvgViewBox(value:String):void
+    {
+      if(svgElem){
+        svgElem.setAttribute("viewBox", value);
+      }
+    }
+
     // private var useElement:SVGUseElement;
   }
 }
