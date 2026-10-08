@@ -34,6 +34,7 @@ package com.unhurdle.spectrum
       input.className = appendSelector("-input");
       input.setAttribute("emphasized","");
       input.addEventListener("change",handleInputChange);
+      input.style.opacity = "unset";
       elem.appendChild(input);
       return elem;
     }
