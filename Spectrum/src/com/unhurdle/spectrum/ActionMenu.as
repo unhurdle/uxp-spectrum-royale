@@ -47,6 +47,13 @@ package com.unhurdle.spectrum
       
       return elem;
     }
+    override public function set selected(value:Boolean):void
+    {
+      if(value != selected){
+        toggle("is-selected",value);
+      }
+      super.selected = value;
+    }
 
     override public function set dataProvider(value:Object):void{
       if(value is Array){
