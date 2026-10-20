@@ -86,7 +86,7 @@ package com.unhurdle.spectrum
     /**
      * @royaleignorecoercion com.unhurdle.spectrum.Tag
      */
-    private var comboBoxList:ComboBoxList;
+    private var comboBoxList:TagComboBoxList;
 		private var outsidePointerTracker:OutsidePointerTracker;
     private var valuesArr:Array = [];
     private var ind:Number = 0;
@@ -195,7 +195,7 @@ package com.unhurdle.spectrum
 		}
     public function get minMenuHeight():Number{
       if(!comboBoxList){
-        return ComboBoxList.MIN_MENU_DEFAULT_HEIGHT;
+        return TagComboBoxList.MIN_MENU_DEFAULT_HEIGHT;
       }
 			return comboBoxList.minMenuHeight;
 		}
@@ -340,7 +340,7 @@ package com.unhurdle.spectrum
       // picker.addEventListener('change',itemSelected);
       if(value){
         if(!comboBoxList){
-          comboBoxList = new ComboBoxList();
+          comboBoxList = new TagComboBoxList();
           comboBoxList.autoFocusList = false;
           comboBoxList.addEventListener('change',itemSelected);
           COMPILE::JS{
