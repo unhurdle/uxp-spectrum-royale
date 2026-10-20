@@ -14,6 +14,7 @@ package com.unhurdle.spectrum
     }
 
     protected var _imageElement:HTMLImageElement;
+    protected var _pendingImageElement:HTMLImageElement;
 
     public function get imageElement():HTMLImageElement
     {
@@ -32,26 +33,32 @@ package com.unhurdle.spectrum
     }
     public function set src(value:String):void
     {
-      if(value != _src){
-        if(!_imageElement){
-          createImageElement();
-        }
-        if (value == null) value = ''; //null does not convert well
-        _imageElement.src = value;
-        _src = value;
-      }
+      if(value == _src) return;
+      if(!_imageElement) createImageElement();
+      if(value == null) value = '';
+      _pendingImageElement = newElement("img", appendSelector("-image")) as HTMLImageElement;
+      _pendingImageElement.style.position = "absolute";
+      _pendingImageElement.style.visibility = "hidden";
+      _pendingImageElement.addEventListener('load', loadHandler);
+      (element as HTMLElement).appendChild(_pendingImageElement);
+      _pendingImageElement.src = value;
+      _src = value;
+    }
+    private function loadHandler(ev:Event):void
+    {
+      _pendingImageElement.style.visibility = "visible";
+      _imageElement = _pendingImageElement;
+      _pendingImageElement = null;
+      dispatchEvent(new Event("load"));
     }
     protected function createImageElement():void{
       _imageElement = newElement("img",appendSelector("-image")) as HTMLImageElement;
-      _imageElement.addEventListener('load', loadHandler);
-      _imageElement.addEventListener('error', errorHandler);
+      // Avoid recursive error events from the current image.
+      // _imageElement.addEventListener('error', errorHandler);
       (element as HTMLElement).appendChild(_imageElement);
-
+      (element as HTMLElement).style.position = "relative";
+      _imageElement.style.position = "absolute";
     }
-    private function loadHandler(ev:Event):void{
-      dispatchEvent(new Event("load"));
-    }
-
     private function errorHandler(ev:Event):void{
       dispatchEvent(new Event("error"));
     }
