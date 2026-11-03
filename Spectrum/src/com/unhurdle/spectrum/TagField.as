@@ -63,6 +63,7 @@ package com.unhurdle.spectrum
       input.placeholder = getPlaceHolder();
       input.quiet = true;
       input.defaultDivDisplay = "inline-block";
+      input.setStyle("max-width","100%");
       input.setStyle("display","inline-block");
       input.setStyle("width","auto");
       input.setStyle("flex-grow","1");
