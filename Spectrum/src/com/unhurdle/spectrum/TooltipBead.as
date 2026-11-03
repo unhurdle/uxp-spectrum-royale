@@ -266,7 +266,7 @@ package com.unhurdle.spectrum
 						tt.x = pt.x;
 						tt.y = pt.y;
 					}
-				},50);
+				},100);
 			}
 		}
 
