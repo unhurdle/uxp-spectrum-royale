@@ -28,6 +28,18 @@ package com.unhurdle.spectrum
       return IconPrefix.SPECTRUM_UI_ICON + type;
     }
 
+    override public function set width(value:Number):void
+    {
+      super.width = value;
+      setSvgSize("width", value);
+    }
+
+    override public function set height(value:Number):void
+    {
+      super.height = value;
+      setSvgSize("height", value);
+    }
+
     private var _size:String;
 
     public function get size():String
@@ -163,6 +175,17 @@ package com.unhurdle.spectrum
         element.appendChild(svgElem);
         var path:String = svgLookup.getSvg(_selector);
         if(path) { svgElem.innerHTML = path }
+      }
+      setSvgSize("width", explicitWidth);
+      setSvgSize("height", explicitHeight);
+    }
+
+    private function setSvgSize(dimension:String, value:Number):void
+    {
+      COMPILE::JS{
+        if(svgElem && !isNaN(value)){
+          svgElem.style[dimension] = value + "px";
+        }
       }
     }
 
