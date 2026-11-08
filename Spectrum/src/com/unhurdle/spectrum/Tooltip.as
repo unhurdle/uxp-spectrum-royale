@@ -197,7 +197,7 @@ package com.unhurdle.spectrum
               element.style.marginTop = "10px";
               tipSpan.element.style.top = "-7px";
               if(_tipPosition == "center"){
-                tipSpan.element.style.left = "calc(50% - 4px)";
+                tipSpan.element.style.left = "calc(50% - 6.5px)";
               }
             }
             setAttribute('placement',value);
@@ -208,7 +208,7 @@ package com.unhurdle.spectrum
               element.style.marginTop = "-10px";
               tipSpan.element.style.top = "97%";
               if(_tipPosition == "center"){
-                tipSpan.element.style.left = "calc(50% - 4px)";
+                tipSpan.element.style.left = "calc(50% - 6.5px)";
               }
             }
             setAttribute('placement',value);
