@@ -362,6 +362,14 @@ package com.unhurdle.spectrum
     	return _div;
     }
 
+    override public function focus():void{
+      COMPILE::JS{
+        _input.style.display = "inline-block";
+        _div.element.style.display = "none";
+      }
+      _input.focus();
+    }
+
     public var defaultDivDisplay:String = "flex";
      COMPILE::JS
 		override protected function createElement():WrappedHTMLElement{
