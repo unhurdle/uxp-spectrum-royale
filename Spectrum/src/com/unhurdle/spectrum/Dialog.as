@@ -61,7 +61,8 @@ package com.unhurdle.spectrum
       }
       if(event.key == WhitespaceKeys.TAB){
           event.preventDefault();
-          whenKey(event.shiftKey);
+          event.stopPropagation();
+          whenKey(event.shiftKey,event.target);
       }
     }
 
@@ -302,7 +303,7 @@ package com.unhurdle.spectrum
       Application.current.popUpParent.addElement(this);
       addEventListener(KeyboardEvent.KEY_DOWN,handleKeyDown);
       if(!elements.length){
-        getFocusableElements(this,elements);
+        getFocusableElements(this,elements,handleKeyDown);
       }
       visible = true;
       COMPILE::JS
@@ -344,7 +345,7 @@ package com.unhurdle.spectrum
       }
     }
 
-    private function whenKey(backward:Boolean):void{
+    private function whenKey(backward:Boolean,currentFocus:* = null):void{
       if(elements.length <= 1){
         return;
       }
@@ -357,7 +358,7 @@ package com.unhurdle.spectrum
 			}
       var currentIndex:Number;
       var found:Boolean = focusableElements.some(function(e:*, index:Number):Boolean {
-        if (document.activeElement != e.focusElement){
+        if ((currentFocus || document.activeElement) != e.focusElement){
           return false;
         }
         currentIndex = index;
