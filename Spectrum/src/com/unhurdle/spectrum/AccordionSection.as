@@ -24,12 +24,12 @@ package com.unhurdle.spectrum
 
     public function get headerText():String
     {
-    	return headerNode.text;
+    	return headerButton.text;
     }
 
     public function set headerText(value:String):void
     {
-    	headerNode.text = value;
+    	headerButton.text = value;
     }
     private var _disabled:Boolean = false;
 
@@ -98,7 +98,7 @@ package com.unhurdle.spectrum
 
     protected var headerElem:H3;
     
-    protected var headerNode:TextNode;
+    protected var headerButton:TextNode;
 
     protected var headerIcon:Icon;
 
@@ -108,14 +108,14 @@ package com.unhurdle.spectrum
 			headerElem = new H3();
       headerElem.className = appendSelector("Heading");
 
-			headerNode = new TextNode("div");
+			headerButton = new TextNode("div");
       // (headerButton.element as HTMLButtonElement).type = "button";
-      headerNode.className = appendSelector("Header");
-      headerNode.element.style.marginTop = '2px';
+      headerButton.className = appendSelector("Header");
+      headerButton.element.style.marginTop = '2px';
 
-      headerNode.element.addEventListener("click",toggleSection)
+      headerButton.element.addEventListener("click",toggleSection)
 
-      headerElem.element.appendChild(headerNode.element);
+      headerElem.element.appendChild(headerButton.element);
 
       var type:String = IconType.CHEVRON_RIGHT_MEDIUM;
       headerIcon = new Icon(Icon.getCSSTypeSelector(type));
