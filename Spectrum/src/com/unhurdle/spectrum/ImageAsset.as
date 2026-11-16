@@ -54,6 +54,8 @@ package com.unhurdle.spectrum
 
         _pendingSrc = value;
         _pendingImage = newElement("img") as HTMLImageElement;
+        _pendingImage.className = _imageElement.className;
+        _pendingImage.style.cssText = _imageElement.style.cssText;
         _pendingImage.style.position = "absolute";
         _pendingImage.style.visibility = "hidden";
         (element as HTMLElement).appendChild(_pendingImage);
@@ -82,8 +84,8 @@ package com.unhurdle.spectrum
         return;
       }
 
-      _imageElement.src = _pendingSrc;
-      clearPendingImage();
+      preserveImageSize();
+      commitPendingImage();
       }
 
     private function pendingErrorHandler(ev:Event):void{
@@ -91,8 +93,36 @@ package com.unhurdle.spectrum
         return;
       }
 
+      preserveImageSize();
       _imageElement.src = _pendingSrc;
       clearPendingImage();
+    }
+
+    private function commitPendingImage():void{
+      var oldImage:HTMLImageElement = _imageElement;
+      var newImage:HTMLImageElement = _pendingImage;
+      newImage.style.cssText = oldImage.style.cssText;
+      newImage.removeEventListener('load', pendingLoadHandler);
+      newImage.removeEventListener('error', pendingErrorHandler);
+      newImage.addEventListener('load', loadHandler);
+      newImage.addEventListener('error', errorHandler);
+      oldImage.removeEventListener('load', loadHandler);
+      oldImage.removeEventListener('error', errorHandler);
+      (element as HTMLElement).replaceChild(newImage, oldImage);
+      _imageElement = newImage;
+      _pendingImage = null;
+      _pendingSrc = null;
+    }
+
+    private function preserveImageSize():void{
+      var width:Number = _imageElement.offsetWidth;
+      var height:Number = _imageElement.offsetHeight;
+      if(width > 0){
+        _imageElement.style.width = width + "px";
+      }
+      if(height > 0){
+        _imageElement.style.height = height + "px";
+      }
     }
 
     private function clearPendingImage():void{
