@@ -23,6 +23,9 @@ package com.unhurdle.spectrum
     	return _imageElement;
     }
     protected var _src:String;
+    private var _pendingImage:HTMLImageElement;
+    private var _pendingSrc:String;
+
     public function get src():String
     {
     	return _src;
@@ -37,8 +40,26 @@ package com.unhurdle.spectrum
           createImageElement();
         }
         if (value == null) value = ''; //null does not convert well
-        _imageElement.src = value;
         _src = value;
+
+        if (_pendingImage) {
+          clearPendingImage();
+        }
+
+        if (value == '') {
+          _pendingSrc = null;
+          _imageElement.src = value;
+          return;
+        }
+
+        _pendingSrc = value;
+        _pendingImage = newElement("img") as HTMLImageElement;
+        _pendingImage.style.position = "absolute";
+        _pendingImage.style.visibility = "hidden";
+        (element as HTMLElement).appendChild(_pendingImage);
+        _pendingImage.addEventListener('load', pendingLoadHandler);
+        _pendingImage.addEventListener('error', pendingErrorHandler);
+        _pendingImage.src = value;
       }
     }
     protected function createImageElement():void{
@@ -54,6 +75,34 @@ package com.unhurdle.spectrum
 
     private function errorHandler(ev:Event):void{
       dispatchEvent(new Event("error"));
+    }
+
+    private function pendingLoadHandler(ev:Event):void{
+      if(!_pendingImage){
+        return;
+      }
+
+      _imageElement.src = _pendingSrc;
+      clearPendingImage();
+      }
+
+    private function pendingErrorHandler(ev:Event):void{
+      if(!_pendingImage){
+        return;
+      }
+
+      _imageElement.src = _pendingSrc;
+      clearPendingImage();
+    }
+
+    private function clearPendingImage():void{
+      if(_pendingImage){
+        _pendingImage.removeEventListener('load', pendingLoadHandler);
+        _pendingImage.removeEventListener('error', pendingErrorHandler);
+        (element as HTMLElement).removeChild(_pendingImage);
+        _pendingImage = null;
+      }
+      _pendingSrc = null;
     }
 
     public function get imageStyle():CSSStyleDeclaration
