@@ -219,7 +219,7 @@ package com.unhurdle.spectrum
 			elem.appendChild(_div.element);
 			_textarea = newElement("sp-textarea") as HTMLTextAreaElement;
 			_div.className = "spectrum-Textfield-input";
-			_div.style = {"display" : "inline-block","white-space": "pre-line"};
+			_div.style = {"display" : "inline-block","white-space": "pre-line","overflow-x": "hidden"};
 			setDivStyle();
 			_textarea.addEventListener("blur",handleBlur);
 			elem.appendChild(_textarea);
