@@ -14,6 +14,7 @@ package com.unhurdle.spectrum
     }
 
     protected var _imageElement:HTMLImageElement;
+    private var _visibleSourceSet:Boolean;
 
     public function get imageElement():HTMLImageElement
     {
@@ -23,6 +24,7 @@ package com.unhurdle.spectrum
     	return _imageElement;
     }
     protected var _src:String;
+    private var _loadFailed:Boolean;
     private var _pendingImage:HTMLImageElement;
     private var _pendingSrc:String;
 
@@ -35,12 +37,14 @@ package com.unhurdle.spectrum
     }
     public function set src(value:String):void
     {
-      if(value != _src){
+      if(value != _src || _loadFailed){
         if(!_imageElement){
           createImageElement();
         }
         if (value == null) value = ''; //null does not convert well
         _src = value;
+        _loadFailed = false;
+        _visibleSourceSet = false;
 
         if (_pendingImage) {
           clearPendingImage();
@@ -56,6 +60,14 @@ package com.unhurdle.spectrum
         _pendingImage = newElement("img") as HTMLImageElement;
         _pendingImage.className = _imageElement.className;
         _pendingImage.style.cssText = _imageElement.style.cssText;
+        var width:Number = _imageElement.offsetWidth;
+        var height:Number = _imageElement.offsetHeight;
+        if(width > 0){
+          _pendingImage.style.width = width + "px";
+        }
+        if(height > 0){
+          _pendingImage.style.height = height + "px";
+        }
         _pendingImage.style.position = "absolute";
         _pendingImage.style.visibility = "hidden";
         (element as HTMLElement).appendChild(_pendingImage);
@@ -72,10 +84,16 @@ package com.unhurdle.spectrum
 
     }
     private function loadHandler(ev:Event):void{
+      if(!_visibleSourceSet){
+        return;
+      }
       dispatchEvent(new Event("load"));
     }
 
     private function errorHandler(ev:Event):void{
+      if(!_visibleSourceSet){
+        return;
+      }
       dispatchEvent(new Event("error"));
     }
 
@@ -94,7 +112,9 @@ package com.unhurdle.spectrum
       }
 
       preserveImageSize();
+      _visibleSourceSet = true;
       _imageElement.src = _pendingSrc;
+      _loadFailed = true;
       clearPendingImage();
     }
 
@@ -106,6 +126,7 @@ package com.unhurdle.spectrum
       newImage.removeEventListener('error', pendingErrorHandler);
       newImage.addEventListener('load', loadHandler);
       newImage.addEventListener('error', errorHandler);
+      _visibleSourceSet = true;
       oldImage.removeEventListener('load', loadHandler);
       oldImage.removeEventListener('error', errorHandler);
       (element as HTMLElement).replaceChild(newImage, oldImage);
