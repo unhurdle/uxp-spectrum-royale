@@ -332,7 +332,7 @@ package com.unhurdle.spectrum
       invalidIcon.setStyle("pointer-events","auto");
       invalidTooltip.autoClose = invalidAutoClose;
       invalidTooltip.toolTip = invalidText;
-    };
+    }
 
     private function checkValidation():void
     {
