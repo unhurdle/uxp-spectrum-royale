@@ -5,6 +5,7 @@ package com.unhurdle.spectrum
 		import org.apache.royale.core.WrappedHTMLElement;
 	}
 	import org.apache.royale.html.elements.Div;
+	import com.unhurdle.spectrum.const.IconType;
 
 	public class TextArea extends TextFieldBase
 	{
@@ -176,6 +177,138 @@ package com.unhurdle.spectrum
 				textarea.required = value;
 			}
 			_required = value;
+		}
+
+		public var showValidIcon:Boolean = true;
+		public var showInvalidIcon:Boolean = true;
+		private var validIcon:Icon;
+		private var invalidIcon:Icon;
+		override public function get valid():Boolean
+		{
+			return super.valid;
+		}
+
+		override public function set valid(value:Boolean):void
+		{
+			super.valid = value;
+			if (!showValidIcon){
+				return;
+			}
+			if(value){
+				if(!validIcon){
+					var type:String = IconType.CHECKMARK_MEDIUM;
+					validIcon = new Icon(Icon.getCSSTypeSelector(type));
+					validIcon.className = appendSelector("-validationIcon");
+					validIcon.setStyle("right","-3px");
+					validIcon.setStyle("top","7px");
+					validIcon.setStyle('position','absolute');
+					validIcon.setStyle("color","green");
+				}
+				COMPILE::JS{
+					element.style.border = "0px";
+				}
+				//if icon doesn't exist
+				if(getElementIndex(validIcon) == -1){
+					addElement(validIcon);
+				}
+				if(invalidTooltip){
+					invalidTooltip.toolTip = '';
+				}
+			} else{
+				if(validIcon && getElementIndex(validIcon) != -1){
+					removeElement(validIcon);
+				}
+			}
+		}
+
+		override public function get invalid():Boolean
+		{
+			return super.invalid;
+		}
+		private var _invalidText:String;
+
+		public function get invalidText():String
+		{
+			return _invalidText;
+		}
+
+		public function set invalidText(value:String):void
+		{
+			_invalidText = value;
+			applyInvalidToolTip();
+		}
+
+		private var _invalidAutoClose:Number = 0;
+		public function get invalidAutoClose():Number
+		{
+			return _invalidAutoClose;
+		}
+
+		public function set invalidAutoClose(value:Number):void
+		{
+			_invalidAutoClose = value;
+			if(invalidTooltip) {
+				invalidTooltip.autoClose = value;
+			}
+		}
+
+		protected var invalidTooltip:AdaptiveTooltipBead;
+		override public function set invalid(value:Boolean):void
+		{
+			super.invalid = value;
+			if (!showInvalidIcon){
+				return;
+			}
+			if(value){
+				if(!invalidIcon){
+					var type:String = IconType.ALERT_MEDIUM;
+					invalidIcon = new Icon(Icon.getCSSTypeSelector(type));
+					invalidIcon.className = appendSelector("-validationIcon");
+					COMPILE::JS{
+						invalidIcon.setSvgViewBox("0 0 24 24");
+					}
+					invalidIcon.setStyle("right","12px");
+					invalidIcon.setStyle("top","7px");
+					invalidIcon.setStyle('position','absolute');
+					invalidIcon.setStyle("color","red");
+				}
+				COMPILE::JS{
+					element.style.border = "1px solid red";
+				}
+				if(getElementIndex(invalidIcon) == -1){
+					addElement(invalidIcon);
+				}
+				applyInvalidToolTip();
+			} else{
+				COMPILE::JS{
+					element.style.border = "0px";
+				}
+				if(invalidIcon && getElementIndex(invalidIcon) != -1){
+					removeElement(invalidIcon);
+				}
+				if(invalidTooltip){
+					invalidTooltip.toolTip = '';
+				}
+			}
+		}
+		
+		public function applyInvalidToolTip():void {
+			if (!invalidIcon) {
+				return;
+			}
+			if (invalidTooltip) {
+				invalidTooltip.toolTip = invalidText;
+				return;
+			}
+			if (!invalidText || !invalidIcon) {
+				return;
+			}
+			invalidTooltip = new AdaptiveTooltipBead();
+			invalidTooltip.flavor = "negative";
+			invalidIcon.addBead(invalidTooltip);
+			invalidIcon.setStyle("pointer-events","auto");
+			invalidTooltip.autoClose = invalidAutoClose;
+			invalidTooltip.toolTip = invalidText;
 		}
 		
 		private function checkValidation():void
